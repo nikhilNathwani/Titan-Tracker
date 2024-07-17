@@ -1,0 +1,394 @@
+:root {
+	--minHeight-app: 600px;
+	--width-filterContent: 400px;
+	/* --color-accent: hsl(212, 26%, 29%); */
+	--color-accent: hsl(147, 14%, 26%);
+	--color-light: hsl(0, 0%, 89%);
+	--color-bg: hsl(0, 0%, 86%);
+	--color-positive: hsl(147, 44%, 35%);
+	--color-positive-light: hsl(147, 44%, 90%);
+	--color-negative: hsl(0, 95%, 35%);
+	--color-negative-light: hsl(0, 95%, 95%);
+}
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#app {
+	min-height: var(--minHeight-app);
+
+	display: grid;
+	grid-template-columns: var(--width-filterContainer) 1fr;
+	/* ^Note: --width-filterContainer is set within 
+	    the 'initial mode' and 'adjacent mode' classes */
+
+	/* background-color: var(--color-accent); */
+
+	transition: grid-template-columns 0.6s ease;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     FILTER AREA                                          */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#filter-container {
+	height: 100vh;
+	height: 100svh;
+	/* height: 100dvh; */
+	/* ^I use dvh in initial mode only, because it causes
+	    jitteriness on mobile when URL bar minimizes */
+	min-height: var(--minHeight-app);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: var(--color-accent);
+}
+
+#filter-content {
+	width: var(--width-filterContent);
+	padding-inline: 3rem;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2.25rem;
+}
+
+#filter-header {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 0.5rem;
+
+	color: var(--color-bg);
+}
+
+#filter-header h1 {
+	font-family: "Paytone One", sans-serif;
+	font-size: 2.5rem;
+}
+
+#filter-paragraph {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	gap: 1.25rem;
+
+	color: var(--color-bg);
+}
+
+#filter-paragraph select {
+	width: 100%;
+	height: 2rem;
+	margin-top: 3px;
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	color: var(--color-accent);
+	background-color: var(--color-bg);
+}
+
+button#submit-button {
+	width: fit-content;
+	height: 3rem;
+	padding-inline: 1.5ch;
+	margin: auto;
+
+	border-radius: 6px;
+	border: 2px solid var(--color-bg);
+	border-bottom: 4px solid var(--color-bg);
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	color: var(--color-bg);
+	background-color: var(--color-accent);
+
+	cursor: pointer;
+}
+
+button#submit-button:active {
+	transform: translateY(2px);
+	border-bottom-width: 2px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     RESULT AREA                                          */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#result-container {
+	height: fit-content;
+	min-height: var(--minHeight-app);
+	/* padding-block: 3rem; */
+
+	/* background-color: white; */
+}
+
+.result {
+	--paddingBottom-resultChip: 1.5rem;
+	--marginBottom-result: 4.5rem;
+	--marginTop-result: calc(
+		var(--marginBottom-result) - var(--paddingBottom-resultChip)
+	);
+
+	width: min(80vw, 64ch);
+	margin: var(--marginTop-result) auto var(--marginBottom-result) auto;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 1rem;
+	transition: opacity 0.5s ease;
+}
+
+.result.disappear {
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+
+button#return-to-filters {
+	width: 80%;
+	margin-inline: 10%;
+	height: 3rem;
+	border-width: 1px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+
+	position: fixed;
+	bottom: 1rem;
+	z-index: 999;
+
+	color: var(--color-bg);
+	background-color: var(--color-accent);
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	cursor: pointer;
+}
+
+/* Mobile adjustments*/
+@media (max-width: 519px) {
+	.result {
+		--marginBottom-result: 3rem;
+	}
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     RESULT BANNER                                        */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.result-banner {
+	--paddingX-banner: 1.5rem;
+	--paddingY-banner: 2rem;
+	--paddingY-profitBanner: 3rem;
+	--gap-banner: 2rem;
+	--fs-banner: 2.5rem;
+	--fs-totalProfit: 4.5rem;
+
+	width: 100%;
+	padding: var(--paddingY-banner) var(--paddingX-banner);
+
+	border: 3px solid var(--color-light);
+	border-bottom: 6px solid var(--color-light);
+	border-radius: 8px;
+
+	font-size: var(--fs-banner);
+	text-align: center;
+
+	/* color: hsl(212, 26%, 29%); */
+	color: var(--color-accent);
+	background-image: linear-gradient(45deg, var(--color-light), white);
+}
+
+.result-banner-positive {
+	font-weight: bold;
+	color: var(--color-positive);
+}
+
+.result-banner-negative {
+	font-weight: bold;
+	color: var(--color-negative);
+}
+
+#total-profit-banner {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--gap-banner);
+	padding-block: var(--paddingY-profitBanner);
+	margin-block: 3rem 1.5rem;
+}
+
+#total-profit-banner span {
+	font-size: var(--fs-totalProfit);
+}
+
+/* Mobile adjustments*/
+@media (max-width: 519px) {
+	.result-banner {
+		--paddingX-banner: 1rem;
+		--paddingY-banner: 2rem;
+		--paddingY-profitBanner: 2rem;
+		--marginBottom-banner: 3.5rem;
+		--gap-banner: 1rem;
+		--fs-banner: 1.625rem;
+		--fs-totalProfit: 2.75rem;
+	}
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     RESULT DETAILS                                       */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.result-details {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	/* grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); */
+	/* gap: 1rem; */
+}
+
+.result-detail-row {
+	display: grid;
+	grid-template-columns: repeat(2, 16ch);
+}
+
+.result-chip {
+	min-width: 25%;
+	margin-block: 0.375rem 1.5rem;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	/* gap: 0.375rem; */
+	/* justify-content: center; */
+
+	color: var(--color-accent);
+	/* color: hsl(212, 26%, 29%); */
+}
+
+.result-chip-title {
+	margin-bottom: 0.375rem;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.result-chip-value {
+	padding: 0.75ch 1ch;
+	border-radius: 6px;
+}
+
+.result-chip-value-positive {
+	background-color: var(--color-positive-light);
+	color: var(--color-positive);
+	/* background-color: hsl(150, 28%, 90%);
+	color: hsl(150, 42%, 32%); */
+}
+
+.result-chip-value-negative {
+	background-color: var(--color-negative-light);
+	color: var(--color-negative);
+	/* background-color: hsl(0, 28%, 90%);
+	color: hsl(0, 52%, 40%); */
+}
+
+#top-bets-result .result-details {
+	flex-flow: column nowrap;
+}
+
+table {
+	border-collapse: collapse;
+	margin-top: 0.375rem;
+}
+
+th,
+td {
+	border: 1px solid var(--color-accent);
+	padding: 0.5rem 0.625rem;
+	text-align: left; /* Align text to the left */
+}
+
+th {
+	font-weight: normal;
+	background-color: var(--color-light);
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     INITIAL MODE                                         */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#app.initialMode {
+	--width-filterContainer: 100%;
+	overflow-y: scroll;
+}
+
+.initialMode #filter-container {
+	/* height: 100dvh; */
+}
+
+.initialMode #result-container {
+	display: none;
+}
+
+@media (max-height: 599px) {
+	#app.initialMode {
+		overflow-y: hidden;
+	}
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     STACKED MODE                                         */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#app.stackedMode {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.stackedMode #result-container {
+	height: fit-content;
+}
+
+/* Prevent jarring fadeout as screen scrolls down */
+.stackedMode .result.disappear {
+	transition: none;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                                                          */
+/*     ADJACENT MODE                                        */
+/*                                                          */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#app.adjacentMode {
+	--width-filterContainer: 400px;
+	overflow-y: hidden;
+}
+
+.adjacentMode #filter-container {
+	z-index: 2;
+	box-shadow: 10px 0px 6px rgba(0, 0, 0, 0.3);
+}
+
+.adjacentMode #result-container {
+	height: 100vh;
+	height: 100dvh;
+	overflow-y: scroll;
+}
