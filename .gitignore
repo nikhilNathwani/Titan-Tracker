@@ -2,3 +2,5 @@
 .vercel
 .env.development.local
 /node_modules
+/titan_rounds.csv
+/titan_episodes.csv
