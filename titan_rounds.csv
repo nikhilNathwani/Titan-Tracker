@@ -1,0 +1,52 @@
+SeasonNum,EpisodeNum,RoundNum,TitanName,Ingredient1,Ingredient2,MaxScore,TitanScore,ChallengerScore
+1,1,1,Tiffany Derry,Oyster,Horseradish,10,8,6
+1,1,2,Michael Voltaggio,Filet Mignon,Blue Cheese,10,7,5
+1,1,3,Brooke Williamson,Black Truffle,Egg,20,15,15
+1,2,1,Michael Voltaggio,Prawn,Soy Sauce,10,7,9
+1,2,2,Brooke Williamson,Sweet Potato,Molasses,10,9,6
+1,2,3,Tiffany Derry,Condensed Milk,Lime Leaf,20,18,13
+1,3,1,Tiffany Derry,Pineapple,Chipotle,10,6,6
+1,3,2,Michael Voltaggio,Duck,Orange,10,8,9
+1,3,3,Brooke Williamson,Huitlacoche,Masa,20,16,18
+1,4,1,Michael Voltaggio,Red Snapper,Mango,10,7,7
+1,4,2,Brooke Williamson,Scallop,Avocado,10,8,5
+1,4,3,Tiffany Derry,Dry Purple Corn,Heart of Palm,20,17,15
+1,5,1,Michael Voltaggio,Pork Tenderloin,Apple,10,9,5
+1,5,2,Brooke Williamson,Potato,Chive,10,5,8
+1,5,3,Tiffany Derry,Chicken Thigh,Red Cabbage,20,10,18
+1,6,1,Tiffany Derry,Chicken,Paprika,10,7,8
+1,6,2,Michael Voltaggio,Zucchini,Parmigiano Reggiano,10,7,10
+1,6,3,Brooke Williamson,Hen-of-the-woods Mushroom,Green Peppercorn,20,17,18
+2,1,1,Michael Voltaggio,Pistachio,Honey,10,8,7
+2,1,2,Tiffany Derry,Black Garlic,Tofu,10,6,5
+2,1,3,Brooke Williamson,Lamb Heart,Greek Yogurt,20,17,18
+2,2,1,Tiffany Derry,Short Rib,Asian Pear,10,6,7
+2,2,2,Michael Voltaggio,Serrano Chile,Avocado,10,9,7
+2,2,3,Brooke Williamson,Pork Belly,Kimchi,20,15,17
+2,3,1,Brooke Williamson,Tomato,Egg,10,8,7
+2,3,2,Michael Voltaggio,Lobster,Butter,10,6,7
+2,3,3,Tiffany Derry,Baby Goat Shoulder,Estratto di Pomodoro,20,15,17
+2,4,1,Michael Voltaggio,Plantain,Shrimp,10,7,6
+2,4,2,Tiffany Derry,Guanchiale,Pecorino,10,7,7
+2,4,3,Brooke Williamson,Pig's Feet,Achiote,20,19,18
+2,5,1,Michael Voltaggio,Pork Tenderloin,Blood Orange,10,5,6
+2,5,2,Brooke Williamson,Cherry Tomato,Saffron,10,9,7
+2,5,3,Tiffany Derry,Rack of Lamb,Celery,20,16,19
+2,6,1,Michael Voltaggio,Black Bean,Chicken,10,7,6
+2,6,2,Brooke Williamson,Hot Italian Sausage,Red Bell Pepper,10,8,7
+2,6,3,Tiffany Derry,Corn,Mushroom,20,18,18
+2,7,1,Tiffany Derry,Skirt Steak,Sichuan Peppercorn,10,6,7
+2,7,2,Michael Voltaggio,Peanut,Ancho Chile,10,8,9
+2,7,3,Brooke Williamson,Red Snapper,Yucca,20,19,16
+2,8,1,Michael Voltaggio,Blue Crab,Okra,10,7,6
+2,8,2,Brooke Williamson,Quail Egg,Bacon,10,8,8
+2,8,3,Tiffany Derry,Catfish,Lima Bean,20,17,19
+2,9,1,Michael Voltaggio,Salmon,Red Miso,10,8,6
+2,9,2,Tiffany Derry,Hanger Steak,Cheddar Cheese,10,5,6
+2,9,3,Brooke Williamson,Black Cod,Burdock Root,20,13,16
+2,10,1,Brooke Williamson,Goat Meat,Scotch Bonnet,10,7,5
+2,10,2,Tiffany Derry,Mussel,Fennel,10,9,6
+2,10,3,Michael Voltaggio,Conch,Young Coconut,20,20,12
+3,1,1,Brooke Williamson,Salmon,Lime,10,6,8
+3,1,2,Michael Voltaggio,Brioche,Blackberry,10,7,7
+3,1,3,Tiffany Derry,Hen Duck,Geoduck,20,19,19
