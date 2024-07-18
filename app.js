@@ -43,6 +43,7 @@ app.get("/api/winLossTeam", (req, res) => {
 app.get("/api/winLossIndividual", (req, res) => {
 	const query = `
 	SELECT
+		titan_name,
 		COUNT(CASE WHEN titan_score > challenger_score THEN 1 END) AS num_win,
 		COUNT(CASE WHEN titan_score = challenger_score THEN 1 END) AS num_tie,
 		COUNT(CASE WHEN titan_score < challenger_score THEN 1 END) AS num_loss
