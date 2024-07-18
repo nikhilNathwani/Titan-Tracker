@@ -8,6 +8,7 @@ fetch(`/api/winLossTeam`)
 	.catch((error) => console.error("Error fetching data:", error));
 
 function makeWinLossTeamDiv(numWin, numTie, numLoss) {
+	console.log("params:", numWin, numTie, numLoss);
 	const value = document.querySelector(".teamStatValue");
 	const caption = document.querySelector(".teamStatCaption");
 
