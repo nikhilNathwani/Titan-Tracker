@@ -1,8 +1,9 @@
 fetch(`/api/winLossTeam`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log(result);
-		makeWinLossTeamDiv(result.numWin, result.numTie, result.numLoss);
+		console.log(result.data);
+		const record = result.data;
+		makeWinLossTeamDiv(record.numWin, record.numTie, record.numLoss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
