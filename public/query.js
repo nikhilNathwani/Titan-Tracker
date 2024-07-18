@@ -54,10 +54,10 @@ function makeWinLossIndividualDivs(titanRecords) {
 	titanRecords.forEach((titan, index) => {
 		const score = titan.num_win + 0.5 * titan.num_tie;
 		if (titan.titan_name == "Brooke Williamson") {
-			currScore -= 1;
+			// currScore -= 1;
 		}
 		if (titan.titan_name == "Tiffany Derry") {
-			// currScore -= 2;
+			currScore -= 2;
 		}
 		//Determine rank
 		var rank = index + 1;
