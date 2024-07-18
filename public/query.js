@@ -2,21 +2,23 @@ fetch(`/api/winLossTeam`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log(result.data);
-		const numWin = parseInt(result.data.numWin, 10);
-		const numTie = parseInt(result.data.numTie, 10);
-		const numLoss = parseInt(result.data.numLoss, 10);
-		makeWinLossTeamDiv(numWin, numTie, numLoss);
+		const num_win = parseInt(result.data.num_win, 10);
+		const num_tie = parseInt(result.data.num_tie, 10);
+		const num_loss = parseInt(result.data.num_loss, 10);
+		makeWinLossTeamDiv(num_win, num_tie, num_loss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
-function makeWinLossTeamDiv(numWin, numTie, numLoss) {
-	console.log("params:", numWin, numTie, numLoss);
+function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
+	console.log("params:", num_win, num_tie, num_loss);
 	const value = document.querySelector(".teamStatValue");
 	const caption = document.querySelector(".teamStatCaption");
 
-	value.textContent = `${numWin}-${numLoss}${numTie > 0 ? `-${numTie}` : ""}`;
+	value.textContent = `${num_win}-${num_loss}${
+		num_tie > 0 ? `-${num_tie}` : ""
+	}`;
 	caption.textContent = `${
-		Math.floor((numWin / (numWin + numTie + numLoss)) * 100) / 100
+		Math.floor((num_win / (num_win + num_tie + num_loss)) * 100) / 100
 	}`;
 }
 
@@ -47,9 +49,9 @@ function makeResultDivs(betResults, topThreeBets, prediction, wager) {
 		profitFavoriteWins,
 		profitFavoriteLosses,
 	} = betResults;
-	const numWins = numUnderdogWins + numFavoriteWins;
-	const numLosses = numUnderdogLosses + numFavoriteLosses;
-	const numGames = numWins + numLosses;
+	const num_wins = numUnderdogWins + numFavoriteWins;
+	const num_losses = numUnderdogLosses + numFavoriteLosses;
+	const numGames = num_wins + num_losses;
 	const totalProfit =
 		profitUnderdogWins +
 		profitUnderdogLosses +
