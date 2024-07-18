@@ -57,7 +57,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 			currScore -= 1;
 		}
 		if (titan.titan_name == "Tiffany Derry") {
-			currScore -= 2;
+			// currScore -= 2;
 		}
 		//Determine rank
 		var rank = index + 1;
