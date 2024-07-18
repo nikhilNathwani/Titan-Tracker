@@ -54,7 +54,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 		var rank = index + 1;
 		var isTie = false;
 		if (titan.titan_name == "Brooke Williamson") {
-			currScore -= 0.5;
+			currScore -= 1;
 		}
 		console.log("currScore", currScore);
 		if (currScore == titan.num_win + 0.5 * titan.num_tie) {
