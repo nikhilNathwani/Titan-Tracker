@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 //Route to Win Loss [Team] data
-app.get("/api/winLossTeam", (res) => {
+app.get("/api/winLossTeam", (req, res) => {
 	const query = `
     WITH episode_sums AS (
 		SELECT
@@ -43,7 +43,7 @@ app.get("/api/winLossTeam", (res) => {
 app.use(express.static(path.join(__dirname, "public")));
 
 // Fallback to serve index.html for any other route
-app.get("*", (res) => {
+app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
