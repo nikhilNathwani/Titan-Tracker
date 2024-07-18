@@ -5,261 +5,48 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="/style.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap"
 			rel="stylesheet"
-		/>
-		<title>NBA Moneyline Bet Simulator</title>
+		/> -->
+		<title>Bobby's Triple Threat - Stats</title>
 	</head>
-	<body>
-		<div id="app" class="initialMode">
-			<div id="filter-container">
-				<div id="filter-content">
-					<div id="filter-header">
-						<h1 id="filter-title">NBA Bet Simulator</h1>
-						<p id="filter-subtitle">
-							Pick a team to win/lose every game of a season.
-							Could this simple strategy pay off?
-						</p>
-					</div>
-					<div id="filter-paragraph">
-						<div class="filter-row">
-							<div>Team</div>
-							<select id="team-input" class="dropdown"></select>
-						</div>
-						<div class="filter-row">
-							<div>Season</div>
-							<select id="season-input" class="dropdown"></select>
-						</div>
-						<div class="filter-row">
-							<div>Prediction</div>
-							<select
-								id="outcome-input"
-								class="dropdown"
-							></select>
-						</div>
-						<div class="filter-row">
-							<div>Wager per game</div>
-							<select id="wager-input" class="dropdown"></select>
-						</div>
-					</div>
-					<button id="submit-button">View Results</button>
-				</div>
-			</div>
-			<div id="result-container">
-				<button id="return-to-filters">
-					&#8679; Return to filters
-				</button>
-				<div class="result disappear" id="total-profit-result">
-					<div class="result-banner" id="total-profit-banner">
-						<p></p>
-						<span></span>
-						<p>at season's end.</p>
-					</div>
-				</div>
-				<div class="result disappear" id="roi-result">
-					<div class="result-banner" id="roi-banner">
-						That's a
-						<span></span>
-						return on investment.
-					</div>
-					<div class="result-details" id="roi-details">
-						<div class="result-detail-row">
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Total wagered
-								</div>
-								<div
-									class="result-chip-value"
-									id="totalWagered"
-								></div>
-							</div>
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Total payout
-								</div>
-								<div
-									class="result-chip-value"
-									id="totalPayout"
-								></div>
-							</div>
-						</div>
-						<div class="result-detail-row">
-							<div class="result-chip">
-								<div class="result-chip-title">Profit</div>
-								<div
-									class="result-chip-value"
-									id="profit"
-								></div>
-							</div>
-							<div class="result-chip">
-								<div class="result-chip-title">% Return</div>
-								<div
-									class="result-chip-value"
-									id="percentReturn"
-								></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="result disappear" id="win-loss-result">
-					<div class="result-banner" id="win-loss-banner">
-						This comes from
-						<span class="result-banner-negative"></span>
-						<span>incorrect bets.</span>
-					</div>
-					<div class="result-details" id="win-loss-details">
-						<div class="result-detail-row">
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Lost as Underdog
-								</div>
-								<div
-									class="result-chip-value"
-									id="underdog-loss-gameCount"
-								></div>
-								<div
-									class="result-chip-value"
-									id="underdog-loss-payout"
-								></div>
-							</div>
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Lost as Favorite
-								</div>
-								<div
-									class="result-chip-value"
-									id="favorite-loss-gameCount"
-								></div>
-								<div
-									class="result-chip-value"
-									id="favorite-loss-payout"
-								></div>
-							</div>
-						</div>
-						<div class="result-detail-row">
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Won as Underdog
-								</div>
-								<div
-									class="result-chip-value"
-									id="underdog-win-gameCount"
-								></div>
-								<div
-									class="result-chip-value"
-									id="underdog-win-payout"
-								></div>
-							</div>
-							<div class="result-chip">
-								<div class="result-chip-title">
-									Won as Favorite
-								</div>
-								<div
-									class="result-chip-value"
-									id="favorite-win-gameCount"
-								></div>
-								<div
-									class="result-chip-value"
-									id="favorite-win-payout"
-								></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="result disappear" id="top-bets-result">
-					<div class="result-banner">
-						<span class="result-banner-positive">Top 3</span>
-						highest-earning bets:
-					</div>
-					<div class="result-details">
-						<div class="result-chip">
-							<div class="result-chip-title"></div>
-							<div
-								class="result-chip-value result-chip-value-positive"
-							></div>
-							<div class="result-chip-value">
-								<table>
-									<tr class="result-chip-table-outcome">
-										<th scope="row">Outcome</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-odds">
-										<th scope="row">Odds to Lose</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-wager">
-										<th scope="row">Wager</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-payout">
-										<th scope="row">Payout</th>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="result-chip">
-							<div class="result-chip-title"></div>
-							<div
-								class="result-chip-value result-chip-value-positive"
-							></div>
-							<div class="result-chip-value">
-								<table>
-									<tr class="result-chip-table-outcome">
-										<th scope="row">Outcome</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-odds">
-										<th scope="row">Odds to Lose</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-wager">
-										<th scope="row">Wager</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-payout">
-										<th scope="row">Payout</th>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="result-chip">
-							<div class="result-chip-title"></div>
-							<div
-								class="result-chip-value result-chip-value-positive"
-							></div>
-							<div class="result-chip-value">
-								<table>
-									<tr class="result-chip-table-outcome">
-										<th scope="row">Outcome</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-odds">
-										<th scope="row">Odds to Lose</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-wager">
-										<th scope="row">Wager</th>
-										<td></td>
-									</tr>
-									<tr class="result-chip-table-payout">
-										<th scope="row">Payout</th>
-										<td></td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div class="statContainer" id="stat-winLossRecord">
+		<div class="teamStatContainer">
+			<h2 class="teamStatTitle">Win-Loss Record</h2>
+			<div class="teamStatValue">11-4</div>
+			<div class="teamStatCaption">70.2%</div>
 		</div>
+		<div class="individualStatContainer">
+			<h3 class="individualStatTitle">Titan Ranking</h3>
+			<table class="individualStatTable">
+				<tr class="individualStatTableHeader">
+					<th>Rank</th>
+					<th>Titan</th>
+					<th>Record (Win-Loss-Tie)</th>
+				</tr>
+				<tr class="individualStatTableRow">
+					<td class="individualStatRank">1st</td>
+					<td class="individualStatName">Michael Voltaggio</td>
+					<td class="individualStatValue">10-2-3</td>
+				</tr>
+				<tr class="individualStatTableRow">
+					<td class="individualStatRank">T-2nd</td>
+					<td class="individualStatName">Brooke Williamson</td>
+					<td class="individualStatValue">9-4-1</td>
+				</tr>
+				<tr class="individualStatTableRow">
+					<td class="individualStatRank">3rd</td>
+					<td class="individualStatName">Tiffany Derry</td>
+					<td class="individualStatValue">9-4-1</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<body>
 		<script src="/filter.js"></script>
-		<script src="/responsive.js"></script>
-		<script src="/results.js"></script>
 		<script src="/query.js"></script>
 	</body>
 </html>

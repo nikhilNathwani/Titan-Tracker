@@ -1,3 +1,10 @@
+fetch(`/api/winLossTeam`)
+	.then((response) => response.json())
+	.then((results) => {
+		console.log(results);
+	})
+	.catch((error) => console.error("Error fetching data:", error));
+
 //Fetch data from db and pass results along to calcBetResults then makeResultDivs
 function generateResults() {
 	const { seasonStartYear, team, prediction, wager } = getFilterValues();

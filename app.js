@@ -9,21 +9,24 @@ const pool = new Pool({
 	connectionString: process.env.POSTGRES_URL,
 });
 
-//Route to fetch data
-app.get("/api/games", (req, res) => {
-	const { seasonStart, team } = req.query;
-
+//Route to Win Loss [Team] data
+app.get("/api/winLossTeam", (res) => {
 	const query = `
-    SELECT gameNumber, outcome, winOdds, loseOdds 
-    FROM games 
-    WHERE seasonStartYear = $1 
-      AND team = $2 
-  `;
+    WITH episode_sums AS (
+		SELECT
+			SUM(titan_score) AS total_titan_score,
+			SUM(challenger_score) AS total_challenger_score
+		FROM titan_rounds
+		GROUP BY season_num, episode_num
+	)
+	SELECT
+		COUNT(CASE WHEN total_titan_score > total_challenger_score THEN 1 END) AS num_win,
+		COUNT(CASE WHEN total_titan_score = total_challenger_score THEN 1 END) AS num_tie,
+		COUNT(CASE WHEN total_titan_score < total_challenger_score THEN 1 END) AS num_loss
+	FROM episode_sums; 
+  	`;
 
-	// Params array to securely pass values into the query
-	const params = [parseInt(seasonStart, 10), team];
-
-	pool.query(query, params, (err, result) => {
+	pool.query(query, (err, result) => {
 		if (err) {
 			console.error("Error executing query:", err);
 			res.status(500).json({ error: err.message });
@@ -40,7 +43,7 @@ app.get("/api/games", (req, res) => {
 app.use(express.static(path.join(__dirname, "public")));
 
 // Fallback to serve index.html for any other route
-app.get("*", (req, res) => {
+app.get("*", (res) => {
 	res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
