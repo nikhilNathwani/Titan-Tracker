@@ -17,9 +17,9 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	value.textContent = `${num_win}-${num_loss}${
 		num_tie > 0 ? `-${num_tie}` : ""
 	}`;
-	caption.textContent = `${
-		Math.floor((num_win / (num_win + num_tie + num_loss)) * 100) / 100
-	}`;
+
+	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
+	caption.textContent = `${percentSuccess}`;
 }
 
 //Fetch data from db and pass results along to calcBetResults then makeResultDivs
