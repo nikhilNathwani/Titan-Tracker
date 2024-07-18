@@ -23,10 +23,6 @@ fetch(`/api/winLossIndividual`)
 			});
 		});
 		makeWinLossIndividualDivs(titanRecords);
-		// const num_win = parseInt(result.data.num_win, 10);
-		// const num_tie = parseInt(result.data.num_tie, 10);
-		// const num_loss = parseInt(result.data.num_loss, 10);
-		// makeWinLossTeamDiv(num_win, num_tie, num_loss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
@@ -52,10 +48,14 @@ function makeWinLossIndividualDivs(titanRecords) {
 		return score2 - score1;
 	});
 
+	//Fill in the table rows
 	var currScore = 0;
 	titanRecords.forEach((titan, index) => {
 		var rank = index + 1;
 		var isTie = false;
+		if (titan.titan_name == "Brooke Williamson") {
+			currScore -= 0.5;
+		}
 		if (currScore == titan.num_win + 0.5 * titan.num_tie) {
 			rank--;
 			isTie = true;
