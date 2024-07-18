@@ -39,6 +39,30 @@ app.get("/api/winLossTeam", (req, res) => {
 	});
 });
 
+//Route to Win Loss [Individual] data
+app.get("/api/winLossIndividual", (req, res) => {
+	const query = `
+	SELECT
+		COUNT(CASE WHEN titan_score > challenger_score THEN 1 END) AS num_win,
+		COUNT(CASE WHEN titan_score = challenger_score THEN 1 END) AS num_tie,
+		COUNT(CASE WHEN titan_score < challenger_score THEN 1 END) AS num_loss
+	FROM titan_rounds
+	GROUP BY titan_name; 
+  	`;
+
+	pool.query(query, (err, result) => {
+		if (err) {
+			console.error("Error executing query:", err);
+			res.status(500).json({ error: err.message });
+			return;
+		}
+		res.json({
+			message: "success",
+			data: result.rows[0],
+		});
+	});
+});
+
 // Serve static files from public directory (like css/js files)
 app.use(express.static(path.join(__dirname, "public")));
 
