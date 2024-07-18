@@ -13,6 +13,16 @@ fetch(`/api/winLossIndividual`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log("Indiv data:", result.data);
+		var titanRecords = [];
+		result.data.forEach((titan) => {
+			titanRecords.push({
+				titan_name: titan.titan_name,
+				num_win: parseInt(titan.num_win, 10),
+				num_tie: parseInt(titan.num_tie, 10),
+				num_loss: parseInt(titan.num_loss, 10),
+			});
+		});
+		makeWinLossIndividualDivs(titanRecords);
 		// const num_win = parseInt(result.data.num_win, 10);
 		// const num_tie = parseInt(result.data.num_tie, 10);
 		// const num_loss = parseInt(result.data.num_loss, 10);
@@ -31,6 +41,41 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
 	caption.textContent = `${percentSuccess.toPrecision(3)}%`;
+}
+
+function makeWinLossIndividualDivs(titanRecords) {
+	//Sort titans from best record to worst
+	//Wins worth 1 pt, ties worth 0.5 pts
+	titanRecords.sort((titan1, titan2) => {
+		const score1 = titan1.numWin + 0.5 * titan1.numTie;
+		const score2 = titan2.numWin + 0.5 * titan2.numTie;
+		return score2 - score1;
+	});
+
+	var currScore = 0;
+	titanRecords.forEach((titan, index) => {
+		var rank = index + 1;
+		var isTie = false;
+		if (currScore == titan.numWin + 0.5 * titan.numTie) {
+			rank--;
+			isTie = true;
+		} else {
+			currScore = titan.numWin + 0.5 * titan.numTie;
+		}
+		const tableRow = document.querySelector(
+			`table tr:nth-child(${index + 1})`
+		);
+		const rank = tableRow.querySelector(".individualStatRank");
+		rank.textContent = `${isTie ? "T-" : ""}${rank}${
+			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
+		}`;
+
+		const name = tableRow.querySelector(".individualStatName");
+		name.textContent = titan.titan_name;
+
+		const value = tableRow.querySelector(".individualStatValue");
+		value.textContent = `${num_win}-${num_loss}-${num_tie}`;
+	});
 }
 
 //Fetch data from db and pass results along to calcBetResults then makeResultDivs
