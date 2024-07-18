@@ -50,24 +50,30 @@ function makeWinLossIndividualDivs(titanRecords) {
 
 	//Fill in the table rows
 	var currScore = 0;
+	var currRank = 0;
 	titanRecords.forEach((titan, index) => {
-		var rank = index + 1;
-		var isTie = false;
-		if (titan.titan_name == "Brooke Williamson") {
+		const score = titan.num_win + 0.5 * titan.num_tie;
+		if (titan_name == "Brooke Williamson") {
 			currScore -= 1;
 		}
-		console.log("currScore", currScore);
-		if (currScore == titan.num_win + 0.5 * titan.num_tie) {
-			rank--;
-			isTie = true;
-		} else {
-			currScore = titan.num_win + 0.5 * titan.num_tie;
+		if (titan_name == "Tiffany Derry") {
+			currScore -= 2;
 		}
-		console.log("currScore2", currScore);
+		//Determine rank
+		var rank = index + 1;
+		var isTie = false;
+		if (currScore == score) {
+			isTie = true;
+			rank = currRank;
+		} else {
+			currScore = score;
+			currRank = rank;
+		}
 
+		//Populate table row
 		const tableRow = document.querySelector(
 			`table tr:nth-child(${index + 2})`
-		);
+		); //adding 2 to skip over table header row
 
 		const rankElement = tableRow.querySelector(".individualStatRank");
 		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
