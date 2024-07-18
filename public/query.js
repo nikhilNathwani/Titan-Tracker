@@ -2,8 +2,10 @@ fetch(`/api/winLossTeam`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log(result.data);
-		const record = result.data;
-		makeWinLossTeamDiv(record.numWin, record.numTie, record.numLoss);
+		const numWin = parseInt(result.data.numWin, 10);
+		const numTie = parseInt(result.data.numTie, 10);
+		const numLoss = parseInt(result.data.numLoss, 10);
+		makeWinLossTeamDiv(numWin, numTie, numLoss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
