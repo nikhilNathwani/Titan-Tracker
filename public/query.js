@@ -47,8 +47,8 @@ function makeWinLossIndividualDivs(titanRecords) {
 	//Sort titans from best record to worst
 	//Wins worth 1 pt, ties worth 0.5 pts
 	titanRecords.sort((titan1, titan2) => {
-		const score1 = titan1.numWin + 0.5 * titan1.numTie;
-		const score2 = titan2.numWin + 0.5 * titan2.numTie;
+		const score1 = titan1.num_win + 0.5 * titan1.num_tie;
+		const score2 = titan2.num_win + 0.5 * titan2.num_tie;
 		return score2 - score1;
 	});
 
@@ -56,11 +56,11 @@ function makeWinLossIndividualDivs(titanRecords) {
 	titanRecords.forEach((titan, index) => {
 		var rank = index + 1;
 		var isTie = false;
-		if (currScore == titan.numWin + 0.5 * titan.numTie) {
+		if (currScore == titan.num_win + 0.5 * titan.num_tie) {
 			rank--;
 			isTie = true;
 		} else {
-			currScore = titan.numWin + 0.5 * titan.numTie;
+			currScore = titan.num_win + 0.5 * titan.num_tie;
 		}
 		const tableRow = document.querySelector(
 			`table tr:nth-child(${index + 2})`
