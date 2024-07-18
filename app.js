@@ -34,7 +34,7 @@ app.get("/api/winLossTeam", (req, res) => {
 		}
 		res.json({
 			message: "success",
-			data: result.rows,
+			data: result.rows[0],
 		});
 	});
 });

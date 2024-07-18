@@ -2,8 +2,20 @@ fetch(`/api/winLossTeam`)
 	.then((response) => response.json())
 	.then((results) => {
 		console.log(results);
+		const { numWin, numTie, numLoss } = results;
+		makeWinLossTeamDiv(numWin, numTie, numLoss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
+
+function makeWinLossTeamDiv() {
+	const value = document.querySelector(".teamStatValue");
+	const caption = document.querySelector(".teamStatCaption");
+
+	value.textContent = `${numWin}-${numLoss}${numTie > 0 ? `-${numTie}` : ""}`;
+	caption.textContent = `${
+		Math.floor((numWin / (numWin + numTie + numLoss)) * 100) / 100
+	}`;
+}
 
 //Fetch data from db and pass results along to calcBetResults then makeResultDivs
 function generateResults() {
