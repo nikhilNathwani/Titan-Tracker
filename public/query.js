@@ -63,7 +63,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 			currScore = titan.numWin + 0.5 * titan.numTie;
 		}
 		const tableRow = document.querySelector(
-			`table tr:nth-child(${index + 1})`
+			`table tr:nth-child(${index + 2})`
 		);
 		console.log("table row:", tableRow);
 		const rankElement = tableRow.querySelector(".individualStatRank");
