@@ -58,7 +58,7 @@ app.get("/api/winLossIndividual", (req, res) => {
 		}
 		res.json({
 			message: "success",
-			data: result.rows[0],
+			data: result.rows,
 		});
 	});
 });

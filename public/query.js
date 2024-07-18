@@ -12,7 +12,7 @@ fetch(`/api/winLossTeam`)
 fetch(`/api/winLossIndividual`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log(result.data);
+		console.log("Indiv data:", result.data);
 		// const num_win = parseInt(result.data.num_win, 10);
 		// const num_tie = parseInt(result.data.num_tie, 10);
 		// const num_loss = parseInt(result.data.num_loss, 10);
