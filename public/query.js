@@ -65,7 +65,10 @@ function makeWinLossIndividualDivs(titanRecords) {
 		const tableRow = document.querySelector(
 			`table tr:nth-child(${index + 1})`
 		);
+		console.log("table row:", tableRow);
 		const rankElement = tableRow.querySelector(".individualStatRank");
+		console.log("rank element:", rankElement);
+
 		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
 			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
 		}`;
