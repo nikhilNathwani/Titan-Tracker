@@ -18,7 +18,7 @@ body {
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
-.teamStatContainer {
+.stat-container {
 	width: fit-content;
 	padding: 3rem;
 	margin: auto;
