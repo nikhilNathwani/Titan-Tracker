@@ -68,3 +68,17 @@ body {
 	margin-bottom: 1rem;
 	color: hsl(300, 30%, 10%);
 }
+
+.avatar {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 2px solid #ccc; /* Optional: Add a border around the avatar */
+}
+
+.avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* Ensures the image covers the entire container */
+}
