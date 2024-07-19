@@ -56,11 +56,12 @@ body {
 }
 
 .individualStatTitle {
-	background: linear-gradient(
+	/* background: linear-gradient(
 		to bottom right,
 		hsl(200, 15%, 70%),
 		hsl(200, 15%, 95%)
-	);
+	); */
+	background-color: hsl(200, 15%, 85%);
 	width: fit-content;
 	margin: auto;
 	padding-inline: 1ch;
