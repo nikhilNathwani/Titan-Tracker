@@ -36,7 +36,7 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	}`;
 
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
-	caption.textContent = `${percentSuccess.toPrecision(3)}%`;
+	caption.textContent = `${percentSuccess.toPrecision(3)}% Win Rate`;
 }
 
 function makeWinLossIndividualDivs(titanRecords) {
