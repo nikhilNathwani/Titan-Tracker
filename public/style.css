@@ -74,6 +74,11 @@ body {
 	padding-inline: 1ch;
 }
 
+.individualStatName {
+	display: flex;
+	flex-flow: column nowrap;
+}
+
 .avatar {
 	width: 3rem;
 	height: 3rem;

@@ -76,7 +76,8 @@ function makeWinLossIndividualDivs(titanRecords) {
 		}`;
 
 		const name = tableRow.querySelector(".individualStatName");
-		name.textContent = titan.titan_name;
+		const [firstName, lastName] = titan.titan_name.split(" ");
+		name.innerHTML = `<p>${firstName}</p><p>${lastName}</p>`;
 
 		const value = tableRow.querySelector(".individualStatValue");
 		value.textContent = `${titan.num_win}-${titan.num_loss}-${titan.num_tie}`;
