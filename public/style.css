@@ -86,3 +86,11 @@ body {
 	height: 100%;
 	object-fit: cover; /* Ensures the image covers the entire container */
 }
+
+tr {
+	padding-bottom: 0.75rem;
+}
+
+tr:last-child() {
+	padding-bottom: 0;
+}
