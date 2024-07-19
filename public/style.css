@@ -77,6 +77,8 @@ body {
 .individualStatName {
 	display: flex;
 	flex-flow: column nowrap;
+	align-items: start;
+	justify-content: center;
 }
 
 .avatar {
