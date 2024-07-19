@@ -87,6 +87,6 @@ body {
 	object-fit: cover; /* Ensures the image covers the entire container */
 }
 
-table > *:not(:first-child) {
+tbody > *:not(:first-child) {
 	height: 4rem;
 }
