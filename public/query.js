@@ -31,8 +31,8 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	const value = document.querySelector(".teamStatValue");
 	const caption = document.querySelector(".teamStatCaption");
 
-	value.textContent = `${num_win}-${num_loss}${
-		num_tie > 0 ? `-${num_tie}` : ""
+	value.textContent = `${num_win} - ${num_loss}${
+		num_tie > 0 ? ` - ${num_tie}` : ""
 	}`;
 
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
