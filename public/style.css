@@ -18,6 +18,20 @@ body {
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
+.statPage {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1.5rem;
+}
+
+.statTitle {
+	background-color: hsl(200, 15%, 85%);
+	width: fit-content;
+	margin: auto;
+	/* margin-bottom: 2rem; */
+	color: hsl(300, 30%, 10%);
+}
+
 .statContainer {
 	width: fit-content;
 	padding: 3rem;
