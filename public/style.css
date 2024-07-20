@@ -154,16 +154,28 @@ body {
 } */
 
 .rank1 {
+	width: 5ch;
+	height: min-content;
+	padding: 0.25rem 1ch;
+	font-weight: bold;
 	color: var(--clr-rank1-text);
 	background: var(--clr-rank1-grad);
 }
 
 .rank2 {
+	width: 5ch;
+	height: min-content;
+	padding: 0.25rem 1ch;
+	font-weight: bold;
 	color: var(--clr-rank2-text);
 	background: var(--clr-rank2-grad);
 }
 
 .rank3 {
+	width: 5ch;
+	height: min-content;
+	padding: 0.25rem 1ch;
+	font-weight: bold;
 	color: var(--clr-rank3-text);
 	background: var(--clr-rank3-grad);
 }
