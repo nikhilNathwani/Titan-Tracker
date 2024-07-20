@@ -31,7 +31,7 @@ html {
 
 body {
 	height: 100svh;
-	padding: 2rem;
+	padding-block: 2rem;
 
 	display: flex;
 	flex-flow: column nowrap;
