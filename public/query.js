@@ -98,6 +98,6 @@ function makeWinLossIndividualDivs(titanRecords) {
 		value.textContent = `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
 	});
 
-	const caption = document.getElementById("titanRankingCaption");
-	caption.textContent = `Rank is determined by counting wins as 1 point, ties as 0.5 points, and losses as 0 points.`;
+	// const caption = document.getElementById("titanRankingCaption");
+	// caption.textContent = `Rank is determined by counting wins as 1 point, ties as 0.5 points, and losses as 0 points.`;
 }

@@ -12,7 +12,7 @@
 	);
 	--clr-rank1-text: hsl(45, 70%, 20%);
 	--clr-rank2-grad: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
-	--clr-rank2-text: hsl(0, 0%, 45%);
+	--clr-rank2-text: hsl(0, 0%, 30%);
 	--clr-rank3-grad: linear-gradient(
 		45deg,
 		hsl(30, 60%, 35%),
