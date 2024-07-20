@@ -136,11 +136,17 @@ body {
 /*                             */
 /* --------------------------- */
 
+td {
+	font-size: 1.25rem;
+}
+
 .statTitan {
+	height: 4rem;
+	padding-inline: 1ch;
+
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	padding-inline: 1ch;
 }
 
 .statName {
@@ -155,7 +161,7 @@ body {
 } */
 
 .rank {
-	width: 5ch;
+	width: 7ch;
 	height: min-content;
 	padding: 0.25rem 1ch;
 	border-radius: 6px;
