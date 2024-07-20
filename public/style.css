@@ -13,6 +13,11 @@
 body {
 	height: 100svh;
 	padding: 2rem;
+
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 4rem;
+
 	background-color: hsl(200, 10%, 20%);
 	color: hsl(200, 15%, 85%);
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
@@ -25,10 +30,11 @@ body {
 }
 
 .statTitle {
-	background-color: hsl(200, 15%, 85%);
 	width: fit-content;
+	padding: 0.5rem 2ch;
 	margin: auto;
-	/* margin-bottom: 2rem; */
+
+	background-color: hsl(200, 15%, 85%);
 	color: hsl(300, 30%, 10%);
 }
 
@@ -55,10 +61,6 @@ body {
 	margin: auto;
 	margin-bottom: 2rem;
 	color: hsl(300, 30%, 10%);
-}
-
-.teamStatTitle {
-	padding: 0.5rem 2ch;
 }
 
 .teamStatValue {
