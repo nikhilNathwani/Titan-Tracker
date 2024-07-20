@@ -42,7 +42,9 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	lossElement.textContent = `${num_loss}`;
 
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
-	caption.textContent = `${percentSuccess.toPrecision(3)}% win rate`;
+	caption.textContent = `The titans have won ${num_win} out of ${
+		num_win + num_loss
+	} battles, which is a ${percentSuccess.toPrecision(3)}% win rate.`;
 }
 
 function makeWinLossIndividualDivs(titanRecords) {
