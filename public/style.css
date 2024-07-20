@@ -35,7 +35,7 @@ body {
 	gap: 4rem;
 
 	/* background-color: var(--clr-mid); */
-	/* color: var(--clr-light); */
+	color: var(--clr-light);
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
