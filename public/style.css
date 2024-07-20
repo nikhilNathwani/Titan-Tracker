@@ -141,6 +141,7 @@ table {
 }
 
 th {
+	padding-bottom: 0.25rem;
 	border-bottom: 1px solid var(--clr-light);
 }
 
@@ -160,7 +161,7 @@ td {
 }
 
 .statTitan {
-	height: 4rem;
+	height: 4.5rem;
 	padding-inline: 1rem;
 
 	display: flex;

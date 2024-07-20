@@ -29,7 +29,7 @@ fetch(`/api/winLossIndividual`)
 function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	console.log("params:", num_win, num_tie, num_loss);
 	// const value = document.querySelector(".teamStatValue");
-	const caption = document.querySelector(".statCaption");
+	const caption = document.getElementById("winLossCaption");
 
 	// value.textContent = `${num_win} - ${num_loss}${
 	// 	num_tie > 0 ? ` - ${num_tie}` : ""
@@ -65,6 +65,8 @@ function makeWinLossIndividualDivs(titanRecords) {
 		//Determine rank
 		var rank = index + 1;
 		var isTie = false;
+		// var topTitan= [];
+
 		if (currScore == score) {
 			isTie = true;
 			rank = currRank;
@@ -72,6 +74,10 @@ function makeWinLossIndividualDivs(titanRecords) {
 			currScore = score;
 			currRank = rank;
 		}
+
+		// if(rank==1) {
+		// 	topTitan.push(titan.titan_name);
+		// }
 
 		//Populate table row
 		const tableRow = document.querySelector(
@@ -91,4 +97,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 		const value = tableRow.querySelector(".statValue");
 		value.textContent = `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
 	});
+
+	const caption = document.getElementById("titanRankingCaption");
+	caption.textContent = `Rank is determined by counting wins as 1 point, ties as 0.5 points, and losses as 0 points.`;
 }
