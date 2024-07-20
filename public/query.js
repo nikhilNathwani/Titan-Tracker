@@ -82,6 +82,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
 			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
 		}`;
+		rankElement.className = `rank${rank}`;
 
 		const name = tableRow.querySelector(".statName");
 		const [firstName, lastName] = titan.titan_name.split(" ");

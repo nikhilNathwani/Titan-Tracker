@@ -30,7 +30,7 @@ html {
 }
 
 body {
-	height: 100svh;
+	/* height: 100svh; */
 	padding-block: 2rem;
 
 	display: flex;
@@ -135,8 +135,20 @@ body {
 	justify-content: center;
 }
 
-tbody > *:not(:first-child) {
+/* tbody > *:not(:first-child) {
 	height: 4rem;
+} */
+
+.rank1 {
+	background: linear-gradient(45deg, hsl(45, 100%, 50%), hsl(45, 100%, 60%));
+}
+
+.rank2 {
+	background: linear-gradient(45deg, hsl(0, 0%, 70%), hsl(0, 0%, 85%));
+}
+
+.rank3 {
+	background: linear-gradient(45deg, hsl(30, 60%, 40%), hsl(30, 60%, 50%));
 }
 
 /* .avatar {
