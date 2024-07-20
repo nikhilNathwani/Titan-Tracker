@@ -60,7 +60,7 @@ body {
 	gap: 2rem;
 }
 
-#winLossWidgetTitle {
+.winLossWidgetTitle {
 	margin: auto;
 	margin-bottom: 0.5rem;
 
@@ -71,7 +71,7 @@ body {
 	color: hsl(200, 10%, 20%);
 }
 
-#winLossWidgetValue {
+.winLossWidgetValue {
 	width: 5.5rem;
 
 	font-size: 4rem;
