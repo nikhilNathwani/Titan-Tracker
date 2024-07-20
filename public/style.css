@@ -54,7 +54,9 @@ body {
 	margin: auto;
 
 	font-size: 1.25rem;
-	color: var(--clr-light);
+	color: var(--clr-dark);
+
+	background-color: var(--clr-light);
 }
 
 .statContainer {
