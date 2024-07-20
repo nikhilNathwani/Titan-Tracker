@@ -142,14 +142,8 @@ td {
 
 .statTitan {
 	height: 4rem;
-	padding-inline: 1ch;
+	/* padding-inline: 1ch; */
 
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
-.statName {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: start;

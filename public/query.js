@@ -84,7 +84,7 @@ function makeWinLossIndividualDivs(titanRecords) {
 		}`;
 		rankElement.className = `rank rank${rank}`;
 
-		const name = tableRow.querySelector(".statName");
+		const name = tableRow.querySelector(".statTitan");
 		const [firstName, lastName] = titan.titan_name.split(" ");
 		name.innerHTML = `<p>${firstName}</p><p>${lastName}</p>`;
 
