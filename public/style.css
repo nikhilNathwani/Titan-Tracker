@@ -155,10 +155,12 @@ td {
 } */
 
 .rank {
-	width: 7ch;
+	width: 6ch;
 	height: min-content;
 	padding: 0.25rem 1ch;
 	border-radius: 6px;
+
+	font-size: 1rem;
 	font-weight: bold;
 }
 
