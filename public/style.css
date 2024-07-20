@@ -60,13 +60,25 @@ body {
 	gap: 2rem;
 }
 
-#winLossWidget p {
-	background-color: hsl(200, 10%, 20%);
-	color: hsl(200, 15%, 85%);
+#winLossWidgetTitle {
+	margin: auto;
+	margin-bottom: 0.5rem;
+
+	font-weight: bold;
+	font-size: 1rem;
+
+	background-color: hsl(200, 15%, 85%);
+	color: hsl(200, 10%, 20%);
 }
 
-#winLossWidget p:first-child {
-	margin-bottom: 0.5rem;
+#winLossWidgetValue {
+	width: 5.5rem;
+
+	font-size: 4rem;
+	padding-block: 0.25rem;
+
+	background-color: hsl(200, 10%, 20%);
+	color: hsl(200, 15%, 85%);
 }
 
 .teamStatValue {
