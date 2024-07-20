@@ -54,6 +54,21 @@ body {
 	text-align: center;
 }
 
+#winLossWidget {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 2rem;
+}
+
+#winLossWidget p {
+	background-color: hsl(200, 10%, 20%);
+	color: hsl(200, 15%, 85%);
+}
+
+#winLossWidget p:first-child {
+	margin-bottom: 0.5rem;
+}
+
 .teamStatValue {
 	font-size: 4rem;
 	margin-bottom: 0.5rem;
