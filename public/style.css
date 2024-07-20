@@ -61,6 +61,7 @@ body {
 }
 
 .winLossWidgetTitle {
+	padding-block: 0.125rem;
 	margin: auto;
 	margin-bottom: 0.5rem;
 
