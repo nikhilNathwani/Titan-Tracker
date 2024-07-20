@@ -78,16 +78,16 @@ function makeWinLossIndividualDivs(titanRecords) {
 			`table tr:nth-child(${index + 2})`
 		); //adding 2 to skip over table header row
 
-		const rankElement = tableRow.querySelector(".individualStatRank");
+		const rankElement = tableRow.querySelector("statRank");
 		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
 			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
 		}`;
 
-		const name = tableRow.querySelector(".individualStatName");
+		const name = tableRow.querySelector("statName");
 		const [firstName, lastName] = titan.titan_name.split(" ");
 		name.innerHTML = `<p>${firstName}</p><p>${lastName}</p>`;
 
-		const value = tableRow.querySelector(".individualStatValue");
+		const value = tableRow.querySelector("statValue");
 		value.textContent = `${titan.num_win}-${titan.num_loss}-${titan.num_tie}`;
 	});
 }
