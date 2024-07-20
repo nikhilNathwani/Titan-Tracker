@@ -74,8 +74,14 @@ body {
 
 .winLossWidgetValue {
 	width: 5.5rem;
+	height: 5.75rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	font-size: 4rem;
+	font-weight: bold;
 	padding-block: 0.25rem;
 
 	background-color: hsl(200, 10%, 20%);
