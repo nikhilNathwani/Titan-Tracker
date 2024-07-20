@@ -1,7 +1,10 @@
 :root {
-	--clr-mid: hsl(200, 10%, 20%);
+	/* --clr-mid: hsl(200, 10%, 20%);
 	--clr-dark: hsl(200, 10%, 15%);
-	--clr-light: hsl(200, 15%, 85%);
+	--clr-light: hsl(200, 15%, 85%); */
+	--clr-mid: hsl(290, 10%, 23%);
+	--clr-dark: hsl(290, 10%, 15%);
+	--clr-light: hsl(290, 9%, 86%);
 }
 
 *,
