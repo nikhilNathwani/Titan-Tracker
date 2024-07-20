@@ -136,13 +136,17 @@ body {
 /*                             */
 /* --------------------------- */
 
+th:nth-of-type(2) {
+	padding-inline: 0.75rem;
+}
+
 td {
 	font-size: 1.25rem;
 }
 
 .statTitan {
 	height: 4rem;
-	/* padding-inline: 1ch; */
+	padding-inline: 0.75rem;
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -150,12 +154,16 @@ td {
 	justify-content: center;
 }
 
+.statValue {
+	font-weight: bold;
+}
+
 /* tbody > *:not(:first-child) {
 	height: 4rem;
 } */
 
 .rank {
-	width: 6ch;
+	width: 7ch;
 	height: min-content;
 	padding: 0.25rem 1ch;
 	border-radius: 6px;
