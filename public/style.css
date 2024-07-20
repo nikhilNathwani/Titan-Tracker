@@ -138,7 +138,7 @@ body {
 
 /* Titan header */
 th:nth-of-type(2) {
-	padding-inline: 0.75rem;
+	padding-inline: 1rem;
 	text-align: left;
 }
 
