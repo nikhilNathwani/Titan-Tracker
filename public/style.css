@@ -136,12 +136,20 @@ body {
 /*                             */
 /* --------------------------- */
 
+table {
+	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
+}
+
 /* Titan header */
 th:nth-of-type(2) {
 	padding-inline: 1rem;
 	text-align: left;
 }
 
+th,
+td {
+	border: 1px solid var(--clr-light);
+}
 td {
 	font-size: 1.25rem;
 }
