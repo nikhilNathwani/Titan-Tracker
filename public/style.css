@@ -140,15 +140,21 @@ table {
 	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
 }
 
+th {
+	border-bottom: 1px solid var(--clr-light);
+}
+
 /* Titan header */
 th:nth-of-type(2) {
 	padding-inline: 1rem;
 	text-align: left;
 }
 
-th {
-	border-bottom: 1px solid var(--clr-light);
+/* Win-Loss-Tie header */
+th:nth-of-type(3) {
+	padding-right: 0.5rem;
 }
+
 td {
 	font-size: 1.125rem;
 }
@@ -164,6 +170,7 @@ td {
 }
 
 .statValue {
+	padding-right: 0.5rem;
 	font-size: 1.375rem;
 	font-weight: bold;
 }
