@@ -28,12 +28,18 @@ fetch(`/api/winLossIndividual`)
 
 function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 	console.log("params:", num_win, num_tie, num_loss);
-	const value = document.querySelector(".teamStatValue");
-	const caption = document.querySelector(".teamStatCaption");
+	// const value = document.querySelector(".teamStatValue");
+	// const caption = document.querySelector(".teamStatCaption");
 
-	value.textContent = `${num_win} - ${num_loss}${
-		num_tie > 0 ? ` - ${num_tie}` : ""
-	}`;
+	// value.textContent = `${num_win} - ${num_loss}${
+	// 	num_tie > 0 ? ` - ${num_tie}` : ""
+	// }`;
+
+	const winElement = document.getElementById("numWin");
+	winElement.textContent = `${num_win}`;
+
+	const lossElement = document.getElementById("numLoss");
+	lossElement.textContent = `${num_loss}`;
 
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
 	caption.textContent = `${percentSuccess.toPrecision(3)}% win rate`;
