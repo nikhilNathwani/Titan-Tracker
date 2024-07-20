@@ -26,7 +26,7 @@ body {
 .statPage {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1.5rem;
+	gap: 0.75rem;
 }
 
 .statTitle {
@@ -39,7 +39,7 @@ body {
 }
 
 .statContainer {
-	width: fit-content;
+	width: 400px;
 	padding: 3rem;
 	margin: auto;
 
@@ -57,7 +57,7 @@ body {
 #winLossWidget {
 	display: flex;
 	flex-flow: row nowrap;
-	gap: 2rem;
+	gap: 2.5rem;
 }
 
 .winLossWidgetTitle {
