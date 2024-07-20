@@ -108,6 +108,7 @@ body {
 
 .individualStatTitan {
 	display: flex;
+	gap: 0.5rem;
 	padding-inline: 1ch;
 }
 
