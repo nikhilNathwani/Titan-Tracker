@@ -1,5 +1,8 @@
-/* :root {
-} */
+:root {
+	--clr-mid: hsl(200, 10%, 20%);
+	--clr-dark: hsl(200, 10%, 15%);
+	--clr-light: hsl(200, 15%, 85%);
+}
 
 *,
 *::after,
@@ -18,8 +21,8 @@ body {
 	flex-flow: column nowrap;
 	gap: 4rem;
 
-	background-color: hsl(200, 10%, 20%);
-	color: hsl(200, 15%, 85%);
+	background-color: var(--clr-mid);
+	color: var(--clr-light);
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
@@ -34,8 +37,8 @@ body {
 	padding: 0.5rem 2ch;
 	margin: auto;
 
-	color: hsl(200, 15%, 85%);
-	/* color: hsl(300, 30%, 10%); */
+	font-size: 1.25rem;
+	color: var(--clr-light);
 }
 
 .statContainer {
@@ -49,7 +52,7 @@ body {
 	gap: 3rem;
 
 	/* clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%); */
-	background-color: hsl(200, 10%, 15%);
+	background-color: var(--clr-dark);
 	box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
 
 	text-align: center;
@@ -69,8 +72,8 @@ body {
 	font-weight: bold;
 	font-size: 1rem;
 
-	background-color: hsl(200, 15%, 85%);
-	color: hsl(200, 10%, 20%);
+	background-color: var(--clr-light);
+	color: var(--clr-mid);
 }
 
 .winLossWidgetValue {
@@ -85,8 +88,8 @@ body {
 	font-weight: bold;
 	padding-block: 0.25rem;
 
-	background-color: hsl(200, 10%, 20%);
-	color: hsl(200, 15%, 85%);
+	background-color: var(--clr-mid);
+	color: var(--clr-light);
 }
 
 .teamStatValue {
