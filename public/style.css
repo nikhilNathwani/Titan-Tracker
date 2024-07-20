@@ -146,12 +146,11 @@ th:nth-of-type(2) {
 	text-align: left;
 }
 
-th,
-td {
-	border: 1px solid var(--clr-light);
+th {
+	border-bottom: 1px solid var(--clr-light);
 }
 td {
-	font-size: 1.25rem;
+	font-size: 1.125rem;
 }
 
 .statTitan {
@@ -165,6 +164,7 @@ td {
 }
 
 .statValue {
+	font-size: 1.375rem;
 	font-weight: bold;
 }
 
