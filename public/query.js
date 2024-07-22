@@ -11,7 +11,7 @@ fetch(`/api/winLoss`)
 		const num_win = parseInt(result.num_win, 10);
 		const num_tie = parseInt(result.num_tie, 10);
 		const num_loss = parseInt(result.num_loss, 10);
-		makeWinLossTeamDiv(num_win, num_tie, num_loss);
+		makeWinLossSection(num_win, num_tie, num_loss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
@@ -34,6 +34,6 @@ fetch(`/api/titanRanking`)
 				score: parseFloat(titan.score),
 			});
 		});
-		makeWinLossIndividualDivs(titanRecords);
+		makeTitanRankingSection(titanRecords);
 	})
 	.catch((error) => console.error("Error fetching data:", error));

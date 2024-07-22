@@ -3,7 +3,7 @@
 /*       WIN LOSS WIDGET       */
 /*                             */
 /* --------------------------- */
-function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
+function makeWinLossSection(num_win, num_tie, num_loss) {
 	const winElement = document.getElementById("numWin");
 	winElement.textContent = `${num_win}`;
 
@@ -23,7 +23,7 @@ function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
 /*    TITAN RANKING WIDGET     */
 /*                             */
 /* --------------------------- */
-function makeWinLossIndividualDivs(titanRecords) {
+function makeTitanRankingSection(titanRecords) {
 	//Note: titanRecords are already sorted in descending order
 	//      of win-loss-tie record when returned by api
 
