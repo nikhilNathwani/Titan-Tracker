@@ -1,75 +1,66 @@
+/* --------------------------- */
+/*                             */
+/*       WIN LOSS WIDGET       */
+/*                             */
+/* --------------------------- */
 function makeWinLossTeamDiv(num_win, num_tie, num_loss) {
-	console.log("params:", num_win, num_tie, num_loss);
-	// const value = document.querySelector(".teamStatValue");
-	const caption = document.getElementById("winLossCaption");
-
-	// value.textContent = `${num_win} - ${num_loss}${
-	// 	num_tie > 0 ? ` - ${num_tie}` : ""
-	// }`;
-
 	const winElement = document.getElementById("numWin");
 	winElement.textContent = `${num_win}`;
 
 	const lossElement = document.getElementById("numLoss");
 	lossElement.textContent = `${num_loss}`;
 
+	// Caption ("won N of M battles, X% win rate")
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
+	const caption = document.getElementById("winLossCaption");
 	caption.textContent = `The titans have won ${num_win} out of ${
 		num_win + num_loss
 	} battles, which is a ${percentSuccess.toPrecision(3)}% win rate.`;
 }
 
+/* --------------------------- */
+/*                             */
+/*    TITAN RANKING WIDGET     */
+/*                             */
+/* --------------------------- */
 function makeWinLossIndividualDivs(titanRecords) {
-	//Sort titans from best record to worst
-	//Wins worth 1 pt, ties worth 0.5 pts
-	titanRecords.sort((titan1, titan2) => {
-		const score1 = titan1.num_win + 0.5 * titan1.num_tie;
-		const score2 = titan2.num_win + 0.5 * titan2.num_tie;
-		return score2 - score1;
-	});
+	//Note: titanRecords are already sorted in descending order
+	//      of win-loss-tie record when returned by api
 
-	//Fill in the table rows
+	//Fill in the table rows, and accomodate ties
 	var currScore = 0;
 	var currRank = 0;
 	titanRecords.forEach((titan, index) => {
-		const score = titan.num_win + 0.5 * titan.num_tie;
-
 		//Determine rank
 		var rank = index + 1;
 		var isTie = false;
-		// var topTitan= [];
-
-		if (currScore == score) {
+		if (currScore == titan.score) {
 			isTie = true;
 			rank = currRank;
 		} else {
-			currScore = score;
+			currScore = titan.score;
 			currRank = rank;
 		}
 
-		// if(rank==1) {
-		// 	topTitan.push(titan.titan_name);
-		// }
-
-		//Populate table row
+		//Select table row
 		const tableRow = document.querySelector(
 			`table tr:nth-child(${index + 2})`
 		); //adding 2 to skip over table header row
 
+		//Populate rank cell
 		const rankElement = tableRow.querySelector(".rank");
 		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
 			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
 		}`;
 		rankElement.className = `rank rank${rank}`;
 
+		//Populate name cell
 		const name = tableRow.querySelector(".statTitan");
 		const [firstName, lastName] = titan.titan_name.split(" ");
 		name.innerHTML = `<p>${firstName}</p><p>${lastName}</p>`;
 
+		//Populate win-loss-tie cell
 		const value = tableRow.querySelector(".statValue");
 		value.textContent = `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
 	});
-
-	// const caption = document.getElementById("titanRankingCaption");
-	// caption.textContent = `Rank is determined by counting wins as 1 point, ties as 0.5 points, and losses as 0 points.`;
 }

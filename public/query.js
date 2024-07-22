@@ -9,7 +9,7 @@ fetch(`/api/winLossTeam`)
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
-fetch(`/api/winLossIndividual`)
+fetch(`/api/titanRanking`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log("Indiv data:", result.data);

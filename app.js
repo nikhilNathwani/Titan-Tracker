@@ -40,15 +40,25 @@ app.get("/api/winLossTeam", (req, res) => {
 });
 
 //Route to Win Loss [Individual] data
-app.get("/api/winLossIndividual", (req, res) => {
+app.get("/api/titanRanking", (req, res) => {
 	const query = `
-	SELECT
+	WITH titan_scores AS (
+		SELECT 
+			titan_name,
+			COUNT(CASE WHEN titan_score > challenger_score THEN 1 END) AS num_win,
+			COUNT(CASE WHEN titan_score = challenger_score THEN 1 END) AS num_tie,
+			COUNT(CASE WHEN titan_score < challenger_score THEN 1 END) AS num_loss
+		FROM titan_rounds
+		GROUP BY titan_name
+	)
+	SELECT 
 		titan_name,
-		COUNT(CASE WHEN titan_score > challenger_score THEN 1 END) AS num_win,
-		COUNT(CASE WHEN titan_score = challenger_score THEN 1 END) AS num_tie,
-		COUNT(CASE WHEN titan_score < challenger_score THEN 1 END) AS num_loss
-	FROM titan_rounds
-	GROUP BY titan_name; 
+		num_win,
+		num_tie,
+		num_loss,
+		(num_win + 0.5 * num_tie) AS score
+	FROM titan_scores
+	ORDER BY score DESC, titan_name ASC;
   	`;
 
 	pool.query(query, (err, result) => {
