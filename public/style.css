@@ -158,6 +158,10 @@ h1 {
 /*                             */
 /* --------------------------- */
 
+#titanRanking .container {
+	padding-bottom: 2rem;
+}
+
 table {
 	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
 }
