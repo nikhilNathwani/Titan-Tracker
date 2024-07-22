@@ -30,7 +30,7 @@ app.get("/api/winLoss", (req, res) => {
 	FROM episode_sums; 
   	`;
 
-	submitQuery(query, req, res);
+	submitQuery(query, res);
 });
 
 /* --------------------------- */
@@ -59,7 +59,7 @@ app.get("/api/titanRanking", (req, res) => {
 	ORDER BY score DESC, titan_name ASC;
   	`;
 
-	submitQuery(query, req, res);
+	submitQuery(query, res);
 });
 
 // Serve static files from public directory (like css/js files)
@@ -76,14 +76,14 @@ app.listen(PORT, () => {
 });
 
 //////////////////// Helper functions //////////////////////
-function submitQuery(query, req, res) {
+function submitQuery(query, response) {
 	pool.query(query, (err, result) => {
 		if (err) {
 			console.error("Error executing query:", err);
-			res.status(500).json({ error: err.message });
+			response.status(500).json({ error: err.message });
 			return;
 		}
-		res.json({
+		response.json({
 			message: "success",
 			data: result.rows,
 		});
