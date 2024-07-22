@@ -56,13 +56,17 @@ body {
 	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
-.page {
+/* --------------------------- */
+/*                             */
+/*     COMMON COMPONENTS       */
+/*                             */
+/* --------------------------- */
+.section {
 	display: flex;
 	flex-flow: column nowrap;
-	/* gap: 0.75rem; */
 }
 
-.statTitle {
+.sectionTitle {
 	width: fit-content;
 	padding: 0.375rem 2ch;
 	margin: auto;
@@ -75,7 +79,7 @@ body {
 	background-color: var(--clr-light);
 }
 
-.container {
+.sectionContent {
 	width: 400px;
 	padding: 3rem;
 	margin: auto;
@@ -106,10 +110,6 @@ body {
 /* --------------------------- */
 h1 {
 	font-size: 4rem;
-}
-
-#showTitle {
-	font-style: italic;
 }
 
 /* --------------------------- */
@@ -230,17 +230,3 @@ td {
 	color: var(--clr-rank3-text);
 	background: var(--clr-rank3-grad);
 }
-
-/* .avatar {
-	width: 3rem;
-	height: 3rem;
-	border-radius: 50%;
-	overflow: hidden;
-	border: 2px solid #ccc; 
-}
-
-.avatar img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover; 
-} */

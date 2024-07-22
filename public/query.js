@@ -1,3 +1,8 @@
+/* --------------------------- */
+/*                             */
+/*      WIN LOSS API CALL      */
+/*                             */
+/* --------------------------- */
 fetch(`/api/winLossTeam`)
 	.then((response) => response.json())
 	.then((result) => {
@@ -10,6 +15,11 @@ fetch(`/api/winLossTeam`)
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
+/* --------------------------- */
+/*                             */
+/*   TITAN RANKING API CALL    */
+/*                             */
+/* --------------------------- */
 fetch(`/api/titanRanking`)
 	.then((response) => response.json())
 	.then((result) => {

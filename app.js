@@ -30,17 +30,7 @@ app.get("/api/winLossTeam", (req, res) => {
 	FROM episode_sums; 
   	`;
 
-	pool.query(query, (err, result) => {
-		if (err) {
-			console.error("Error executing query:", err);
-			res.status(500).json({ error: err.message });
-			return;
-		}
-		res.json({
-			message: "success",
-			data: result.rows,
-		});
-	});
+	submitQuery(query);
 });
 
 /* --------------------------- */
@@ -69,17 +59,7 @@ app.get("/api/titanRanking", (req, res) => {
 	ORDER BY score DESC, titan_name ASC;
   	`;
 
-	pool.query(query, (err, result) => {
-		if (err) {
-			console.error("Error executing query:", err);
-			res.status(500).json({ error: err.message });
-			return;
-		}
-		res.json({
-			message: "success",
-			data: result.rows,
-		});
-	});
+	submitQuery(query);
 });
 
 // Serve static files from public directory (like css/js files)
@@ -94,3 +74,18 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
+
+//////////////////// Helper functions //////////////////////
+function submitQuery(query) {
+	pool.query(query, (err, result) => {
+		if (err) {
+			console.error("Error executing query:", err);
+			res.status(500).json({ error: err.message });
+			return;
+		}
+		res.json({
+			message: "success",
+			data: result.rows,
+		});
+	});
+}
