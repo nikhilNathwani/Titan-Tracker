@@ -93,7 +93,18 @@ body {
 }
 
 .subContainer {
+	padding: 1rem;
+	font-size: 1.25rem;
 	background-color: var(--clr-mid);
+}
+
+/* --------------------------- */
+/*                             */
+/*       TITLE PAGE            */
+/*                             */
+/* --------------------------- */
+h1 {
+	font-size: 4rem;
 }
 
 /* --------------------------- */
