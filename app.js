@@ -9,7 +9,11 @@ const pool = new Pool({
 	connectionString: process.env.POSTGRES_URL,
 });
 
-//Route to Win Loss [Team] data
+/* --------------------------- */
+/*                             */
+/*       WIN LOSS ROUTE        */
+/*                             */
+/* --------------------------- */
 app.get("/api/winLossTeam", (req, res) => {
 	const query = `
     WITH episode_sums AS (
@@ -34,12 +38,16 @@ app.get("/api/winLossTeam", (req, res) => {
 		}
 		res.json({
 			message: "success",
-			data: result.rows[0],
+			data: result.rows,
 		});
 	});
 });
 
-//Route to Win Loss [Individual] data
+/* --------------------------- */
+/*                             */
+/*    TITAN RANKING ROUTE      */
+/*                             */
+/* --------------------------- */
 app.get("/api/titanRanking", (req, res) => {
 	const query = `
 	WITH titan_scores AS (
