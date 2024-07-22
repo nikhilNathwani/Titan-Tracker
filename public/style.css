@@ -93,6 +93,7 @@ body {
 }
 
 .subContainer {
+	display: block;
 	padding: 1.5rem;
 	font-size: 1.25rem;
 	background-color: var(--clr-mid);
@@ -108,7 +109,6 @@ h1 {
 }
 
 #showTitle {
-	padding: 0;
 	font-style: italic;
 }
 
