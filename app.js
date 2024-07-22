@@ -59,7 +59,7 @@ app.get("/api/titanRanking", (req, res) => {
 	ORDER BY score DESC, titan_name ASC;
   	`;
 
-	submitQuery(query);
+	submitQuery(query, req, res);
 });
 
 // Serve static files from public directory (like css/js files)
