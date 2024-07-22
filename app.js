@@ -114,10 +114,10 @@ app.get("/api/bestScores", (req, res) => {
 			ROW_NUMBER() OVER (
 				PARTITION BY titan_name
 				ORDER BY 
-					score DESC,
+					titan_score / max_score DESC,
 					max_score DESC,
 					challenger_score ASC,
-					episode_index DESC
+					10^season_num + episode_num DESC
 			) AS rank
 		FROM titan_rounds
 	)
