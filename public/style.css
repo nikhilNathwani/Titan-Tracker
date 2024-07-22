@@ -96,13 +96,6 @@ body {
 	text-align: center;
 }
 
-.subContainer {
-	display: block;
-	padding: 1.5rem;
-	font-size: 1.25rem;
-	background-color: var(--clr-mid);
-}
-
 /* --------------------------- */
 /*                             */
 /*       TITLE PAGE            */
@@ -110,6 +103,13 @@ body {
 /* --------------------------- */
 h1 {
 	font-size: 4rem;
+}
+
+#appDescription {
+	display: block;
+	padding: 1.5rem;
+	font-size: 1.25rem;
+	background-color: var(--clr-mid);
 }
 
 /* --------------------------- */
