@@ -14,7 +14,7 @@ const pool = new Pool({
 /*       WIN LOSS ROUTE        */
 /*                             */
 /* --------------------------- */
-app.get("/api/winLossTeam", (req, res) => {
+app.get("/api/winLoss", (req, res) => {
 	const query = `
     WITH episode_sums AS (
 		SELECT
@@ -30,7 +30,7 @@ app.get("/api/winLossTeam", (req, res) => {
 	FROM episode_sums; 
   	`;
 
-	submitQuery(query);
+	submitQuery(query, req, res);
 });
 
 /* --------------------------- */
@@ -76,7 +76,7 @@ app.listen(PORT, () => {
 });
 
 //////////////////// Helper functions //////////////////////
-function submitQuery(query) {
+function submitQuery(query, req, res) {
 	pool.query(query, (err, result) => {
 		if (err) {
 			console.error("Error executing query:", err);

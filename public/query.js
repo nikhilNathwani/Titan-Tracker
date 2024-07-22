@@ -3,7 +3,7 @@
 /*      WIN LOSS API CALL      */
 /*                             */
 /* --------------------------- */
-fetch(`/api/winLossTeam`)
+fetch(`/api/winLoss`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log(result.data, result.data);
