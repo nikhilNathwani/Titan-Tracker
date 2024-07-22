@@ -93,7 +93,7 @@ body {
 }
 
 .subContainer {
-	padding: 1rem;
+	padding: 1.5rem;
 	font-size: 1.25rem;
 	background-color: var(--clr-mid);
 }
@@ -105,6 +105,10 @@ body {
 /* --------------------------- */
 h1 {
 	font-size: 4rem;
+}
+
+#showTitle {
+	font-style: italic;
 }
 
 /* --------------------------- */
