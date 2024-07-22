@@ -9,11 +9,11 @@ const pool = new Pool({
 	connectionString: process.env.POSTGRES_URL,
 });
 
-/* --------------------------- */
-/*                             */
-/*       WIN LOSS ROUTE        */
-/*                             */
-/* --------------------------- */
+/* ------------------------------ */
+/*                                */
+/*       WIN LOSS ROUTE           */
+/*                                */
+/* ------------------------------ */
 app.get("/api/winLoss", (req, res) => {
 	const query = `
     WITH episode_sums AS (
@@ -33,11 +33,11 @@ app.get("/api/winLoss", (req, res) => {
 	submitQuery(query, res);
 });
 
-/* --------------------------- */
-/*                             */
-/*    TITAN RANKING ROUTE      */
-/*                             */
-/* --------------------------- */
+/* ------------------------------ */
+/*                                */
+/*    TITAN RANKING ROUTE         */
+/*                                */
+/* ------------------------------ */
 app.get("/api/titanRanking", (req, res) => {
 	const query = `
 	WITH titan_scores AS (
@@ -57,6 +57,95 @@ app.get("/api/titanRanking", (req, res) => {
 		(num_win + 0.5 * num_tie) AS score
 	FROM titan_scores
 	ORDER BY score DESC, titan_name ASC;
+  	`;
+
+	submitQuery(query, res);
+});
+
+/* ------------------------------ */
+/*                                */
+/*    TITAN CARD ROUTES           */
+/*                                */
+/* ------------------------------ */
+
+/* ------------------------------ */
+/*    AVG SCORE ROUTE             */
+/* ------------------------------ */
+app.get("/api/avgScores", (req, res) => {
+	const query = `
+    WITH adjusted_scores AS (
+		SELECT
+			titan_name,
+			CASE
+				WHEN max_score = 20 THEN titan_score / 2
+				ELSE titan_score
+			END AS adjusted_score
+		FROM titan_rounds
+	)
+	SELECT
+		titan_name,
+		AVG(adjusted_score) AS avg_score
+	FROM adjusted_scores
+	GROUP BY titan_name; 
+  	`;
+
+	submitQuery(query, res);
+});
+
+/* ------------------------------ */
+/*    BEST SCORE ROUTE            */
+/* ------------------------------ */
+//Best score is defined as highest value of titan_score/max_score
+//Ties are broken in this order:
+// - Highest max_score (i.e. 20pt round counts more than 10pt round)
+// - Lowest challenger_score (i.e. largest margin of victory)
+// - Latest episode
+app.get("/api/bestScores", (req, res) => {
+	const query = `
+	WITH ranked_scores AS (
+		SELECT
+			titan_name,
+			ingredient1,
+			ingredient2,
+			titan_score / max_score AS score,
+			max_score,
+			challenger_score,
+			10^season_num + episode_num AS episode_index,
+			ROW_NUMBER() OVER (
+				PARTITION BY titan_name
+				ORDER BY 
+					score DESC,
+					max_score DESC,
+					challenger_score ASC,
+					episode_index DESC
+			) AS rank
+		FROM titan_rounds
+	)
+	SELECT
+		titan_name,
+		ingredient1,
+		ingredient2,
+		max_score,
+		score AS best_score
+	FROM ranked_scores
+	WHERE rank = 1;
+  	`;
+
+	submitQuery(query, res);
+});
+
+/* ------------------------------ */
+/*    ROUND DISTRIBUTION ROUTE    */
+/* ------------------------------ */
+app.get("/api/roundDistributions", (req, res) => {
+	const query = `
+	SELECT
+		titan_name,
+		COUNT(CASE WHEN round_num = 1 THEN 1 END) AS round1_count,
+		COUNT(CASE WHEN round_num = 2 THEN 1 END) AS round2_count,
+		COUNT(CASE WHEN round_num = 3 THEN 1 END) AS round3_count
+	FROM titan_rounds
+	GROUP BY titan_name;
   	`;
 
 	submitQuery(query, res);

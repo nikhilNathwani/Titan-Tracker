@@ -77,14 +77,14 @@ function makeTitanCards_record() {
 	return;
 }
 
-function makeTitanCards_avgScore() {
-	return;
+function makeTitanCards_avgScore(avgScores) {
+	console.log("Avg scores:", avgScores);
 }
 
-function makeTitanCards_bestScore() {
-	return;
+function makeTitanCards_bestScore(bestScores) {
+	console.log("Best scores:", bestScores);
 }
 
-function makeTitanCards_roundDistribution() {
-	return;
+function makeTitanCards_roundDistribution(roundDistributions) {
+	console.log("Round Distributions", roundDistributions);
 }

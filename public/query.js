@@ -43,7 +43,7 @@ fetch(`/api/titanRanking`)
 /*     TITAN CARD API CALLS            */
 /*                                     */
 /* ----------------------------------- */
-const avgScores = [];
+const avgScores = {};
 const bestScores = [];
 const roundDistributions = [];
 makeTitanCards(avgScores, bestScores, roundDistributions);
@@ -51,11 +51,44 @@ makeTitanCards(avgScores, bestScores, roundDistributions);
 /* ----------------------------------- */
 /*   TITAN CARD - AVG SCORES           */
 /* ----------------------------------- */
+fetch(`/api/avgScores`)
+	.then((response) => response.json())
+	.then((result) => {
+		result.data.forEach((titan) => {
+			avgScores[titan.titan_name] = parseFloat(titan.avg_score);
+		});
+	})
+	.catch((error) => console.error("Error fetching data:", error));
 
 /* ----------------------------------- */
 /*   TITAN CARD - BEST SCORES          */
 /* ----------------------------------- */
+fetch(`/api/bestScores`)
+	.then((response) => response.json())
+	.then((result) => {
+		result.data.forEach((titan) => {
+			bestScores[titan.titan_name] = {
+				best_score: titan.best_score,
+				max_score: titan.max_score,
+				ingredient1: titan.ingredient1,
+				ingredient2: titan.ingredient2,
+			};
+		});
+	})
+	.catch((error) => console.error("Error fetching data:", error));
 
 /* ----------------------------------- */
 /*   TITAN CARD - ROUND DISTRIBUTIONS  */
 /* ----------------------------------- */
+fetch(`/api/roundDistributions`)
+	.then((response) => response.json())
+	.then((result) => {
+		result.data.forEach((titan) => {
+			roundDistributions[titan.titan_name] = {
+				round1_count: titan.round1_count,
+				round2_count: titan.round2_count,
+				round3_count: titan.round3_count,
+			};
+		});
+	})
+	.catch((error) => console.error("Error fetching data:", error));
