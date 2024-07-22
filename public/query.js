@@ -20,6 +20,7 @@ fetch(`/api/titanRanking`)
 				num_win: parseInt(titan.num_win, 10),
 				num_tie: parseInt(titan.num_tie, 10),
 				num_loss: parseInt(titan.num_loss, 10),
+				score: parseFloat(titan.score),
 			});
 		});
 		makeWinLossIndividualDivs(titanRecords);
