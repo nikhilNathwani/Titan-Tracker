@@ -69,7 +69,7 @@ fetch(`/api/bestScores`)
 		console.log("best score result", result);
 		result.data.forEach((titan) => {
 			bestScores[titan.titan_name] = {
-				best_score: titan.best_score,
+				titan_score: titan.titan_score,
 				max_score: titan.max_score,
 				ingredient1: titan.ingredient1,
 				ingredient2: titan.ingredient2,

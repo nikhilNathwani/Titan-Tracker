@@ -105,10 +105,11 @@ app.get("/api/bestScores", (req, res) => {
 	WITH ranked_scores AS (
 		SELECT
 			titan_name,
+						titan_score,
+			max_score,
 			ingredient1,
 			ingredient2,
-			titan_score / max_score AS score,
-			max_score,
+
 			challenger_score,
 			10^season_num + episode_num AS episode_index,
 			ROW_NUMBER() OVER (
@@ -123,10 +124,10 @@ app.get("/api/bestScores", (req, res) => {
 	)
 	SELECT
 		titan_name,
+		titan_score
+		max_score,
 		ingredient1,
 		ingredient2,
-		max_score,
-		score AS best_score
 	FROM ranked_scores
 	WHERE rank = 1;
   	`;
