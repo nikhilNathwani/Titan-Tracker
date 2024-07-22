@@ -64,3 +64,27 @@ function makeTitanRankingSection(titanRecords) {
 		value.textContent = `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
 	});
 }
+
+function makeTitanCards(avgScores, bestScores, roundDistributions) {
+	// makeTitanCards_record();
+	// ^called within fetch(`/api/titanRanking`) to save an api call
+	makeTitanCards_avgScore(avgScores);
+	makeTitanCards_bestScore(bestScores);
+	makeTitanCards_roundDistribution(roundDistributions);
+}
+
+function makeTitanCards_record() {
+	return;
+}
+
+function makeTitanCards_avgScore() {
+	return;
+}
+
+function makeTitanCards_bestScore() {
+	return;
+}
+
+function makeTitanCards_roundDistribution() {
+	return;
+}

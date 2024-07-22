@@ -1,8 +1,8 @@
-/* --------------------------- */
-/*                             */
-/*      WIN LOSS API CALL      */
-/*                             */
-/* --------------------------- */
+/* ----------------------------------- */
+/*                                     */
+/*      WIN LOSS API CALL              */
+/*                                     */
+/* ----------------------------------- */
 fetch(`/api/winLoss`)
 	.then((response) => response.json())
 	.then((result) => {
@@ -15,11 +15,11 @@ fetch(`/api/winLoss`)
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
-/* --------------------------- */
-/*                             */
-/*   TITAN RANKING API CALL    */
-/*                             */
-/* --------------------------- */
+/* ----------------------------------- */
+/*                                     */
+/*   TITAN RANKING API CALL            */
+/*                                     */
+/* ----------------------------------- */
 fetch(`/api/titanRanking`)
 	.then((response) => response.json())
 	.then((result) => {
@@ -37,3 +37,25 @@ fetch(`/api/titanRanking`)
 		makeTitanRankingSection(titanRecords);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
+
+/* ----------------------------------- */
+/*                                     */
+/*     TITAN CARD API CALLS            */
+/*                                     */
+/* ----------------------------------- */
+const avgScores = [];
+const bestScores = [];
+const roundDistributions = [];
+makeTitanCards(avgScores, bestScores, roundDistributions);
+
+/* ----------------------------------- */
+/*   TITAN CARD - AVG SCORES           */
+/* ----------------------------------- */
+
+/* ----------------------------------- */
+/*   TITAN CARD - BEST SCORES          */
+/* ----------------------------------- */
+
+/* ----------------------------------- */
+/*   TITAN CARD - ROUND DISTRIBUTIONS  */
+/* ----------------------------------- */
