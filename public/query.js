@@ -66,6 +66,7 @@ fetch(`/api/avgScores`)
 fetch(`/api/bestScores`)
 	.then((response) => response.json())
 	.then((result) => {
+		console.log("best score result", result);
 		result.data.forEach((titan) => {
 			bestScores[titan.titan_name] = {
 				best_score: titan.best_score,
