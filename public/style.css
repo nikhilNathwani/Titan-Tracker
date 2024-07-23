@@ -255,7 +255,9 @@ td {
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: left;
+}
 
+.sectionTitle-name h2 {
 	font-size: 1.125rem;
 }
 
@@ -343,3 +345,30 @@ td {
 	font-weight: normal;
 	font-size: 0.75em;
 } */
+
+.histogram tr {
+	height: 2rem;
+}
+
+.histogram tr:nth-child(2) {
+	padding-top: 0.25rem;
+}
+
+.histogramCount {
+	margin: 0.25rem;
+	padding-inline-start: 0.5ch;
+	padding-block: 0.25rem;
+	text-align: left;
+
+	background-color: var(--clr-mid);
+}
+
+.histogramAvg {
+	margin: 0.25rem;
+	padding-inline-start: 0.5ch;
+	padding-block: 0.25rem;
+	text-align: center;
+	border-radius: 6px;
+
+	background-color: var(--clr-mid);
+}
