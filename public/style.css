@@ -318,7 +318,7 @@ td {
 }
 
 .titanCard-ingredientList ul {
-	marker: none;
+	list-style-type: none;
 }
 
 .denominator {
