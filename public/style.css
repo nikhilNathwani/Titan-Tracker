@@ -372,7 +372,8 @@ td {
 	margin-top: 0.5rem;
 }
 
-.histogramAvg {
+.histogramAvg,
+.histogramMargin {
 	margin: 0.25rem;
 	padding-block: 0.25rem;
 	text-align: center;
