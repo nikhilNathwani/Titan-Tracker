@@ -363,7 +363,7 @@ td {
 	font-size: 1rem;
 }
 
-.titanCard-histogram tr {
+.titanCard-histogram tr:not(:first-of-type) {
 	height: 2rem;
 }
 
