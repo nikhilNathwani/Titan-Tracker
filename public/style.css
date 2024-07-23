@@ -364,7 +364,7 @@ td {
 }
 
 .titanCard-histogram tr:not(:first-of-type) {
-	height: 2rem;
+	height: 3rem;
 }
 
 .histogramCount {
