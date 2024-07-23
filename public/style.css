@@ -363,6 +363,10 @@ th {
 	font-size: 1rem;
 }
 
+.titanCard-histogram {
+	width: 100%;
+}
+
 .titanCard-histogram tr:not(:first-of-type) {
 	height: 3rem;
 }
