@@ -173,7 +173,7 @@ h1 {
 /*                             */
 /* --------------------------- */
 
-#titanRanking .container {
+#titanRanking .sectionContent {
 	padding-bottom: 2rem;
 }
 
@@ -259,6 +259,10 @@ th {
 
 .sectionTitle-name h2 {
 	font-size: 1.125rem;
+}
+
+#titanCard .sectionContent {
+	padding-bottom: 2rem;
 }
 
 .titanCard-widget {
