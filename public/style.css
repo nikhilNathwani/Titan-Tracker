@@ -281,8 +281,7 @@ td {
 	/* height: 5.75rem; */
 
 	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
+	align-items: baseline;
 	justify-content: center;
 
 	font-size: 2rem;
@@ -311,18 +310,20 @@ td {
 }
 
 .titanCard-ingredientList {
-	font-size: 1rem;
-	font-weight: normal;
+	flex-flow: column nowrap;
 	align-items: start;
 	text-align: left;
+
+	font-size: 1rem;
+	font-weight: normal;
 }
 
 .titanCard-ingredientList ul {
 	list-style-type: none;
 }
 
-.denominator {
+/* .denominator {
 	display: inline-block;
 	font-weight: normal;
 	font-size: 0.75em;
-}
+} */
