@@ -73,6 +73,12 @@ body {
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
 
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	text-align: center;
+	gap: 1.5ch;
+
 	font-size: 1.125rem;
 	color: var(--clr-dark);
 
@@ -245,6 +251,14 @@ td {
 /*        TITAN CARD           */
 /*                             */
 /* --------------------------- */
+.sectionTitle-name {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: left;
+
+	font-size: 1.125rem;
+}
+
 .titanCard-widget {
 	display: flex;
 	flex-flow: column nowrap;
