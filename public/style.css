@@ -187,7 +187,7 @@ th {
 }
 
 /* Titan header */
-th:nth-of-type(2) {
+#titanRanking th:nth-of-type(2) {
 	padding-inline: 1rem;
 	text-align: left;
 }
