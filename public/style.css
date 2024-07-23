@@ -300,13 +300,29 @@ td {
 
 .titanCard-widgetRow {
 	width: 100%;
+
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: space-between;
+
+	background-color: var(--clr-mid);
+	color: var(--clr-light);
 }
 
 .titanCard-ingredientList {
 	font-size: 1rem;
-	align-items: left;
+	font-weight: normal;
+	align-items: start;
+	text-align: left;
+}
+
+.titanCard-ingredientList ul {
+	marker: none;
+}
+
+.denominator {
+	display: inline-block;
+	font-weight: normal;
+	font-size: 0.75em;
 }
