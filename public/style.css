@@ -355,8 +355,12 @@ td {
 }
 
 /* Avg Margin header */
-#titanRanking th:nth-of-type(4) {
+/* #roundDistribution th:nth-of-type(4) {
 	padding-right: 0.5rem;
+} */
+
+#roundDistribution td {
+	font-size: 1rem;
 }
 
 .histogram tr {
