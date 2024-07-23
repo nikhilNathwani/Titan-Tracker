@@ -383,7 +383,11 @@ th {
 
 .titanCard-histogram th:nth-of-type(3),
 .titanCard-histogram th:nth-of-type(4) {
-	width: 4.5rem;
+	width: 3.375rem;
+}
+
+.histogramRoundNum {
+	width: 6ch;
 }
 
 .histogramAvg,
@@ -391,7 +395,7 @@ th {
 	/* width: 5ch;
 	margin: 0.25rem;
 	padding-block: 0.25rem; */
-	width: 4.5rem;
+	width: 3.375rem;
 	text-align: center;
 	/* border-radius: 6px; */
 }
