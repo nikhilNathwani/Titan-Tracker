@@ -97,6 +97,8 @@ body {
 }
 
 .sectionRow {
+	width: 100%;
+
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -274,7 +276,8 @@ td {
 }
 
 .titanCard-widgetValue {
-	width: 8ch;
+	width: fit-content;
+	padding-inline: 1ch;
 	/* height: 5.75rem; */
 
 	display: flex;
