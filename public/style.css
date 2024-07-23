@@ -346,6 +346,10 @@ td {
 	font-size: 0.75em;
 } */
 
+.titanCard-roundDistribution .titanCard-widgetContent {
+	background-color: var(--clr-dark);
+}
+
 .histogram tr {
 	height: 2rem;
 }
