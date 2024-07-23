@@ -254,7 +254,7 @@ td {
 .sectionTitle-name {
 	display: flex;
 	flex-flow: column nowrap;
-	justify-content: left;
+	align-items: start;
 }
 
 .sectionTitle-name h2 {
@@ -369,7 +369,7 @@ td {
 }
 
 .histogramCount:first-of-type {
-	padding-top: 0.5rem;
+	margin-top: 0.5rem;
 }
 
 .histogramAvg {
