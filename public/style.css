@@ -340,6 +340,10 @@ td {
 	list-style-type: none;
 }
 
+.titanCard-ingredientList li:first-of-type {
+	margin-bottom: 0.25rem;
+}
+
 /* .denominator {
 	display: inline-block;
 	font-weight: normal;
@@ -354,11 +358,8 @@ td {
 	height: 2rem;
 }
 
-.histogram tr:nth-child(2) {
-	padding-top: 0.25rem;
-}
-
 .histogramCount {
+	width: min-content;
 	margin: 0.25rem;
 	padding-inline-start: 0.5ch;
 	padding-block: 0.25rem;
@@ -367,9 +368,12 @@ td {
 	background-color: var(--clr-mid);
 }
 
+.histogramCount:first-of-type {
+	padding-top: 0.5rem;
+}
+
 .histogramAvg {
 	margin: 0.25rem;
-	padding-inline-start: 0.5ch;
 	padding-block: 0.25rem;
 	text-align: center;
 	border-radius: 6px;
