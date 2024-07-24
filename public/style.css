@@ -329,7 +329,7 @@ h1 {
 /*      PER-ROUND TABLE        */
 /*                             */
 /* --------------------------- */
-.titanCard-perRound .widget-Content {
+.titanCard-perRound .widget-content {
 	background-color: var(--clr-dark);
 }
 
