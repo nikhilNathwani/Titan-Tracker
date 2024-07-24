@@ -3,20 +3,6 @@
 	--clr-mid: hsl(290, 10%, 23%);
 	--clr-dark: hsl(290, 10%, 15%);
 	--clr-light: hsl(290, 9%, 86%);
-	--clr-rank1-grad: linear-gradient(
-		45deg,
-		hsl(45, 70%, 40%),
-		hsl(45, 70%, 80%)
-	);
-	--clr-rank1-text: hsl(45, 70%, 20%);
-	--clr-rank2-grad: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
-	--clr-rank2-text: hsl(0, 0%, 30%);
-	--clr-rank3-grad: linear-gradient(
-		45deg,
-		hsl(30, 60%, 35%),
-		hsl(30, 60%, 60%)
-	);
-	--clr-rank3-text: hsl(30, 60%, 20%);
 }
 
 *,
@@ -57,6 +43,34 @@ body {
 /*     COMMON COMPONENTS       */
 /*                             */
 /* --------------------------- */
+.rank {
+	width: var(--rank-width);
+	height: min-content;
+	padding: 0.25rem 1ch;
+	border-radius: 6px;
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	color: var(--rank-color);
+	background: var(--rank-bg);
+}
+
+.rank1 {
+	--rank-color: hsl(45, 70%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(45, 70%, 40%), hsl(45, 70%, 80%));
+}
+
+.rank2 {
+	--rank-color: hsl(0, 0%, 30%);
+	--rank-bg: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
+}
+
+.rank3 {
+	--rank-color: hsl(30, 60%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
+}
+
 .section {
 	display: flex;
 	flex-flow: column nowrap;
@@ -230,48 +244,16 @@ h1 {
 	width: var(--rank-width);
 }
 
-/* Titan Name header */
-#titanRanking th:nth-of-type(2) {
+/* Titan Name column */
+#titanRanking th:nth-child(2),
+#titanRanking td:nth-child(2) {
 	padding-inline: 1rem;
 	text-align: left;
 }
 
-.statTitan {
-	padding-inline: 1rem;
-
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: start;
-	justify-content: center;
-}
-
-.statValue {
+/* Win-Loss-Tie column */
+#titanRanking td:nth-child(3) {
 	font-weight: bold;
-}
-
-.rank {
-	width: var(--rank-width);
-	height: min-content;
-	padding: 0.25rem 1ch;
-	border-radius: 6px;
-
-	font-size: 1rem;
-	font-weight: bold;
-}
-
-.rank1 {
-	color: var(--clr-rank1-text);
-	background: var(--clr-rank1-grad);
-}
-
-.rank2 {
-	color: var(--clr-rank2-text);
-	background: var(--clr-rank2-grad);
-}
-
-.rank3 {
-	color: var(--clr-rank3-text);
-	background: var(--clr-rank3-grad);
 }
 
 /* --------------------------- */
