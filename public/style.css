@@ -1,4 +1,5 @@
 :root {
+	--rank-width: 7ch;
 	--clr-mid: hsl(290, 10%, 23%);
 	--clr-dark: hsl(290, 10%, 15%);
 	--clr-light: hsl(290, 9%, 86%);
@@ -228,7 +229,11 @@ h1 {
 	--tableRow-height: 4.5rem;
 }
 
-/* Titan header */
+#titanRanking th:nth-of-type(1) {
+	width: var(--rank-width);
+}
+
+/* Titan Name header */
 #titanRanking th:nth-of-type(2) {
 	padding-inline: 1rem;
 	text-align: left;
@@ -258,12 +263,8 @@ h1 {
 	font-weight: bold;
 }
 
-/* tbody > *:not(:first-child) {
-	height: 4rem;
-} */
-
 .rank {
-	width: 7ch;
+	width: var(--rank-width);
 	height: min-content;
 	padding: 0.25rem 1ch;
 	border-radius: 6px;
@@ -306,28 +307,26 @@ h1 {
 	padding-bottom: 2rem;
 }
 
+/* --------------------------- */
+/*      INGREDIENT LIST        */
+/* --------------------------- */
 .titanCard-ingredientList {
 	flex-flow: column nowrap;
-	align-items: start;
 	text-align: left;
-
 	font-size: 1rem;
-	font-weight: normal;
 }
 
 .titanCard-ingredientList ul {
-	margin-top: 0.25rem;
 	list-style-type: none;
+	font-weight: normal;
 }
 
-.titanCard-ingredientList li:first-of-type {
-	margin-bottom: 0.25rem;
+.titanCard-ingredientList li {
+	margin-top: 0.25rem;
 }
 
 /* --------------------------- */
-/*                             */
 /*      PER-ROUND TABLE        */
-/*                             */
 /* --------------------------- */
 .titanCard-perRound .widget-content {
 	background-color: var(--clr-dark);
