@@ -43,37 +43,11 @@ body {
 /*     COMMON COMPONENTS       */
 /*                             */
 /* --------------------------- */
-.rank {
-	width: var(--rank-width);
-	height: min-content;
-	padding: 0.25rem 1ch;
-	border-radius: 6px;
-
-	font-size: 1rem;
-	font-weight: bold;
-
-	color: var(--rank-color);
-	background: var(--rank-bg);
-}
-
-.rank1 {
-	--rank-color: hsl(45, 70%, 20%);
-	--rank-bg: linear-gradient(45deg, hsl(45, 70%, 40%), hsl(45, 70%, 80%));
-}
-
-.rank2 {
-	--rank-color: hsl(0, 0%, 30%);
-	--rank-bg: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
-}
-
-.rank3 {
-	--rank-color: hsl(30, 60%, 20%);
-	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
-}
-
 .section {
+	width: min(400px, 96vw);
 	display: flex;
 	flex-flow: column nowrap;
+	align-items: center;
 }
 
 .section-title {
@@ -96,7 +70,7 @@ body {
 }
 
 .section-content {
-	width: 400px;
+	width: 100%;
 	padding: 3rem;
 	margin: auto;
 
@@ -223,6 +197,34 @@ h1 {
 
 	font-size: 4rem;
 	font-weight: bold;
+}
+
+.rank {
+	width: var(--rank-width);
+	height: min-content;
+	padding: 0.25rem 1ch;
+	border-radius: 6px;
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	color: var(--rank-color);
+	background: var(--rank-bg);
+}
+
+.rank1 {
+	--rank-color: hsl(45, 70%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(45, 70%, 40%), hsl(45, 70%, 80%));
+}
+
+.rank2 {
+	--rank-color: hsl(0, 0%, 30%);
+	--rank-bg: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
+}
+
+.rank3 {
+	--rank-color: hsl(30, 60%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
 }
 
 /* --------------------------- */
