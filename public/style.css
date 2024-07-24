@@ -45,7 +45,7 @@ body {
 /*                             */
 /* --------------------------- */
 .section {
-	width: min(400px, 96vw);
+	width: min(400px, 92vw);
 	display: flex;
 	flex-flow: column nowrap;
 }
@@ -71,7 +71,7 @@ body {
 
 .section-content {
 	width: 100%;
-	padding: 3rem;
+	padding: 3rem 2.5rem;
 	margin: auto;
 
 	display: flex;
