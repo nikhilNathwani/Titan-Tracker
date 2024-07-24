@@ -1,7 +1,4 @@
 :root {
-	/* --clr-mid: hsl(200, 10%, 20%);
-	--clr-dark: hsl(200, 10%, 15%);
-	--clr-light: hsl(200, 15%, 85%); */
 	--clr-mid: hsl(290, 10%, 23%);
 	--clr-dark: hsl(290, 10%, 15%);
 	--clr-light: hsl(290, 9%, 86%);
@@ -29,6 +26,7 @@
 	box-sizing: border-box;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
 html {
 	--s: 60px;
 	--c1: hsl(41.45deg 35.82% 32.24%);
@@ -44,16 +42,13 @@ html {
 }
 
 body {
-	/* height: 100svh; */
 	padding-block: 2rem;
 
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 4rem;
 
-	/* background-color: var(--clr-mid); */
 	color: var(--clr-light);
-	/* background: linear-gradient(to bottom right, hsl(200, 15%, 70%), hsl(200, 15%, 95%)); */
 }
 
 /* --------------------------- */
@@ -66,7 +61,7 @@ body {
 	flex-flow: column nowrap;
 }
 
-.sectionTitle {
+.section-title {
 	width: fit-content;
 	padding: 0.375rem 2ch;
 	margin: auto;
@@ -85,7 +80,7 @@ body {
 	background-color: var(--clr-light);
 }
 
-.sectionContent {
+.section-content {
 	width: 400px;
 	padding: 3rem;
 	margin: auto;
@@ -102,13 +97,39 @@ body {
 	text-align: center;
 }
 
-.sectionRow {
+.section-row {
 	width: 100%;
 
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.widget {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.5rem;
+}
+
+.widget-title {
+	padding-inline: 1ch;
+	padding-block: 0.125rem;
+	margin: auto;
+	font-weight: bold;
+	font-size: 1rem;
+	background-color: var(--clr-light);
+	color: var(--clr-mid);
+}
+
+.widget-content {
+	padding-block: 0.5rem;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: var(--clr-mid);
+	color: var(--clr-light);
 }
 
 /* --------------------------- */
@@ -133,25 +154,12 @@ h1 {
 /*                             */
 /* --------------------------- */
 
-#winLossWidget {
-	display: flex;
-	flex-flow: row nowrap;
+#winLoss .section-row {
+	justify-content: center;
 	gap: 2.5rem;
 }
 
-.winLossWidgetTitle {
-	padding-block: 0.125rem;
-	margin: auto;
-	margin-bottom: 0.5rem;
-
-	font-weight: bold;
-	font-size: 1rem;
-
-	background-color: var(--clr-light);
-	color: var(--clr-mid);
-}
-
-.winLossWidgetValue {
+#winloss .widget-content {
 	width: 5.5rem;
 	height: 5.75rem;
 
@@ -162,9 +170,6 @@ h1 {
 	font-size: 4rem;
 	font-weight: bold;
 	padding-block: 0.25rem;
-
-	background-color: var(--clr-mid);
-	color: var(--clr-light);
 }
 
 /* --------------------------- */
@@ -173,7 +178,7 @@ h1 {
 /*                             */
 /* --------------------------- */
 
-#titanRanking .sectionContent {
+#titanRanking .section-content {
 	padding-bottom: 2rem;
 }
 
@@ -251,17 +256,17 @@ th {
 /*        TITAN CARD           */
 /*                             */
 /* --------------------------- */
-.sectionTitle-name {
+.section-title-name {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: start;
 }
 
-.sectionTitle-name h2 {
+.section-title-name h2 {
 	font-size: 1.125rem;
 }
 
-.titanCard .sectionContent {
+.titanCard .section-content {
 	padding-bottom: 2rem;
 }
 
