@@ -33,6 +33,7 @@ body {
 
 	display: flex;
 	flex-flow: column nowrap;
+	align-items: center;
 	gap: 4rem;
 
 	color: var(--clr-light);
@@ -47,7 +48,6 @@ body {
 	width: min(400px, 96vw);
 	display: flex;
 	flex-flow: column nowrap;
-	align-items: center;
 }
 
 .section-title {
