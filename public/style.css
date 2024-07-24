@@ -132,6 +132,22 @@ body {
 	color: var(--clr-light);
 }
 
+.widget-value {
+	width: fit-content;
+	padding-inline: 1ch;
+
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
+}
+
 /* --------------------------- */
 /*                             */
 /*       TITLE PAGE            */
@@ -180,10 +196,6 @@ h1 {
 
 #titanRanking .section-content {
 	padding-bottom: 2rem;
-}
-
-table {
-	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
 }
 
 th {
@@ -270,36 +282,6 @@ th {
 	padding-bottom: 2rem;
 }
 
-.titanCard-widget {
-	display: flex;
-	flex-flow: column nowrap;
-	gap: 0.5rem;
-}
-
-.titanCard-widgetTitle {
-	padding-inline: 1ch;
-	padding-block: 0.125rem;
-	margin: auto;
-
-	font-weight: bold;
-	font-size: 1rem;
-
-	background-color: var(--clr-light);
-	color: var(--clr-mid);
-}
-
-.titanCard-widgetContent {
-	padding-block: 0.5rem;
-
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	gap: 0.5rem;
-
-	background-color: var(--clr-mid);
-	color: var(--clr-light);
-}
-
 .titanCard-widgetValue {
 	width: fit-content;
 	padding-inline: 1ch;
@@ -312,10 +294,6 @@ th {
 	font-size: 2rem;
 	font-weight: bold;
 	/* padding-block: 0.25rem; */
-}
-
-.titanCard-widgetCaption {
-	font-style: italic;
 }
 
 .titanCard-widgetFull {
