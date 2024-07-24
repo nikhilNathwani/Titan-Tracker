@@ -132,6 +132,7 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	justify-content: center;
 	gap: 0.5rem;
 	background-color: var(--clr-mid);
 	color: var(--clr-light);
@@ -173,6 +174,7 @@ th {
 /* Table row height */
 tr:not(:first-of-type) {
 	height: var(--tableRow-height);
+	font-size: var(--tableData-fs, 1rem);
 }
 
 /* --------------------------- */
@@ -185,7 +187,6 @@ h1 {
 }
 
 #appDescription {
-	display: block;
 	padding: 1.5rem;
 	font-size: 1.25rem;
 	background-color: var(--clr-mid);
@@ -206,13 +207,8 @@ h1 {
 	width: 5.5rem;
 	height: 5.75rem;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
 	font-size: 4rem;
 	font-weight: bold;
-	padding-block: 0.25rem;
 }
 
 /* --------------------------- */
@@ -227,6 +223,7 @@ h1 {
 
 #titanRanking table {
 	--tableRow-height: 4.5rem;
+	--tableData-fs: 1.125rem;
 }
 
 #titanRanking th:nth-of-type(1) {
@@ -239,15 +236,6 @@ h1 {
 	text-align: left;
 }
 
-/* Win-Loss-Tie header */
-#titanRanking th:nth-of-type(3) {
-	padding-right: 0.5rem;
-}
-
-#titanRanking td {
-	font-size: 1.125rem;
-}
-
 .statTitan {
 	padding-inline: 1rem;
 
@@ -258,8 +246,6 @@ h1 {
 }
 
 .statValue {
-	padding-right: 0.5rem;
-	font-size: 1.375rem;
 	font-weight: bold;
 }
 
