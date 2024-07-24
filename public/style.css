@@ -71,7 +71,7 @@ body {
 
 .section-content {
 	width: 100%;
-	padding: 3rem 2.5rem;
+	padding: 3rem min(2.5rem, 8vw);
 	margin: auto;
 
 	display: flex;
