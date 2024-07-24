@@ -114,7 +114,6 @@ body {
 
 .widget-full {
 	width: 100%;
-	font-size: 0.875rem;
 }
 
 .widget-title {
@@ -138,8 +137,6 @@ body {
 }
 
 .widget-row {
-	width: 100%;
-
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
@@ -162,7 +159,19 @@ body {
 }
 
 table {
-	border-collapse: collapse; /* Ensures that the borders are collapsed into a single border */
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th {
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid var(--clr-light);
+	font-size: var(--tableHeader-fs, 1rem);
+}
+
+/* Table row height */
+tr:not(:first-of-type) {
+	height: var(--tableRow-height);
 }
 
 /* --------------------------- */
@@ -215,9 +224,8 @@ h1 {
 	padding-bottom: 2rem;
 }
 
-th {
-	padding-bottom: 0.25rem;
-	border-bottom: 1px solid var(--clr-light);
+#titanRanking table {
+	--tableRow-height: 4.5rem;
 }
 
 /* Titan header */
@@ -236,7 +244,6 @@ th {
 }
 
 .statTitan {
-	height: 4.5rem;
 	padding-inline: 1rem;
 
 	display: flex;
@@ -317,31 +324,28 @@ th {
 	margin-bottom: 0.25rem;
 }
 
-/* .denominator {
-	display: inline-block;
-	font-weight: normal;
-	font-size: 0.75em;
-} */
-
-.titanCard-roundDistribution .titanCard-widgetContent {
+/* --------------------------- */
+/*                             */
+/*      PER-ROUND TABLE        */
+/*                             */
+/* --------------------------- */
+.titanCard-perRound .widget-Content {
 	background-color: var(--clr-dark);
 }
 
-/* Avg Margin header */
-/* #roundDistribution th:nth-of-type(4) {
-	padding-right: 0.5rem;
-} */
-
-.titanCard-roundDistribution td {
-	font-size: 1rem;
+.titanCard-perRound table {
+	--tableHeader-fs: 0.875rem;
+	--tableRow-height: 3rem;
 }
 
-.titanCard-histogram {
-	width: 100%;
+/* Widths of columns: (1) Round Num, 
+(3) Avg Score, (4) Avg Margin */
+.titanCard-perRound th:nth-of-type(1) {
+	width: 6ch;
 }
-
-.titanCard-histogram tr:not(:first-of-type) {
-	height: 3rem;
+.titanCard-perRound th:nth-of-type(3),
+.titanCard-perRound th:nth-of-type(4) {
+	width: 3.375rem;
 }
 
 .histogramCount {
@@ -352,23 +356,4 @@ th {
 	text-align: left;
 
 	background-color: var(--clr-mid);
-}
-
-.titanCard-histogram th:nth-of-type(3),
-.titanCard-histogram th:nth-of-type(4) {
-	width: 3.375rem;
-}
-
-.histogramRoundNum {
-	width: 6ch;
-}
-
-.histogramAvg,
-.histogramMargin {
-	/* width: 5ch;
-	margin: 0.25rem;
-	padding-block: 0.25rem; */
-	width: 3.375rem;
-	text-align: center;
-	/* border-radius: 6px; */
 }
