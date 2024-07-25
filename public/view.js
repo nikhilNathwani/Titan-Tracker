@@ -57,6 +57,8 @@ function makeTitanRankingSection(titanRecords) {
 		initTitanCard(
 			index + 1,
 			titan.titan_name,
+			ranks[index],
+			rankStrings[index],
 			titan.num_win,
 			titan.num_loss,
 			titan.num_tie
@@ -66,7 +68,15 @@ function makeTitanRankingSection(titanRecords) {
 
 //Assign titan card to specific titan and populate the
 //'Record' widget (so I don't have to query for record twice)
-function initTitanCard(index, titan_name, num_win, num_loss, num_tie) {
+function initTitanCard(
+	index,
+	titan_name,
+	rank,
+	rankString,
+	num_win,
+	num_loss,
+	num_tie
+) {
 	const titanNameID = titan_name.replace(" ", "-");
 
 	//Assign titan name as id for index-th titan card
@@ -74,6 +84,14 @@ function initTitanCard(index, titan_name, num_win, num_loss, num_tie) {
 		`.titanCard:nth-of-type(${index})`
 	);
 	titanCard.id = titanNameID;
+
+	//Set section title
+	populateElement(
+		`${titanNameID} .rank`,
+		`${rankString}`,
+		`.rank .rank${rank}`
+	);
+	populateElement(`${titanNameID} .section-title-name`, `${titan_name}`);
 
 	//Populate record widget
 	populateElement(
