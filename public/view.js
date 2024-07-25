@@ -3,7 +3,7 @@
 /*       WIN LOSS WIDGET       */
 /*                             */
 /* --------------------------- */
-function makeWinLossSection(num_win, num_tie, num_loss) {
+function displayWinLoss(num_win, num_tie, num_loss) {
 	populateElement("#numWin", `${num_win}`);
 	populateElement("#numLoss", `${num_loss}`);
 
@@ -22,7 +22,7 @@ function makeWinLossSection(num_win, num_tie, num_loss) {
 /*    TITAN RANKING WIDGET     */
 /*                             */
 /* --------------------------- */
-function makeTitanRankingSection(titanRecords) {
+function displayTitanRecords(titanRecords) {
 	//Note: titanRecords are already sorted in descending order
 	//      of win-loss-tie record when returned by api
 
@@ -32,70 +32,58 @@ function makeTitanRankingSection(titanRecords) {
 	);
 
 	titanRecords.forEach((titan, index) => {
-		//Select table row (skip over header row)
-		const tableRow = `table tr:nth-child(${index + 2}) `;
+		//(A) Select table row of Titan Ranking
+		const tableRow = `table tr:nth-child(${index + 2})`; //(+2 to skip over header row)
+		//(B) Select Titan Card for current titan
+		const titanNameID = titan.titan_name.replace(" ", "-");
 
-		//Populate rank cell
+		//
+		// RANK
+		//
+		// (A) Populate rank cell of Titan Rankings table
 		populateElement(
-			tableRow + ".rank",
+			`${tableRow} .rank`,
 			rankStrings[index],
 			`rank rank${ranks[index]}`
 		);
+		// (B) Populate rank element of Titan Card title
+		populateElement(
+			`#${titanNameID} .rank`,
+			`${rankStrings[index]}`,
+			`rank rank${ranks[index]}`
+		);
 
-		//Populate name cell
+		//
+		// NAME
+		//
+		// (A) Populate name cell of Titan Rankings table
 		const [firstName, lastName] = titan.titan_name.split(" ");
 		populateElement(tableRow + ".titanFirstName", `${firstName}`);
 		populateElement(tableRow + ".titanLastName", `${lastName}`);
+		// (B) Populate name element of Titan Card title
+		populateElement(
+			`#${titanNameID} .section-title-name`,
+			`${titan.titan_name}`
+		);
 
-		//Populate win-loss-tie cell
+		//
+		// WIN-LOSS-TIE RECORD
+		//
+		// (A) Populate win-loss-tie cell of Titan Rankings table
 		populateElement(
 			tableRow + ".statValue",
 			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
 		);
-
-		//Create titan card
-		initTitanCard(
-			index,
-			titan.titan_name,
-			ranks[index],
-			rankStrings[index],
-			titan.num_win,
-			titan.num_loss,
-			titan.num_tie
+		// (B) Populate win-loss-tie element of Titan Card
+		populateElement(
+			`#${titanNameID} .titanCard-record .widget-value`,
+			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
 		);
+
+		// Move Titan Card to proper place in rank order
+		const body = document.body;
+		body.appendChild(document.getElementById(titanNameID));
 	});
-}
-
-//Assign titan card to specific titan and populate the
-//'Record' widget (so I don't have to query for record twice)
-function initTitanCard(
-	index,
-	titan_name,
-	rank,
-	rankString,
-	num_win,
-	num_loss,
-	num_tie
-) {
-	const titanNameID = titan_name.replace(" ", "-");
-
-	//Assign titan name as id for index-th titan card
-	const titanCard = document.querySelectorAll(`.titanCard`)[index];
-	titanCard.id = titanNameID;
-
-	//Set section title
-	populateElement(
-		`#${titanNameID} .rank`,
-		`${rankString}`,
-		`rank rank${rank}`
-	);
-	populateElement(`#${titanNameID} .section-title-name`, `${titan_name}`);
-
-	//Populate record widget
-	populateElement(
-		`#${titanNameID} .titanCard-record .widget-value`,
-		`${num_win} - ${num_loss} - ${num_tie}`
-	);
 }
 
 function setTitanCards(avgScores, bestScores, roundDistributions) {

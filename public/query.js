@@ -11,13 +11,13 @@ fetch(`/api/winLoss`)
 		const num_win = parseInt(result.num_win, 10);
 		const num_tie = parseInt(result.num_tie, 10);
 		const num_loss = parseInt(result.num_loss, 10);
-		makeWinLossSection(num_win, num_tie, num_loss);
+		displayWinLoss(num_win, num_tie, num_loss);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
 /* ----------------------------------- */
 /*                                     */
-/*   TITAN RANKING API CALL            */
+/*   TITAN RECORDS API CALL            */
 /*                                     */
 /* ----------------------------------- */
 fetch(`/api/titanRecords`)
@@ -34,7 +34,7 @@ fetch(`/api/titanRecords`)
 				score: parseFloat(titan.score),
 			});
 		});
-		makeTitanRankingSection(titanRecords);
+		displayTitanRecords(titanRecords);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
 
@@ -55,10 +55,7 @@ fetch(`/api/avgScores`)
 	.then((response) => response.json())
 	.then((result) => {
 		result.data.forEach((titan) => {
-			setTitanCard_avgScore(
-				titan.titan_name,
-				parseFloat(titan.avg_score)
-			);
+			displayAvgScore(titan.titan_name, parseFloat(titan.avg_score));
 		});
 	})
 	.catch((error) => console.error("Error fetching data:", error));
