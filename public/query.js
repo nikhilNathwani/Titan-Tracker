@@ -45,7 +45,7 @@ fetch(`/api/titanRanking`)
 /* ----------------------------------- */
 const avgScores = [];
 const bestScores = [];
-const roundDistributions = {};
+const roundDistributions = [];
 setTitanCards(avgScores, bestScores, roundDistributions);
 
 /* ----------------------------------- */
