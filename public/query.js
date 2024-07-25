@@ -20,7 +20,7 @@ fetch(`/api/winLoss`)
 /*   TITAN RANKING API CALL            */
 /*                                     */
 /* ----------------------------------- */
-fetch(`/api/titanRanking`)
+fetch(`/api/titanRecords`)
 	.then((response) => response.json())
 	.then((result) => {
 		console.log("Indiv data:", result.data);

@@ -38,7 +38,7 @@ app.get("/api/winLoss", (req, res) => {
 /*    TITAN RANKING ROUTE         */
 /*                                */
 /* ------------------------------ */
-app.get("/api/titanRanking", (req, res) => {
+app.get("/api/titanRecords", (req, res) => {
 	const query = `
 	WITH titan_scores AS (
 		SELECT 

@@ -106,7 +106,12 @@ function setTitanCards(avgScores, bestScores, roundDistributions) {
 }
 
 function setTitanCard_avgScore(titanName, avgScore) {
-	console.log("IN SET AVG SCORE");
+	console.log(
+		"IN SET AVG SCORE",
+		titanName,
+		titanName.replace(" ", "-"),
+		avgScore
+	);
 	const titanNameID = titanName.replace(" ", "-");
 	populateElement(
 		`#${titanNameID} .titanCard-avgScore .widget-value`,
@@ -140,13 +145,13 @@ function setTitanCard_bestScore(
 	//1st ingredient
 	populateElement(
 		`#${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
-		`${ingredient1}`
+		`- ${ingredient1}`
 	);
 
 	//2nd ingredient
 	populateElement(
 		`#${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
-		`${ingredient2}`
+		`- ${ingredient2}`
 	);
 }
 
