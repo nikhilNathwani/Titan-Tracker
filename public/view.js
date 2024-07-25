@@ -4,18 +4,17 @@
 /*                             */
 /* --------------------------- */
 function makeWinLossSection(num_win, num_tie, num_loss) {
-	const winElement = document.getElementById("numWin");
-	winElement.textContent = `${num_win}`;
-
-	const lossElement = document.getElementById("numLoss");
-	lossElement.textContent = `${num_loss}`;
+	populateElement("#numWin", `${num_win}`);
+	populateElement("#numLoss", `${num_loss}`);
 
 	// Caption ("won N of M battles, X% win rate")
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
-	const caption = document.getElementById("winLossCaption");
-	caption.textContent = `The titans have won ${num_win} out of ${
-		num_win + num_loss
-	} battles, which is a ${percentSuccess.toPrecision(3)}% win rate.`;
+	populateElement(
+		"#winLossCaption",
+		`The titans have won ${num_win} out of ${
+			num_win + num_loss
+		} battles, which is a ${percentSuccess.toPrecision(3)}% win rate.`
+	);
 }
 
 /* --------------------------- */
@@ -35,22 +34,28 @@ function makeTitanRankingSection(titanRecords) {
 	titanRecords.forEach((titan, index) => {
 		//Select table row
 		const tableRow = document.querySelector(
-			`table tr:nth-child(${index + 2})`
+			`table tr:nth-child(${index + 2}) `
 		); //adding 2 to skip over table header row
 
 		//Populate rank cell
-		const rankElement = tableRow.querySelector(".rank");
-		rankElement.textContent = rankStrings[index];
-		rankElement.className = `rank rank${ranks[index]}`;
+		populateElement(
+			tableRow + ".rank",
+			rankStrings[index],
+			`rank rank${ranks[index]}`
+		);
 
 		//Populate name cell
-		const name = tableRow.querySelector(".statTitan");
 		const [firstName, lastName] = titan.titan_name.split(" ");
-		name.innerHTML = `<p>${firstName}</p><p>${lastName}</p>`;
+		populateElement(
+			tableRow + ".statTitan",
+			`<p>${firstName}</p><p>${lastName}</p>`
+		);
 
 		//Populate win-loss-tie cell
-		const value = tableRow.querySelector(".statValue");
-		value.textContent = `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
+		populateElement(
+			tableRow + ".statValue",
+			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
+		);
 	});
 }
 
@@ -102,4 +107,12 @@ function calcRanks(scores) {
 		rankStrings = ["1st", "2nd", "3rd"];
 	}
 	return { ranks, rankStrings };
+}
+
+function populateElement(query, content, className = null) {
+	const element = document.querySelector(query);
+	element.innerHTML = content;
+	if (className) {
+		element.className = className;
+	}
 }
