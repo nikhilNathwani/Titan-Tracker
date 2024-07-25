@@ -86,14 +86,7 @@ function displayTitanRecords(titanRecords) {
 	});
 }
 
-function setTitanCards(avgScores, bestScores, roundDistributions) {
-	console.log("SETTING TITAN CARDS", avgScores, bestScores);
-	setTitanCard_avgScore(avgScores);
-	setTitanCard_bestScore(bestScores);
-	// setTitanCards_roundDistribution(roundDistributions);
-}
-
-function setTitanCard_avgScore(titanName, avgScore) {
+function displayAvgScore(titanName, avgScore) {
 	console.log(
 		"IN SET AVG SCORE",
 		titanName,
@@ -107,7 +100,7 @@ function setTitanCard_avgScore(titanName, avgScore) {
 	);
 }
 
-function setTitanCard_bestScore(
+function displayBestScore(
 	titanName,
 	bestScore,
 	maxScore,
@@ -143,7 +136,7 @@ function setTitanCard_bestScore(
 	);
 }
 
-function setTitanCards_roundDistribution(roundDistributions) {
+function displayRoundDistribution(roundDistributions) {
 	console.log("Round Distributions", roundDistributions);
 
 	roundDistributions.forEach((titan) => {
