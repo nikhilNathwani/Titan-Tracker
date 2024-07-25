@@ -99,6 +99,7 @@ function initTitanCard(
 }
 
 function setTitanCards(avgScores, bestScores, roundDistributions) {
+	console.log("SETTING TITAN CARDS");
 	setTitanCards_avgScore(avgScores);
 	setTitanCards_bestScore(bestScores);
 	// setTitanCards_roundDistribution(roundDistributions);
