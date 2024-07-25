@@ -106,6 +106,7 @@ function setTitanCards(avgScores, bestScores, roundDistributions) {
 }
 
 function setTitanCard_avgScore(titanName, avgScore) {
+	console.log("IN SET AVG SCORE");
 	const titanNameID = titanName.replace(" ", "-");
 	populateElement(
 		`#${titanNameID} .titanCard-avgScore .widget-value`,
@@ -120,6 +121,8 @@ function setTitanCard_bestScore(
 	ingredient1,
 	ingredient2
 ) {
+	console.log("IN SET BEST SCORE");
+
 	const titanNameID = titanName.replace(" ", "-");
 
 	//Best score value
