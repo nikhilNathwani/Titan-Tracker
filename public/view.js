@@ -101,5 +101,5 @@ function calcRanks(scores) {
 		ranks = [1, 2, 3];
 		rankStrings = ["1st", "2nd", "3rd"];
 	}
-	return { ranks, rankstrings };
+	return { ranks, rankStrings };
 }
