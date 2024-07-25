@@ -52,30 +52,88 @@ function makeTitanRankingSection(titanRecords) {
 			tableRow + ".statValue",
 			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
 		);
+
+		//Create titan card
+		initTitanCard(
+			index + 1,
+			titan.titan_name,
+			titan.num_win,
+			titan.num_loss,
+			titan.num_tie
+		);
 	});
 }
 
-function makeTitanCards(avgScores, bestScores, roundDistributions) {
-	// makeTitanCards_record();
-	// ^called within fetch(`/api/titanRanking`) to save an api call
-	makeTitanCards_avgScore(avgScores);
-	makeTitanCards_bestScore(bestScores);
-	makeTitanCards_roundDistribution(roundDistributions);
+//Assign titan card to specific titan and populate the
+//'Record' widget (so I don't have to query for record twice)
+function initTitanCard(index, titan_name, num_win, num_loss, num_tie) {
+	const titanNameID = titan_name.replace(" ", "-");
+
+	//Assign titan name as id for index-th titan card
+	const titanCard = document.querySelector(
+		`.titanCard:nth-of-type(${index})`
+	);
+	titanCard.id = titanNameID;
+
+	//Populate record widget
+	populateElement(
+		`${titanNameID} .titanCard-record .widget-value`,
+		`${num_win} - ${num_loss} - ${num_tie}`
+	);
 }
 
-function makeTitanCards_record() {
-	return;
+function setTitanCards(avgScores, bestScores, roundDistributions) {
+	setTitanCards_avgScore(avgScores);
+	setTitanCards_bestScore(bestScores);
+	setTitanCards_roundDistribution(roundDistributions);
 }
 
-function makeTitanCards_avgScore(avgScores) {
+function setTitanCards_avgScore(avgScores) {
 	console.log("Avg scores:", avgScores);
+
+	avgScores.forEach((titan) => {
+		const titanNameID = titan.name.replace(" ", "-");
+
+		populateElement(
+			`${titanNameID} .titanCard-avgScore .widget-value`,
+			`${titan.avg_score}`
+		);
+	});
 }
 
-function makeTitanCards_bestScore(bestScores) {
+function setTitanCards_bestScore(bestScores) {
 	console.log("Best scores:", bestScores);
+
+	bestScores.forEach((titan) => {
+		const titanNameID = titan.name.replace(" ", "-");
+
+		//Best score value
+		populateElement(
+			`${titanNameID} .titanCard-bestScore .widget-value`,
+			`${titan.best_score}`
+		);
+
+		//Denominator ("out of __")
+		populateElement(
+			`${titanNameID} .titanCard-bestScore .denominator`,
+			`${titan.max_score}`
+		);
+
+		//1st ingredient
+		populateElement(
+			`${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
+			`${titan.ingredient1}`
+		);
+
+		//2nd ingredient
+		populateElement(
+			`${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
+			`${titan.ingredient2}`
+		);
+	});
 }
 
-function makeTitanCards_roundDistribution(roundDistributions) {
+function setTitanCards_roundDistribution(roundDistributions) {
 	console.log("Round Distributions", roundDistributions);
 }
 
@@ -84,6 +142,13 @@ function makeTitanCards_roundDistribution(roundDistributions) {
 /*      HELPER FUNCTIONS       */
 /*                             */
 /* --------------------------- */
+function populateElement(query, content, className = null) {
+	const element = document.querySelector(query);
+	element.innerHTML = content;
+	if (className) {
+		element.className = className;
+	}
+}
 
 // 'scores' is already sorted in descending order
 function calcRanks(scores) {
@@ -103,12 +168,4 @@ function calcRanks(scores) {
 		rankStrings = ["1st", "2nd", "3rd"];
 	}
 	return { ranks, rankStrings };
-}
-
-function populateElement(query, content, className = null) {
-	const element = document.querySelector(query);
-	element.innerHTML = content;
-	if (className) {
-		element.className = className;
-	}
 }
