@@ -32,10 +32,8 @@ function makeTitanRankingSection(titanRecords) {
 	);
 
 	titanRecords.forEach((titan, index) => {
-		//Select table row
-		const tableRow = document.querySelector(
-			`table tr:nth-child(${index + 2}) `
-		); //adding 2 to skip over table header row
+		//Select table row (skip over header row)
+		const tableRow = `table tr:nth-child(${index + 2}) `;
 
 		//Populate rank cell
 		populateElement(
@@ -46,10 +44,8 @@ function makeTitanRankingSection(titanRecords) {
 
 		//Populate name cell
 		const [firstName, lastName] = titan.titan_name.split(" ");
-		populateElement(
-			tableRow + ".statTitan",
-			`<p>${firstName}</p><p>${lastName}</p>`
-		);
+		populateElement(tableRow + ".titanFirstName", `${firstName}`);
+		populateElement(tableRow + ".titanLastName", `${lastName}`);
 
 		//Populate win-loss-tie cell
 		populateElement(
