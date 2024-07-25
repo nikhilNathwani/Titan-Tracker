@@ -105,49 +105,46 @@ function setTitanCards(avgScores, bestScores, roundDistributions) {
 	// setTitanCards_roundDistribution(roundDistributions);
 }
 
-function setTitanCards_avgScore(avgScores) {
-	console.log("Avg scores:", avgScores);
-
-	avgScores.forEach((titan) => {
-		const titanNameID = titan.name.replace(" ", "-");
-
-		populateElement(
-			`#${titanNameID} .titanCard-avgScore .widget-value`,
-			`${titan.avg_score}`
-		);
-	});
+function setTitanCard_avgScore(titanName, avgScore) {
+	const titanNameID = titanName.replace(" ", "-");
+	populateElement(
+		`#${titanNameID} .titanCard-avgScore .widget-value`,
+		`${avgScore}`
+	);
 }
 
-function setTitanCards_bestScore(bestScores) {
-	console.log("Best scores:", bestScores);
+function setTitanCard_bestScore(
+	titanName,
+	bestScore,
+	maxScore,
+	ingredient1,
+	ingredient2
+) {
+	const titanNameID = titanName.replace(" ", "-");
 
-	bestScores.forEach((titan) => {
-		const titanNameID = titan.name.replace(" ", "-");
+	//Best score value
+	populateElement(
+		`#${titanNameID} .titanCard-bestScore .widget-value`,
+		`${bestScore}`
+	);
 
-		//Best score value
-		populateElement(
-			`#${titanNameID} .titanCard-bestScore .widget-value`,
-			`${titan.best_score}`
-		);
+	//Denominator ("out of __")
+	populateElement(
+		`#${titanNameID} .titanCard-bestScore .denominator`,
+		`${maxScore}`
+	);
 
-		//Denominator ("out of __")
-		populateElement(
-			`#${titanNameID} .titanCard-bestScore .denominator`,
-			`${titan.max_score}`
-		);
+	//1st ingredient
+	populateElement(
+		`#${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
+		`${ingredient1}`
+	);
 
-		//1st ingredient
-		populateElement(
-			`#${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
-			`${titan.ingredient1}`
-		);
-
-		//2nd ingredient
-		populateElement(
-			`#${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
-			`${titan.ingredient2}`
-		);
-	});
+	//2nd ingredient
+	populateElement(
+		`#${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
+		`${ingredient2}`
+	);
 }
 
 function setTitanCards_roundDistribution(roundDistributions) {

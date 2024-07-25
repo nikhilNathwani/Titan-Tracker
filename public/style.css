@@ -69,6 +69,7 @@ body {
 	gap: 1.5ch;
 
 	font-size: 1.125rem;
+	font-weight: bold;
 	color: var(--clr-dark);
 
 	background-color: var(--clr-light);

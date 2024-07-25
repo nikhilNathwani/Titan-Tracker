@@ -55,10 +55,10 @@ fetch(`/api/avgScores`)
 	.then((response) => response.json())
 	.then((result) => {
 		result.data.forEach((titan) => {
-			avgScores.push({
-				name: titan.titan_name,
-				avg_score: parseFloat(titan.avg_score),
-			});
+			setTitanCard_avgScore(
+				titan.titan_name,
+				parseFloat(titan.avg_score)
+			);
 		});
 	})
 	.catch((error) => console.error("Error fetching data:", error));
@@ -71,13 +71,13 @@ fetch(`/api/bestScores`)
 	.then((result) => {
 		console.log("best score result", result);
 		result.data.forEach((titan) => {
-			bestScores.push({
-				name: titan.titan_name,
-				best_score: titan.titan_score,
-				max_score: titan.max_score,
-				ingredient1: titan.ingredient1,
-				ingredient2: titan.ingredient2,
-			});
+			setTitanCard_bestScore(
+				titan.titan_name,
+				titan.titan_score,
+				titan.max_score,
+				titan.ingredient1,
+				titan.ingredient2
+			);
 		});
 	})
 	.catch((error) => console.error("Error fetching data:", error));
