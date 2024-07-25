@@ -55,7 +55,7 @@ function makeTitanRankingSection(titanRecords) {
 
 		//Create titan card
 		initTitanCard(
-			index + 1,
+			index,
 			titan.titan_name,
 			ranks[index],
 			rankStrings[index],
@@ -80,9 +80,7 @@ function initTitanCard(
 	const titanNameID = titan_name.replace(" ", "-");
 
 	//Assign titan name as id for index-th titan card
-	const titanCard = document.querySelector(
-		`.titanCard:nth-of-type(${index})`
-	);
+	const titanCard = document.querySelectorAll(`.titanCard`)[index];
 	titanCard.id = titanNameID;
 
 	//Set section title
@@ -103,7 +101,7 @@ function initTitanCard(
 function setTitanCards(avgScores, bestScores, roundDistributions) {
 	setTitanCards_avgScore(avgScores);
 	setTitanCards_bestScore(bestScores);
-	setTitanCards_roundDistribution(roundDistributions);
+	// setTitanCards_roundDistribution(roundDistributions);
 }
 
 function setTitanCards_avgScore(avgScores) {
