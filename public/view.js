@@ -135,6 +135,25 @@ function setTitanCards_bestScore(bestScores) {
 
 function setTitanCards_roundDistribution(roundDistributions) {
 	console.log("Round Distributions", roundDistributions);
+
+	roundDistributions.forEach((titan) => {
+		const titanNameID = titan.name.replace(" ", "-");
+
+		populateElement(
+			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(1)`,
+			`${titan.round1_count}`
+		);
+
+		populateElement(
+			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(2)`,
+			`${titan.round2_count}`
+		);
+
+		populateElement(
+			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(3)`,
+			`${titan.round3_count}`
+		);
+	});
 }
 
 /* --------------------------- */
