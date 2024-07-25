@@ -68,7 +68,7 @@ fetch(`/api/bestScores`)
 	.then((result) => {
 		console.log("best score result", result);
 		result.data.forEach((titan) => {
-			setTitanCard_bestScore(
+			displayBestScore(
 				titan.titan_name,
 				titan.titan_score,
 				titan.max_score,
