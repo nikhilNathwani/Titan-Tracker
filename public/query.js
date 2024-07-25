@@ -6,7 +6,6 @@
 fetch(`/api/winLoss`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log(result.data, result.data);
 		result = result.data[0];
 		const num_win = parseInt(result.num_win, 10);
 		const num_tie = parseInt(result.num_tie, 10);
@@ -23,7 +22,6 @@ fetch(`/api/winLoss`)
 fetch(`/api/titanRecords`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log("Indiv data:", result.data);
 		var titanRecords = [];
 		result.data.forEach((titan) => {
 			titanRecords.push({
@@ -40,16 +38,8 @@ fetch(`/api/titanRecords`)
 
 /* ----------------------------------- */
 /*                                     */
-/*     TITAN CARD API CALLS            */
+/*   AVG SCORE API CALL                */
 /*                                     */
-/* ----------------------------------- */
-const avgScores = [];
-const bestScores = [];
-const roundDistributions = [];
-// setTitanCards(avgScores, bestScores, roundDistributions);
-
-/* ----------------------------------- */
-/*   TITAN CARD - AVG SCORES           */
 /* ----------------------------------- */
 fetch(`/api/avgScores`)
 	.then((response) => response.json())
@@ -61,12 +51,13 @@ fetch(`/api/avgScores`)
 	.catch((error) => console.error("Error fetching data:", error));
 
 /* ----------------------------------- */
-/*   TITAN CARD - BEST SCORES          */
+/*                                     */
+/*   BEST SCORE API CALL               */
+/*                                     */
 /* ----------------------------------- */
 fetch(`/api/bestScores`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log("best score result", result);
 		result.data.forEach((titan) => {
 			displayBestScore(
 				titan.titan_name,
@@ -80,9 +71,11 @@ fetch(`/api/bestScores`)
 	.catch((error) => console.error("Error fetching data:", error));
 
 /* ----------------------------------- */
-/*   TITAN CARD - ROUND DISTRIBUTIONS  */
+/*                                     */
+/*   PER-ROUND STATS API CALL          */
+/*                                     */
 /* ----------------------------------- */
-fetch(`/api/roundDistributions`)
+fetch(`/api/perRoundStats`)
 	.then((response) => response.json())
 	.then((result) => {
 		result.data.forEach((titan) => {

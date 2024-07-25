@@ -171,6 +171,34 @@ tr:not(:first-of-type) {
 	font-size: var(--tableData-fs, 1rem);
 }
 
+.rank {
+	width: var(--rank-width);
+	height: min-content;
+	padding: 0.25rem 1ch;
+	border-radius: 6px;
+
+	font-size: 1rem;
+	font-weight: bold;
+
+	color: var(--rank-color);
+	background: var(--rank-bg);
+}
+
+.rank1 {
+	--rank-color: hsl(45, 70%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(45, 70%, 40%), hsl(45, 70%, 80%));
+}
+
+.rank2 {
+	--rank-color: hsl(0, 0%, 30%);
+	--rank-bg: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
+}
+
+.rank3 {
+	--rank-color: hsl(30, 60%, 20%);
+	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
+}
+
 /* --------------------------- */
 /*                             */
 /*       TITLE PAGE            */
@@ -205,34 +233,6 @@ h1 {
 	font-weight: bold;
 }
 
-.rank {
-	width: var(--rank-width);
-	height: min-content;
-	padding: 0.25rem 1ch;
-	border-radius: 6px;
-
-	font-size: 1rem;
-	font-weight: bold;
-
-	color: var(--rank-color);
-	background: var(--rank-bg);
-}
-
-.rank1 {
-	--rank-color: hsl(45, 70%, 20%);
-	--rank-bg: linear-gradient(45deg, hsl(45, 70%, 40%), hsl(45, 70%, 80%));
-}
-
-.rank2 {
-	--rank-color: hsl(0, 0%, 30%);
-	--rank-bg: linear-gradient(45deg, hsl(0, 0%, 60%), hsl(0, 0%, 85%));
-}
-
-.rank3 {
-	--rank-color: hsl(30, 60%, 20%);
-	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
-}
-
 /* --------------------------- */
 /*                             */
 /*        TITAN RANKING        */
@@ -248,6 +248,7 @@ h1 {
 	--tableData-fs: 1.125rem;
 }
 
+/* Titan Rank column*/
 #titanRanking th:nth-of-type(1) {
 	width: var(--rank-width);
 }

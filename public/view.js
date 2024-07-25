@@ -88,13 +88,12 @@ function displayTitanRecords(titanRecords) {
 	});
 }
 
+/* --------------------------- */
+/*                             */
+/*   AVERAGE SCORE DISPLAY     */
+/*                             */
+/* --------------------------- */
 function displayAvgScore(titanName, avgScore) {
-	console.log(
-		"IN SET AVG SCORE",
-		titanName,
-		titanName.replace(" ", "-"),
-		avgScore
-	);
 	const titanNameID = titanName.replace(" ", "-");
 	populateElement(
 		`#${titanNameID} .titanCard-avgScore .widget-value`,
@@ -102,6 +101,11 @@ function displayAvgScore(titanName, avgScore) {
 	);
 }
 
+/* --------------------------- */
+/*                             */
+/*   BEST SCORE DISPLAY        */
+/*                             */
+/* --------------------------- */
 function displayBestScore(
 	titanName,
 	bestScore,
@@ -109,28 +113,23 @@ function displayBestScore(
 	ingredient1,
 	ingredient2
 ) {
-	console.log("IN SET BEST SCORE");
-
 	const titanNameID = titanName.replace(" ", "-");
 
-	//Best score value
+	//Best Score value
 	populateElement(
 		`#${titanNameID} .titanCard-bestScore .widget-value`,
 		`${bestScore}`
 	);
-
-	//Denominator ("out of __")
+	//Denominator (i.e. "max score" in "[best score] out of [max score]")
 	populateElement(
 		`#${titanNameID} .titanCard-bestScore .denominator`,
 		`${maxScore}`
 	);
-
 	//1st ingredient
 	populateElement(
 		`#${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
 		`- ${ingredient1}`
 	);
-
 	//2nd ingredient
 	populateElement(
 		`#${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
@@ -138,7 +137,12 @@ function displayBestScore(
 	);
 }
 
-function displayRoundDistribution(roundDistributions) {
+/* --------------------------- */
+/*                             */
+/*   PER-ROUND STATS DISPLAY   */
+/*                             */
+/* --------------------------- */
+function perRoundStatsDisplay(roundDistributions) {
 	console.log("Round Distributions", roundDistributions);
 
 	roundDistributions.forEach((titan) => {
@@ -168,18 +172,6 @@ function displayRoundDistribution(roundDistributions) {
 /* --------------------------- */
 function populateElement(query, content, className = null) {
 	const element = document.querySelector(query);
-
-	console.log(
-		"Using ",
-		query,
-		"to set ",
-		element,
-		"to have content ",
-		content,
-		"and class ",
-		className
-	);
-
 	element.textContent = content;
 	if (className) {
 		element.className = className;

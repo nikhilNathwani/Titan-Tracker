@@ -35,7 +35,7 @@ app.get("/api/winLoss", (req, res) => {
 
 /* ------------------------------ */
 /*                                */
-/*    TITAN RANKING ROUTE         */
+/*    TITAN RECORDS ROUTE         */
 /*                                */
 /* ------------------------------ */
 app.get("/api/titanRecords", (req, res) => {
@@ -64,12 +64,8 @@ app.get("/api/titanRecords", (req, res) => {
 
 /* ------------------------------ */
 /*                                */
-/*    TITAN CARD ROUTES           */
-/*                                */
-/* ------------------------------ */
-
-/* ------------------------------ */
 /*    AVG SCORE ROUTE             */
+/*                                */
 /* ------------------------------ */
 app.get("/api/avgScores", (req, res) => {
 	const query = `
@@ -93,7 +89,9 @@ app.get("/api/avgScores", (req, res) => {
 });
 
 /* ------------------------------ */
+/*                                */
 /*    BEST SCORE ROUTE            */
+/*                                */
 /* ------------------------------ */
 //Best score is defined as highest value of titan_score/max_score
 //Ties are broken in this order:
@@ -133,9 +131,11 @@ app.get("/api/bestScores", (req, res) => {
 });
 
 /* ------------------------------ */
-/*    ROUND DISTRIBUTION ROUTE    */
+/*                                */
+/*    PER-ROUND STATS ROUTE       */
+/*                                */
 /* ------------------------------ */
-app.get("/api/roundDistributions", (req, res) => {
+app.get("/api/perRoundStats", (req, res) => {
 	const query = `
 	SELECT
 		titan_name,
