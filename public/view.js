@@ -179,6 +179,16 @@ function setTitanCards_roundDistribution(roundDistributions) {
 /* --------------------------- */
 function populateElement(query, content, className = null) {
 	const element = document.querySelector(query);
+
+	console.log(
+		"Setting ",
+		element,
+		"to have content ",
+		content,
+		"and class ",
+		className
+	);
+
 	element.textContent = content;
 	if (className) {
 		element.className = className;
