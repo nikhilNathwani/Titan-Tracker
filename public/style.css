@@ -1,8 +1,11 @@
 :root {
 	--rank-width: 7ch;
-	--clr-mid: hsl(290, 10%, 23%);
+	--clr-mid: hsl(232, 10%, 23%);
+	--clr-dark: hsl(232, 10%, 15%);
+	--clr-light: hsl(232, 9%, 86%);
+	/* --clr-mid: hsl(290, 10%, 23%);
 	--clr-dark: hsl(290, 10%, 15%);
-	--clr-light: hsl(290, 9%, 86%);
+	--clr-light: hsl(290, 9%, 86%); */
 }
 
 *,
@@ -16,8 +19,10 @@
 
 html {
 	--s: 60px;
-	--c1: hsl(41.45deg 35.82% 32.24%);
-	--c2: hsl(41.45deg 35.82% 28.24%);
+	--c1: hsl(28, 90%, 20%);
+	--c2: hsl(28, 90%, 18%);
+	/* --c1: hsl(41.45deg 35.82% 32.24%);
+	--c2: hsl(41.45deg 35.82% 28.24%); */
 	--_g: #0000 83%, var(--c1) 85% 99%, #0000 101%;
 	background: radial-gradient(27% 29% at right, var(--_g)) calc(var(--s) / 2)
 			var(--s),
