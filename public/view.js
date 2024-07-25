@@ -1,6 +1,6 @@
 /* --------------------------- */
 /*                             */
-/*       WIN LOSS WIDGET       */
+/*   WIN LOSS DISPLAY          */
 /*                             */
 /* --------------------------- */
 function displayWinLoss(num_win, num_tie, num_loss) {
@@ -19,7 +19,7 @@ function displayWinLoss(num_win, num_tie, num_loss) {
 
 /* --------------------------- */
 /*                             */
-/*    TITAN RANKING WIDGET     */
+/*   TITAN RECORDS DISPLAY     */
 /*                             */
 /* --------------------------- */
 function displayTitanRecords(titanRecords) {
@@ -31,6 +31,8 @@ function displayTitanRecords(titanRecords) {
 		titanRecords.map((titan) => titan.score)
 	);
 
+	//Populate (A) Titan Ranking and (B) Titan Cards
+	//With (1) Rank, (2) Titan Name, (3) Win-Loss-Tie Record
 	titanRecords.forEach((titan, index) => {
 		//(A) Select table row of Titan Ranking
 		const tableRow = `table tr:nth-child(${index + 2})`; //(+2 to skip over header row)
@@ -38,7 +40,7 @@ function displayTitanRecords(titanRecords) {
 		const titanNameID = titan.titan_name.replace(" ", "-");
 
 		//
-		// RANK
+		// (1) RANK
 		//
 		// (A) Populate rank cell of Titan Rankings table
 		populateElement(
@@ -54,7 +56,7 @@ function displayTitanRecords(titanRecords) {
 		);
 
 		//
-		// NAME
+		// (2) NAME
 		//
 		// (A) Populate name cell of Titan Rankings table
 		const [firstName, lastName] = titan.titan_name.split(" ");
@@ -67,7 +69,7 @@ function displayTitanRecords(titanRecords) {
 		);
 
 		//
-		// WIN-LOSS-TIE RECORD
+		// (3) WIN-LOSS-TIE RECORD
 		//
 		// (A) Populate win-loss-tie cell of Titan Rankings table
 		populateElement(
