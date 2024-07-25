@@ -60,8 +60,8 @@ function displayTitanRecords(titanRecords) {
 		//
 		// (A) Populate name cell of Titan Rankings table
 		const [firstName, lastName] = titan.titan_name.split(" ");
-		populateElement(tableRow + ".titanFirstName", `${firstName}`);
-		populateElement(tableRow + ".titanLastName", `${lastName}`);
+		populateElement(`${tableRow} .titanFirstName`, `${firstName}`);
+		populateElement(`${tableRow} .titanLastName`, `${lastName}`);
 		// (B) Populate name element of Titan Card title
 		populateElement(
 			`#${titanNameID} .section-title-name`,
@@ -73,7 +73,7 @@ function displayTitanRecords(titanRecords) {
 		//
 		// (A) Populate win-loss-tie cell of Titan Rankings table
 		populateElement(
-			tableRow + ".statValue",
+			`${tableRow} .statValue`,
 			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
 		);
 		// (B) Populate win-loss-tie element of Titan Card
