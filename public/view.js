@@ -85,15 +85,15 @@ function initTitanCard(
 
 	//Set section title
 	populateElement(
-		`${titanNameID} .rank`,
+		`#${titanNameID} .rank`,
 		`${rankString}`,
 		`.rank .rank${rank}`
 	);
-	populateElement(`${titanNameID} .section-title-name`, `${titan_name}`);
+	populateElement(`#${titanNameID} .section-title-name`, `${titan_name}`);
 
 	//Populate record widget
 	populateElement(
-		`${titanNameID} .titanCard-record .widget-value`,
+		`#${titanNameID} .titanCard-record .widget-value`,
 		`${num_win} - ${num_loss} - ${num_tie}`
 	);
 }
@@ -111,7 +111,7 @@ function setTitanCards_avgScore(avgScores) {
 		const titanNameID = titan.name.replace(" ", "-");
 
 		populateElement(
-			`${titanNameID} .titanCard-avgScore .widget-value`,
+			`#${titanNameID} .titanCard-avgScore .widget-value`,
 			`${titan.avg_score}`
 		);
 	});
@@ -125,25 +125,25 @@ function setTitanCards_bestScore(bestScores) {
 
 		//Best score value
 		populateElement(
-			`${titanNameID} .titanCard-bestScore .widget-value`,
+			`#${titanNameID} .titanCard-bestScore .widget-value`,
 			`${titan.best_score}`
 		);
 
 		//Denominator ("out of __")
 		populateElement(
-			`${titanNameID} .titanCard-bestScore .denominator`,
+			`#${titanNameID} .titanCard-bestScore .denominator`,
 			`${titan.max_score}`
 		);
 
 		//1st ingredient
 		populateElement(
-			`${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
+			`#${titanNameID} .titanCard-ingredientList li:nth-child(1)`,
 			`${titan.ingredient1}`
 		);
 
 		//2nd ingredient
 		populateElement(
-			`${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
+			`#${titanNameID} .titanCard-ingredientList li:nth-child(2)`,
 			`${titan.ingredient2}`
 		);
 	});
@@ -156,17 +156,17 @@ function setTitanCards_roundDistribution(roundDistributions) {
 		const titanNameID = titan.name.replace(" ", "-");
 
 		populateElement(
-			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(1)`,
+			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(1)`,
 			`${titan.round1_count}`
 		);
 
 		populateElement(
-			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(2)`,
+			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(2)`,
 			`${titan.round2_count}`
 		);
 
 		populateElement(
-			`${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(3)`,
+			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(3)`,
 			`${titan.round3_count}`
 		);
 	});
@@ -179,7 +179,7 @@ function setTitanCards_roundDistribution(roundDistributions) {
 /* --------------------------- */
 function populateElement(query, content, className = null) {
 	const element = document.querySelector(query);
-	element.innerHTML = content;
+	element.textContent = content;
 	if (className) {
 		element.className = className;
 	}
