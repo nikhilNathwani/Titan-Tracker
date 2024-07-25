@@ -27,21 +27,12 @@ function makeTitanRankingSection(titanRecords) {
 	//Note: titanRecords are already sorted in descending order
 	//      of win-loss-tie record when returned by api
 
-	//Fill in the table rows, and accomodate ties
-	var currScore = 0;
-	var currRank = 0;
-	titanRecords.forEach((titan, index) => {
-		//Determine rank
-		var rank = index + 1;
-		var isTie = false;
-		if (currScore == titan.score) {
-			isTie = true;
-			rank = currRank;
-		} else {
-			currScore = titan.score;
-			currRank = rank;
-		}
+	//Determine titan ranks
+	const { ranks, rankStrings } = calcRanks(
+		titanRecords.map((titan) => titan.score)
+	);
 
+	titanRecords.forEach((titan, index) => {
 		//Select table row
 		const tableRow = document.querySelector(
 			`table tr:nth-child(${index + 2})`
@@ -49,10 +40,8 @@ function makeTitanRankingSection(titanRecords) {
 
 		//Populate rank cell
 		const rankElement = tableRow.querySelector(".rank");
-		rankElement.textContent = `${isTie ? "T-" : ""}${rank}${
-			rank == 1 ? "st" : rank == 2 ? "nd" : "rd"
-		}`;
-		rankElement.className = `rank rank${rank}`;
+		rankElement.textContent = rankStrings[index];
+		rankElement.className = `rank rank${ranks[index]}`;
 
 		//Populate name cell
 		const name = tableRow.querySelector(".statTitan");
@@ -87,4 +76,30 @@ function makeTitanCards_bestScore(bestScores) {
 
 function makeTitanCards_roundDistribution(roundDistributions) {
 	console.log("Round Distributions", roundDistributions);
+}
+
+/* --------------------------- */
+/*                             */
+/*      HELPER FUNCTIONS       */
+/*                             */
+/* --------------------------- */
+
+// 'scores' is already sorted in descending order
+function calcRanks(scores) {
+	var ranks = [];
+	var rankStrings = [];
+	if (scores[0] == scores[2]) {
+		ranks = [1, 1, 1];
+		rankStrings = ["T-1st", "T-1st", "T-1st"];
+	} else if (scores[0] == scores[1]) {
+		ranks = [1, 1, 3];
+		rankStrings = ["T-1st", "T-1st", "3rd"];
+	} else if (scores[1] == scores[2]) {
+		ranks = [1, 2, 2];
+		rankStrings = ["1st", "T-2nd", "T-2nd"];
+	} else {
+		ranks = [1, 2, 3];
+		rankStrings = ["1st", "2nd", "3rd"];
+	}
+	return { ranks, rankstrings };
 }
