@@ -52,8 +52,12 @@ setTitanCards(avgScores, bestScores, roundDistributions);
 /*   TITAN CARD - AVG SCORES           */
 /* ----------------------------------- */
 fetch(`/api/avgScores`)
-	.then((response) => response.json())
+	.then((response) => {
+		console.log("FETCHING AVG SCORES 1");
+		response.json();
+	})
 	.then((result) => {
+		console.log("FETCHING AVG SCORES 2");
 		result.data.forEach((titan) => {
 			setTitanCard_avgScore(
 				titan.titan_name,
