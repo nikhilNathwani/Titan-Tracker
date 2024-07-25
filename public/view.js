@@ -98,7 +98,7 @@ function displayAvgScore(titanName, avgScore) {
 	const titanNameID = titanName.replace(" ", "-");
 	populateElement(
 		`#${titanNameID} .titanCard-avgScore .widget-value`,
-		`${avgScore}`
+		`${avgScore.toPrecision(3)}`
 	);
 }
 
