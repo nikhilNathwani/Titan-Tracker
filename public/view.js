@@ -168,7 +168,9 @@ function populateElement(query, content, className = null) {
 	const element = document.querySelector(query);
 
 	console.log(
-		"Setting ",
+		"Using ",
+		query,
+		"to set ",
 		element,
 		"to have content ",
 		content,
