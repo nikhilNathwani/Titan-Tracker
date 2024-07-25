@@ -87,7 +87,7 @@ function initTitanCard(
 	populateElement(
 		`#${titanNameID} .rank`,
 		`${rankString}`,
-		`.rank .rank${rank}`
+		`rank rank${rank}`
 	);
 	populateElement(`#${titanNameID} .section-title-name`, `${titan_name}`);
 
