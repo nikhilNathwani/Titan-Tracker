@@ -161,19 +161,23 @@ function displayPerRoundStats(perRoundStats) {
 
 			//# Battles
 			populateElement(
-				`#${titanNameID} .histogramCount:nth-child(${roundNum})`,
+				`#${titanNameID} tr:nth-child(${roundNum + 1} .histogramCount)`,
 				`${battleCount}`
 			);
 
 			//Avg Score
 			populateElement(
-				`#${titanNameID} .histogramAvgScore:nth-child(${roundNum})`,
+				`#${titanNameID} tr:nth-child(${
+					roundNum + 1
+				} .histogramAvgScore)`,
 				`${avgScore}`
 			);
 
 			//Avg Margin
 			populateElement(
-				`#${titanNameID} .histogramAvgScore:nth-child(${roundNum})`,
+				`#${titanNameID} tr:nth-child(${
+					roundNum + 1
+				} .histogramAvgScore)`,
 				`${avgMargin >= 0 ? "+" : ""}${avgMargin}`
 			);
 		});
