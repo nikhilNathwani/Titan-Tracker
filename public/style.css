@@ -284,7 +284,7 @@ h1 {
 }
 
 .titanCard .section-content {
-	padding-bottom: 2rem;
+	padding-bottom: 2.25rem;
 }
 
 /* --------------------------- */
@@ -309,6 +309,7 @@ h1 {
 /*      PER-ROUND TABLE        */
 /* --------------------------- */
 .titanCard-perRound .widget-content {
+	padding-block: 0.25rem 0;
 	background-color: var(--clr-dark);
 }
 
