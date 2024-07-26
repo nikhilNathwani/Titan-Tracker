@@ -161,9 +161,7 @@ function displayPerRoundStats(perRoundStats) {
 
 			//# Battles
 			populateElement(
-				`#${titanNameID} tr:nth-child(${
-					roundNum + 1
-				}) .histogramCount)`,
+				`#${titanNameID} tr:nth-child(${roundNum + 1}) .histogramCount`,
 				`${battleCount}`
 			);
 
@@ -171,7 +169,7 @@ function displayPerRoundStats(perRoundStats) {
 			populateElement(
 				`#${titanNameID} tr:nth-child(${
 					roundNum + 1
-				}) .histogramAvgScore)`,
+				}) .histogramAvgScore`,
 				`${avgScore}`
 			);
 
@@ -179,7 +177,7 @@ function displayPerRoundStats(perRoundStats) {
 			populateElement(
 				`#${titanNameID} tr:nth-child(${
 					roundNum + 1
-				}) .histogramAvgScore)`,
+				}) .histogramAvgScore`,
 				`${avgMargin >= 0 ? "+" : ""}${avgMargin}`
 			);
 		});
