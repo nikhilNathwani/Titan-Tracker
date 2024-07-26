@@ -159,6 +159,7 @@ function displayPerRoundStats(perRoundStats) {
 				perRoundStats[titanName][roundNum].avg_score.toPrecision(3);
 			const avgMargin =
 				perRoundStats[titanName][roundNum].avg_margin.toPrecision(3);
+			avgMargin = Number(avgMargin).toFixed(2);
 
 			if (battleCount > maxBattleCount) {
 				maxBattleCount = battleCount;
