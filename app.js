@@ -139,11 +139,15 @@ app.get("/api/perRoundStats", (req, res) => {
 	const query = `
 	SELECT
 		titan_name,
-		COUNT(CASE WHEN round_num = 1 THEN 1 END) AS round1_count,
-		COUNT(CASE WHEN round_num = 2 THEN 1 END) AS round2_count,
-		COUNT(CASE WHEN round_num = 3 THEN 1 END) AS round3_count
-	FROM titan_rounds
-	GROUP BY titan_name;
+		round_num,
+		COUNT(*) AS battle_count,
+		AVG(titan_score) AS avg_score,
+		AVG(titan_score - challenger_score) AS avg_margin
+	FROM
+		titan_rounds
+	GROUP BY
+		titan_name,
+		round_num;
   	`;
 
 	submitQuery(query, res);

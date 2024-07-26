@@ -75,16 +75,9 @@ fetch(`/api/bestScores`)
 /*   PER-ROUND STATS API CALL          */
 /*                                     */
 /* ----------------------------------- */
-// fetch(`/api/perRoundStats`)
-// 	.then((response) => response.json())
-// 	.then((result) => {
-// 		result.data.forEach((titan) => {
-// 			// roundDistributions.push({
-// 			// 	name: titan.titan_name,
-// 			// 	round1_count: titan.round1_count,
-// 			// 	round2_count: titan.round2_count,
-// 			// 	round3_count: titan.round3_count,
-// 			// });
-// 		});
-// 	})
-// 	.catch((error) => console.error("Error fetching data:", error));
+fetch(`/api/perRoundStats`)
+	.then((response) => response.json())
+	.then((result) => {
+		console.log(result.data);
+	})
+	.catch((error) => console.error("Error fetching data:", error));
