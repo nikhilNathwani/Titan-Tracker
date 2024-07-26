@@ -78,6 +78,18 @@ fetch(`/api/bestScores`)
 fetch(`/api/perRoundStats`)
 	.then((response) => response.json())
 	.then((result) => {
-		console.log(result.data);
+		var perRoundStats = {
+			"Brooke Williamson": { 1: {}, 2: {}, 3: {} },
+			"Michael Voltaggio": { 1: {}, 2: {}, 3: {} },
+			"Tiffany Derry": { 1: {}, 2: {}, 3: {} },
+		};
+		result.data.forEach((row) => {
+			perRoundStats[row.titan_name][row.round_num] = {
+				battle_count: parseInt(row.battle_count, 10),
+				avg_score: parseFloat(row.avg_score),
+				avg_margin: parseFloat(row.avg_margin),
+			};
+		});
+		displayPerRoundStats(perRoundStats);
 	})
 	.catch((error) => console.error("Error fetching data:", error));

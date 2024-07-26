@@ -142,26 +142,43 @@ function displayBestScore(
 /*   PER-ROUND STATS DISPLAY   */
 /*                             */
 /* --------------------------- */
-function perRoundStatsDisplay(roundDistributions) {
+function displayPerRoundStats(perRoundStats) {
 	console.log("Round Distributions", roundDistributions);
 
-	roundDistributions.forEach((titan) => {
-		const titanNameID = titan.name.replace(" ", "-");
+	const titanNames = [
+		"Brooke Williamson",
+		"Michael Voltaggio",
+		"Tiffany Derry",
+	];
+	const roundNums = [1, 2, 3];
 
-		populateElement(
-			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(1)`,
-			`${titan.round1_count}`
-		);
+	titanNames.forEach((titanName) => {
+		roundNums.forEach((roundNum) => {
+			const titanNameID = titanName.replace(" ", "-");
+			const battleCount = perRoundStats[titanName][roundNum].battle_count;
+			const avgScore =
+				perRoundStats[titanName][roundNum].avg_score.toPrecision(3);
+			const avgMargin =
+				perRoundStats[titanName][roundNum].avg_margin.toPrecision(3);
 
-		populateElement(
-			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(2)`,
-			`${titan.round2_count}`
-		);
+			//# Battles
+			populateElement(
+				`#${titanNameID} .histogramCount:nth-child(${roundNum})`,
+				`${battleCount}`
+			);
 
-		populateElement(
-			`#${titanNameID} .titanCard-roundDistribution .histogramCount:nth-child(3)`,
-			`${titan.round3_count}`
-		);
+			//Avg Score
+			populateElement(
+				`#${titanNameID} .histogramAvgScore:nth-child(${roundNum})`,
+				`${avgScore}`
+			);
+
+			//Avg Margin
+			populateElement(
+				`#${titanNameID} .histogramAvgScore:nth-child(${roundNum})`,
+				`${avgMargin >= 0 ? "+" : ""}${avgMargin}`
+			);
+		});
 	});
 }
 
