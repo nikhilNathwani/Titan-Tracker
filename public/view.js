@@ -173,12 +173,14 @@ function displayPerRoundStats(perRoundStats) {
 				`${avgScore}`
 			);
 
-			//Avg Margin
+			//Avg Margin (3 digits max)
 			populateElement(
 				`#${titanNameID} tr:nth-child(${
 					roundNum + 1
 				}) .histogramAvgMargin`,
-				`${avgMargin >= 0 ? "+" : ""}${avgMargin}`
+				`${avgMargin >= 0 ? "+" : ""}${Number(
+					Number(avgMargin.toPrecision(3))
+				).toFixed(2)}`
 			);
 		});
 	});
