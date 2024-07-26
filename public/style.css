@@ -1,8 +1,11 @@
 :root {
 	--rank-width: 7ch;
-	--clr-mid: hsl(232, 10%, 23%);
-	--clr-dark: hsl(232, 10%, 15%);
+	--clr-mid: hsl(232, 27%, 23%);
+	--clr-dark: hsl(232, 27%, 15%);
 	--clr-light: hsl(232, 9%, 86%);
+	/* --clr-mid: hsl(232, 10%, 23%);
+	--clr-dark: hsl(232, 10%, 15%);
+	--clr-light: hsl(232, 9%, 86%); */
 	/* --clr-mid: hsl(290, 10%, 23%);
 	--clr-dark: hsl(290, 10%, 15%);
 	--clr-light: hsl(290, 9%, 86%); */
