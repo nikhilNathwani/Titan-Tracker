@@ -149,6 +149,7 @@ function displayPerRoundStats(perRoundStats) {
 		"Tiffany Derry",
 	];
 	const roundNums = [1, 2, 3];
+	var maxBattleCount = 0;
 
 	titanNames.forEach((titanName) => {
 		roundNums.forEach((roundNum) => {
@@ -158,6 +159,10 @@ function displayPerRoundStats(perRoundStats) {
 				perRoundStats[titanName][roundNum].avg_score.toPrecision(3);
 			const avgMargin =
 				perRoundStats[titanName][roundNum].avg_margin.toPrecision(3);
+
+			if (battleCount > maxBattleCount) {
+				maxBattleCount = battleCount;
+			}
 
 			//# Battles
 			populateElement(
@@ -182,6 +187,24 @@ function displayPerRoundStats(perRoundStats) {
 					Number(avgMargin.toPrecision(3))
 				).toFixed(2)}`
 			);
+		});
+	});
+
+	//Set width of "# Battles" histogram
+	const histogram_minWidth = 2;
+	const histogram_maxWidth = 15;
+	titanNames.forEach((titanName) => {
+		roundNums.forEach((roundNum) => {
+			const titanNameID = titanName.replace(" ", "-");
+			const battleCount = document.querySelector(
+				`#${titanNameID} tr:nth-child(${roundNum + 1}) .histogramCount`
+			);
+			battleCount.style.width = `${
+				histogram_minWidth +
+				histogram_maxWidth *
+					(perRoundStats[titanName][roundNum].battle_count /
+						maxBattleCount)
+			}ch`;
 		});
 	});
 }
