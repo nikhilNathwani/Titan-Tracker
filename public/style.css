@@ -317,10 +317,14 @@ h1 {
 	--tableRow-height: 3rem;
 }
 
-/* Widths of columns: (1) Round Num, 
+/* Widths of columns: (1) Round Num, (2) # Battles,
 (3) Avg Score, (4) Avg Margin */
 .titanCard-perRound th:nth-of-type(1) {
 	width: 6ch;
+}
+.titanCard-perRound th:nth-of-type(2) {
+	text-align: left;
+	padding-inline-start: calc(0.5rem+0.5ch);
 }
 .titanCard-perRound th:nth-of-type(3),
 .titanCard-perRound th:nth-of-type(4) {
@@ -333,6 +337,8 @@ h1 {
 	padding-inline-start: 0.5ch;
 	padding-block: 0.25rem;
 	text-align: left;
+
+	font-weight: bold;
 
 	background-color: var(--clr-mid);
 }
