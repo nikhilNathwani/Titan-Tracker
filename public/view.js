@@ -183,9 +183,7 @@ function displayPerRoundStats(perRoundStats) {
 				`#${titanNameID} tr:nth-child(${
 					roundNum + 1
 				}) .histogramAvgMargin`,
-				`${avgMargin >= 0 ? "+" : ""}${Number(
-					Number(avgMargin.toPrecision(3))
-				).toFixed(2)}`
+				`${avgMargin >= 0 ? "+" : ""}${avgMargin}`
 			);
 		});
 	});
