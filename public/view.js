@@ -143,8 +143,6 @@ function displayBestScore(
 /*                             */
 /* --------------------------- */
 function displayPerRoundStats(perRoundStats) {
-	console.log("Round Distributions", roundDistributions);
-
 	const titanNames = [
 		"Brooke Williamson",
 		"Michael Voltaggio",
