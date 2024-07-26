@@ -324,7 +324,7 @@ h1 {
 }
 .titanCard-perRound th:nth-of-type(2) {
 	text-align: left;
-	padding-left: calc(0.5rem+0.5ch);
+	padding-left: calc(0.25rem + 0.5ch);
 }
 .titanCard-perRound th:nth-of-type(3),
 .titanCard-perRound th:nth-of-type(4) {
