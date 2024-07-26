@@ -324,7 +324,7 @@ h1 {
 }
 .titanCard-perRound th:nth-of-type(2) {
 	text-align: left;
-	padding-inline-start: calc(0.5rem+0.5ch);
+	padding-left: calc(0.5rem+0.5ch);
 }
 .titanCard-perRound th:nth-of-type(3),
 .titanCard-perRound th:nth-of-type(4) {
@@ -334,7 +334,7 @@ h1 {
 .histogramCount {
 	width: min-content;
 	margin: 0.25rem;
-	padding-inline-start: 0.5ch;
+	padding-left: 0.5ch;
 	padding-block: 0.25rem;
 	text-align: left;
 
