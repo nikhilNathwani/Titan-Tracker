@@ -31,18 +31,18 @@ function displayTitanRecords(titanRecords) {
 		titanRecords.map((titan) => titan.score)
 	);
 
-	//Populate (A) Titan Ranking and (B) Titan Cards
+	//Populate (A) Titan Leaderboard and (B) Titan Cards
 	//With (1) Rank, (2) Titan Name, (3) Win-Loss-Tie Record
 	titanRecords.forEach((titan, index) => {
-		//(A) Select table row of Titan Ranking
-		const tableRow = `table tr:nth-child(${index + 2})`; //(+2 to skip over header row)
+		//(A) Select table row of Titan Leaderboard
+		const tableRow = `#titanLeaderboard table tr:nth-child(${index + 2})`; //(+2 to skip over header row)
 		//(B) Select Titan Card for current titan
 		const titanNameID = titan.titan_name.replace(" ", "-");
 
 		//
 		// (1) RANK
 		//
-		// (A) Populate rank cell of Titan Rankings table
+		// (A) Populate rank cell of Titan Leaderboard table
 		populateElement(
 			`${tableRow} .rank`,
 			rankStrings[index],
@@ -58,7 +58,7 @@ function displayTitanRecords(titanRecords) {
 		//
 		// (2) NAME
 		//
-		// (A) Populate name cell of Titan Rankings table
+		// (A) Populate name cell of Titan Leaderboard table
 		const [firstName, lastName] = titan.titan_name.split(" ");
 		populateElement(`${tableRow} .titanFirstName`, `${firstName}`);
 		populateElement(`${tableRow} .titanLastName`, `${lastName}`);
@@ -71,7 +71,7 @@ function displayTitanRecords(titanRecords) {
 		//
 		// (3) WIN-LOSS-TIE RECORD
 		//
-		// (A) Populate win-loss-tie cell of Titan Rankings table
+		// (A) Populate win-loss-tie cell of Titan Leaderboard table
 		populateElement(
 			`${tableRow} .statValue`,
 			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
