@@ -262,8 +262,8 @@ function formattedRecordString(num_win, num_loss, num_tie) {
 
 	// Return true if at least two arguments are at least two digits
 	if (count >= 2) {
-		return `${titan.num_win}-${titan.num_loss}-${titan.num_tie}`;
+		return `${num_win}-${num_loss}-${num_tie}`;
 	} else {
-		return `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
+		return `${num_win} - ${num_loss} - ${num_tie}`;
 	}
 }
