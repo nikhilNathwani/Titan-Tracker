@@ -73,7 +73,7 @@ app.get("/api/avgScores", (req, res) => {
 	const query = `
 	SELECT
 		titan_name,
-		SUM(titan_score) / SUM(max_score / 10) AS avg_score
+		SUM(titan_score) / SUM(CAST(max_score AS float) / 10) AS avg_score
 	FROM titan_rounds
 	GROUP BY titan_name; 
   	`;
