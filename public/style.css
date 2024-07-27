@@ -352,14 +352,17 @@ h1 {
 
 .section#footer {
 	width: 100%;
+	margin-top: 1.5rem;
 }
 
 #footer .section-content {
+	padding-block: 2.125rem;
+	gap: 1.5rem;
 	box-shadow: none;
 }
 
 #links {
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	gap: 2ch;
+	color: var(--clr-light);
 }
