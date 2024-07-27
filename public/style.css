@@ -357,3 +357,9 @@ h1 {
 #footer .section-content {
 	box-shadow: none;
 }
+
+#links {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
