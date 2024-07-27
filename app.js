@@ -73,28 +73,28 @@ app.get("/api/avgScores", (req, res) => {
 	const query = `
 	SELECT
 		titan_name,
-		SUM(titan_score) / SUM(maxScore / 10) AS avg_score
+		SUM(titan_score) / SUM(max_score / 10) AS avg_score
 	FROM titan_rounds
 	GROUP BY titan_name; 
   	`;
 
 	//Divides Rd3 scores in half before averaging them in
-	const queryOld = `
-    WITH adjusted_scores AS (
-		SELECT
-			titan_name,
-			CASE
-				WHEN max_score = 20 THEN titan_score / 2
-				ELSE titan_score
-			END AS adjusted_score
-		FROM titan_rounds
-	)
-	SELECT
-		titan_name,
-		AVG(adjusted_score) AS avg_score
-	FROM adjusted_scores
-	GROUP BY titan_name; 
-  	`;
+	// const queryOld = `
+	// WITH adjusted_scores AS (
+	// 	SELECT
+	// 		titan_name,
+	// 		CASE
+	// 			WHEN max_score = 20 THEN titan_score / 2
+	// 			ELSE titan_score
+	// 		END AS adjusted_score
+	// 	FROM titan_rounds
+	// )
+	// SELECT
+	// 	titan_name,
+	// 	AVG(adjusted_score) AS avg_score
+	// FROM adjusted_scores
+	// GROUP BY titan_name;
+	// `;
 
 	submitQuery(query, res);
 });
