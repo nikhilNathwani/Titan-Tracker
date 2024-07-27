@@ -199,7 +199,7 @@ tr:not(:first-of-type) {
 
 .rank3 {
 	--rank-color: hsl(30, 60%, 20%);
-	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 35%), hsl(30, 60%, 60%));
+	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 38%), hsl(30, 60%, 63%));
 }
 
 /* --------------------------- */
