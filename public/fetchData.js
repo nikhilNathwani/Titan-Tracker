@@ -45,6 +45,7 @@ fetch(`/api/avgScores`)
 	.then((response) => response.json())
 	.then((result) => {
 		result.data.forEach((titan) => {
+			console.log("AVG", titan);
 			displayAvgScore(titan.titan_name, parseFloat(titan.avg_score));
 		});
 	})
