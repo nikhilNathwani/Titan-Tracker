@@ -371,5 +371,6 @@ h1 {
 }
 
 #footer #footnote {
+	font-style: italic;
 	text-align: left;
 }
