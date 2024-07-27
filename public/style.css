@@ -37,7 +37,7 @@ html {
 }
 
 body {
-	padding-block: 2rem;
+	padding-top: 4rem;
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -342,4 +342,18 @@ h1 {
 	font-weight: bold;
 
 	background-color: var(--clr-mid);
+}
+
+/* --------------------------- */
+/*                             */
+/*      FOOTER                 */
+/*                             */
+/* --------------------------- */
+
+.section#footer {
+	width: 100%;
+}
+
+#footer .section-content {
+	box-shadow: none;
 }
