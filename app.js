@@ -68,7 +68,18 @@ app.get("/api/titanRecords", (req, res) => {
 /*                                */
 /* ------------------------------ */
 app.get("/api/avgScores", (req, res) => {
+	//Counts Rd3 scores as 2 separate 10pt scores (so it has
+	// twice the impact on the avg as Rd1 & Rd2 scores)
 	const query = `
+	SELECT
+		titan_name,
+		SUM(titan_score) / SUM(maxScore / 10) AS avg_score
+	FROM titan_rounds
+	GROUP BY titan_name; 
+  	`;
+
+	//Divides Rd3 scores in half before averaging them in
+	const queryOld = `
     WITH adjusted_scores AS (
 		SELECT
 			titan_name,
