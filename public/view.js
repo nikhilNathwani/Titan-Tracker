@@ -2,6 +2,9 @@
 /*                             */
 /*   WIN LOSS DISPLAY          */
 /*                             */
+
+const e = require("express");
+
 /* --------------------------- */
 function displayWinLoss(num_win, num_tie, num_loss) {
 	populateElement("#numWin", `${num_win}`);
@@ -79,7 +82,11 @@ function displayTitanRecords(titanRecords) {
 		// (B) Populate win-loss-tie element of Titan Card
 		populateElement(
 			`#${titanNameID} .titanCard-record .widget-value`,
-			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
+			`${formattedRecordString(
+				titan.num_win,
+				titan.num_loss,
+				titan.num_tie
+			)}`
 		);
 
 		// Move Titan Card to proper place in rank order
@@ -244,4 +251,19 @@ function calcRanks(scores) {
 		rankStrings = ["1st", "2nd", "3rd"];
 	}
 	return { ranks, rankStrings };
+}
+
+function formattedRecordString(num_win, num_loss, num_tie) {
+	// Helper function to check if a number has at least two digits
+	const isTwoDigit = (num) => Math.abs(num) >= 10;
+
+	// Count how many of the arguments are at least two digits
+	const count = [num_win, num_loss, num_tie].filter(isTwoDigit).length;
+
+	// Return true if at least two arguments are at least two digits
+	if (count >= 2) {
+		return `${titan.num_win}-${titan.num_loss}-${titan.num_tie}`;
+	} else {
+		return `${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`;
+	}
 }
