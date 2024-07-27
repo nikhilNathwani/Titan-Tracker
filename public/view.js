@@ -2,9 +2,6 @@
 /*                             */
 /*   WIN LOSS DISPLAY          */
 /*                             */
-
-const e = require("express");
-
 /* --------------------------- */
 function displayWinLoss(num_win, num_tie, num_loss) {
 	populateElement("#numWin", `${num_win}`);
