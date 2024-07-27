@@ -364,5 +364,8 @@ h1 {
 #links {
 	display: flex;
 	gap: 2ch;
+}
+
+#links a {
 	color: var(--clr-light);
 }
