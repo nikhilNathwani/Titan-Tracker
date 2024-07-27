@@ -86,8 +86,11 @@ function displayTitanRecords(titanRecords) {
 		const body = document.body;
 		body.appendChild(document.getElementById(titanNameID));
 	});
-	// Return footer to bottom of body
+	// Return footer & script tags to bottom of body
 	document.body.appendChild(document.getElementById("footer"));
+	document.querySelectorAll("script").forEach((script) => {
+		document.body.appendChild(script);
+	});
 }
 
 /* --------------------------- */
