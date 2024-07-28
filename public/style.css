@@ -333,7 +333,7 @@ h1 {
 }
 
 .histogramCount {
-	margin-left: 0.25rem;
+	margin-inline: 0.25rem;
 	padding-left: 0.5ch;
 	padding-block: 0.25rem;
 	text-align: left;

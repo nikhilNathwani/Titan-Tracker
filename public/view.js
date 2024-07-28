@@ -200,7 +200,7 @@ function displayPerRoundStats(perRoundStats) {
 
 	//Set width of "# Battles" histogram
 	const histogram_minWidth = 2;
-	const histogram_maxWidth = 15;
+	const histogram_maxWidth = 13.5;
 	titanNames.forEach((titanName) => {
 		roundNums.forEach((roundNum) => {
 			const titanNameID = titanName.replace(" ", "-");
