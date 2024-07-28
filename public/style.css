@@ -37,7 +37,7 @@ html {
 }
 
 body {
-	padding-top: 4rem;
+	padding-top: 135px;
 
 	display: flex;
 	flex-flow: column nowrap;
