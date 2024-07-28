@@ -9,12 +9,10 @@ function displayWinLoss(num_win, num_tie, num_loss) {
 
 	// Caption ("won N of M battles, X% win rate")
 	const percentSuccess = (100 * num_win) / (num_win + num_tie + num_loss);
-	populateElement(
-		"#winLossCaption",
-		`The titans have won ${num_win} out of ${
-			num_win + num_loss
-		} battles, which is a ${percentSuccess.toPrecision(3)}% win rate.`
-	);
+	const winLossCaption = document.getElementById("winLossCaption");
+	winLossCaption.innerHTML = `The titans have won ${num_win} out of ${
+		num_win + num_loss
+	} battles, which is a <b>${percentSuccess.toPrecision(3)}%</b> win rate.`;
 }
 
 /* --------------------------- */
