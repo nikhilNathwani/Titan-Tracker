@@ -372,6 +372,7 @@ h1 {
 }
 
 #links a {
+	text-underline-offset: 2px;
 	color: var(--clr-light);
 }
 
