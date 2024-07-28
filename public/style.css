@@ -362,9 +362,14 @@ h1 {
 }
 
 #links {
-	margin-bottom: 2rem;
+	width: 100%;
+	padding-bottom: 2rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--clr-light);
+
 	display: flex;
-	gap: 2ch;
+	justify-content: center;
+	gap: 2.5ch;
 }
 
 #links a {
