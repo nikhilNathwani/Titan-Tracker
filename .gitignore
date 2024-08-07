@@ -4,3 +4,5 @@
 /node_modules
 /titan_rounds.csv
 /titan_episodes.csv
+/script/wikiScrape.py
+/upload-data-examples.rtf
