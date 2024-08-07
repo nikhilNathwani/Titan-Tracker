@@ -2,7 +2,7 @@
 .vercel
 .env.development.local
 /node_modules
-/titan_rounds.csv
-/titan_episodes.csv
-/script/wikiScrape.py
-/upload-data-examples.rtf
+/titan_data/titan_rounds.csv
+/titan_data/titan_episodes.csv
+/titan_data/wikiScrape.py
+/titan_data/upload-data-examples.rtf
