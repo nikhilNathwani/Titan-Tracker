@@ -382,6 +382,7 @@ h1 {
 	padding-block: 2.125rem;
 	gap: 1.25rem;
 	box-shadow: none;
+	border: none;
 }
 
 #links {
