@@ -79,7 +79,11 @@ body {
 	width: 100%;
 	padding: 3rem min(2.5rem, 8vw);
 	margin: auto;
-	border: 8px outset #80684f;
+	border: 8px solid;
+	border-top-color: #a67643;
+	border-left-color: #a67643;
+	border-bottom-color: #523a20;
+	border-right-color: #523a20;
 
 	display: flex;
 	flex-flow: column nowrap;
