@@ -79,7 +79,7 @@ body {
 	width: 100%;
 	padding: 3rem min(2.5rem, 8vw);
 	margin: auto;
-	border: 8px solid;
+	border: 6px solid;
 	border-top-color: #a67643;
 	border-left-color: #a67643;
 	border-bottom-color: #523a20;
@@ -211,7 +211,7 @@ tr:not(:first-of-type) {
 /* --------------------------- */
 
 #titleSection {
-	border: 8px solid;
+	border: 6px solid;
 	border-top-color: #a67643;
 	border-left-color: #a67643;
 	border-bottom-color: #523a20;
