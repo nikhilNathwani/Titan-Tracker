@@ -119,6 +119,7 @@ body {
 	border-radius: 6px;
 	padding-inline: 1.5ch;
 	padding-block: 0.25rem;
+	font-weight: bold;
 }
 
 .widget-content {
