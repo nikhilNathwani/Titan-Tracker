@@ -2,14 +2,19 @@
 
 # Step 1: Scrape Triple Threat Wiki to get latest data
 #         and convert into SQL commands stored in txt files
-python3 wikiScrape.py
+python3 "/Users/nikhilnathwani/Documents/Project Garden/Titan Tracker/titan_data/wikiScrape.py"
 
 # Step 2: Extract POSTGRES_URL from .env.development.local
-POSTGRES_URL=$(grep 'POSTGRES_URL=' ../.env.development.local | sed -e 's/^POSTGRES_URL=//' -e 's/^"//' -e 's/"$//')
+POSTGRES_URL=$(grep 'POSTGRES_URL=' '/Users/nikhilnathwani/Documents/Project Garden/Titan Tracker/.env.development.local' | sed -e 's/^POSTGRES_URL=//' -e 's/^"//' -e 's/"$//')
 
 
 # Step 3: Open a new VS Code window and open the 2 sql files
-/usr/local/bin/code insertEpisode.sql insertRounds.sql
+/usr/local/bin/code "/Users/nikhilnathwani/Documents/Project Garden/Titan Tracker"
+sleep 2 
+/usr/local/bin/code --reuse-window "/Users/nikhilnathwani/Documents/Project Garden/Titan Tracker/titan_data/insertEpisode.sql"
+sleep 2
+/usr/local/bin/code --reuse-window "/Users/nikhilnathwani/Documents/Project Garden/Titan Tracker/titan_data/insertRounds.sql"
+
 
 # Step 4: Wait for user to review the files
 echo "Please review the SQL commands in insertEpisode.txt and insertRounds.txt."
