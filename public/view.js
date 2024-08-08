@@ -249,22 +249,23 @@ function calcRanks(scores) {
 }
 
 function formattedRecordString(num_win, num_loss, num_tie) {
-	// // Helper function to check if a number has at least two digits
-	// const isTwoDigit = (num) => Math.abs(num) >= 10;
+	// Helper function to check if a number has at least two digits
+	const isTwoDigit = (num) => Math.abs(num) >= 10;
 
-	// // Count how many of the arguments are at least two digits
-	// const count = [num_win, num_loss, num_tie].filter(isTwoDigit).length;
+	// Count how many of the arguments are at least two digits
+	const count = [num_win, num_loss, num_tie].filter(isTwoDigit).length;
 
-	// // Return true if at least two arguments are at least two digits
-	// if (count >= 2) {
-	// 	return `${num_win}-${num_loss}-${num_tie}`;
-	// } else {
-	// 	return `${num_win} - ${num_loss} - ${num_tie}`;
-	// }
-
-	if (num_win > 9 || num_loss > 9 || num_tie > 9) {
+	// Check if at least two arguments are at least two digits
+	if (count >= 2) {
 		return `${num_win}-${num_loss}-${num_tie}`;
 	} else {
 		return `${num_win} - ${num_loss} - ${num_tie}`;
 	}
+
+	// Version where it checks if at least 1 arg is at least 10
+	// if (num_win > 9 || num_loss > 9 || num_tie > 9) {
+	// 	return `${num_win}-${num_loss}-${num_tie}`;
+	// } else {
+	// 	return `${num_win} - ${num_loss} - ${num_tie}`;
+	// }
 }
