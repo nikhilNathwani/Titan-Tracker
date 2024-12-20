@@ -1,0 +1,122 @@
+#CONNECT TO DB
+psql "postgres://default:LON7ybidIxo6@ep-delicate-meadow-a4wuy0ik.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require"
+
+
+
+#DELETE DATA FOR SEASON 3 EPISODE 1
+DELETE FROM titan_episodes WHERE season_num=3 AND episode_num=1
+
+DELETE FROM titan_rounds WHERE season_num=3 AND episode_num=1
+
+
+
+#SEASON 3 EPISODE 1
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 1, 1, ‘Brooke Williamson’, ‘Salmon’, ‘Lime’, 10, 6, 8),
+    (3, 1, 2, ‘Michael Voltaggio’, ‘Brioche’, ‘Blackberry’, 10, 7, 7),
+    (3, 1, 3, 'Tiffany Derry', ‘Hen Duck’, ‘Geoduck’, 20, 19, 19);
+
+
+
+#SEASON 3 EPISODE 2
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 2, 1, 'Michael Voltaggio', ‘King Crab’, ‘Mustard’, 10, 7, 8),
+    (3, 2, 2, 'Tiffany Derry', ‘Ground ‘Beef, ‘Shallot’, 10, 7, 8),
+    (3, 2, 3, 'Brooke Williamson', ‘Pork ‘Belly, ‘Doubanjiang’, 20, 15, 17);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 2, 'Shirley Chung', 'Geoffrey Zakarian');
+
+
+
+#SEASON 3 EPISODE 3
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 3, 1, 'Tiffany Derry', 'Scallop', 'Ginger', 10, 5, 8),
+    (3, 3, 2, 'Michael Voltaggio', 'Beef Tenderloin', 'Cognac', 10, 6, 9),
+    (3, 3, 3, 'Brooke Williamson', 'Sweet Potato', 'Kimchi', 20, 18, 11);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 3, 'Kevin Lee', 'Lucinda Scala Quinn');
+
+
+#SEASON 3 EPISODE 5
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 5, 1, 'Tiffany Derry', 'Duck Breast', 'Pomegranate', 10, 8, 7),
+    (3, 5, 2, 'Michael Voltaggio', 'Arborio Rice', 'Gorgonzola Cheese', 10, 7, 9),
+    (3, 5, 3, 'Brooke Williamson', 'Sweetbread', 'Colatura', 20, 16, 18);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 5, 'Silvia Barban', 'Andrew Zimmern');
+
+
+#SEASON 3 EPISODE 6
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 6, 1, 'Michael Voltaggio', 'Clam', 'Chorizo', 10, 4, 8),
+    (3, 6, 2, 'Brooke Williamson', 'Ribeye Steak', 'Jalapeño', 10, 10, 6),
+    (3, 6, 3, 'Tiffany Derry', 'Savoy Cabbage', 'Lapsang Tea', 20, 13, 14);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 6, 'Ayaka Guido', 'Frank Prisinzano');
+
+
+
+
+#SEASON 3 EPISODE 7
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 7, 1, 'Tiffany Derry', 'Ahi Tuna', 'Caper', 10, 6, 6),
+    (3, 7, 2, 'Brooke Williamson', 'NY Strip Steak', 'Egg', 10, 7, 5),
+    (3, 7, 3, 'Michael Voltaggio', 'Pork Collar', 'Japanese Eggplant', 20, 16, 14);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 7, 'Kaleena Bliss', 'Hillary Sterling');
+
+
+
+
+#SEASON 3 EPISODE 8
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 8, 1, 'Michael Voltaggio', 'Dungeness Crab', 'Tomatillo', 10, 7, 7),
+    (3, 8, 2, 'Tiffany Derry', 'Whole Chicken', 'Green Olive', 10, 9, 8),
+    (3, 8, 3, 'Brooke Williamson', 'Beef Tongue', 'Shiso Leaf', 20, 17, 19);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 8, 'Katsuji Tanabe', 'Judy Joo');
+
+
+
+#SEASON 3 EPISODE 10
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 9, 1, 'Michael Voltaggio', 'Slab Bacon', 'Frisée', 10, 7, 8),
+    (3, 9, 2, 'Tiffany Derry', 'Skirt Steak', 'Piquillo Pepper', 10, 9, 6),
+    (3, 9, 3, 'Brooke Williamson', 'Chicken Liver', 'Chanterelle', 20, 16, 17);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 9, 'Ashleigh Shanti', 'Wylie Dufresne');
+
+
+
+#SEASON 3 EPISODE 10
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (3, 10, 1, 'Tiffany Derry', 'Lobster', 'Calabrian Chile', 10, 8, 6),
+    (3, 10, 2, 'Brooke Williamson', 'Potato', 'Gruyère', 10, 7, 7),
+    (3, 10, 3, 'Michael Voltaggio', 'Artichoke', 'Pistachio', 20, 18, 17);
+
+INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
+VALUES 
+(3, 10, 'Michael Jenkins', 'Amanda Freitag');
