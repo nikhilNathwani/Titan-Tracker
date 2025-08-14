@@ -6,6 +6,7 @@
 fetch(`/api/winLoss`)
 	.then((response) => response.json())
 	.then((result) => {
+		console.log("API result:", result); // 👈 check the structure here
 		result = result.data[0];
 		const num_win = parseInt(result.num_win, 10);
 		const num_tie = parseInt(result.num_tie, 10);
