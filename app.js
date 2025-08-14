@@ -172,6 +172,9 @@ app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Export app so server.js can import it
+module.exports = app;
+
 //////////////////// Helper functions //////////////////////
 function submitQuery(query, response) {
 	pool.query(query, (err, result) => {
