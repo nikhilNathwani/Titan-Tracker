@@ -204,6 +204,11 @@ tr:not(:first-of-type) {
 	--rank-bg: linear-gradient(45deg, hsl(30, 60%, 38%), hsl(30, 60%, 63%));
 }
 
+.rankNR {
+	border: 1px solid;
+	font-weight: normal;
+}
+
 /* --------------------------- */
 /*                             */
 /*       TITLE PAGE            */
@@ -284,6 +289,10 @@ h1 {
 /* Win-Loss-Tie column */
 #titanLeaderboard td:nth-child(3) {
 	font-weight: bold;
+}
+
+#titanRankingCaption {
+	font-style: italic;
 }
 
 /* --------------------------- */

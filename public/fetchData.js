@@ -23,16 +23,14 @@ fetch(`/api/winLoss`)
 fetch(`/api/titanRecords`)
 	.then((response) => response.json())
 	.then((result) => {
-		var titanRecords = [];
-		result.data.forEach((titan) => {
-			titanRecords.push({
-				titan_name: titan.titan_name,
-				num_win: parseInt(titan.num_win, 10),
-				num_tie: parseInt(titan.num_tie, 10),
-				num_loss: parseInt(titan.num_loss, 10),
-				score: parseFloat(titan.score),
-			});
-		});
+		const titanRecords = result.data.map((titan) => ({
+			titan_name: titan.titan_name,
+			num_win: parseInt(titan.num_win, 10),
+			num_tie: parseInt(titan.num_tie, 10),
+			num_loss: parseInt(titan.num_loss, 10),
+			score: parseFloat(titan.score),
+			is_retired: titan.is_retired,
+		}));
 		displayTitanRecords(titanRecords);
 	})
 	.catch((error) => console.error("Error fetching data:", error));
@@ -83,6 +81,23 @@ fetch(`/api/perRoundStats`)
 			"Brooke Williamson": { 1: {}, 2: {}, 3: {} },
 			"Michael Voltaggio": { 1: {}, 2: {}, 3: {} },
 			"Tiffany Derry": { 1: {}, 2: {}, 3: {} },
+			"Ayesha Nurdjaja": {
+				1: {
+					battle_count: 0,
+					avg_score: null,
+					avg_margin: null,
+				},
+				2: {
+					battle_count: 0,
+					avg_score: null,
+					avg_margin: null,
+				},
+				3: {
+					battle_count: 0,
+					avg_score: null,
+					avg_margin: null,
+				},
+			},
 		};
 		result.data.forEach((row) => {
 			perRoundStats[row.titan_name][row.round_num] = {
