@@ -25,9 +25,7 @@ function displayTitanRecords(titanRecords) {
 	//      of win-loss-tie record when returned by api
 
 	//Determine titan ranks
-	const { ranks, rankStrings } = calcRanks(
-		titanRecords.map((titan) => titan.score)
-	);
+	const { ranks, rankStrings } = calcRanks(titanRecords);
 
 	//Populate (A) Titan Leaderboard and (B) Titan Cards
 	//With (1) Rank, (2) Titan Name, (3) Win-Loss-Tie Record
@@ -44,13 +42,13 @@ function displayTitanRecords(titanRecords) {
 		populateElement(
 			`${tableRow} .rank`,
 			rankStrings[index],
-			`rank rank${ranks[index]}`
+			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`
 		);
 		// (B) Populate rank element of Titan Card title
 		populateElement(
 			`#${titanNameID} .rank`,
-			`${rankStrings[index]}`,
-			`rank rank${ranks[index]}`
+			rankStrings[index],
+			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`
 		);
 
 		//
@@ -153,6 +151,7 @@ function displayPerRoundStats(perRoundStats) {
 	const titanNames = [
 		"Brooke Williamson",
 		"Michael Voltaggio",
+		"Ayesha Nurdjaja",
 		"Tiffany Derry",
 	];
 	const roundNums = [1, 2, 3];
@@ -163,10 +162,19 @@ function displayPerRoundStats(perRoundStats) {
 			const titanNameID = titanName.replace(" ", "-");
 			const battleCount = perRoundStats[titanName][roundNum].battle_count;
 			const avgScore =
-				perRoundStats[titanName][roundNum].avg_score.toPrecision(3);
-			const avgMargin = Number(
-				perRoundStats[titanName][roundNum].avg_margin.toPrecision(3)
-			).toFixed(2);
+				perRoundStats[titanName][roundNum].avg_score == null
+					? "n/a"
+					: perRoundStats[titanName][roundNum].avg_score.toPrecision(
+							3
+					  );
+			const avgMargin =
+				perRoundStats[titanName][roundNum].avg_margin == null
+					? "n/a"
+					: Number(
+							perRoundStats[titanName][
+								roundNum
+							].avg_margin.toPrecision(3)
+					  ).toFixed(2);
 
 			if (battleCount > maxBattleCount) {
 				maxBattleCount = battleCount;
@@ -228,8 +236,18 @@ function populateElement(query, content, className = null) {
 	}
 }
 
-// 'scores' is already sorted in descending order
-function calcRanks(scores) {
+// Notes:
+// - 'scores' is already sorted in descending order
+// - retired titans are given null rank and rankstring NR,
+//   and come at the end of the rank/rankString arrays
+function calcRanks(titanRecords) {
+	// Separate into active and retired arrays
+	const activeTitans = titanRecords.filter((t) => !t.is_retired);
+	const retiredTitans = titanRecords.filter((t) => t.is_retired);
+
+	// Extract scores from active titans (guaranteed length = 3)
+	const scores = activeTitans.map((t) => t.score);
+
 	var ranks = [];
 	var rankStrings = [];
 	if (scores[0] == scores[2]) {
@@ -245,6 +263,13 @@ function calcRanks(scores) {
 		ranks = [1, 2, 3];
 		rankStrings = ["1st", "2nd", "3rd"];
 	}
+
+	// Append nulls/"NR"s for retired titans
+	for (let i = 0; i < retiredTitans.length; i++) {
+		ranks.push(null);
+		rankStrings.push("NR");
+	}
+
 	return { ranks, rankStrings };
 }
 

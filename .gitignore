@@ -1,5 +1,6 @@
 /.DS_Store
 .vercel
+.vscode
 .env.development.local
 /node_modules
 /titan_data/titan_rounds.csv
