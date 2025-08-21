@@ -151,7 +151,6 @@ function displayPerRoundStats(perRoundStats) {
 	const titanNames = [
 		"Brooke Williamson",
 		"Michael Voltaggio",
-		"Ayesha Nurdjaja",
 		"Tiffany Derry",
 	];
 	const roundNums = [1, 2, 3];
