@@ -49,6 +49,11 @@ body {
 /*     COMMON COMPONENTS       */
 /*                             */
 /* --------------------------- */
+a {
+	text-underline-offset: 3px;
+	color: var(--clr-light);
+}
+
 .section {
 	width: min(400px, 92vw);
 	display: flex;
@@ -227,18 +232,68 @@ tr:not(:first-of-type) {
 #titleSection .section-content {
 	border: none;
 	box-shadow: none;
+	gap: 1.75rem;
+	background-color: var(--clr-mid);
 }
 
 h1 {
-	font-size: 4rem;
+	font-size: 4.5rem;
 }
 
 #appDescription {
-	padding: 1.5rem;
-	font-size: 1.25rem;
-	background-color: var(--clr-mid);
+	line-height: 1.4;
+	font-size: 1.125rem;
+	/* padding-bottom: 0.5rem; */
+}
+
+#titleSection #support {
+	padding: 1.5rem 1.5rem;
+	/* font-size: 1rem; */
+	background-color: var(--clr-dark);
 	box-shadow: none;
 }
+
+/* #coffeeLink {
+	display: inline-block;
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: #ffdd00; 
+	color: var(--clr-dark);
+	border-radius: 0.5rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#coffeeLink:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+} */
+
+#coffeeLink {
+	display: inline-block;
+	margin-top: 1rem;
+	padding: 0.5rem 1.2rem;
+	background: linear-gradient(to bottom, #fff5a3, #ffeb66 40%, #ffdd00);
+
+	color: var(--clr-dark);
+	border-radius: 999px; /* full pill shape */
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15),
+		inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1.2; /* or whatever looks best */
+}
+
+/* #coffeeLink:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2),
+		inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+} */
 
 /* --------------------------- */
 /*                             */
@@ -406,8 +461,9 @@ h1 {
 }
 
 #links a {
-	text-underline-offset: 2px;
-	color: var(--clr-light);
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1.2; /* or whatever looks best */
 }
 
 #footer #footnote {
