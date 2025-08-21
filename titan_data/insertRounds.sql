@@ -1,4 +1,6 @@
-
+------------------------------------------
+--  Insert results into titan_rounds    --
+------------------------------------------
 INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
 VALUES 
     (3, 4, 1, 'Michael Voltaggio', 'Rack of Lamb', 'Mint', 10, 7, 7),
@@ -7,10 +9,17 @@ VALUES
 
 
 
-INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
-VALUES 
-    (1, 1, 1, 'Ayesha Nurdjaja', 'Country Ham', 'Cheddar Cheese', 10, 7, 8);
-
-
+------------------------------------------
+--  Delete results from titan_rounds    --
+------------------------------------------
 DELETE FROM titan_rounds
 WHERE titan_name = 'Ayesha Nurdjaja';
+
+
+
+------------------------------------------
+--  Testing for Ayesha Nudjaja          --
+------------------------------------------
+INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
+VALUES 
+    (1, 1, 1, 'Ayesha Nurdjaja', 'Country Ham', 'Cheddar Cheese', 10, 9, 8);
