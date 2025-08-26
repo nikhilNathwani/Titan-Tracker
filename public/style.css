@@ -3,6 +3,8 @@
 	--clr-mid: hsl(232, 23%, 24%);
 	--clr-dark: hsl(232, 23%, 12%);
 	--clr-light: hsl(232, 9%, 86%);
+	--wood-light: #a67643;
+	--wood-dark: #523a20;
 	/* --clr-mid: hsl(232, 10%, 23%);
 	--clr-dark: hsl(232, 10%, 15%);
 	--clr-light: hsl(232, 9%, 86%); */
@@ -62,7 +64,8 @@ a {
 
 .section-title {
 	width: fit-content;
-	padding: 0.375rem 2ch;
+	padding: 0.5rem 2ch;
+	padding-bottom: calc(0.5rem - 6px);
 	margin: auto;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
@@ -75,9 +78,10 @@ a {
 
 	font-size: 1.125rem;
 	font-weight: bold;
-	color: var(--clr-dark);
+	color: white;
 
-	background-color: var(--clr-light);
+	background-color: var(--wood-light);
+	z-index: 2;
 }
 
 .section-content {
@@ -85,10 +89,10 @@ a {
 	padding: 3rem min(2.5rem, 6vw);
 	margin: auto;
 	border: 6px solid;
-	border-top-color: #a67643;
-	border-left-color: #a67643;
-	border-bottom-color: #523a20;
-	border-right-color: #523a20;
+	border-top-color: var(--wood-light);
+	border-left-color: var(--wood-light);
+	border-bottom-color: var(--wood-dark);
+	border-right-color: var(--wood-dark);
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -192,6 +196,7 @@ tr:not(:first-of-type) {
 
 	color: var(--rank-color);
 	background: var(--rank-bg);
+	border: 2px solid;
 }
 
 .rank1 {
@@ -222,10 +227,10 @@ tr:not(:first-of-type) {
 
 #titleSection {
 	border: 6px solid;
-	border-top-color: #a67643;
-	border-left-color: #a67643;
-	border-bottom-color: #523a20;
-	border-right-color: #523a20;
+	border-top-color: var(--wood-light);
+	border-left-color: var(--wood-light);
+	border-bottom-color: var(--wood-dark);
+	border-right-color: var(--wood-dark);
 	box-shadow: 0px 18px 27px rgba(0, 0, 0, 0.9);
 }
 
@@ -274,19 +279,18 @@ h1 {
 	display: inline-block;
 	margin-top: 1rem;
 	padding: 0.5rem 1.2rem;
-	background: linear-gradient(to bottom, #fff5a3, #ffeb66 40%, #ffdd00);
-
+	/* background: linear-gradient(to bottom, #fff5a3, #ffeb66 40%, #ffdd00); */
+	background: linear-gradient(to bottom, white, var(--clr-light));
 	color: var(--clr-dark);
-	border-radius: 999px; /* full pill shape */
+	border-radius: 999px;
 	font-weight: 600;
 	text-decoration: none;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15),
 		inset 0 -2px 4px rgba(0, 0, 0, 0.1);
 	transition: transform 0.15s ease, box-shadow 0.15s ease;
-
 	display: inline-block;
 	vertical-align: middle;
-	line-height: 1.2; /* or whatever looks best */
+	line-height: 1.2;
 }
 
 /* #coffeeLink:hover {
