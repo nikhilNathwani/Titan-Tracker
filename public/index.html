@@ -375,6 +375,7 @@
 						>Other Work</a
 					>
 					<a
+						id="coffeeLinkFooter"
 						href="https://buymeacoffee.com/nikhilnathwani"
 						target="_blank"
 						rel="noopener noreferrer"
@@ -390,5 +391,32 @@
 		</div>
 		<script src="/view.js"></script>
 		<script src="/fetchData.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const coffeeLinks = [
+					{
+						id: "coffeeLink",
+						label: "Coffee Link - Header",
+					},
+					{
+						id: "coffeeLinkFooter",
+						label: "Coffee Link - Footer",
+					},
+				];
+
+				coffeeLinks.forEach(({ id, label }) => {
+					const el = document.getElementById(id);
+					if (el) {
+						el.addEventListener("click", function () {
+							gtag("event", "coffee_click", {
+								event_category: "engagement",
+								event_label: label,
+								value: 1,
+							});
+						});
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
