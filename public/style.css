@@ -460,6 +460,7 @@ h1 {
 	border-bottom: 1px solid var(--clr-light);
 
 	display: flex;
+	flex-flow: row wrap;
 	justify-content: center;
 	gap: 2.5ch;
 }
@@ -467,6 +468,7 @@ h1 {
 #links a {
 	display: inline-block;
 	vertical-align: middle;
+	/* white-space: nowrap; */
 	line-height: 1.2; /* or whatever looks best */
 }
 
