@@ -1,8 +1,8 @@
 :root {
 	--rank-width: 7ch;
 	--hue: 200;
-	--clr-mid: hsl(var(--hue), 23%, 24%);
-	--clr-dark: hsl(var(--hue), 23%, 12%);
+	--clr-mid: hsl(var(--hue), 23%, 23%);
+	--clr-dark: hsl(var(--hue), 23%, 11%);
 	--clr-light: hsl(var(--hue), 9%, 86%);
 	--wood-light: #a67643;
 	--wood-dark: #523a20;
