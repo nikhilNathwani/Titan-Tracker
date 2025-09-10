@@ -10,9 +10,9 @@
 
 -- INSERT INTO titan_rounds (season_num, episode_num, round_num, titan_name, ingredient1, ingredient2, max_score, titan_score, challenger_score)
 -- VALUES 
---     (4, 1, 1, 'Brooke Williamson', 'Crawfish', 'Beef Tenderloin', 10, 8, 6),
---     (4, 1, 2, 'Michael Voltaggio', 'Black Kale', 'Wild Mushroom', 10, 9, 8),
---     (4, 1, 3, 'Ayesha Nurdjaja', 'Pork Shoulder', 'Rice Flour', 20, 15, 16);
+--     (4, 2, 1, 'Brooke Williamson', 'Pork Tenderloin', 'Bourbon', 10, 9, 7),
+--     (4, 2, 2, 'Ayesha Nurdjaja', 'Egg', 'Bucheron Cheese', 10, 10, 6),
+--     (4, 2, 3, 'Michael Voltaggio', 'Blue Crab', 'Paw Paw Vinegar', 20, 19, 20);
 
 
 SELECT * FROM titan_rounds

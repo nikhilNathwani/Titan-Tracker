@@ -1,5 +1,5 @@
 :root {
-	--rank-width: 7ch;
+	--rank-width: 7.5ch;
 	--hue: 200;
 	--clr-mid: hsl(var(--hue), 23%, 23%);
 	--clr-dark: hsl(var(--hue), 23%, 11%);
