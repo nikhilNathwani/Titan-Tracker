@@ -9,7 +9,7 @@
 
 -- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
 -- VALUES 
--- (4, 1, 'Nini Nguyen', 'Daniel Boulud');
+-- (4, 2, 'Bryan Voltaggio', 'Michael Solomonov');
 
 
 SELECT * FROM titan_episodes;
