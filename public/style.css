@@ -465,6 +465,12 @@ h1 {
 	margin-top: 2rem;
 }
 
+@media (max-width: 600px) {
+	.section#footer {
+		margin-top: 0rem;
+	}
+}
+
 #footer .section-content {
 	padding-block: 2.125rem;
 	gap: 1.25rem;
