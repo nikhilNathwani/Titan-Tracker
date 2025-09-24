@@ -2,14 +2,10 @@
 ----------------------------------------------
 --  Insert new episode into titan_episodes  --
 ----------------------------------------------
--- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
--- VALUES 
--- (3, 4, 'Eric Adjepong', 'Chris Cheung');
-
 
 -- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
 -- VALUES 
--- (4, 2, 'Bryan Voltaggio', 'Michael Solomonov');
+-- (4, 4, 'Dale Talde', 'Giada De Laurentiis');
 
 
 SELECT * FROM titan_episodes;
