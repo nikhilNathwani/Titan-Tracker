@@ -8,12 +8,12 @@
 --     max_score, titan_score, challenger_score
 -- )
 -- VALUES 
---     (4, 4, 1, 'Michael Voltaggio', 
---     'Pork Ribs', 'Molasses', 10, 6, 7),
---     (4, 4, 2, 'Brooke Williamson', 
---     'Piquillo Pepper', 'Goat Cheese', 10, 9, 10),
---     (4, 4, 3, 'Ayesha Nurdjaja', 
---     'Dungeness Crab', 'Sushi Rice', 20, 19, 10);
+--     (4, 6, 1, 'Michael Voltaggio', 
+--     'Sweet Potato', 'Lime', 10, 7, 7),
+--     (4, 6, 2, 'Ayesha Nurdjaja', 
+--     'Lobster', 'Ossetra Caviar', 10, 8, 7),
+--     (4, 6, 3, 'Brooke Williamson', 
+--     'Suya Spice', 'Gooseberry', 20, 16, 18);
 
 
 SELECT * FROM titan_rounds
@@ -23,7 +23,7 @@ SELECT * FROM titan_rounds
 --  Delete results from titan_rounds    --
 ------------------------------------------
 -- DELETE FROM titan_rounds
--- WHERE titan_name = 'Ayesha Nurdjaja';
+-- WHERE season_num = 4 and episode_num = 5;
 
 
 
