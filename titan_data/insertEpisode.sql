@@ -5,9 +5,9 @@
 
 -- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
 -- VALUES 
--- (4, 4, 'Dale Talde', 'Giada De Laurentiis');
+-- (4, 6, 'Martel Stone', 'Lorna Maseko');
 
-
+ 
 SELECT * FROM titan_episodes;
 
 ----------------------------------------------
