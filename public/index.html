@@ -8,7 +8,7 @@
 			name="description"
 			content="Tracking live stats for Bobby's Triple Threat on Food Network. Compare the performances of celebrity chefs Brooke Williamson, Michael Voltaggio, and Tiffany Derry, who were hand-picked by Bobby Flay to serve as the three culinary titans on this cooking competition show."
 		/>
-		<link rel="stylesheet" href="/style.css" />
+		<link rel="stylesheet" href="/css/style.css" />
 		<!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -489,8 +489,12 @@
 				</p>
 			</div>
 		</div>
-		<script src="/view.js"></script>
-		<script src="/fetchData.js"></script>
+		<script src="/js/view/ranking.js"></script>
+		<script src="/js/view/populateElement.js"></script>
+		<script src="/js/view/renderRecords.js"></script>
+		<script src="/js/view/renderStats.js"></script>
+		<script src="/js/services/fetchRecords.js"></script>
+		<script src="/js/services/fetchStats.js"></script>
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 				const coffeeLinks = [
