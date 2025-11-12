@@ -13,7 +13,9 @@
 
 
 -- Query 1: View all rounds
-SELECT * FROM titan_rounds;
+SELECT *
+FROM titan_rounds
+ORDER BY season_num ASC, episode_num ASC, round_num ASC;
 
 
 -- Query 2: Insert results into titan_rounds
@@ -23,12 +25,12 @@ SELECT * FROM titan_rounds;
 --     max_score, titan_score, challenger_score
 -- )
 -- VALUES 
---     (4, 6, 1, 'Michael Voltaggio', 
---     'Sweet Potato', 'Lime', 10, 7, 7),
---     (4, 6, 2, 'Ayesha Nurdjaja', 
---     'Lobster', 'Ossetra Caviar', 10, 8, 7),
---     (4, 6, 3, 'Brooke Williamson', 
---     'Suya Spice', 'Gooseberry', 20, 16, 18);
+--     (4, 10, 1, 'Michael Voltaggio', 
+--     'Sea Scallop', 'Blood Orange', 10, 7, 9),
+--     (4, 10, 2, 'Brooke Williamson', 
+--     'Porterhouse Steak', 'Gochujang', 10, 9, 7),
+--     (4, 10, 3, 'Ayesha Nurdjaja', 
+--     'Monkfish', 'Prosciutto', 20, 15, 19);
 
 
 -- Query 3: Delete results from titan_rounds (use with caution)

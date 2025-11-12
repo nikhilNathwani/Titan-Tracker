@@ -1,7 +1,8 @@
+/* Dependencies */
 const path = require("path");
+const express = require("express");
 
 // Set up Express app
-const express = require("express");
 const app = express();
 
 // Import and use routes
