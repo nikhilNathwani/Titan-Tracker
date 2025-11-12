@@ -65,6 +65,10 @@ a {
 	color: var(--clr-light);
 }
 
+.footnote {
+	font-style: normal;
+}
+
 .section {
 	width: min(400px, 92vw);
 	display: flex;
@@ -497,8 +501,8 @@ h1 {
 	line-height: 1.2; /* or whatever looks best */
 }
 
-#footer #footnote {
-	font-size: 0.875rem;
+#footer #footnotes {
+	font-size: 1rem;
 	font-style: italic;
 	text-align: left;
 }

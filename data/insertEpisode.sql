@@ -8,13 +8,15 @@
 
 
 -- Query 1: View all episodes
-SELECT * FROM titan_episodes;
+SELECT *
+FROM titan_episodes
+ORDER BY season_num ASC, episode_num ASC;
 
 
 -- Query 2: Insert new episode into titan_episodes
 -- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
 -- VALUES 
--- (4, 6, 'Martel Stone', 'Lorna Maseko');
+-- (4, 10, 'Karen Akunowicz', 'Scott Conant');
 
 
 -- Query 3: Delete episode from titan_episodes (use with caution)
