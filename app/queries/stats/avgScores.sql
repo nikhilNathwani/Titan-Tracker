@@ -13,6 +13,6 @@
 
 SELECT
 	titan_name,
-	SUM(titan_score) / SUM(CAST(max_score AS float) / 10) AS avg_score
+	SUM(titan_score * 10.0) / SUM(max_score) AS avg_score
 FROM titan_rounds
 GROUP BY titan_name;
