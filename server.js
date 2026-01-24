@@ -1,6 +1,10 @@
 // NOTE: This file is for LOCAL DEVELOPMENT ONLY - not used in production
 // Production deployment is handled by Vercel using app.js
-require("dotenv").config({ path: ".env.development.local" });
+
+// Load env vars first (local-only since .env.development.local isn't tracked in git)
+if (process.env.NODE_ENV !== "production") {
+	require("dotenv").config({ path: ".env.development.local" });
+}
 const app = require("./app");
 const PORT = process.env.PORT || 3000;
 
