@@ -24,7 +24,7 @@ WITH ranked_scores AS (
 		ROW_NUMBER() OVER (
 			PARTITION BY titan_name
 			ORDER BY 
-				CAST(titan_score AS float) / max_score DESC,
+				titan_score::float / max_score DESC,
 				max_score DESC,
 				challenger_score ASC,
 				10^season_num + episode_num DESC

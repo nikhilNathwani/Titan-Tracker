@@ -21,4 +21,7 @@ FROM
 	titan_rounds
 GROUP BY
 	titan_name,
-	round_num;
+	round_num
+ORDER BY
+	titan_name ASC,
+	round_num ASC;
