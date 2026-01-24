@@ -1,5 +1,10 @@
 const express = require("express");
-const { submitQuery } = require("../utils/database");
+const { submitQuery } = require("../utils/dbConfig");
+const {
+	avgScoresQuery,
+	bestScoresQuery,
+	perRoundStatsQuery,
+} = require("../utils/parseSQL");
 
 const router = express.Router();
 
@@ -7,15 +12,7 @@ const router = express.Router();
 router.get("/avgScores", (req, res) => {
 	//Counts Rd3 scores as 2 separate 10pt scores (so it has
 	// twice the impact on the avg as Rd1 & Rd2 scores)
-	const query = `
-	SELECT
-		titan_name,
-		SUM(titan_score) / SUM(CAST(max_score AS float) / 10) AS avg_score
-	FROM titan_rounds
-	GROUP BY titan_name; 
-  	`;
-
-	submitQuery(query, res);
+	submitQuery(avgScoresQuery, res);
 });
 
 // BEST SCORE ROUTE
@@ -25,54 +22,12 @@ router.get("/avgScores", (req, res) => {
 // - Lowest challenger_score (i.e. largest margin of victory)
 // - Latest episode
 router.get("/bestScores", (req, res) => {
-	const query = `
-	WITH ranked_scores AS (
-		SELECT
-			titan_name,
-			titan_score,
-			max_score,
-			ingredient1,
-			ingredient2,
-			ROW_NUMBER() OVER (
-				PARTITION BY titan_name
-				ORDER BY 
-					CAST(titan_score AS float) / max_score DESC,
-					max_score DESC,
-					challenger_score ASC,
-					10^season_num + episode_num DESC
-			) AS rank
-		FROM titan_rounds
-	)
-	SELECT
-		titan_name,
-		titan_score,
-		max_score,
-		ingredient1,
-		ingredient2
-	FROM ranked_scores
-	WHERE rank = 1;
-  	`;
-
-	submitQuery(query, res);
+	submitQuery(bestScoresQuery, res);
 });
 
 // PER-ROUND STATS ROUTE
 router.get("/perRoundStats", (req, res) => {
-	const query = `
-	SELECT
-		titan_name,
-		round_num,
-		COUNT(*) AS battle_count,
-		AVG(titan_score) AS avg_score,
-		AVG(titan_score - challenger_score) AS avg_margin
-	FROM
-		titan_rounds
-	GROUP BY
-		titan_name,
-		round_num;
-  	`;
-
-	submitQuery(query, res);
+	submitQuery(perRoundStatsQuery, res);
 });
 
 module.exports = router;
