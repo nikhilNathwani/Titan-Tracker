@@ -34,11 +34,13 @@ titan_scores AS (
 SELECT
 	ts.titan_name,
 	t.is_retired,
-	RANK() OVER (
-		PARTITION BY t.is_retired
-		ORDER BY
-			ts.score DESC
-	) AS rank,
+	CASE 
+		WHEN t.is_retired THEN NULL
+		ELSE RANK() OVER (
+			PARTITION BY t.is_retired
+			ORDER BY ts.score DESC, t.titan_name ASC
+		)
+	END AS rank,
 	ts.num_win,
 	ts.num_tie,
 	ts.num_loss

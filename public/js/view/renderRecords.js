@@ -25,7 +25,7 @@ function displayTitanRecords(titanRecords) {
 	//      of win-loss-tie record when returned by api
 
 	//Determine titan ranks
-	const ranks = calculateTitanRanks(titanRecords);
+	const ranks = titanRecords.map((titan) => titan.rank);
 	const rankStrings = generateRankStrings(ranks);
 
 	//Populate (A) Titan Leaderboard and (B) Titan Cards
@@ -43,13 +43,13 @@ function displayTitanRecords(titanRecords) {
 		populateElement(
 			`${tableRow} .rank`,
 			rankStrings[index],
-			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`
+			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`,
 		);
 		// (B) Populate rank element of Titan Card title
 		populateElement(
 			`#${titanNameID} .rank`,
 			rankStrings[index],
-			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`
+			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`,
 		);
 
 		//
@@ -62,7 +62,7 @@ function displayTitanRecords(titanRecords) {
 		// (B) Populate name element of Titan Card title
 		populateElement(
 			`#${titanNameID} .section-title-name`,
-			`${titan.titan_name}`
+			`${titan.titan_name}`,
 		);
 
 		//
@@ -71,7 +71,7 @@ function displayTitanRecords(titanRecords) {
 		// (A) Populate win-loss-tie cell of Titan Leaderboard table
 		populateElement(
 			`${tableRow} .statValue`,
-			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`
+			`${titan.num_win} - ${titan.num_loss} - ${titan.num_tie}`,
 		);
 		// (B) Populate win-loss-tie element of Titan Card
 		populateElement(
@@ -79,8 +79,8 @@ function displayTitanRecords(titanRecords) {
 			`${formattedRecordString(
 				titan.num_win,
 				titan.num_loss,
-				titan.num_tie
-			)}`
+				titan.num_tie,
+			)}`,
 		);
 
 		// Move Titan Card to proper place in rank order
