@@ -1,14 +1,15 @@
 -- Titan Records Query:
---      Returns number of wins, ties, losses for each titan individually
+--      Returns number of wins, ties, losses, and rank for each titan
+--      Uses RANK() window function to calculate rankings
 -- Returns:
---      titan_name, num_win, num_tie, num_loss, score, is_retired
+--      titan_name, is_retired, rank, num_win, num_tie, num_loss
 --
 -- Sample Output:
---      titan_name        | num_win | num_tie | num_loss | score | is_retired
---      ------------------|---------|---------|----------|-------|------------
---      Nyesha Arrington  |   15    |    1    |    4     | 0.789 |   false
---      Brooke Williamson |   12    |    0    |    3     | 0.800 |   false
---      Tiffani Faison    |    8    |    1    |    6     | 0.571 |   true
+--      titan_name        | is_retired | rank | num_win | num_tie | num_loss
+--      ------------------|------------|------|---------|---------|----------
+--      Brooke Williamson |   false    |  1   |   12    |    0    |    3
+--      Nyesha Arrington  |   false    |  2   |   15    |    1    |    4
+--      Tiffani Faison    |   true     | NULL |    8    |    1    |    6
 
 WITH titan_stats AS (
 	SELECT

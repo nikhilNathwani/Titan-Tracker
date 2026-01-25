@@ -25,8 +25,9 @@ function displayTitanRecords(titanRecords) {
 	//      of win-loss-tie record when returned by api
 
 	//Determine titan ranks
-	const ranks = titanRecords.map((titan) => titan.rank);
-	const rankStrings = generateRankStrings(ranks);
+	const rankStrings = generateRankStrings(
+		titanRecords.map((titan) => titan.rank),
+	);
 
 	//Populate (A) Titan Leaderboard and (B) Titan Cards
 	//With (1) Rank, (2) Titan Name, (3) Win-Loss-Tie Record
@@ -43,13 +44,13 @@ function displayTitanRecords(titanRecords) {
 		populateElement(
 			`${tableRow} .rank`,
 			rankStrings[index],
-			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`,
+			`rank rank${titan.rank == null ? "NR" : titan.rank}`,
 		);
 		// (B) Populate rank element of Titan Card title
 		populateElement(
 			`#${titanNameID} .rank`,
 			rankStrings[index],
-			`rank rank${ranks[index] == null ? "NR" : ranks[index]}`,
+			`rank rank${titan.rank == null ? "NR" : titan.rank}`,
 		);
 
 		//

@@ -28,7 +28,7 @@ fetch(`/api/titanRecords`)
 			num_win: parseInt(titan.num_win, 10),
 			num_tie: parseInt(titan.num_tie, 10),
 			num_loss: parseInt(titan.num_loss, 10),
-			rank: parseInt(titan.rank, 10),
+			rank: titan.rank === null ? null : parseInt(titan.rank, 10),
 			is_retired: titan.is_retired,
 		}));
 		displayTitanRecords(titanRecords);
