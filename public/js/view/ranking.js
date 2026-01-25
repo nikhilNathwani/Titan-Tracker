@@ -7,6 +7,14 @@
 // Generate display strings for titan ranks
 // Returns array of rank strings ("1st", "T-2nd", "NR", etc.)
 function generateRankStrings(ranks) {
+	// Helper to get ordinal suffix (st, nd, rd, th)
+	function getRankSuffix(rank) {
+		if (rank === 1) return "st";
+		if (rank === 2) return "nd";
+		if (rank === 3) return "rd";
+		return "th";
+	}
+
 	return ranks.map((rank) => {
 		if (rank === null) return "NR";
 
@@ -21,12 +29,4 @@ function generateRankStrings(ranks) {
 			return `${rank}${getRankSuffix(rank)}`;
 		}
 	});
-}
-
-// Helper to get ordinal suffix (st, nd, rd, th)
-function getRankSuffix(rank) {
-	if (rank === 1) return "st";
-	if (rank === 2) return "nd";
-	if (rank === 3) return "rd";
-	return "th";
 }
