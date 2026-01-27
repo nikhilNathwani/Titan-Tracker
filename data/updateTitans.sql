@@ -1,22 +1,21 @@
 -- Table name: titans 
 -- Schema:
 --      titan_name      VARCHAR PRIMARY KEY
---      is_retired      BOOLEAN NOT NULL DEFAULT FALSE
-
+--      is_active       BOOLEAN NOT NULL DEFAULT TRUE
 
 -- Query 1: View all titans
 SELECT * FROM titans ORDER BY titan_name;
 
 
--- Query 2: Add a new titan (not retired)
--- INSERT INTO titans (titan_name, is_retired)
--- VALUES ('New Titan Name', FALSE);
+-- Query 2: Add a new titan (active by default)
+-- INSERT INTO titans (titan_name, is_active)
+-- VALUES ('New Titan Name', TRUE);
 
 
--- Query 3: Update existing titan to be retired
+-- Query 3: Update existing titan to be inactive
 -- UPDATE titans 
--- SET is_retired = TRUE 
--- WHERE titan_name = 'Titan Name To Retire';
+-- SET is_active = FALSE 
+-- WHERE titan_name = 'Titan Name To Deactivate';
 
 
 -- Query 4: Delete a titan 
