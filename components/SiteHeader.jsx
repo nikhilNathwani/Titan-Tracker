@@ -14,6 +14,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					id="hamburgerBtn"
 					aria-label="Open navigation"
 					aria-expanded={String(navOpen)}
+					aria-controls="siteNav"
 					onClick={() => setNavOpen((prev) => !prev)}
 				>
 					<span></span>
@@ -27,7 +28,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					rel="noopener noreferrer"
 					id="bmcBtn"
 				>
-					☕
+					Buy me a coffee ☕
 				</a>
 			</header>
 			<nav
@@ -77,6 +78,13 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					Notes
 				</a>
 			</nav>
+			{navOpen && (
+				<div
+					id="navOverlay"
+					onClick={closeNav}
+					aria-hidden="true"
+				/>
+			)}
 		</>
 	);
 }

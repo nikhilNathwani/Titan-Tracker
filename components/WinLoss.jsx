@@ -18,8 +18,11 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 						The titans have won {num_win} out of{" "}
 						{num_win + num_loss} battles
 						{num_tie > 0 && (
-							<>, with {num_tie} tie{num_tie > 1 ? "s" : ""}</>
-						)}.
+							<>
+								, with {num_tie} tie{num_tie > 1 ? "s" : ""}
+							</>
+						)}
+						.
 					</p>
 				</div>
 			</div>

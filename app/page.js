@@ -155,7 +155,9 @@ export default async function Home() {
 								titan={titan}
 								avgScore={avgScoresMap[titan.titan_name]}
 								bestScore={bestScoresMap[titan.titan_name]}
-								perRoundStats={perRoundStatsMap[titan.titan_name]}
+								perRoundStats={
+									perRoundStatsMap[titan.titan_name]
+								}
 								maxBattleCount={maxBattleCount}
 							/>
 						))}
