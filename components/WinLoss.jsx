@@ -4,7 +4,7 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 
 	return (
 		<div className="section" id="winLoss">
-			<p className="section-label">Win-Loss Record</p>
+			<p className="section-label">Team Record</p>
 			<div className="section-content">
 				<div className="winloss-banner">
 					<img src="/img/all-titans.jpg" alt="The Titans" />

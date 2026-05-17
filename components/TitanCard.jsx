@@ -1,7 +1,3 @@
-import { formatRecord } from "@/lib/ranking";
-
-const HISTOGRAM_MIN_WIDTH = 2;
-const HISTOGRAM_MAX_WIDTH = 13.5;
 const ROUNDS = [1, 2, 3];
 
 function formatAvgScore(val) {
@@ -34,7 +30,7 @@ export default function TitanCard({
 	return (
 		<div className="section titanCard" id={titanId}>
 			<div className="section-content">
-				{/* Header: avatar + rank badge + name */}
+				{/* Header: avatar + rank badge + name + win rate */}
 				<div className="titanCard-header">
 					<div className="titan-avatar-wrap">
 						<img
@@ -48,27 +44,34 @@ export default function TitanCard({
 						<span className="titanCard-firstname">{firstName}</span>
 						<span className="titanCard-lastname">{lastName}</span>
 					</div>
+					<div className="titanCard-header-winrate">
+						<span className="titanCard-header-winrate-value">{winPct}</span>
+						<span className="titanCard-header-winrate-label">win rate</span>
+					</div>
 				</div>
 
-				{/* Record + Avg Score */}
-				<div className="section-row">
-					<div className="widget titanCard-record">
-						<div className="widget-title">Win Rate</div>
-						<div className="widget-content">
-							<div className="widget-value">{winPct}</div>
-							<em className="widget-caption">
-								{formatRecord(titan.num_win, titan.num_loss, titan.num_tie)} W-L-T
-							</em>
-						</div>
+				{/* W-L-T Record */}
+				<div className="titanCard-record-row">
+					<div className="titanCard-record-stat">
+						<span className="titanCard-record-stat-value">{titan.num_win}</span>
+						<span className="titanCard-record-stat-label">W</span>
 					</div>
+					<div className="titanCard-record-stat">
+						<span className="titanCard-record-stat-value">{titan.num_loss}</span>
+						<span className="titanCard-record-stat-label">L</span>
+					</div>
+					<div className="titanCard-record-stat">
+						<span className="titanCard-record-stat-value">{titan.num_tie}</span>
+						<span className="titanCard-record-stat-label">T</span>
+					</div>
+				</div>
+
+				{/* Avg Score + Best Score */}
+				<div className="section-row">
 					<div className="widget titanCard-avgScore">
 						<div className="widget-title">Avg Score</div>
 						<div className="widget-content">
-							<div className="widget-value">
-								{avgScore != null
-									? parseFloat(avgScore).toPrecision(3)
-									: "n/a"}
-							</div>
+							<div className="widget-value">{formatAvgScore(avgScore)}</div>
 							<em className="widget-caption">
 								10-pt scale
 								<span className="footnote">
@@ -77,90 +80,65 @@ export default function TitanCard({
 							</em>
 						</div>
 					</div>
-				</div>
-
-				{/* Best Score */}
-				{bestScore && (
-					<div className="widget widget-full titanCard-bestScore">
-						<div className="widget-title">Best Score</div>
-						<div className="widget-row">
+					{bestScore && (
+						<div className="widget titanCard-bestScore">
+							<div className="widget-title">Best Score</div>
 							<div className="widget-content">
-								<div className="widget-value">
-									{bestScore.titan_score}
-								</div>
-								<em className="widget-caption">
-									out of{" "}
-									<span className="denominator">
-										{bestScore.max_score}
-									</span>
-								</em>
-							</div>
-							<div className="widget-content">
-								<div className="titanCard-ingredientList">
-									<b>Ingredients:</b>
-									<ul>
-										<li>- {bestScore.ingredient1}</li>
-										<li>- {bestScore.ingredient2}</li>
-									</ul>
-								</div>
+								<div className="widget-value">{bestScore.titan_score}</div>
+								<em className="widget-caption">out of {bestScore.max_score}</em>
 							</div>
 						</div>
-					</div>
-				)}
+					)}
+				</div>
 
 				{/* Per-Round Stats */}
 				<div className="widget widget-full titanCard-perRound">
 					<div className="widget-title">Per-Round Stats</div>
-					<div className="widget-content">
-						<table className="titanCard-histogram">
-							<tbody>
-								<tr>
-									<th></th>
-									<th># Battles</th>
-									<th>Avg Score</th>
-									<th>Avg Margin</th>
-								</tr>
-								{ROUNDS.map((roundNum) => {
-									const round = perRoundStats?.[roundNum] ?? {
-										battle_count: 0,
-										avg_score: null,
-										avg_margin: null,
-									};
-									const barWidth = `${
-										HISTOGRAM_MIN_WIDTH +
-										HISTOGRAM_MAX_WIDTH *
-											(round.battle_count /
-												maxBattleCount)
-									}ch`;
-
-									return (
-										<tr key={roundNum}>
-											<td className="histogramRoundNum">
-												Rd {roundNum}:
-											</td>
-											<td>
-												<div
-													className="histogramCount"
-													style={{ width: barWidth }}
-												>
-													{round.battle_count}
-												</div>
-											</td>
-											<td className="histogramAvgScore">
-												{formatAvgScore(
-													round.avg_score,
-												)}
-											</td>
-											<td className="histogramAvgMargin">
-												{formatAvgMargin(
-													round.avg_margin,
-												)}
-											</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</table>
+					<div className="titanCard-perRound-cols">
+						{ROUNDS.map((roundNum) => {
+							const round = perRoundStats?.[roundNum] ?? {
+								battle_count: 0,
+								avg_score: null,
+								avg_margin: null,
+							};
+							const barPct =
+								maxBattleCount > 0
+									? (round.battle_count / maxBattleCount) * 100
+									: 0;
+							const marginVal =
+								round.avg_margin != null
+									? parseFloat(round.avg_margin)
+									: null;
+							const marginCls =
+								marginVal != null
+									? marginVal >= 0
+										? "perRound-margin--pos"
+										: "perRound-margin--neg"
+									: "";
+							return (
+								<div
+									key={roundNum}
+									className="titanCard-perRound-col"
+								>
+									<span className="perRound-label">Rd {roundNum}</span>
+									<div className="perRound-bar-track">
+										<div
+											className="perRound-bar"
+											style={{ width: `${barPct}%` }}
+										/>
+									</div>
+									<span className="perRound-count">{round.battle_count}</span>
+									<span className="perRound-avg-score">
+										{formatAvgScore(round.avg_score)}
+									</span>
+									<span className="perRound-avg-label">avg score</span>
+									<span className={`perRound-margin ${marginCls}`}>
+										{formatAvgMargin(round.avg_margin)}
+									</span>
+									<span className="perRound-margin-label">avg margin</span>
+								</div>
+							);
+						})}
 					</div>
 				</div>
 			</div>
