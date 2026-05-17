@@ -21,6 +21,14 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					<span></span>
 				</button>
 				<span id="siteHeaderTitle">Titan Tracker</span>
+				<a
+					href="https://buymeacoffee.com/nikhilnathwani"
+					target="_blank"
+					rel="noopener noreferrer"
+					id="bmcBtn"
+				>
+					☕
+				</a>
 			</header>
 			<nav
 				id="siteNav"

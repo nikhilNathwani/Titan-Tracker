@@ -25,8 +25,10 @@ export default function TitanLeaderboard({ titans }) {
 								key={titan.titan_name}
 								className="leaderboard-row"
 							>
-								<div className={rankClass}>
-									{titan.rankString}
+								<div className="leaderboard-rank-col">
+									<div className={rankClass}>
+										{titan.rankString}
+									</div>
 								</div>
 								<img
 									src={`/img/${imgFilename}`}
