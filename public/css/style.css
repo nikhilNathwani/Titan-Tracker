@@ -343,6 +343,35 @@ tr:not(:first-of-type) {
 /*                             */
 /* --------------------------- */
 
+#winLoss .section-content {
+	padding-top: 0;
+	overflow: hidden;
+}
+
+.winloss-banner {
+	width: calc(100% + 2 * min(2.5rem, 6vw));
+	margin-inline: calc(-1 * min(2.5rem, 6vw));
+	height: 9rem;
+	position: relative;
+	flex-shrink: 0;
+}
+
+.winloss-banner img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 20%;
+	filter: brightness(0.5) saturate(0.7);
+	display: block;
+}
+
+.winloss-banner::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to bottom, transparent 40%, var(--clr-dark));
+}
+
 #winLoss .section-row {
 	justify-content: center;
 	gap: 2.5rem;
@@ -364,6 +393,10 @@ tr:not(:first-of-type) {
 
 #titanLeaderboard .section-content {
 	padding-bottom: 2rem;
+}
+
+#titanLeaderboard .rank {
+	min-width: 2.75rem;
 }
 
 .leaderboard {
@@ -403,9 +436,19 @@ tr:not(:first-of-type) {
 }
 
 .leaderboard-record {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	line-height: 1.2;
 	font-weight: bold;
 	white-space: nowrap;
 	font-size: 0.9375rem;
+}
+
+.leaderboard-record-label {
+	font-size: 0.6875rem;
+	font-weight: normal;
+	color: hsl(var(--hue), 9%, 55%);
 }
 
 .titan-mini-avatar-placeholder,
@@ -432,18 +475,33 @@ tr:not(:first-of-type) {
 /* --------------------------- */
 .titanCard-header {
 	width: 100%;
-	padding-block: 1.5rem 1.25rem;
+	padding-block: 1.25rem;
 	border-bottom: 1px solid hsl(43, 18%, 30%);
 
 	display: flex;
-	flex-flow: column nowrap;
+	flex-flow: row nowrap;
 	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
+	gap: 1rem;
 
-	font-size: 1.5rem;
-	font-weight: bold;
 	color: white;
+}
+
+.titanCard-name {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	line-height: 1.3;
+}
+
+.titanCard-firstname {
+	font-size: 0.9375rem;
+	font-weight: normal;
+	color: hsl(var(--hue), 9%, 68%);
+}
+
+.titanCard-lastname {
+	font-size: 1.375rem;
+	font-weight: 700;
 }
 
 /* Swap .titan-avatar-placeholder for img.titan-avatar when real images are ready */
