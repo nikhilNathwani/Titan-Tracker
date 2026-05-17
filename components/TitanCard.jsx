@@ -28,6 +28,8 @@ export default function TitanCard({
 	const rankClass = `rank rank${rankKey}`;
 	const borderClass = `rank${rankKey}-border`;
 	const [firstName, lastName] = titan.titan_name.split(" ");
+	const total = titan.num_win + titan.num_loss + titan.num_tie;
+	const winPct = total > 0 ? ((titan.num_win / total) * 100).toFixed(1) + "%" : "—";
 
 	return (
 		<div className="section titanCard" id={titanId}>
@@ -51,16 +53,12 @@ export default function TitanCard({
 				{/* Record + Avg Score */}
 				<div className="section-row">
 					<div className="widget titanCard-record">
-						<div className="widget-title">Record</div>
+						<div className="widget-title">Win Rate</div>
 						<div className="widget-content">
-							<div className="widget-value">
-								{formatRecord(
-									titan.num_win,
-									titan.num_loss,
-									titan.num_tie,
-								)}
-							</div>
-							<em className="widget-caption">Win-Loss-Tie</em>
+							<div className="widget-value">{winPct}</div>
+							<em className="widget-caption">
+								{formatRecord(titan.num_win, titan.num_loss, titan.num_tie)} W-L-T
+							</em>
 						</div>
 					</div>
 					<div className="widget titanCard-avgScore">

@@ -28,7 +28,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					rel="noopener noreferrer"
 					id="bmcBtn"
 				>
-					Buy me a coffee ☕
+					☕ Buy me a coffee?
 				</a>
 			</header>
 			<nav
@@ -79,11 +79,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				</a>
 			</nav>
 			{navOpen && (
-				<div
-					id="navOverlay"
-					onClick={closeNav}
-					aria-hidden="true"
-				/>
+				<div id="navOverlay" onClick={closeNav} aria-hidden="true" />
 			)}
 		</>
 	);
