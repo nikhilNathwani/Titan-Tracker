@@ -13,11 +13,11 @@ export default function TitanLeaderboard({ titans }) {
 						const rankKey = titan.rank === null ? "NR" : titan.rank;
 						const rankClass = `rank rank${rankKey}`;
 						const borderClass = `rank${rankKey}-border`;
-						const total =
-							titan.num_win + titan.num_loss + titan.num_tie;
-						const winPct =
-							total > 0
-								? `${((titan.num_win / total) * 100).toFixed(1)}%`
+const battles =
+						titan.num_win + titan.num_loss;
+					const winPct =
+						battles > 0
+							? `${((titan.num_win / battles) * 100).toFixed(1)}%`
 								: "\u2014";
 
 						return (
@@ -46,7 +46,6 @@ export default function TitanLeaderboard({ titans }) {
 								<div className="leaderboard-record">
 									<span className="leaderboard-record-label">
 										Win Rate
-
 									</span>
 									<span>{winPct}</span>
 								</div>
