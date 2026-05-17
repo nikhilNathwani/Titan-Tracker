@@ -128,16 +128,18 @@ export default async function Home() {
 			<p className="section-label" id="titansSectionLabel">
 				Individual Titan Stats
 			</p>
-			{activeTitans.map((titan) => (
-				<TitanCard
-					key={titan.titan_name}
-					titan={titan}
-					avgScore={avgScoresMap[titan.titan_name]}
-					bestScore={bestScoresMap[titan.titan_name]}
-					perRoundStats={perRoundStatsMap[titan.titan_name]}
-					maxBattleCount={maxBattleCount}
-				/>
-			))}
+			<div className="titan-cards-group">
+				{activeTitans.map((titan) => (
+					<TitanCard
+						key={titan.titan_name}
+						titan={titan}
+						avgScore={avgScoresMap[titan.titan_name]}
+						bestScore={bestScoresMap[titan.titan_name]}
+						perRoundStats={perRoundStatsMap[titan.titan_name]}
+						maxBattleCount={maxBattleCount}
+					/>
+				))}
+			</div>
 			{inactiveTitans.length > 0 && (
 				<>
 					<p
@@ -146,16 +148,18 @@ export default async function Home() {
 					>
 						Inactive Titans
 					</p>
-					{inactiveTitans.map((titan) => (
-						<TitanCard
-							key={titan.titan_name}
-							titan={titan}
-							avgScore={avgScoresMap[titan.titan_name]}
-							bestScore={bestScoresMap[titan.titan_name]}
-							perRoundStats={perRoundStatsMap[titan.titan_name]}
-							maxBattleCount={maxBattleCount}
-						/>
-					))}
+					<div className="titan-cards-group">
+						{inactiveTitans.map((titan) => (
+							<TitanCard
+								key={titan.titan_name}
+								titan={titan}
+								avgScore={avgScoresMap[titan.titan_name]}
+								bestScore={bestScoresMap[titan.titan_name]}
+								perRoundStats={perRoundStatsMap[titan.titan_name]}
+								maxBattleCount={maxBattleCount}
+							/>
+						))}
+					</div>
 				</>
 			)}
 			<div className="section" id="notesSection">

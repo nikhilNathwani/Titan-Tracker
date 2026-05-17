@@ -83,11 +83,18 @@ a {
 	margin-bottom: -3.25rem;
 }
 
+.titan-cards-group {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: min(400px, 92vw);
+}
+
 .section-content {
 	width: 100%;
 	padding: 3rem min(2.5rem, 6vw);
 	margin: auto;
-	border: 1px solid hsl(var(--hue), 18%, 36%);
+	border: 1px solid hsl(var(--hue), 24%, 38%);
 	border-radius: 10px;
 
 	display: flex;
@@ -98,8 +105,10 @@ a {
 	/* clip-path: polygon(5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%, 0% 5%); */
 	background-color: var(--clr-dark);
 	box-shadow:
-		0 4px 24px rgba(0, 0, 0, 0.5),
-		0 0 22px rgba(204, 194, 137, 0.08);
+		0 4px 24px rgba(0, 0, 0, 0.6),
+		0 0 6px rgba(204, 194, 137, 0.2),
+		0 0 22px rgba(204, 194, 137, 0.12),
+		0 0 52px rgba(204, 194, 137, 0.05);
 
 	text-align: center;
 }
@@ -316,6 +325,26 @@ tr:not(:first-of-type) {
 	font-size: 0.875rem;
 }
 
+#bmcBtn {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background-color: var(--clr-accent);
+	color: var(--clr-dark);
+	text-decoration: none;
+	font-size: 1.125rem;
+	flex-shrink: 0;
+	transition: filter 0.15s;
+}
+
+#bmcBtn:hover {
+	filter: brightness(1.1);
+}
+
 /* --------------------------- */
 /*                             */
 /*            HERO             */
@@ -373,9 +402,23 @@ tr:not(:first-of-type) {
 }
 
 #winLossCaption {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+	text-align: center;
+}
+
+#winLossRate {
 	font-size: 1.0625rem;
-	line-height: 1.6;
+	line-height: 1.4;
 	color: var(--clr-light);
+}
+
+#winLossSentence {
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: hsl(var(--hue), 9%, 62%);
 }
 
 .winloss-stat {
@@ -394,8 +437,11 @@ tr:not(:first-of-type) {
 	padding-bottom: 2rem;
 }
 
-#titanLeaderboard .rank {
-	min-width: 3.5rem;
+#titanLeaderboard .leaderboard-rank-col {
+	width: 3.5rem;
+	flex-shrink: 0;
+	display: flex;
+	justify-content: center;
 }
 
 .leaderboard {
@@ -548,9 +594,6 @@ tr:not(:first-of-type) {
 .titanCard .section-content {
 	padding-top: 0;
 	padding-bottom: 1.5rem;
-	border: 1px solid hsl(var(--hue), 15%, 32%);
-	border-radius: 10px;
-	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 /* --------------------------- */

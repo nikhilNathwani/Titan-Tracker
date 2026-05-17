@@ -9,16 +9,19 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 				<div className="winloss-banner">
 					<img src="/img/all-titans.jpg" alt="The Titans" />
 				</div>
-				<p id="winLossCaption">
-					<span className="winloss-stat">{num_win}</span> wins,{" "}
-					<span className="winloss-stat">{num_loss}</span> losses
-					{num_tie > 0 && (
-						<>,{" "}
-						<span className="winloss-stat">{num_tie}</span> ties</>
-					)}{" "}
-					— <span className="winloss-stat">{percentSuccess}%</span>{" "}
-					win rate
-				</p>
+				<div id="winLossCaption">
+					<p id="winLossRate">
+						<span className="winloss-stat">{percentSuccess}%</span>{" "}
+						win rate
+					</p>
+					<p id="winLossSentence">
+						The titans have won {num_win} out of{" "}
+						{num_win + num_loss} battles
+						{num_tie > 0 && (
+							<>, with {num_tie} tie{num_tie > 1 ? "s" : ""}</>
+						)}.
+					</p>
+				</div>
 			</div>
 		</div>
 	);
