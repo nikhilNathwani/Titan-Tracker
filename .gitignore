@@ -3,6 +3,7 @@
 .vscode
 .env.development.local
 /node_modules
+/.next
 /titan_data/titan_rounds.csv
 /titan_data/titan_episodes.csv
 /titan_data/wikiScrape.py
