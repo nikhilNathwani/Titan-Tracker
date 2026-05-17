@@ -361,28 +361,27 @@ tr:not(:first-of-type) {
 	height: 100%;
 	object-fit: cover;
 	object-position: center 20%;
-	filter: brightness(0.5) saturate(0.7);
+	filter: hue-rotate(5deg) brightness(1) saturate(0.4) blur(0.3px);
 	display: block;
 }
 
 .winloss-banner::after {
-	content: '';
+	content: "";
 	position: absolute;
 	inset: 0;
 	background: linear-gradient(to bottom, transparent 40%, var(--clr-dark));
 }
 
-#winLoss .section-row {
-	justify-content: center;
-	gap: 2.5rem;
+#winLossCaption {
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	color: var(--clr-light);
 }
 
-#winLoss .widget-content {
-	width: 5.5rem;
-	height: 5.75rem;
-
-	font-size: 4rem;
-	font-weight: bold;
+.winloss-stat {
+	color: var(--clr-accent);
+	font-weight: 700;
+	font-size: 1.25rem;
 }
 
 /* --------------------------- */
@@ -396,7 +395,7 @@ tr:not(:first-of-type) {
 }
 
 #titanLeaderboard .rank {
-	min-width: 2.75rem;
+	min-width: 3.5rem;
 }
 
 .leaderboard {
