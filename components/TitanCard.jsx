@@ -45,43 +45,60 @@ export default function TitanCard({
 						<span className="titanCard-firstname">{firstName}</span>
 						<span className="titanCard-lastname">{lastName}</span>
 					</div>
+				</div>
 
-					<div className="titanCard-record-stat">
-						<span className="titanCard-record-stat-label">
-							Wins
-						</span>
-						<span className="titanCard-record-stat-value">
-							{titan.num_win}
-						</span>
+				{/* Record + Win Rate */}
+				<div className="section-row">
+					<div className="widget titanCard-record">
+						<div className="widget-title">Record</div>
+						<div className="widget-content titanCard-record-content">
+							<div className="titanCard-record-stat">
+								<span className="titanCard-record-stat-label">
+									Wins
+								</span>
+								<span className="titanCard-record-stat-value">
+									{titan.num_win}
+								</span>
+							</div>
+							<div className="titanCard-record-stat">
+								<span className="titanCard-record-stat-label">
+									Losses
+								</span>
+								<span className="titanCard-record-stat-value">
+									{titan.num_loss}
+								</span>
+							</div>
+							<div className="titanCard-record-stat">
+								<span className="titanCard-record-stat-label">
+									Ties
+								</span>
+								<span className="titanCard-record-stat-value">
+									{titan.num_tie}
+								</span>
+							</div>
+						</div>
 					</div>
-					<div className="titanCard-record-stat">
-						<span className="titanCard-record-stat-label">
-							Losses
-						</span>
-						<span className="titanCard-record-stat-value">
-							{titan.num_loss}
-						</span>
-					</div>
-					<div className="titanCard-record-stat">
-						<span className="titanCard-record-stat-label">
-							Ties
-						</span>
-						<span className="titanCard-record-stat-value">
-							{titan.num_tie}
-						</span>
+					<div className="widget titanCard-winrate">
+						<div className="widget-title">Win Rate</div>
+						<div className="widget-content">
+							<div className="widget-value">{winPct}</div>
+						</div>
 					</div>
 				</div>
 
 				{/* Avg Score + Best Score */}
 				<div className="section-row">
 					<div className="widget titanCard-avgScore">
-						<div className="widget-title">Avg Score<span className="footnote"><sup>†</sup></span></div>
+						<div className="widget-title">
+							Avg Score
+							<span className="footnote">
+								<sup>†</sup>
+							</span>
+						</div>
 						<div className="widget-content">
 							<div className="widget-value">
 								{formatAvgScore(avgScore)}
-								<span className="widget-value-denom">
-									/10
-								</span>
+								<span className="widget-value-denom">/10</span>
 							</div>
 						</div>
 					</div>
@@ -106,7 +123,9 @@ export default function TitanCard({
 					<div className="titanCard-perRound-rows">
 						<div className="perRound-header-row">
 							<span />
-						<span className="perRound-col-header"># Battles</span>
+							<span className="perRound-col-header">
+								# Battles
+							</span>
 							<span className="perRound-col-header">Score</span>
 							<span className="perRound-col-header">Margin</span>
 						</div>

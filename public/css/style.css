@@ -143,6 +143,10 @@ a {
 	color: hsl(var(--hue), 9%, 58%);
 }
 
+.widget-title sup {
+	line-height: 0;
+}
+
 .widget-content {
 	padding-block: 0.625rem;
 	padding-inline: 0.5rem;
@@ -801,6 +805,7 @@ tr:not(:first-of-type) {
 	box-shadow: none;
 	border: none;
 	border-top: 1px solid hsl(var(--hue), 15%, 28%);
+	color: hsl(var(--hue), 9%, 58%);
 }
 
 #links {

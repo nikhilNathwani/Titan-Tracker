@@ -168,8 +168,8 @@ export default async function Home() {
 				<p className="section-label">Notes</p>
 				<div className="section-content">
 					<p>
-						<span className="footnote">*</span> Rankings are based
-						on win percentage, not total number of wins.
+						<span className="footnote">*</span> Win rate = wins
+						&divide; (wins + losses); ties are not counted.
 					</p>
 					<p>
 						<span className="footnote">
