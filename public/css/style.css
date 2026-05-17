@@ -432,21 +432,20 @@ tr:not(:first-of-type) {
 
 #winLossRate {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.125rem;
+	flex-direction: row;
+	align-items: baseline;
+	gap: 0.5rem;
 }
 
 #winLossRate .winloss-stat {
 	font-size: 2.75rem;
+	font-weight: 700;
 	line-height: 1.1;
 }
 
 #winLossRateLabel {
-	font-size: 0.8125rem;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	color: hsl(var(--hue), 9%, 58%);
+	font-size: 1rem;
+	color: hsl(var(--hue), 9%, 62%);
 }
 
 #winLossSentence {
@@ -583,6 +582,27 @@ tr:not(:first-of-type) {
 	font-weight: 700;
 }
 
+.titanCard-header-winrate {
+	margin-left: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	line-height: 1.2;
+}
+
+.titanCard-header-winrate-value {
+	font-size: 1.375rem;
+	font-weight: 700;
+	color: var(--clr-accent);
+}
+
+.titanCard-header-winrate-label {
+	font-size: 0.6875rem;
+	color: hsl(var(--hue), 9%, 58%);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
 /* Swap .titan-avatar-placeholder for img.titan-avatar when real images are ready */
 .titan-avatar-wrap {
 	position: relative;
@@ -630,6 +650,33 @@ tr:not(:first-of-type) {
 	padding-bottom: 1.5rem;
 }
 
+.titanCard-record-row {
+	display: flex;
+	justify-content: space-around;
+	padding: 0.875rem 0;
+	border-bottom: 1px solid hsl(var(--hue), 12%, 22%);
+}
+
+.titanCard-record-stat {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.titanCard-record-stat-value {
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--clr-accent);
+	line-height: 1;
+}
+
+.titanCard-record-stat-label {
+	font-size: 0.75rem;
+	color: hsl(var(--hue), 9%, 58%);
+	letter-spacing: 0.05em;
+}
+
 /* --------------------------- */
 /*      INGREDIENT LIST        */
 /* --------------------------- */
@@ -649,46 +696,86 @@ tr:not(:first-of-type) {
 }
 
 /* --------------------------- */
-/*      PER-ROUND TABLE        */
+/*      PER-ROUND STATS        */
 /* --------------------------- */
-.titanCard-perRound .widget-content {
-	padding-block: 0.25rem 0;
+.titanCard-perRound {
+	border-top: 1px solid hsl(var(--hue), 12%, 22%);
 }
 
-.titanCard-perRound table {
-	--tableHeader-fs: 0.875rem;
-	--tableRow-height: 3rem;
+.titanCard-perRound-cols {
+	display: flex;
+	width: 100%;
 }
 
-.titanCard-perRound th {
-	font-weight: normal;
+.titanCard-perRound-col {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3125rem;
+	padding: 0.75rem 0.25rem;
 }
 
-/* Widths of columns: (1) Round Num, (2) # Battles,
-(3) Avg Score, (4) Avg Margin */
-.titanCard-perRound th:nth-of-type(1) {
-	width: 6ch;
-}
-.titanCard-perRound th:nth-of-type(2) {
-	text-align: left;
-	padding-left: calc(0.25rem + 0.5ch);
-}
-.titanCard-perRound th:nth-of-type(3),
-.titanCard-perRound th:nth-of-type(4) {
-	width: 3.375rem;
+.titanCard-perRound-col + .titanCard-perRound-col {
+	border-left: 1px solid hsl(var(--hue), 12%, 22%);
 }
 
-.histogramCount {
-	margin-inline: 0.25rem;
-	padding-left: 0.5ch;
-	padding-block: 0.25rem;
-	text-align: left;
+.perRound-label {
+	font-size: 0.6875rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: hsl(var(--hue), 9%, 58%);
+}
 
-	font-weight: bold;
-	font-size: 0.8125rem;
-	background-color: var(--clr-accent);
-	color: var(--clr-dark);
+.perRound-bar-track {
+	width: 100%;
+	height: 5px;
+	background-color: hsl(var(--hue), 12%, 20%);
 	border-radius: 3px;
+	overflow: hidden;
+	margin-block: 0.125rem;
+}
+
+.perRound-bar {
+	height: 100%;
+	background-color: var(--clr-accent);
+	border-radius: 3px;
+	min-width: 4px;
+}
+
+.perRound-count {
+	font-size: 0.75rem;
+	color: hsl(var(--hue), 9%, 58%);
+}
+
+.perRound-avg-score {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--clr-accent);
+	line-height: 1.2;
+	margin-top: 0.125rem;
+}
+
+.perRound-avg-label,
+.perRound-margin-label {
+	font-size: 0.625rem;
+	color: hsl(var(--hue), 9%, 48%);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.perRound-margin {
+	font-size: 0.8125rem;
+	color: hsl(var(--hue), 9%, 68%);
+}
+
+.perRound-margin--pos {
+	color: var(--clr-accent);
+}
+
+.perRound-margin--neg {
+	color: hsl(0, 25%, 62%);
 }
 
 /* --------------------------- */
