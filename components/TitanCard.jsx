@@ -98,7 +98,7 @@ export default function TitanCard({
 								</em>
 							</div>
 							<div className="widget-content">
-								<div className="widget-value titanCard-ingredientList">
+								<div className="titanCard-ingredientList">
 									<b>Ingredients:</b>
 									<ul>
 										<li>- {bestScore.ingredient1}</li>
