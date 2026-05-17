@@ -4,7 +4,7 @@ export default function TitanLeaderboard({ titans }) {
 			<p className="section-label">Titan Leaderboard</p>
 			<div className="section-content">
 				<div className="leaderboard">
-					{titans.map((titan, i) => {
+					{titans.map((titan) => {
 						const imgFilename =
 							titan.titan_name.toLowerCase().replace(/ /g, "-") +
 							"-cropped.jpg";
@@ -46,11 +46,7 @@ export default function TitanLeaderboard({ titans }) {
 								<div className="leaderboard-record">
 									<span className="leaderboard-record-label">
 										Win Rate
-										{i === 0 && (
-											<span className="footnote">
-												<sup>*</sup>
-											</span>
-										)}
+
 									</span>
 									<span>{winPct}</span>
 								</div>
