@@ -10,8 +10,7 @@ export default function TitanLeaderboard({ titans }) {
 							"-cropped.jpg";
 						const [firstName, lastName] =
 							titan.titan_name.split(" ");
-						const rankKey =
-							titan.rank === null ? "NR" : titan.rank;
+						const rankKey = titan.rank === null ? "NR" : titan.rank;
 						const rankClass = `rank rank${rankKey}`;
 						const borderClass = `rank${rankKey}-border`;
 						const total =
@@ -43,10 +42,10 @@ export default function TitanLeaderboard({ titans }) {
 									</span>
 								</div>
 								<div className="leaderboard-record">
-									<span>{winPct}</span>
 									<span className="leaderboard-record-label">
 										Win Rate
 									</span>
+									<span>{winPct}</span>
 								</div>
 							</div>
 						);

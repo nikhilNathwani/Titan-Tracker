@@ -65,6 +65,9 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 						))}
 					</>
 				)}
+				<a href="#notesSection" onClick={closeNav}>
+					Notes
+				</a>
 			</nav>
 		</>
 	);
