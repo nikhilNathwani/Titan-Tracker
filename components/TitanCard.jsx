@@ -24,9 +24,9 @@ export default function TitanCard({
 	const rankClass = `rank rank${rankKey}`;
 	const borderClass = `rank${rankKey}-border`;
 	const [firstName, lastName] = titan.titan_name.split(" ");
-	const total = titan.num_win + titan.num_loss + titan.num_tie;
+	const battles = titan.num_win + titan.num_loss;
 	const winPct =
-		total > 0 ? ((titan.num_win / total) * 100).toFixed(1) + "%" : "—";
+		battles > 0 ? ((titan.num_win / battles) * 100).toFixed(1) + "%" : "—";
 
 	return (
 		<div className="section titanCard" id={titanId}>
