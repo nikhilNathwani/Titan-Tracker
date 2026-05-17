@@ -25,14 +25,14 @@ Every visitor to the site, on every page load, pays this latency cost.
 
 Before diving into Next.js, understand the landscape:
 
-| Paradigm | Data fetches when | Blank page? | Best for |
-|---|---|---|---|
-| **CSR** (old setup) | In the browser, after JS loads | Yes | User-specific, highly dynamic data |
-| **SSR** | On the server, on every request | No | Per-user data, frequently changing content |
-| **SSG** | At build time, once | No | Same content for all users, infrequent changes |
-| **ISR** | At build time + scheduled rebuilds | No | SSG + periodic data refresh without full redeploy |
+| Paradigm            | Data fetches when                  | Blank page? | Best for                                          |
+| ------------------- | ---------------------------------- | ----------- | ------------------------------------------------- |
+| **CSR** (old setup) | In the browser, after JS loads     | Yes         | User-specific, highly dynamic data                |
+| **SSR**             | On the server, on every request    | No          | Per-user data, frequently changing content        |
+| **SSG**             | At build time, once                | No          | Same content for all users, infrequent changes    |
+| **ISR**             | At build time + scheduled rebuilds | No          | SSG + periodic data refresh without full redeploy |
 
-**Titan Tracker uses SSG.** The data is the same for every visitor, and it only changes when a new episode is manually entered. The page is built *once* at deploy time, and Vercel serves the pre-built HTML file instantly to every visitor.
+**Titan Tracker uses SSG.** The data is the same for every visitor, and it only changes when a new episode is manually entered. The page is built _once_ at deploy time, and Vercel serves the pre-built HTML file instantly to every visitor.
 
 ---
 
@@ -40,14 +40,14 @@ Before diving into Next.js, understand the landscape:
 
 Next.js is an opinionated full-stack React framework. Compared to Express:
 
-| | Express | Next.js |
-|---|---|---|
-| Routing | You define routes manually | File-based: `app/page.js` → `/` |
-| Frontend | You wire it yourself | React, built-in |
-| Rendering | CSR by default (you serve HTML) | SSG/SSR/CSR handled automatically |
-| Bundling | You configure webpack | Built-in, zero config |
-| Deployment | Run a Node server | Vercel detects it, zero config |
-| API routes | Your whole app is an API | Co-located in `app/api/` |
+|            | Express                         | Next.js                           |
+| ---------- | ------------------------------- | --------------------------------- |
+| Routing    | You define routes manually      | File-based: `app/page.js` → `/`   |
+| Frontend   | You wire it yourself            | React, built-in                   |
+| Rendering  | CSR by default (you serve HTML) | SSG/SSR/CSR handled automatically |
+| Bundling   | You configure webpack           | Built-in, zero config             |
+| Deployment | Run a Node server               | Vercel detects it, zero config    |
+| API routes | Your whole app is an API        | Co-located in `app/api/`          |
 
 **Rule of thumb**: Use Next.js for web apps where the frontend and backend are tightly coupled (Titan Tracker, blogs, dashboards, SaaS UIs). Use Express/Fastify/Hono when building a standalone API consumed by multiple different clients (mobile apps, third parties, etc.).
 
@@ -79,14 +79,14 @@ titan-tracker/
 
 Only files with specific names inside `app/` have meaning to Next.js:
 
-| Filename | Purpose |
-|---|---|
-| `page.js` | Renders a route (makes the folder a URL path) |
-| `layout.js` | Wraps child pages/layouts; persists across navigation |
-| `route.js` | API route handler (REST endpoint) |
-| `loading.js` | Shown while a page is loading |
-| `error.js` | Shown when a page throws |
-| `not-found.js` | Shown for 404s |
+| Filename       | Purpose                                               |
+| -------------- | ----------------------------------------------------- |
+| `page.js`      | Renders a route (makes the folder a URL path)         |
+| `layout.js`    | Wraps child pages/layouts; persists across navigation |
+| `route.js`     | API route handler (REST endpoint)                     |
+| `loading.js`   | Shown while a page is loading                         |
+| `error.js`     | Shown when a page throws                              |
+| `not-found.js` | Shown for 404s                                        |
 
 Any other file (like `app/queries/records/winLoss.sql`) is ignored by the router. It's just a file.
 
@@ -96,9 +96,9 @@ Any other file (like `app/queries/records/winLoss.sql`) is ignored by the router
 
 ```json
 {
-  "compilerOptions": {
-    "paths": { "@/*": ["./*"] }
-  }
+	"compilerOptions": {
+		"paths": { "@/*": ["./*"] }
+	}
 }
 ```
 
@@ -144,13 +144,13 @@ When a component needs React hooks or browser interactivity, add `"use client"` 
 
 ```js
 // components/SiteHeader.jsx — Client Component
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function SiteHeader({ activeTitans, inactiveTitans }) {
-  const [navOpen, setNavOpen] = useState(false);
-  // ...
+	const [navOpen, setNavOpen] = useState(false);
+	// ...
 }
 ```
 
@@ -159,6 +159,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 ### The Rule
 
 Default to Server Components. Only add `"use client"` when you actually need:
+
 - `useState` / `useReducer`
 - `useEffect`
 - Browser APIs (`window`, `document`)
@@ -173,12 +174,13 @@ If a component doesn't need any of those, leave it as a Server Component.
 The key export in `app/page.js`:
 
 ```js
-export const dynamic = 'force-static';
+export const dynamic = "force-static";
 ```
 
-This tells Next.js: *"At build time, run this Server Component, query the database, and save the resulting HTML. Never re-run it on a request."*
+This tells Next.js: _"At build time, run this Server Component, query the database, and save the resulting HTML. Never re-run it on a request."_
 
 The build process:
+
 1. `next build` runs
 2. Next.js executes `page.js` on the server
 3. All 5 `await pool.query(...)` calls complete
@@ -190,12 +192,12 @@ When you add new episode data: manually trigger a redeploy (`vercel --prod` or c
 
 ### Other rendering modes
 
-| Export | Behavior |
-|---|---|
-| `export const dynamic = 'force-static'` | SSG: built once at deploy time |
-| `export const revalidate = 3600` | ISR: rebuilt automatically every 1 hour |
-| `export const dynamic = 'force-dynamic'` | SSR: rebuilt on every request |
-| *(none — default)* | Next.js infers: static if no dynamic data, otherwise dynamic |
+| Export                                   | Behavior                                                     |
+| ---------------------------------------- | ------------------------------------------------------------ |
+| `export const dynamic = 'force-static'`  | SSG: built once at deploy time                               |
+| `export const revalidate = 3600`         | ISR: rebuilt automatically every 1 hour                      |
+| `export const dynamic = 'force-dynamic'` | SSR: rebuilt on every request                                |
+| _(none — default)_                       | Next.js infers: static if no dynamic data, otherwise dynamic |
 
 ---
 
@@ -225,6 +227,7 @@ export default function RootLayout({ children }) {
 **CSS imports**: Global CSS is imported directly in `layout.js`. Next.js bundles it automatically. The old `<link rel="stylesheet">` in `index.html` is gone.
 
 **Google Fonts / external scripts**: Use `next/script` with a `strategy`:
+
 - `"beforeInteractive"` — blocks page render
 - `"afterInteractive"` — loads after hydration (good for analytics)
 - `"lazyOnload"` — loads during idle time
@@ -234,6 +237,7 @@ export default function RootLayout({ children }) {
 ## 8. Data Fetching in Server Components
 
 The old flow required 5 round-trips:
+
 ```
 Browser → GET /api/winLoss → DB
 Browser → GET /api/titanRecords → DB
@@ -243,19 +247,20 @@ Browser → GET /api/perRoundStats → DB
 ```
 
 The new flow — everything happens in `app/page.js` at build time:
+
 ```js
 const [
-  winLossResult,
-  titanRecordsResult,
-  avgScoresResult,
-  bestScoresResult,
-  perRoundStatsResult,
+	winLossResult,
+	titanRecordsResult,
+	avgScoresResult,
+	bestScoresResult,
+	perRoundStatsResult,
 ] = await Promise.all([
-  pool.query(winLossQuery),
-  pool.query(titanRecordsQuery),
-  pool.query(avgScoresQuery),
-  pool.query(bestScoresQuery),
-  pool.query(perRoundStatsQuery),
+	pool.query(winLossQuery),
+	pool.query(titanRecordsQuery),
+	pool.query(avgScoresQuery),
+	pool.query(bestScoresQuery),
+	pool.query(perRoundStatsQuery),
 ]);
 ```
 
@@ -270,13 +275,13 @@ Next.js API routes live in `app/api/*/route.js`. They replaced the Express route
 ```js
 // Old: app/routes/records.js (Express)
 router.get("/winLoss", (req, res) => {
-  submitQuery(winLossQuery, res);
+	submitQuery(winLossQuery, res);
 });
 
 // New: app/api/winLoss/route.js (Next.js Route Handler)
 export async function GET() {
-  const result = await pool.query(winLossQuery);
-  return Response.json({ message: 'success', data: result.rows });
+	const result = await pool.query(winLossQuery);
+	return Response.json({ message: "success", data: result.rows });
 }
 ```
 
@@ -298,8 +303,9 @@ lib/
 ```
 
 `lib/db.js` creates a single `Pool` instance:
+
 ```js
-import { Pool } from 'pg';
+import { Pool } from "pg";
 const pool = new Pool({ connectionString: process.env.POSTGRES_URL });
 export { pool };
 ```
@@ -312,14 +318,15 @@ Node.js module system caches this on first import — all files that `import { p
 
 Next.js handles `.env` files automatically — no `require('dotenv')` needed:
 
-| File | When loaded |
-|---|---|
-| `.env` | Always |
-| `.env.local` | Always, overrides `.env` (not committed to git) |
-| `.env.development.local` | Only in `next dev` |
-| `.env.production.local` | Only in `next build` / `next start` |
+| File                     | When loaded                                     |
+| ------------------------ | ----------------------------------------------- |
+| `.env`                   | Always                                          |
+| `.env.local`             | Always, overrides `.env` (not committed to git) |
+| `.env.development.local` | Only in `next dev`                              |
+| `.env.production.local`  | Only in `next build` / `next start`             |
 
 Variables are server-only by default. To expose a variable to the browser, prefix it with `NEXT_PUBLIC_`:
+
 - `POSTGRES_URL` → server only ✓ (never sent to browser — keep credentials safe)
 - `NEXT_PUBLIC_ANALYTICS_ID` → available in browser code
 
@@ -341,20 +348,19 @@ Vercel auto-detects Next.js. With `vercel.json` set to `{ "framework": "nextjs" 
 
 ## 13. What Became of What
 
-| Old file | New equivalent | Why |
-|---|---|---|
-| `server.js` | `next dev` / `next start` | Next.js is the server |
-| `app.js` | Next.js runtime | Framework handles HTTP |
-| `app/routes/records.js` | *(deleted)* | Not needed for SSG |
-| `app/routes/stats.js` | *(deleted)* | Not needed for SSG |
-| `app/utils/dbConfig.js` | `lib/db.js` | Same logic, ESM exports |
-| `app/utils/parseSQL.js` | `lib/queries.js` | Same logic, ESM exports |
-| `public/index.html` | `app/layout.js` + `app/page.js` | JSX replaces HTML |
-| `public/js/header.js` | `components/SiteHeader.jsx` | `useState` replaces addEventListener |
-| `public/js/view/renderRecords.js` | `components/TitanLeaderboard.jsx`, `components/TitanCard.jsx` | Components replace DOM manipulation |
-| `public/js/view/renderStats.js` | `components/TitanCard.jsx` | Stats folded into TitanCard |
-| `public/js/services/fetchRecords.js` | `app/page.js` | Server-side query replaces client fetch |
-| `public/js/services/fetchStats.js` | `app/page.js` | Server-side query replaces client fetch |
-| `public/js/view/utils/ranking.js` | `lib/ranking.js` | Pure function, now shared via `@/lib/ranking` |
-| `vercel.json` (complex) | `vercel.json` (one line) | Next.js auto-detected by Vercel |
-
+| Old file                             | New equivalent                                                | Why                                           |
+| ------------------------------------ | ------------------------------------------------------------- | --------------------------------------------- |
+| `server.js`                          | `next dev` / `next start`                                     | Next.js is the server                         |
+| `app.js`                             | Next.js runtime                                               | Framework handles HTTP                        |
+| `app/routes/records.js`              | _(deleted)_                                                   | Not needed for SSG                            |
+| `app/routes/stats.js`                | _(deleted)_                                                   | Not needed for SSG                            |
+| `app/utils/dbConfig.js`              | `lib/db.js`                                                   | Same logic, ESM exports                       |
+| `app/utils/parseSQL.js`              | `lib/queries.js`                                              | Same logic, ESM exports                       |
+| `public/index.html`                  | `app/layout.js` + `app/page.js`                               | JSX replaces HTML                             |
+| `public/js/header.js`                | `components/SiteHeader.jsx`                                   | `useState` replaces addEventListener          |
+| `public/js/view/renderRecords.js`    | `components/TitanLeaderboard.jsx`, `components/TitanCard.jsx` | Components replace DOM manipulation           |
+| `public/js/view/renderStats.js`      | `components/TitanCard.jsx`                                    | Stats folded into TitanCard                   |
+| `public/js/services/fetchRecords.js` | `app/page.js`                                                 | Server-side query replaces client fetch       |
+| `public/js/services/fetchStats.js`   | `app/page.js`                                                 | Server-side query replaces client fetch       |
+| `public/js/view/utils/ranking.js`    | `lib/ranking.js`                                              | Pure function, now shared via `@/lib/ranking` |
+| `vercel.json` (complex)              | `vercel.json` (one line)                                      | Next.js auto-detected by Vercel               |

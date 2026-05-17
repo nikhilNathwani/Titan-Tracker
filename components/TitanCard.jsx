@@ -27,6 +27,7 @@ export default function TitanCard({
 	const rankKey = titan.rank === null ? "NR" : titan.rank;
 	const rankClass = `rank rank${rankKey}`;
 	const borderClass = `rank${rankKey}-border`;
+	const [firstName, lastName] = titan.titan_name.split(" ");
 
 	return (
 		<div className="section titanCard" id={titanId}>
@@ -41,7 +42,10 @@ export default function TitanCard({
 						/>
 						<div className={rankClass}>{titan.rankString}</div>
 					</div>
-					<div className="titanCard-name">{titan.titan_name}</div>
+					<div className="titanCard-name">
+						<span className="titanCard-firstname">{firstName}</span>
+						<span className="titanCard-lastname">{lastName}</span>
+					</div>
 				</div>
 
 				{/* Record + Avg Score */}

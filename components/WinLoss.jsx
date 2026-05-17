@@ -6,6 +6,9 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 		<div className="section" id="winLoss">
 			<p className="section-label">Win-Loss Record</p>
 			<div className="section-content">
+				<div className="winloss-banner">
+					<img src="/img/all-titans.jpg" alt="The Titans" />
+				</div>
 				<div className="section-row">
 					<div className="widget">
 						<p className="widget-title">Wins</p>

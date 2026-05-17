@@ -1,5 +1,3 @@
-import { formatRecord } from "@/lib/ranking";
-
 export default function TitanLeaderboard({ titans }) {
 	return (
 		<div className="section" id="titanLeaderboard">
@@ -10,25 +8,45 @@ export default function TitanLeaderboard({ titans }) {
 						const imgFilename =
 							titan.titan_name.toLowerCase().replace(/ /g, "-") +
 							"-cropped.jpg";
-						const [firstName, lastName] = titan.titan_name.split(" ");
-						const rankKey = titan.rank === null ? "NR" : titan.rank;
+						const [firstName, lastName] =
+							titan.titan_name.split(" ");
+						const rankKey =
+							titan.rank === null ? "NR" : titan.rank;
 						const rankClass = `rank rank${rankKey}`;
 						const borderClass = `rank${rankKey}-border`;
+						const total =
+							titan.num_win + titan.num_loss + titan.num_tie;
+						const winPct =
+							total > 0
+								? `${((titan.num_win / total) * 100).toFixed(1)}%`
+								: "\u2014";
 
 						return (
-							<div key={titan.titan_name} className="leaderboard-row">
-								<div className={rankClass}>{titan.rankString}</div>
+							<div
+								key={titan.titan_name}
+								className="leaderboard-row"
+							>
+								<div className={rankClass}>
+									{titan.rankString}
+								</div>
 								<img
 									src={`/img/${imgFilename}`}
 									alt={titan.titan_name}
 									className={`titan-mini-avatar ${borderClass}`}
 								/>
 								<div className="leaderboard-name">
-									<span className="leaderboard-firstname">{firstName}</span>
-									<span className="leaderboard-lastname">{lastName}</span>
+									<span className="leaderboard-firstname">
+										{firstName}
+									</span>
+									<span className="leaderboard-lastname">
+										{lastName}
+									</span>
 								</div>
 								<div className="leaderboard-record">
-									{formatRecord(titan.num_win, titan.num_loss, titan.num_tie)}
+									<span>{winPct}</span>
+									<span className="leaderboard-record-label">
+										Win Rate
+									</span>
 								</div>
 							</div>
 						);
