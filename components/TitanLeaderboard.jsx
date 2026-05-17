@@ -53,7 +53,7 @@ export default function TitanLeaderboard({ titans }) {
 						);
 					})}
 				</div>
-				<p id="titanRankingCaption">NR = Not Ranked (inactive titan)</p>
+				<p id="titanRankingCaption"><span className="footnote">*</span> Rank = win rate &middot; NR = Not Ranked</p>
 			</div>
 		</div>
 	);
