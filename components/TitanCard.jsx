@@ -83,7 +83,8 @@ export default function TitanCard({
 						<div className="widget-content">
 							<div className="widget-value">
 								{formatAvgScore(avgScore)}
-								<span className="widget-value-denom">/10</span>
+							<span className="widget-value-slash">/</span>
+							<span className="widget-value-denom">10</span>
 							</div>
 						</div>
 					</div>
@@ -93,8 +94,9 @@ export default function TitanCard({
 							<div className="widget-content">
 								<div className="widget-value">
 									{bestScore.titan_score}
-									<span className="widget-value-denom">
-										/{bestScore.max_score}
+								<span className="widget-value-slash">/</span>
+								<span className="widget-value-denom">
+									{bestScore.max_score}
 									</span>
 								</div>
 							</div>
