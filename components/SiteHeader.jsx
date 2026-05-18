@@ -37,7 +37,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				className={navOpen ? "open" : undefined}
 			>
 				<a href="#winLoss" onClick={closeNav}>
-					Win-Loss Record
+					Team Record
 				</a>
 				<a href="#titanLeaderboard" onClick={closeNav}>
 					Titan Leaderboard
