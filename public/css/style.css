@@ -3,7 +3,7 @@
 
 	/* Surfaces */
 	--clr-dark: #0f0915;
-	--clr-mid: hsl(var(--hue), 20%, 16%);
+	--clr-mid: hsl(var(--hue), 6%, 14%);
 	--clr-surface-hover: hsl(var(--hue), 20%, 20%);
 
 	/* Text */
@@ -433,6 +433,16 @@ tr:not(:first-of-type) {
 	overflow: hidden;
 }
 
+@media (max-width: 480px) {
+	#heroSection {
+		width: 100%;
+		border-left: none;
+		border-right: none;
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
 #heroImage {
 	width: 100%;
 	height: auto;
@@ -457,6 +467,8 @@ tr:not(:first-of-type) {
 	height: 9rem;
 	position: relative;
 	flex-shrink: 0;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
 }
 
 .winloss-banner img {
@@ -464,7 +476,7 @@ tr:not(:first-of-type) {
 	height: 100%;
 	object-fit: cover;
 	object-position: center 20%;
-	filter: hue-rotate(5deg) brightness(1) saturate(0.4) blur(0.3px);
+	filter: hue-rotate(5deg) brightness(1) saturate(0.4);
 	display: block;
 }
 
@@ -520,6 +532,7 @@ tr:not(:first-of-type) {
 /* --------------------------- */
 
 #titanLeaderboard .section-content {
+	padding-top: 2rem;
 	padding-bottom: 2rem;
 }
 
@@ -789,7 +802,7 @@ tr:not(:first-of-type) {
 .perRound-bar-track {
 	flex: 1;
 	height: 8px;
-	background-color: var(--clr-border-subtle);
+	background-color: var(--clr-mid);
 	border-radius: 4px;
 	overflow: hidden;
 }
@@ -851,6 +864,7 @@ tr:not(:first-of-type) {
 	box-shadow: none;
 	border: none;
 	border-top: 1px solid var(--clr-border-mid);
+	border-radius: 0;
 	color: var(--clr-text-secondary);
 }
 
