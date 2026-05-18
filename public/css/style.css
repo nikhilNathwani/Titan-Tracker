@@ -19,7 +19,7 @@
 	/* Borders */
 	--clr-border-subtle: hsl(var(--hue), 12%, 22%);
 	--clr-border-mid: hsl(var(--hue), 15%, 28%);
-	--clr-border-card: hsl(var(--hue), 24%, 38%);
+	--clr-border-card: hsl(43, 30%, 38%);
 
 	/* Ranks */
 	--clr-rank1: hsl(43, 65%, 50%);
@@ -436,6 +436,7 @@ tr:not(:first-of-type) {
 @media (max-width: 600px) {
 	#heroSection {
 		width: 100%;
+		border-top: none;
 		border-left: none;
 		border-right: none;
 		border-radius: 0;
