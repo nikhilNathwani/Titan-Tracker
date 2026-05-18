@@ -1,5 +1,5 @@
 :root {
-	--hue: 270;
+	--hue: 255;
 
 	/* Surfaces */
 	--clr-dark: #0f0915;
@@ -281,7 +281,7 @@ tr:not(:first-of-type) {
 	color: var(--clr-rank3-text);
 }
 .rankNR {
-	background-color: var(--clr-border-subtle);
+	background-color: var(--clr-mid);
 }
 
 /* --------------------------- */
@@ -440,6 +440,7 @@ tr:not(:first-of-type) {
 		border-right: none;
 		border-radius: 0;
 		box-shadow: none;
+		margin-top: -20px;
 	}
 }
 
@@ -689,7 +690,7 @@ tr:not(:first-of-type) {
 	border-color: var(--clr-rank3);
 }
 .rankNR-border {
-	border-color: var(--clr-border-mid);
+	border-color: var(--clr-mid);
 	opacity: 0.7;
 }
 
@@ -789,7 +790,6 @@ tr:not(:first-of-type) {
 
 .perRound-round-label {
 	font-size: var(--fs-sm);
-	font-weight: 700;
 	color: var(--clr-text-tertiary);
 }
 
