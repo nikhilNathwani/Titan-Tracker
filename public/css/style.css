@@ -739,6 +739,43 @@ tr:not(:first-of-type) {
 }
 
 /* --------------------------- */
+/*      SHARE BUTTON           */
+/* --------------------------- */
+.titanCard .section-title {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.titanCard-share-btn {
+	margin-left: auto;
+	flex-shrink: 0;
+	background: none;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 6px;
+	color: var(--clr-text-dim);
+	cursor: pointer;
+	padding: 3px 8px;
+	font-size: var(--fs-xs);
+	letter-spacing: 0.04em;
+	line-height: 1.4;
+	transition: color 0.15s, border-color 0.15s;
+	white-space: nowrap;
+}
+
+.titanCard-share-btn:hover {
+	color: var(--clr-accent);
+	border-color: var(--clr-accent);
+}
+
+.titanCard-share-btn:disabled {
+	color: var(--clr-accent);
+	border-color: var(--clr-accent);
+	cursor: default;
+	opacity: 0.8;
+}
+
+/* --------------------------- */
 /*      INGREDIENT LIST        */
 /* --------------------------- */
 .titanCard-ingredientList {
