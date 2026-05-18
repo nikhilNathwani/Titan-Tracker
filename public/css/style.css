@@ -1,9 +1,9 @@
 :root {
-	--hue: 33;
+	--hue: 270;
 
 	/* Surfaces */
 	--clr-dark: #0f0915;
-	--clr-mid: hsl(var(--hue), 6%, 14%);
+	--clr-mid: hsl(var(--hue), 20%, 17%);
 	--clr-surface-hover: hsl(var(--hue), 20%, 20%);
 
 	/* Text */
@@ -433,7 +433,7 @@ tr:not(:first-of-type) {
 	overflow: hidden;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 	#heroSection {
 		width: 100%;
 		border-left: none;
@@ -642,13 +642,13 @@ tr:not(:first-of-type) {
 .titanCard-firstname {
 	font-size: var(--fs-name);
 	font-weight: bold;
-	color: var(--clr-text-tertiary);
+	color: var(--clr-light);
 }
 
 .titanCard-lastname {
 	font-size: var(--fs-name);
 	font-weight: bold;
-	color: var(--clr-text-tertiary);
+	color: var(--clr-light);
 }
 
 /* Swap .titan-avatar-placeholder for img.titan-avatar when real images are ready */
@@ -783,7 +783,7 @@ tr:not(:first-of-type) {
 	font-size: var(--fs-xs);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
-	color: var(--clr-text-dim);
+	color: var(--clr-text-secondary);
 	text-align: right;
 }
 
