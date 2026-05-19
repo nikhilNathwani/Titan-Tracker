@@ -1,10 +1,4 @@
-/* --------------------------- */
-/*                             */
-/*        SITE HEADER          */
-/*                             */
-/* --------------------------- */
-
-#siteHeader {
+.header {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -20,7 +14,7 @@
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
-#siteHeaderTitle {
+.title {
 	font-size: var(--fs-base);
 	font-weight: 700;
 	color: var(--clr-accent);
@@ -28,7 +22,7 @@
 	text-transform: uppercase;
 }
 
-#hamburgerBtn {
+.hamburgerBtn {
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -40,7 +34,7 @@
 	border-radius: 4px;
 }
 
-#hamburgerBtn span {
+.hamburgerBtn span {
 	display: block;
 	width: 20px;
 	height: 2px;
@@ -48,7 +42,7 @@
 	border-radius: 2px;
 }
 
-#siteNav {
+.nav {
 	position: fixed;
 	top: 52px;
 	left: 0;
@@ -69,13 +63,13 @@
 	pointer-events: none;
 }
 
-#siteNav.open {
+.navOpen {
 	transform: translateY(0);
 	opacity: 1;
 	pointer-events: auto;
 }
 
-#siteNav a {
+.nav a {
 	padding: 0.75rem min(2rem, 5vw);
 	text-decoration: none;
 	color: var(--clr-light);
@@ -83,11 +77,11 @@
 	transition: background-color 0.15s;
 }
 
-#siteNav a:hover {
+.nav a:hover {
 	background-color: var(--clr-surface-hover);
 }
 
-.nav-group-label {
+.navGroupLabel {
 	display: block;
 	padding: 0.625rem min(2rem, 5vw) 0.25rem;
 	font-size: var(--fs-xs);
@@ -98,12 +92,11 @@
 	margin-top: 0.125rem;
 }
 
-#siteNav a.nav-indented {
+.nav .navIndented {
 	padding-left: calc(min(2rem, 5vw) + 1.5ch);
-	font-size: var(--fs-base);
 }
 
-#bmcBtn {
+.bmcBtn {
 	margin-left: auto;
 	display: flex;
 	align-items: center;
@@ -122,17 +115,17 @@
 	transition: filter 0.15s;
 }
 
-#bmcBtn:hover {
+.bmcBtn:hover {
 	filter: brightness(1.1);
 }
 
-#navOverlay {
+.overlay {
 	position: fixed;
 	inset: 0;
 	z-index: 98;
 }
 
-.nav-divider {
+.navDivider {
 	border: none;
 	border-top: 1px solid var(--clr-border-subtle);
 	margin: 0.375rem 0;

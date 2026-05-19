@@ -1,12 +1,16 @@
 import ShareButton from "./ShareButton";
+import styles from "./TitanLeaderboard.module.css";
 
 export default function TitanLeaderboard({ titans }) {
 	return (
 		<div className="section" id="titanLeaderboard">
 			<p className="section-label">Titan Leaderboard</p>
-			<div className="section-content">
-				<ShareButton sectionId="titanLeaderboard" sectionName="Titan Leaderboard" />
-				<div className="leaderboard">
+			<div className={`section-content ${styles.content}`}>
+				<ShareButton
+					sectionId="titanLeaderboard"
+					sectionName="Titan Leaderboard"
+				/>
+				<div className={styles.leaderboard}>
 					{titans.map((titan) => {
 						const imgFilename =
 							titan.titan_name.toLowerCase().replace(/ /g, "-") +
@@ -23,11 +27,8 @@ export default function TitanLeaderboard({ titans }) {
 								: "\u2014";
 
 						return (
-							<div
-								key={titan.titan_name}
-								className="leaderboard-row"
-							>
-								<div className="leaderboard-rank-col">
+							<div key={titan.titan_name} className={styles.row}>
+								<div className={styles.rankCol}>
 									<div className={rankClass}>
 										{titan.rankString}
 									</div>
@@ -35,18 +36,18 @@ export default function TitanLeaderboard({ titans }) {
 								<img
 									src={`/img/${imgFilename}`}
 									alt={titan.titan_name}
-									className={`titan-mini-avatar ${borderClass}`}
+									className={`${styles.miniAvatar} ${borderClass}`}
 								/>
-								<div className="leaderboard-name">
-									<span className="leaderboard-firstname">
+								<div className={styles.name}>
+									<span className={styles.firstName}>
 										{firstName}
 									</span>
-									<span className="leaderboard-lastname">
+									<span className={styles.lastName}>
 										{lastName}
 									</span>
 								</div>
-								<div className="leaderboard-record">
-									<span className="leaderboard-record-label">
+								<div className={styles.record}>
+									<span className={styles.recordLabel}>
 										Win Rate
 									</span>
 									<span>{winPct}</span>
@@ -55,7 +56,9 @@ export default function TitanLeaderboard({ titans }) {
 						);
 					})}
 				</div>
-				<p id="titanRankingCaption">NR = Not Ranked (inactive titan)</p>
+				<p className={styles.caption}>
+					NR = Not Ranked (inactive titan)
+				</p>
 			</div>
 		</div>
 	);

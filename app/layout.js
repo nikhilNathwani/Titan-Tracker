@@ -1,12 +1,6 @@
 import Script from "next/script";
 import "../public/css/variables.css";
 import "../public/css/base.css";
-import "../public/css/header.css";
-import "../public/css/hero.css";
-import "../public/css/winloss.css";
-import "../public/css/leaderboard.css";
-import "../public/css/titancard.css";
-import "../public/css/footer.css";
 
 export const metadata = {
 	title: "Bobby's Triple Threat - Stats",

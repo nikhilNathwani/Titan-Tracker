@@ -1,10 +1,4 @@
-/* --------------------------- */
-/*                             */
-/*            HERO             */
-/*                             */
-/* --------------------------- */
-
-#heroSection {
+.heroSection {
 	width: min(680px, 96vw);
 	border: 1px solid var(--clr-border-mid);
 	border-radius: 10px;
@@ -14,7 +8,7 @@
 }
 
 @media (max-width: 600px) {
-	#heroSection {
+	.heroSection {
 		width: 100%;
 		border-top: none;
 		border-left: none;
@@ -25,8 +19,17 @@
 	}
 }
 
-#heroImage {
+.heroImage {
 	width: 100%;
 	height: auto;
 	display: block;
+}
+
+.notesContent {
+	text-align: left;
+	gap: 1.375rem;
+	font-size: var(--fs-base);
+	color: var(--clr-text-tertiary);
+	border-color: var(--clr-border-mid);
+	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }

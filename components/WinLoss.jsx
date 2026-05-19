@@ -1,4 +1,5 @@
 import ShareButton from "./ShareButton";
+import styles from "./WinLoss.module.css";
 
 export default function WinLoss({ num_win, num_tie, num_loss }) {
 	const total = num_win + num_tie + num_loss;
@@ -7,17 +8,23 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 	return (
 		<div className="section" id="winLoss">
 			<p className="section-label">Team Record</p>
-			<div className="section-content">
+			<div className={`section-content ${styles.content}`}>
 				<ShareButton sectionId="winLoss" sectionName="Team Record" />
-				<div className="winloss-banner">
-					<img src="/img/all-titans.jpg" alt="The Titans" />
+				<div className={styles.banner}>
+					<img
+						className={styles.bannerImg}
+						src="/img/all-titans.jpg"
+						alt="The Titans"
+					/>
 				</div>
-				<div id="winLossCaption">
-					<p id="winLossRate">
-						<span className="winloss-stat">{percentSuccess}%</span>
-						<span id="winLossRateLabel">win rate</span>
+				<div className={styles.caption}>
+					<p className={styles.rate}>
+						<span className={styles.rateStat}>
+							{percentSuccess}%
+						</span>
+						<span className={styles.rateLabel}>win rate</span>
 					</p>
-					<p id="winLossSentence">
+					<p className={styles.sentence}>
 						The titans have won {num_win} out of{" "}
 						{num_win + num_loss} battles
 						{num_tie > 0 && (
