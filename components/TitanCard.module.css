@@ -70,7 +70,7 @@
 }
 
 .recordSep {
-	font-size: var(--fs-md);
+	font-size: var(--fs-stat);
 	font-weight: normal;
 	color: var(--clr-text-dim);
 }
