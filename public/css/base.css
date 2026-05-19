@@ -1,0 +1,274 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 68px;
+	background-color: var(--clr-dark);
+}
+
+body {
+	padding-top: 72px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 4rem;
+
+	color: var(--clr-light);
+}
+
+/* --------------------------- */
+/*                             */
+/*     COMMON COMPONENTS       */
+/*                             */
+/* --------------------------- */
+a {
+	text-underline-offset: 3px;
+	color: var(--clr-light);
+}
+
+.footnote {
+	font-style: normal;
+}
+
+.section {
+	width: min(400px, 92vw);
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.75rem;
+}
+
+.section-label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 1.5ch;
+	color: var(--clr-accent);
+	font-size: var(--fs-sm);
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.section-label::before,
+.section-label::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: currentColor;
+}
+
+#titansSectionLabel {
+	width: min(400px, 92vw);
+	margin-bottom: -3.25rem;
+}
+
+#inactiveTitansSectionLabel {
+	width: min(400px, 92vw);
+	margin-bottom: -3.25rem;
+}
+
+.titan-cards-group {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: min(400px, 92vw);
+}
+
+.section-content {
+	width: 100%;
+	padding: 3rem min(2.5rem, 6vw);
+	margin: auto;
+	border: 1px solid var(--clr-border-card);
+	border-radius: 10px;
+	position: relative;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 2.25rem;
+
+	background-color: var(--clr-dark);
+	box-shadow:
+		0 4px 24px rgba(0, 0, 0, 0.6),
+		0 0 6px rgba(var(--clr-accent-rgb), 0.2),
+		0 0 22px rgba(var(--clr-accent-rgb), 0.12),
+		0 0 52px rgba(var(--clr-accent-rgb), 0.05);
+
+	text-align: center;
+}
+
+.section-row {
+	width: 100%;
+
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: stretch;
+	gap: 0.75rem;
+}
+
+.section-row > .widget {
+	flex: 1;
+}
+
+.widget {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.25rem;
+}
+
+.widget-full {
+	width: 100%;
+}
+
+.widget-title {
+	font-size: var(--fs-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--clr-text-secondary);
+}
+
+.widget-title sup {
+	line-height: 0;
+}
+
+.widget-content {
+	padding-block: 0.625rem;
+	padding-inline: 0.5rem;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+	background-color: var(--clr-mid);
+	border-radius: 8px;
+	color: var(--clr-light);
+}
+
+.widget-row {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: space-around;
+
+	color: var(--clr-light);
+}
+
+.widget-value {
+	width: fit-content;
+	padding-inline: 1ch;
+
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 0.2em;
+
+	font-size: var(--fs-stat);
+	font-weight: bold;
+	color: var(--clr-accent);
+}
+
+.titanCard-record .widget-value {
+	padding-inline: 0.25rem;
+}
+
+.widget-caption {
+	font-size: var(--fs-sm);
+	color: var(--clr-text-secondary);
+}
+
+.widget-value-slash,
+.widget-value-denom {
+	font-size: var(--fs-md);
+	font-weight: normal;
+	color: var(--clr-text-dim);
+	padding-bottom: 0.3125rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th {
+	padding-bottom: 0.25rem;
+	border-bottom: 1px solid var(--clr-border-card);
+	font-size: var(--tableHeader-fs, 1rem);
+}
+
+/* Table row height */
+tr:not(:first-of-type) {
+	height: var(--tableRow-height);
+	font-size: var(--tableData-fs, 1rem);
+}
+
+.rank {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3px 10px;
+	border-radius: 999px;
+	font-size: var(--fs-sm);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+	background-color: var(--clr-border-mid);
+	color: var(--clr-light);
+}
+
+.rank1 {
+	background: var(--clr-rank1);
+	color: var(--clr-rank1-text);
+}
+.rank2 {
+	background: var(--clr-rank2);
+	color: var(--clr-rank2-text);
+}
+.rank3 {
+	background: var(--clr-rank3);
+	color: var(--clr-rank3-text);
+}
+.rankNR {
+	background-color: var(--clr-mid);
+}
+
+/* --------------------------- */
+/*      SHARE BUTTON           */
+/* --------------------------- */
+.section-share-btn {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	background: none;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 6px;
+	color: var(--clr-text-dim);
+	cursor: pointer;
+	padding: 3px 8px;
+	font-size: var(--fs-xs);
+	letter-spacing: 0.04em;
+	line-height: 1.4;
+	transition:
+		color 0.15s,
+		border-color 0.15s;
+	white-space: nowrap;
+}
+
+.section-share-btn:hover {
+	color: var(--clr-accent);
+	border-color: var(--clr-accent);
+}
+
+.section-share-btn:disabled {
+	color: var(--clr-accent);
+	border-color: var(--clr-accent);
+	cursor: default;
+	opacity: 0.8;
+}
