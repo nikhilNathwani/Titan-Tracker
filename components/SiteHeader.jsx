@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import styles from "./SiteHeader.module.css";
 
 export default function SiteHeader({ activeTitans, inactiveTitans }) {
 	const [navOpen, setNavOpen] = useState(false);
@@ -9,9 +12,10 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 
 	return (
 		<>
-			<header id="siteHeader">
+			<header id="siteHeader" className={styles.header}>
 				<button
 					id="hamburgerBtn"
+					className={styles.hamburgerBtn}
 					aria-label="Open navigation"
 					aria-expanded={String(navOpen)}
 					aria-controls="siteNav"
@@ -21,12 +25,15 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					<span></span>
 					<span></span>
 				</button>
-				<span id="siteHeaderTitle">Titan Tracker</span>
+				<span id="siteHeaderTitle" className={styles.title}>
+					Titan Tracker
+				</span>
 				<a
 					href="https://buymeacoffee.com/nikhilnathwani"
 					target="_blank"
 					rel="noopener noreferrer"
 					id="bmcBtn"
+					className={styles.bmcBtn}
 				>
 					☕ Buy me a coffee?
 				</a>
@@ -34,7 +41,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 			<nav
 				id="siteNav"
 				aria-label="Page sections"
-				className={navOpen ? "open" : undefined}
+				className={`${styles.nav}${navOpen ? ` ${styles.navOpen}` : ""}`}
 			>
 				<a href="#winLoss" onClick={closeNav}>
 					Team Record
@@ -44,14 +51,14 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				</a>
 				{activeTitans.length > 0 && (
 					<>
-						<span className="nav-group-label">
+						<span className={styles.navGroupLabel}>
 							Individual Titan Stats
 						</span>
 						{activeTitans.map((titan) => (
 							<a
 								key={titan.titan_name}
 								href={`#${titan.titan_name.replace(/ /g, "-")}`}
-								className="nav-indented"
+								className={styles.navIndented}
 								onClick={closeNav}
 							>
 								{titan.titan_name}
@@ -61,12 +68,14 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				)}
 				{inactiveTitans.length > 0 && (
 					<>
-						<span className="nav-group-label">Inactive Titans</span>
+						<span className={styles.navGroupLabel}>
+							Inactive Titans
+						</span>
 						{inactiveTitans.map((titan) => (
 							<a
 								key={titan.titan_name}
 								href={`#${titan.titan_name.replace(/ /g, "-")}`}
-								className="nav-indented"
+								className={styles.navIndented}
 								onClick={closeNav}
 							>
 								{titan.titan_name}
@@ -77,17 +86,19 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				<a href="#notesSection" onClick={closeNav}>
 					Notes
 				</a>
-				<hr className="nav-divider" />
-				<a
-					href="mailto:nnathwani36@gmail.com"
-					className="nav-contact"
-					onClick={closeNav}
-				>
-					✉️ Contact me
+				<hr className={styles.navDivider} />
+				<a href="mailto:nnathwani36@gmail.com" onClick={closeNav}>
+					<FontAwesomeIcon icon={faEnvelope} aria-hidden={true} />{" "}
+					Contact me
 				</a>
 			</nav>
 			{navOpen && (
-				<div id="navOverlay" onClick={closeNav} aria-hidden="true" />
+				<div
+					id="navOverlay"
+					className={styles.overlay}
+					onClick={closeNav}
+					aria-hidden="true"
+				/>
 			)}
 		</>
 	);

@@ -1,13 +1,16 @@
+import styles from "./Footer.module.css";
+
 export default function Footer() {
 	return (
-		<div className="section" id="footer">
-			<div className="section-content">
+		<div className={`section ${styles.footer}`} id="footer">
+			<div className={`section-content ${styles.content}`}>
 				<p>Made by fan of the show, Nikhil N.</p>
-				<div id="links">
+				<div className={styles.links}>
 					<a
 						href="https://nikhilnathwani.com"
 						target="_blank"
 						rel="noopener noreferrer"
+						className={styles.link}
 					>
 						nikhilnathwani.com
 					</a>

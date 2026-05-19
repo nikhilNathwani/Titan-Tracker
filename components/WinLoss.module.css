@@ -1,24 +1,18 @@
-/* --------------------------- */
-/*                             */
-/*       WIN LOSS WIDGET       */
-/*                             */
-/* --------------------------- */
-
-#winLoss .section-content {
+.content {
 	padding-top: 0;
 	padding-bottom: 1.25rem;
 	overflow: hidden;
 }
 
 /* Share button sits over the banner image — needs a readable backdrop */
-#winLoss .section-share-btn {
+.content :global(.section-share-btn) {
 	background-color: rgba(15, 9, 21, 0.65);
 	backdrop-filter: blur(4px);
 	border-color: rgba(var(--clr-accent-rgb), 0.3);
 	color: var(--clr-text-secondary);
 }
 
-.winloss-banner {
+.banner {
 	width: calc(100% + 2 * min(2.5rem, 6vw));
 	margin-inline: calc(-1 * min(2.5rem, 6vw));
 	height: 9rem;
@@ -28,7 +22,7 @@
 	overflow: hidden;
 }
 
-.winloss-banner img {
+.bannerImg {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -37,14 +31,14 @@
 	display: block;
 }
 
-.winloss-banner::after {
+.banner::after {
 	content: "";
 	position: absolute;
 	inset: 0;
 	background: linear-gradient(to bottom, transparent 40%, var(--clr-dark));
 }
 
-#winLossCaption {
+.caption {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -52,32 +46,27 @@
 	text-align: center;
 }
 
-#winLossRate {
+.rate {
 	display: flex;
 	flex-direction: row;
 	align-items: baseline;
 	gap: 0.5rem;
 }
 
-#winLossRate .winloss-stat {
+.rateStat {
 	font-size: var(--fs-hero);
 	font-weight: 700;
 	line-height: 1.1;
+	color: var(--clr-accent);
 }
 
-#winLossRateLabel {
+.rateLabel {
 	font-size: var(--fs-md);
 	color: var(--clr-text-tertiary);
 }
 
-#winLossSentence {
+.sentence {
 	font-size: var(--fs-base);
 	line-height: 1.5;
 	color: var(--clr-text-tertiary);
-}
-
-.winloss-stat {
-	color: var(--clr-accent);
-	font-weight: 700;
-	font-size: var(--fs-name);
 }

@@ -12,6 +12,7 @@ import WinLoss from "@/components/WinLoss";
 import TitanLeaderboard from "@/components/TitanLeaderboard";
 import TitanCard from "@/components/TitanCard";
 import Footer from "@/components/Footer";
+import pageStyles from "./page.module.css";
 
 // Render this page as static HTML at build time (SSG).
 // Re-deploy to pick up new data.
@@ -116,11 +117,12 @@ export default async function Home() {
 				activeTitans={activeTitans}
 				inactiveTitans={inactiveTitans}
 			/>
-			<div id="heroSection">
+			<div id="heroSection" className={pageStyles.heroSection}>
 				<img
 					src="/og-image.png"
 					alt="Bobby's Triple Threat — Fan-made Stat Tracker"
 					id="heroImage"
+					className={pageStyles.heroImage}
 				/>
 			</div>
 			<WinLoss {...winLoss} />
@@ -166,7 +168,7 @@ export default async function Home() {
 			)}
 			<div className="section" id="notesSection">
 				<p className="section-label">Notes</p>
-				<div className="section-content">
+				<div className={`section-content ${pageStyles.notesContent}`}>
 					<p>
 						<span className="footnote">*</span> Win rate = wins
 						&divide; (wins + losses); ties are not counted.

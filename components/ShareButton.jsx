@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function ShareButton({ sectionId, sectionName }) {
-	const [label, setLabel] = useState("Share ↗");
-	const [disabled, setDisabled] = useState(false);
+	const [copied, setCopied] = useState(false);
 
 	async function handleShare() {
 		const url = `${window.location.origin}/#${sectionId}`;
@@ -29,12 +30,8 @@ export default function ShareButton({ sectionId, sectionName }) {
 		} else {
 			try {
 				await navigator.clipboard.writeText(url);
-				setLabel("✓ Copied!");
-				setDisabled(true);
-				setTimeout(() => {
-					setLabel("Share ↗");
-					setDisabled(false);
-				}, 2000);
+				setCopied(true);
+				setTimeout(() => setCopied(false), 2000);
 			} catch (e) {
 				// clipboard unavailable — silent fail
 			}
@@ -46,9 +43,19 @@ export default function ShareButton({ sectionId, sectionName }) {
 			className="section-share-btn"
 			aria-label={`Share ${sectionName}`}
 			onClick={handleShare}
-			disabled={disabled}
+			disabled={copied}
 		>
-			{label}
+			{copied ? (
+				"✓ Copied!"
+			) : (
+				<>
+					<FontAwesomeIcon
+						icon={faArrowUpFromBracket}
+						aria-hidden={true}
+					/>{" "}
+					Share
+				</>
+			)}
 		</button>
 	);
 }

@@ -1,15 +1,9 @@
-/* --------------------------- */
-/*                             */
-/*      TITAN LEADERBOARD      */
-/*                             */
-/* --------------------------- */
-
-#titanLeaderboard .section-content {
+.content {
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 }
 
-#titanLeaderboard .leaderboard-rank-col {
+.rankCol {
 	width: 3.5rem;
 	flex-shrink: 0;
 	display: flex;
@@ -22,7 +16,7 @@
 	flex-direction: column;
 }
 
-.leaderboard-row {
+.row {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -30,11 +24,11 @@
 	border-bottom: 1px solid var(--clr-border-subtle);
 }
 
-.leaderboard-row:last-child {
+.row:last-child {
 	border-bottom: none;
 }
 
-.leaderboard-name {
+.name {
 	flex: 1;
 	text-align: left;
 	display: flex;
@@ -42,17 +36,17 @@
 	line-height: 1.2;
 }
 
-.leaderboard-firstname {
+.firstName {
 	font-size: var(--fs-base);
 	color: var(--clr-text-tertiary);
 }
 
-.leaderboard-lastname {
+.lastName {
 	font-size: var(--fs-lg);
 	font-weight: 700;
 }
 
-.leaderboard-record {
+.record {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
@@ -62,14 +56,14 @@
 	font-size: var(--fs-base);
 }
 
-.leaderboard-record-label {
+.recordLabel {
 	font-size: var(--fs-xs);
 	font-weight: normal;
 	color: var(--clr-text-secondary);
 }
 
-.titan-mini-avatar-placeholder,
-.titan-mini-avatar {
+.miniAvatarPlaceholder,
+.miniAvatar {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -79,7 +73,7 @@
 	border: 2px solid var(--clr-border-card);
 }
 
-#titanRankingCaption {
+.caption {
 	font-style: italic;
 	font-size: var(--fs-sm);
 	color: var(--clr-text-secondary);
