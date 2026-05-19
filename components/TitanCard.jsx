@@ -1,3 +1,5 @@
+import ShareButton from "./ShareButton";
+
 const ROUNDS = [1, 2, 3];
 
 function formatAvgScore(val) {
@@ -31,6 +33,7 @@ export default function TitanCard({
 	return (
 		<div className="section titanCard" id={titanId}>
 			<div className="section-content">
+				<ShareButton sectionId={titanId} sectionName={titan.titan_name} />
 				{/* Header: avatar + rank badge + name + win rate */}
 				<div className="titanCard-header">
 					<div className="titan-avatar-wrap">
@@ -53,7 +56,10 @@ export default function TitanCard({
 						<div className="widget-title">Wins - Losses - Ties</div>
 						<div className="widget-content">
 							<div className="widget-value">
-								{titan.num_win} - {titan.num_loss} -{" "}
+							{titan.num_win}
+							<span className="record-sep"> - </span>
+							{titan.num_loss}
+							<span className="record-sep"> - </span>
 								{titan.num_tie}
 							</div>
 						</div>

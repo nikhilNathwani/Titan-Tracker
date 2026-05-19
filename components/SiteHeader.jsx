@@ -77,6 +77,14 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 				<a href="#notesSection" onClick={closeNav}>
 					Notes
 				</a>
+				<hr className="nav-divider" />
+				<a
+					href="mailto:nnathwani36@gmail.com"
+					className="nav-contact"
+					onClick={closeNav}
+				>
+					✉️ Contact me
+				</a>
 			</nav>
 			{navOpen && (
 				<div id="navOverlay" onClick={closeNav} aria-hidden="true" />

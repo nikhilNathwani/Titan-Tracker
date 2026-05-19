@@ -1,8 +1,11 @@
+import ShareButton from "./ShareButton";
+
 export default function TitanLeaderboard({ titans }) {
 	return (
 		<div className="section" id="titanLeaderboard">
 			<p className="section-label">Titan Leaderboard</p>
 			<div className="section-content">
+				<ShareButton sectionId="titanLeaderboard" sectionName="Titan Leaderboard" />
 				<div className="leaderboard">
 					{titans.map((titan) => {
 						const imgFilename =
