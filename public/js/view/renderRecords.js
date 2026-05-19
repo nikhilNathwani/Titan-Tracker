@@ -13,6 +13,11 @@ function displayWinLoss(num_win, num_tie, num_loss) {
 	winLossCaption.innerHTML = `The titans have won ${num_win} out of ${
 		num_win + num_loss
 	} battles, which is a <b>${percentSuccess.toPrecision(3)}%</b> win rate.`;
+
+	// Share button
+	document
+		.querySelector("#winLoss .section-content")
+		.appendChild(createShareButton("winLoss", "Team Record"));
 }
 
 /* --------------------------- */
@@ -31,6 +36,14 @@ function displayTitanRecords(titanRecords) {
 
 	//Populate (A) Titan Leaderboard and (B) Titan Cards
 	//With (1) Rank, (2) Titan Name, (3) Win-Loss-Tie Record
+
+	// Share button on leaderboard card
+	document
+		.querySelector("#titanLeaderboard .section-content")
+		.appendChild(
+			createShareButton("titanLeaderboard", "Titan Leaderboard"),
+		);
+
 	titanRecords.forEach((titan, index) => {
 		//(A) Select table row of Titan Leaderboard
 		const tableRow = `#titanLeaderboard table tr:nth-child(${index + 2})`; //(+2 to skip over header row)
@@ -87,14 +100,9 @@ function displayTitanRecords(titanRecords) {
 		//
 		// (4) SHARE BUTTON
 		//
-		const card = document.getElementById(titanNameID);
-		const sectionTitle = card.querySelector('.section-title');
-		const shareBtn = document.createElement('button');
-		shareBtn.className = 'titanCard-share-btn';
-		shareBtn.textContent = 'Share ↗';
-		shareBtn.setAttribute('aria-label', `Share ${titan.titan_name}'s stats card`);
-		shareBtn.addEventListener('click', () => handleShare(titanNameID, titan.titan_name, shareBtn));
-		sectionTitle.appendChild(shareBtn);
+		document
+			.querySelector(`#${titanNameID} .section-content`)
+			.appendChild(createShareButton(titanNameID, titan.titan_name));
 
 		// Move Titan Card to proper place in rank order
 		const body = document.body;
@@ -109,24 +117,41 @@ function displayTitanRecords(titanRecords) {
 
 /* --------------------------- */
 /*                             */
+/*     CREATE SHARE BUTTON     */
+/*                             */
+/* --------------------------- */
+function createShareButton(sectionId, sectionName) {
+	const btn = document.createElement("button");
+	btn.className = "section-share-btn";
+	btn.textContent = "Share ↗";
+	btn.setAttribute("aria-label", `Share ${sectionName}`);
+	btn.addEventListener("click", () =>
+		handleShare(sectionId, sectionName, btn),
+	);
+	return btn;
+}
+
+/* --------------------------- */
+/*                             */
 /*      SHARE HANDLER          */
 /*                             */
 /* --------------------------- */
-async function handleShare(titanId, titanName, btn) {
+async function handleShare(sectionId, sectionName, btn) {
+	const url = `${window.location.origin}/#${sectionId}`;
 	const url = `${window.location.origin}/#${titanId}`;
 
-	if (typeof gtag === 'function') {
-		gtag('event', 'share_card', {
-			event_category: 'engagement',
-			event_label: titanName,
+	if (typeof gtag === "function") {
+		gtag("event", "share_card", {
+			event_category: "engagement",
+			event_label: sectionName,
 		});
 	}
 
 	if (navigator.share) {
 		try {
 			await navigator.share({
-				title: 'Titan Tracker',
-				text: `Check out ${titanName}'s stats on Titan Tracker`,
+				title: "Titan Tracker",
+				text: `Check out ${sectionName} on Titan Tracker`,
 				url,
 			});
 		} catch (e) {
@@ -136,7 +161,7 @@ async function handleShare(titanId, titanName, btn) {
 		try {
 			await navigator.clipboard.writeText(url);
 			const original = btn.textContent;
-			btn.textContent = '✓ Copied!';
+			btn.textContent = "✓ Copied!";
 			btn.disabled = true;
 			setTimeout(() => {
 				btn.textContent = original;

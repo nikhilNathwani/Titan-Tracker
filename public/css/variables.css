@@ -1,0 +1,44 @@
+:root {
+	--hue: 255;
+
+	/* Surfaces */
+	--clr-dark: #0f0915;
+	--clr-mid: hsl(var(--hue), 20%, 17%);
+	--clr-surface-hover: hsl(var(--hue), 20%, 20%);
+
+	/* Text */
+	--clr-light: hsl(var(--hue), 9%, 86%);
+	--clr-text-tertiary: hsl(var(--hue), 9%, 65%);
+	--clr-text-secondary: hsl(var(--hue), 9%, 57%);
+	--clr-text-dim: hsl(var(--hue), 9%, 45%);
+
+	/* Accent */
+	--clr-accent: #ccc289;
+	--clr-accent-rgb: 204, 194, 137;
+
+	/* Borders */
+	--clr-border-subtle: hsl(var(--hue), 12%, 22%);
+	--clr-border-mid: hsl(var(--hue), 15%, 28%);
+	--clr-border-card: hsl(43, 30%, 38%);
+
+	/* Ranks */
+	--clr-rank1: hsl(43, 65%, 50%);
+	--clr-rank1-text: hsl(40, 30%, 10%);
+	--clr-rank2: hsl(215, 10%, 62%);
+	--clr-rank2-text: hsl(220, 20%, 12%);
+	--clr-rank3: hsl(28, 60%, 52%);
+	--clr-rank3-text: hsl(28, 30%, 10%);
+
+	/* Special */
+	--clr-neg: hsl(0, 25%, 62%);
+
+	/* Font scale */
+	--fs-xs: 0.6875rem;
+	--fs-sm: 0.75rem;
+	--fs-base: 0.875rem;
+	--fs-md: 1rem;
+	--fs-lg: 1.125rem;
+	--fs-name: 1.375rem;
+	--fs-stat: 1.75rem;
+	--fs-hero: 2.5rem;
+}
