@@ -131,3 +131,9 @@
 	inset: 0;
 	z-index: 98;
 }
+
+.nav-divider {
+	border: none;
+	border-top: 1px solid var(--clr-border-subtle);
+	margin: 0.375rem 0;
+}

@@ -122,6 +122,12 @@
 	color: var(--clr-text-secondary);
 }
 
+.record-sep {
+	font-size: var(--fs-md);
+	font-weight: normal;
+	color: var(--clr-text-dim);
+}
+
 /* --------------------------- */
 /*      INGREDIENT LIST        */
 /* --------------------------- */

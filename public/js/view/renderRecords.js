@@ -138,7 +138,6 @@ function createShareButton(sectionId, sectionName) {
 /* --------------------------- */
 async function handleShare(sectionId, sectionName, btn) {
 	const url = `${window.location.origin}/#${sectionId}`;
-	const url = `${window.location.origin}/#${titanId}`;
 
 	if (typeof gtag === "function") {
 		gtag("event", "share_card", {

@@ -1,3 +1,5 @@
+import ShareButton from "./ShareButton";
+
 export default function WinLoss({ num_win, num_tie, num_loss }) {
 	const total = num_win + num_tie + num_loss;
 	const percentSuccess = ((100 * num_win) / total).toPrecision(3);
@@ -6,6 +8,7 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 		<div className="section" id="winLoss">
 			<p className="section-label">Team Record</p>
 			<div className="section-content">
+				<ShareButton sectionId="winLoss" sectionName="Team Record" />
 				<div className="winloss-banner">
 					<img src="/img/all-titans.jpg" alt="The Titans" />
 				</div>
