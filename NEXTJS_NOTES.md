@@ -266,6 +266,48 @@ To escape the module scope and target a global class from inside a module:
 
 For Titan Tracker, Vercel is used because it's free, has a great CI/CD integration, and the team that made Next.js optimizes for it. But it's not required.
 
+### Is Next.js part of Node.js?
+
+**No, but it runs on top of Node.js.** Think of it this way:
+
+- **Node.js** is the JavaScript runtime — the engine that lets JavaScript run outside the browser. It's like the JVM for Java, or the Python interpreter for Python.
+- **npm** is Node's package manager — how you install libraries and run scripts.
+- **Next.js** is a framework that runs *inside* Node.js, the same way Django runs inside Python or Rails runs inside Ruby.
+
+```
+Node.js (runtime)
+  └── Next.js (framework, runs as a Node.js process)
+        └── React (UI library, bundled by Next.js)
+```
+
+When you run `npm run dev`, Node.js starts a process that runs the Next.js dev server. When you run `npm run build`, Node.js runs the Next.js build pipeline. Node.js is the foundation; Next.js is what you build with.
+
+### How do you create a new Next.js project?
+
+**You don't set up the file structure manually.** One command scaffolds everything:
+
+```bash
+npx create-next-app@latest my-project
+```
+
+The CLI prompts you: TypeScript? Tailwind? App Router or Pages Router? ESLint? — and generates a project configured to your answers:
+
+```
+my-project/
+├── app/
+│   ├── layout.js
+│   ├── page.js
+│   └── globals.css
+├── public/
+├── next.config.mjs
+├── package.json
+└── jsconfig.json
+```
+
+The `app/` directory, the root layout, the global CSS import, the `jsconfig.json` path alias — all generated for you.
+
+Titan Tracker was an existing Express app before migrating to Next.js, so the migration was manual (moving SQL queries into `lib/`, rewriting the Express routes as Server Components, etc.). But for a fresh project, `create-next-app` is the standard starting point and sets up all the boilerplate.
+
 ---
 
 ## Part 5: TanStack and the React Ecosystem
@@ -436,15 +478,15 @@ Neither file is imported or served by the Next.js app. They're dead code.
 
 Firebase is **Backend as a Service (BaaS)** — a suite of hosted backend infrastructure from Google. You don't manage servers, databases, or auth systems yourself; you call Firebase SDKs from your app and the infrastructure runs on Google's cloud.
 
-| Service | What it does |
-| ---- | ---- |
-| **Firestore** | NoSQL document database with real-time sync |
+| Service               | What it does                                                          |
+| --------------------- | --------------------------------------------------------------------- |
+| **Firestore**         | NoSQL document database with real-time sync                           |
 | **Realtime Database** | Simpler JSON tree database (older; prefer Firestore for new projects) |
-| **Authentication** | Sign-in with email, Google, GitHub, Apple, etc. |
-| **Storage** | File uploads (images, video, PDFs) |
-| **Hosting** | Static web hosting with a CDN |
-| **Functions** | Serverless functions triggered by events or HTTP |
-| **Emulator Suite** | Runs all services locally so you don't need a live project to develop |
+| **Authentication**    | Sign-in with email, Google, GitHub, Apple, etc.                       |
+| **Storage**           | File uploads (images, video, PDFs)                                    |
+| **Hosting**           | Static web hosting with a CDN                                         |
+| **Functions**         | Serverless functions triggered by events or HTTP                      |
+| **Emulator Suite**    | Runs all services locally so you don't need a live project to develop |
 
 ### Firebase vs Next.js — not competitors
 
@@ -462,26 +504,26 @@ Slidemoji is a Firebase-native app: the whole backend is Firebase services (Fire
 
 These ARE competitors:
 
-| | Firebase Hosting | Vercel |
-| ---- | ---- | ---- |
-| Best for | Firebase-native apps, static sites | Next.js, React/Vue apps |
-| Next.js support | Basic (needs workarounds for SSR) | First-class (made by same team) |
-| CDN | Global | Global |
-| Preview deploys | Yes | Yes |
-| CI/CD | GitHub Actions or Firebase CLI | Automatic on push |
+|                 | Firebase Hosting                   | Vercel                          |
+| --------------- | ---------------------------------- | ------------------------------- |
+| Best for        | Firebase-native apps, static sites | Next.js, React/Vue apps         |
+| Next.js support | Basic (needs workarounds for SSR)  | First-class (made by same team) |
+| CDN             | Global                             | Global                          |
+| Preview deploys | Yes                                | Yes                             |
+| CI/CD           | GitHub Actions or Firebase CLI     | Automatic on push               |
 
 For a Next.js app → Vercel. For a Firebase-native app → Firebase Hosting.
 
 ### Firestore vs PostgreSQL
 
-| | Firestore | PostgreSQL (Titan Tracker) |
-| ---- | ---- | ---- |
-| Type | NoSQL document DB | Relational (SQL) |
-| Schema | Schema-less, flexible | Strict schema with types |
-| Queries | No JOINs, limited aggregations | Full SQL: JOINs, GROUP BY, window functions |
-| Real-time | Built-in live listeners | Not built-in |
-| Scaling | Auto-scales | Manual (or managed service like Neon) |
-| Good for | User-generated content, live sync, flexible schemas | Analytics, stats, structured relational data |
+|           | Firestore                                           | PostgreSQL (Titan Tracker)                   |
+| --------- | --------------------------------------------------- | -------------------------------------------- |
+| Type      | NoSQL document DB                                   | Relational (SQL)                             |
+| Schema    | Schema-less, flexible                               | Strict schema with types                     |
+| Queries   | No JOINs, limited aggregations                      | Full SQL: JOINs, GROUP BY, window functions  |
+| Real-time | Built-in live listeners                             | Not built-in                                 |
+| Scaling   | Auto-scales                                         | Manual (or managed service like Neon)        |
+| Good for  | User-generated content, live sync, flexible schemas | Analytics, stats, structured relational data |
 
 **Titan Tracker → PostgreSQL**: wins, losses, per-round scores, averages, and rankings are highly relational and benefit from SQL aggregation power.
 
@@ -491,14 +533,14 @@ For a Next.js app → Vercel. For a Firebase-native app → Firebase Hosting.
 
 When you need user accounts in a Next.js app:
 
-| | Firebase Auth | Auth.js (next-auth) | Clerk |
-| ---- | ---- | ---- | ---- |
-| Best with | Firebase backend | Any DB (PostgreSQL, MySQL, etc.) | Any setup |
-| Setup | Firebase SDK | npm package + config | npm package + Clerk dashboard |
-| Providers | Google, GitHub, email, phone, etc. | Same | Same |
-| UI components | Basic | None (DIY) | Polished, pre-built |
-| Cost | Free up to limits | Free (open source) | Free tier, then paid |
-| Works with Firestore security rules | Yes (native) | No | No |
+|                                     | Firebase Auth                      | Auth.js (next-auth)              | Clerk                         |
+| ----------------------------------- | ---------------------------------- | -------------------------------- | ----------------------------- |
+| Best with                           | Firebase backend                   | Any DB (PostgreSQL, MySQL, etc.) | Any setup                     |
+| Setup                               | Firebase SDK                       | npm package + config             | npm package + Clerk dashboard |
+| Providers                           | Google, GitHub, email, phone, etc. | Same                             | Same                          |
+| UI components                       | Basic                              | None (DIY)                       | Polished, pre-built           |
+| Cost                                | Free up to limits                  | Free (open source)               | Free tier, then paid          |
+| Works with Firestore security rules | Yes (native)                       | No                               | No                            |
 
 ---
 
@@ -533,16 +575,16 @@ The `client:load` (or `client:idle`, `client:visible`) directive opts a componen
 
 ### Astro vs Next.js for Titan Tracker
 
-| | Next.js (current) | Astro (hypothetical) |
-| ---- | ---- | ---- |
-| Rendering | SSG via React Server Components | SSG via Islands Architecture |
-| JavaScript sent | Client Components get hydrated | Only explicitly marked islands |
-| Interactive components | `"use client"` directive | `client:load` directive |
-| Data fetching | `async` server components | Frontmatter in `.astro` files |
-| React support | Native (it's a React framework) | Integration (add via `astro add react`) |
-| Content/blog support | Basic | First-class (Content Collections) |
-| Community | Very large | Smaller but growing |
-| Job market | Widely sought | Less common |
+|                        | Next.js (current)               | Astro (hypothetical)                    |
+| ---------------------- | ------------------------------- | --------------------------------------- |
+| Rendering              | SSG via React Server Components | SSG via Islands Architecture            |
+| JavaScript sent        | Client Components get hydrated  | Only explicitly marked islands          |
+| Interactive components | `"use client"` directive        | `client:load` directive                 |
+| Data fetching          | `async` server components       | Frontmatter in `.astro` files           |
+| React support          | Native (it's a React framework) | Integration (add via `astro add react`) |
+| Content/blog support   | Basic                           | First-class (Content Collections)       |
+| Community              | Very large                      | Smaller but growing                     |
+| Job market             | Widely sought                   | Less common                             |
 
 **Would Astro have been a good choice for Titan Tracker?**
 
@@ -563,13 +605,13 @@ Technically yes — the site is mostly static HTML with only two interactive com
 
 ### When to choose Astro
 
-| Situation | Choice |
-| ---- | ---- |
-| Blog, docs, or content-heavy site | ✅ Astro |
-| Marketing landing page (perf-critical) | ✅ Astro |
-| Mixed framework team | ✅ Astro |
-| Stats/dashboard that might get user features | ✅ Next.js |
-| App with real-time data or auth | ✅ Next.js |
+| Situation                                     | Choice                       |
+| --------------------------------------------- | ---------------------------- |
+| Blog, docs, or content-heavy site             | ✅ Astro                     |
+| Marketing landing page (perf-critical)        | ✅ Astro                     |
+| Mixed framework team                          | ✅ Astro                     |
+| Stats/dashboard that might get user features  | ✅ Next.js                   |
+| App with real-time data or auth               | ✅ Next.js                   |
 | Full-stack with complex routing and API needs | ✅ Next.js or TanStack Start |
 
 ---
@@ -610,12 +652,12 @@ Note: **BaaS is not a layer you must have** — it's an alternative to running t
 
 ### Your projects mapped onto this table
 
-| Project | Hosting | Framework | UI | API / Backend | Database |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| **Titan Tracker** | Vercel | Next.js | React | Next.js SSG (no API routes at runtime) | PostgreSQL (Neon) |
-| **Slidemoji** | Firebase Hosting | Vite (SPA, no full-stack framework) | React | Firebase Functions | Firestore |
-| **NBA Schedule Saver** | Vercel | — (Express) | Vanilla JS | Express | — (calls Todoist API) |
-| **Trigram** | — | — | Vanilla JS | — | — |
+| Project                | Hosting          | Framework                           | UI         | API / Backend                          | Database              |
+| ---------------------- | ---------------- | ----------------------------------- | ---------- | -------------------------------------- | --------------------- |
+| **Titan Tracker**      | Vercel           | Next.js                             | React      | Next.js SSG (no API routes at runtime) | PostgreSQL (Neon)     |
+| **Slidemoji**          | Firebase Hosting | Vite (SPA, no full-stack framework) | React      | Firebase Functions                     | Firestore             |
+| **NBA Schedule Saver** | Vercel           | — (Express)                         | Vanilla JS | Express                                | — (calls Todoist API) |
+| **Trigram**            | —                | —                                   | Vanilla JS | —                                      | —                     |
 
 ### Key relationships at a glance
 
@@ -676,3 +718,68 @@ Runtime (user plays a game):
   No separate Express/Node server in the middle.
   The frontend talks directly to Firebase services via the SDK.
 ```
+
+---
+
+## Part 12: Next.js vs Other Backend Frameworks
+
+Most web frameworks follow the same basic pattern: receive HTTP request → run logic → return response. What differs is the language, the ecosystem, and how much they give you out of the box.
+
+| Framework | Language | Type | Good for |
+| ---- | ---- | ---- | ---- |
+| **Next.js** | JavaScript / TypeScript | Full-stack React framework | Content sites, SPAs, full-stack JS apps |
+| **Express (Node.js)** | JavaScript | Minimal backend framework | REST APIs, backend-for-frontend, microservices |
+| **Django** | Python | Full-stack, "batteries included" | CRUD apps, admin-heavy tools, rapid prototyping |
+| **Flask** | Python | Minimal backend framework | Simple APIs, ML model serving, microservices |
+| **ASP.NET Core** | C# | Full-stack framework | Enterprise apps, Microsoft/Azure ecosystem |
+| **Rails** | Ruby | Full-stack, convention-over-configuration | Rapid prototyping, CRUD apps |
+
+### Node.js vs Next.js
+
+This is the most important one to be clear on: **Node.js is not a framework** — it's a JavaScript runtime. Express is a minimal framework that runs in Node.js. Next.js is a full-stack framework that also runs in Node.js.
+
+You don't choose "Node.js vs Next.js". You choose what framework to use, and both run in Node.js.
+
+```
+# Express: you wire everything manually
+HTTP request → your routing code → your controller → response
+
+# Next.js: routing is automatic, UI is colocated
+HTTP request → file-based routing → Server Component → HTML response
+```
+
+Express is the right tool when you need a pure JSON API (no UI), fine-grained HTTP control, or a backend that serves a separate frontend (mobile app, desktop client). Next.js is the right tool when the frontend and backend belong together.
+
+### Django vs Next.js
+
+| | Django | Next.js |
+| ---- | ---- | ---- |
+| Language | Python | JavaScript |
+| Templates | Django templates (Jinja-like) | React (JSX) |
+| ORM | Built-in Django ORM | None — use Prisma, Drizzle, or raw SQL |
+| Admin panel | Auto-generated from models | None built-in |
+| Auth | Built-in | Use Auth.js, Clerk, or Firebase Auth |
+| Migrations | Built-in | None — use your ORM's migration tool |
+| Best for | CRUD-heavy apps, Python teams | React-heavy UIs, JavaScript teams |
+
+Django's "batteries included" philosophy means you get an ORM, admin UI, auth, forms, and migrations out of the box. Next.js is more modular — you compose libraries for each concern. Neither is better; it's a language and ecosystem choice.
+
+### Flask vs Next.js
+
+Flask is Python's minimal web framework (like Express but Python). It has no built-in ORM, no admin panel, no auth — just routing and request/response handling. It's a good fit for:
+
+- Simple REST APIs that a separate frontend (React, mobile) calls
+- Data science backends — serving ML model predictions (FastAPI is also popular here)
+- Prototypes where you want maximum control and minimum magic
+
+Next.js collocates the UI with the backend. Flask is backend-only — you'd pair it with a separate React app or use Jinja templates for server-rendered HTML.
+
+### ASP.NET Core vs Next.js
+
+ASP.NET Core is Microsoft's web framework, written in C# on the .NET runtime. It's not something you'd typically encounter at a startup, but it dominates in:
+
+- **Enterprise software** — banks, healthcare, insurance, government
+- **Microsoft/Azure-heavy shops** — teams already in the Windows/C# ecosystem
+- **Strongly-typed, compiled performance** — C# is statically typed and compiles to optimized native code
+
+ASP.NET is a language-ecosystem choice (you're in C#/.NET land with Visual Studio, Azure, NuGet). Next.js is a JavaScript-ecosystem choice. You'd pick one based on your team's language background, not because one is technically superior for all cases.
