@@ -4,11 +4,16 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
-export default function ShareButton({ sectionId, sectionName }) {
+const SHOW_CONTEXT = "Bobby's Triple Threat on Food Network";
+
+export default function ShareButton({ sectionId, sectionName, shareText }) {
 	const [copied, setCopied] = useState(false);
 
 	async function handleShare() {
 		const url = `${window.location.origin}/#${sectionId}`;
+		const baseText =
+			shareText ?? `Check out ${sectionName} on Titan Tracker`;
+		const fullText = `${baseText} (${SHOW_CONTEXT})`;
 
 		if (typeof gtag === "function") {
 			gtag("event", "share_card", {
@@ -21,7 +26,7 @@ export default function ShareButton({ sectionId, sectionName }) {
 			try {
 				await navigator.share({
 					title: "Titan Tracker",
-					text: `Check out ${sectionName} on Titan Tracker`,
+					text: fullText,
 					url,
 				});
 			} catch (e) {
@@ -29,7 +34,7 @@ export default function ShareButton({ sectionId, sectionName }) {
 			}
 		} else {
 			try {
-				await navigator.clipboard.writeText(url);
+				await navigator.clipboard.writeText(`${fullText}\n${url}`);
 				setCopied(true);
 				setTimeout(() => setCopied(false), 2000);
 			} catch (e) {

@@ -7,6 +7,7 @@ import { pool } from "@/lib/db";
 import { titanRecordsQuery } from "@/lib/queries";
 import { generateRankStrings } from "@/lib/ranking";
 import SiteHeader from "@/components/SiteHeader";
+import Footer from "@/components/Footer";
 
 config.autoAddCss = false;
 
@@ -74,6 +75,7 @@ export default async function RootLayout({ children }) {
 					inactiveTitans={inactiveTitans}
 				/>
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
