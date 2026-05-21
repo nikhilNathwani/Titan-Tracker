@@ -9,7 +9,6 @@ import {
 	perRoundStatsQuery,
 } from "@/lib/queries";
 import { generateRankStrings } from "@/lib/ranking";
-import SiteHeader from "@/components/SiteHeader";
 import WinLoss from "@/components/WinLoss";
 import TitanLeaderboard from "@/components/TitanLeaderboard";
 import TitanCard from "@/components/TitanCard";
@@ -115,10 +114,6 @@ export default async function Home() {
 
 	return (
 		<>
-			<SiteHeader
-				activeTitans={activeTitans}
-				inactiveTitans={inactiveTitans}
-			/>
 			<div id="heroSection" className={pageStyles.heroSection}>
 				<Image
 					src={heroImg}

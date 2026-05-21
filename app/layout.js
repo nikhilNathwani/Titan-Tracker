@@ -3,6 +3,10 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../public/css/variables.css";
 import "../public/css/base.css";
+import { pool } from "@/lib/db";
+import { titanRecordsQuery } from "@/lib/queries";
+import { generateRankStrings } from "@/lib/ranking";
+import SiteHeader from "@/components/SiteHeader";
 
 config.autoAddCss = false;
 
@@ -30,7 +34,26 @@ export const metadata = {
 	},
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const titanRecordsResult = await pool.query(titanRecordsQuery);
+	const titanRecords = titanRecordsResult.rows.map((t) => ({
+		titan_name: t.titan_name,
+		num_win: parseInt(t.num_win, 10),
+		num_tie: parseInt(t.num_tie, 10),
+		num_loss: parseInt(t.num_loss, 10),
+		rank: t.rank === null ? null : parseInt(t.rank, 10),
+		is_active: t.is_active,
+	}));
+	const rankStrings = generateRankStrings(titanRecords.map((t) => t.rank));
+	const titansWithRanks = titanRecords.map((t, i) => ({
+		...t,
+		rankString: rankStrings[i],
+	}));
+	const activeTitans = titansWithRanks
+		.filter((t) => t.rank !== null)
+		.sort((a, b) => a.rank - b.rank);
+	const inactiveTitans = titansWithRanks.filter((t) => t.rank === null);
+
 	return (
 		<html lang="en">
 			<body>
@@ -46,6 +69,10 @@ export default function RootLayout({ children }) {
 						gtag('config', 'G-M9MMZFVNHC');
 					`}
 				</Script>
+				<SiteHeader
+					activeTitans={activeTitans}
+					inactiveTitans={inactiveTitans}
+				/>
 				{children}
 			</body>
 		</html>
