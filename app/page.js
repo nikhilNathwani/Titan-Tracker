@@ -12,7 +12,6 @@ import { generateRankStrings } from "@/lib/ranking";
 import WinLoss from "@/components/WinLoss";
 import TitanLeaderboard from "@/components/TitanLeaderboard";
 import TitanCard from "@/components/TitanCard";
-import Footer from "@/components/Footer";
 import pageStyles from "./page.module.css";
 
 // Render this page as static HTML at build time (SSG).
@@ -183,7 +182,6 @@ export default async function Home() {
 					</p>
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 }

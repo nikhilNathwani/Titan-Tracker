@@ -10,6 +10,7 @@ export default function TitanLeaderboard({ titans }) {
 				<ShareButton
 					sectionId="titanLeaderboard"
 					sectionName="Titan Leaderboard"
+					shareText="Check out the Titan Leaderboard on Titan Tracker"
 				/>
 				<div className={styles.leaderboard}>
 					{titans.map((titan) => {
