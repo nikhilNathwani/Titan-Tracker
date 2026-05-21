@@ -12,22 +12,22 @@ React lets you build UI components, manage state, and respond to events. But it 
 
 - **Routing** — React has no router. You'd add React Router yourself.
 
-  > **Q:** What is routing? Is it just enabling sub-URLs like a sitemap?
-  >
-  > **A:** Routing maps URLs to the code that should run when someone visits them. It's much more than a sitemap (which just lists URLs for search engines) — routing is what decides "user went to `/about`, so run *this* code." In Next.js, routing is file-based: creating `app/about/page.js` automatically makes `/about` work, no manual wiring needed.
+    > **Q:** What is routing? Is it just enabling sub-URLs like a sitemap?
+    >
+    > **A:** Routing maps URLs to the code that should run when someone visits them. It's much more than a sitemap (which just lists URLs for search engines) — routing is what decides "user went to `/about`, so run _this_ code." In Next.js, routing is file-based: creating `app/about/page.js` automatically makes `/about` work, no manual wiring needed.
 
 - **SSR/SSG** — By default, a React SPA renders entirely in the browser. Search engines and link previews can't easily read the content because the HTML is blank until JavaScript runs.
 - **Data fetching conventions** — React doesn't tell you how to fetch data or when.
 
-  > **Q:** Does "data fetching" refer to the CSR/SSR/SSG stuff?
-  >
-  > **A:** They're closely linked but different. Data fetching is *how and when* you retrieve data (from a DB, an API, etc.). CSR/SSR/SSG determine *where* HTML is built. The rendering strategy dictates when fetching happens: SSG fetches at build time, SSR fetches on every server request, CSR fetches in the browser after JavaScript loads.
+    > **Q:** Does "data fetching" refer to the CSR/SSR/SSG stuff?
+    >
+    > **A:** They're closely linked but different. Data fetching is _how and when_ you retrieve data (from a DB, an API, etc.). CSR/SSR/SSG determine _where_ HTML is built. The rendering strategy dictates when fetching happens: SSG fetches at build time, SSR fetches on every server request, CSR fetches in the browser after JavaScript loads.
 
 - **A server** — A raw React app is a static bundle. It has no backend.
 
-  > **Q:** What does "static bundle" mean? How does this compare to Titan Tracker vs. NBA Moneyline?
-  >
-  > **A:** A static bundle is what a plain React (Vite/CRA) app produces: a folder of JS files where the HTML is nearly empty (`<div id="root"></div>`). React fills that div by running JavaScript in the browser. In the old NBA Moneyline (Express): browser loads empty HTML → downloads JS → JS calls `/api/stats` → waits → builds DOM. In Titan Tracker (Next.js SSG): `npm run build` pre-renders complete HTML with all data already inside it. Users receive the full page immediately.
+    > **Q:** What does "static bundle" mean? How does this compare to Titan Tracker vs. NBA Moneyline?
+    >
+    > **A:** A static bundle is what a plain React (Vite/CRA) app produces: a folder of JS files where the HTML is nearly empty (`<div id="root"></div>`). React fills that div by running JavaScript in the browser. In the old NBA Moneyline (Express): browser loads empty HTML → downloads JS → JS calls `/api/stats` → waits → builds DOM. In Titan Tracker (Next.js SSG): `npm run build` pre-renders complete HTML with all data already inside it. Users receive the full page immediately.
 
 ### Next.js fills those gaps
 
@@ -46,8 +46,13 @@ Next.js is a **React framework**. It wraps React and adds:
 > **Q:** Should I use `next/image` and `next/font`? Do I already use them?
 >
 > **A:** You're not using either yet. Both are worth switching to:
+>
 > - **`next/image`**: replace plain `<img>` tags (used for titan avatars). Gets you automatic lazy loading, WebP conversion, and prevents layout shift by requiring explicit `width`/`height`.
 > - **`next/font`**: replace the Google Fonts `<link>` tag in `layout.js`. Inlines font data at build time, eliminating the external Google Fonts request and preventing flash of unstyled text (FOUT).
+>
+> **Q:** Can you implement the image and font optimizations in Titan Tracker?
+>
+> **A:** Done. `next/image` is now used for titan avatar images in `TitanCard.jsx` — replaced the plain `<img>` tags with `<Image width={88} height={88} />`, which reserves layout space and enables lazy loading + WebP conversion automatically. `next/font` doesn't apply here because the app already uses Arial (a system font), not Google Fonts — no external font request to optimize. As a bonus, also fixed the flash of oversized share icon by adding `config.autoAddCss = false` + importing FontAwesome's CSS statically in `app/layout.js` (the canonical Next.js + FontAwesome FOIC fix).
 
 ### The old way vs the Next.js way (for Titan Tracker)
 
@@ -87,24 +92,26 @@ In the App Router:
 - `app/about/page.js` → renders at `/about`
 - `app/layout.js` → a persistent shell that wraps all pages (navigation, `<html>`, `<body>`)
 
-  > **Q:** Should `SiteHeader` (hamburger nav) live in `layout.js` since it persists across pages?
-  >
-  > **A:** Yes, ideally. Right now it's in `page.js` because there's only one route. If you add a second page (e.g., `/about`), move `SiteHeader` to `layout.js` so it appears everywhere automatically without duplicating it.
+    > **Q:** Should `SiteHeader` (hamburger nav) live in `layout.js` since it persists across pages?
+    >
+    > **A:** Yes, ideally. Right now it's in `page.js` because there's only one route. If you add a second page (e.g., `/about`), move `SiteHeader` to `layout.js` so it appears everywhere automatically without duplicating it.
+
 - `app/loading.js` → shown while the page loads (optional)
 - `app/error.js` → shown if the page throws an error (optional)
 
-  > **Q:** Should I add `app/loading.js` and `app/error.js`?
-  >
-  > **A:** For Titan Tracker as-is (SSG, single page): not critical. `loading.js` is for pages with async data that takes time — since the page builds at deploy time, visitors never wait. `app/error.js` is worth adding if you want a polished fallback instead of Next.js's default crash page. For a multi-page production app, both become more important.
+    > **Q:** Should I add `app/loading.js` and `app/error.js`?
+    >
+    > **A:** For Titan Tracker as-is (SSG, single page): not critical. `loading.js` is for pages with async data that takes time — since the page builds at deploy time, visitors never wait. `app/error.js` is worth adding if you want a polished fallback instead of Next.js's default crash page. For a multi-page production app, both become more important.
+
 - `app/api/route.js` → a serverless API endpoint at `/api`
 
-  > **Q:** What is this? What does "serverless" mean? Do I use it in Titan Tracker? Earlier you said React doesn't give you a server, but now we're talking about *server*less?
-  >
-  > **A:** An API route is a file that returns data (JSON, etc.) instead of HTML — like an Express handler but colocated in your Next.js app. "Serverless" means there's no permanent server process: Vercel spins up a temporary function per request, runs it, and shuts it down. You never manage a server — just write the function.
-  >
-  > Titan Tracker has **no API routes** because data is fetched once at build time (SSG) and the resulting HTML is static. There's nothing to serve at runtime. You'd add API routes only if users needed to submit data or if you needed fresh data on each request.
-  >
-  > The "server vs serverless" confusion: React alone = no backend code at all. Next.js = you *can* run backend code, either in Server Components (at build time for SSG) or in API routes (on-demand as serverless functions). "Serverless" doesn't mean no server — it means you don't manage the server infrastructure.
+    > **Q:** What is this? What does "serverless" mean? Do I use it in Titan Tracker? Earlier you said React doesn't give you a server, but now we're talking about *server*less?
+    >
+    > **A:** An API route is a file that returns data (JSON, etc.) instead of HTML — like an Express handler but colocated in your Next.js app. "Serverless" means there's no permanent server process: Vercel spins up a temporary function per request, runs it, and shuts it down. You never manage a server — just write the function.
+    >
+    > Titan Tracker has **no API routes** because data is fetched once at build time (SSG) and the resulting HTML is static. There's nothing to serve at runtime. You'd add API routes only if users needed to submit data or if you needed fresh data on each request.
+    >
+    > The "server vs serverless" confusion: React alone = no backend code at all. Next.js = you _can_ run backend code, either in Server Components (at build time for SSG) or in API routes (on-demand as serverless functions). "Serverless" doesn't mean no server — it means you don't manage the server infrastructure.
 
 In this project: `app/layout.js` holds the `<html>` shell and GA scripts. `app/page.js` is the entire home page.
 
@@ -271,16 +278,17 @@ To escape the module scope and target a global class from inside a module:
 - **Performance matters** — faster first paint from pre-rendered HTML vs. waiting for JS to run
 - **You have a database or API** — Next.js API routes or server components handle the backend cleanly
 
-  > **Q:** Should I migrate NBA Moneyline to Next.js? What about Todoist NBA Schedule Saver?
-  >
-  > **A:** **NBA Moneyline**: yes, strong candidate. Same pattern as Titan Tracker — PostgreSQL, read-heavy, rarely updated. The migration would be nearly identical.
-  > **Todoist NBA Schedule Saver**: probably not. It's a utility app with OAuth flows, user-specific sessions, and webhook-style imports — all dynamic by nature and with no SEO need. Express is actually a clean fit. If anything, migrate the frontend form to React for cleaner UI code, but keep Express for the logic.
+    > **Q:** Should I migrate NBA Moneyline to Next.js? What about Todoist NBA Schedule Saver?
+    >
+    > **A:** **NBA Moneyline**: yes, strong candidate. Same pattern as Titan Tracker — PostgreSQL, read-heavy, rarely updated. The migration would be nearly identical.
+    > **Todoist NBA Schedule Saver**: probably not. It's a utility app with OAuth flows, user-specific sessions, and webhook-style imports — all dynamic by nature and with no SEO need. Express is actually a clean fit. If anything, migrate the frontend form to React for cleaner UI code, but keep Express for the logic.
+
 - **Content changes infrequently** — SSG is ideal; you rebuild on deploy
 - **You want full-stack in one repo** — frontend and backend together, no separate Express server
 
-  > **Q:** Didn't I already have Express and frontend in one repo? Isn't that what NBA Moneyline and the Schedule Saver also have?
-  >
-  > **A:** Yes — the folder structure is the same. The distinction is the *runtime architecture*. With Express: a server process runs permanently, serves files from `public/`, and handles routes separately from your HTML. With Next.js: everything compiles into a single build artifact that Vercel runs as one coherent unit — React components, SSG, API routes, and routing are all part of the same system, not "static files over here, Express over there."
+    > **Q:** Didn't I already have Express and frontend in one repo? Isn't that what NBA Moneyline and the Schedule Saver also have?
+    >
+    > **A:** Yes — the folder structure is the same. The distinction is the _runtime architecture_. With Express: a server process runs permanently, serves files from `public/`, and handles routes separately from your HTML. With Next.js: everything compiles into a single build artifact that Vercel runs as one coherent unit — React components, SSG, API routes, and routing are all part of the same system, not "static files over here, Express over there."
 
 ### Prefer plain React (Vite/CRA) when:
 
@@ -298,20 +306,22 @@ To escape the module scope and target a global class from inside a module:
 - You're building a **pure REST API** that serves JSON to other apps or mobile clients
 - You need **fine-grained HTTP control** (custom middleware, streaming, WebSockets at scale)
 
-  > **Q:** What are WebSockets? Do any of my projects need them or already use them?
-  >
-  > **A:** HTTP is request/response — browser asks, server answers, connection closes. WebSockets are a persistent two-way connection — the server can push data to the browser at any time without being asked. Used for: live chat, live sports scores, collaborative editing, multiplayer games.
-  >
-  > Slidemoji uses Firestore's `onSnapshot()` real-time listeners, which is Firebase's abstraction over a WebSocket-like persistent connection. You don't write WebSocket code directly — Firebase handles it. Titan Tracker doesn't need WebSockets (static data). None of your other projects use them.
+    > **Q:** What are WebSockets? Do any of my projects need them or already use them?
+    >
+    > **A:** HTTP is request/response — browser asks, server answers, connection closes. WebSockets are a persistent two-way connection — the server can push data to the browser at any time without being asked. Used for: live chat, live sports scores, collaborative editing, multiplayer games.
+    >
+    > Slidemoji uses Firestore's `onSnapshot()` real-time listeners, which is Firebase's abstraction over a WebSocket-like persistent connection. You don't write WebSocket code directly — Firebase handles it. Titan Tracker doesn't need WebSockets (static data). None of your other projects use them.
+
 - Your frontend is separate (separate React app, or mobile)
 
 ### Don't use Next.js when:
 
 - It's a **simple static site** — use plain HTML/CSS or a static site generator like Astro
 
-  > **Q:** When is Astro better than vanilla? Would Trigram benefit from Astro?
-  >
-  > **A:** The break-even point for Astro over vanilla: you have multiple pages needing a shared layout, you want a build pipeline without writing your own, or you want to use React/Vue components in an otherwise static site. Trigram is likely a single-page word game with JS state — vanilla is the right call. Astro would add build tooling overhead with no real payoff for a self-contained single-page app.
+    > **Q:** When is Astro better than vanilla? Would Trigram benefit from Astro?
+    >
+    > **A:** The break-even point for Astro over vanilla: you have multiple pages needing a shared layout, you want a build pipeline without writing your own, or you want to use React/Vue components in an otherwise static site. Trigram is likely a single-page word game with JS state — vanilla is the right call. Astro would add build tooling overhead with no real payoff for a self-contained single-page app.
+
 - You need **real-time features** like chat or live scores — you'd still need a WebSocket server alongside Next.js
 - Your team is unfamiliar with React — Next.js adds complexity on top of React
 
@@ -373,7 +383,7 @@ npx create-next-app@latest my-project
 
 > **Q:** What is `npx`? Is it different from `npm`?
 >
-> **A:** `npm` installs packages and runs scripts defined in `package.json`. `npx` *runs* a package as a CLI tool without permanently installing it. `npx create-next-app@latest` downloads and runs the scaffolding tool once, then discards it — it doesn't end up in your `node_modules` or `package.json`. This is the standard pattern for one-time setup tools.
+> **A:** `npm` installs packages and runs scripts defined in `package.json`. `npx` _runs_ a package as a CLI tool without permanently installing it. `npx create-next-app@latest` downloads and runs the scaffolding tool once, then discards it — it doesn't end up in your `node_modules` or `package.json`. This is the standard pattern for one-time setup tools.
 
 The CLI prompts you: TypeScript? Tailwind? App Router or Pages Router? ESLint? — and generates a project configured to your answers:
 
@@ -447,9 +457,9 @@ A **full-stack React framework** — Next.js's closest competitor.
 - SSG is perfect — page builds once, serves fast to all users
 - Good for SEO (shareable link previews for the stat cards)
 
-  > **Q:** What are "shareable link previews"?
-  >
-  > **A:** When you paste a URL into iMessage, Twitter, Slack, or Discord, a preview card appears — title, description, and an image. This is driven by Open Graph `<meta>` tags in the page's HTML. For SSG/SSR pages, those tags are in the HTML when the platform fetches the URL. For a plain React SPA (empty HTML until JS runs), platforms can't read the tags and the preview fails or shows nothing. The `openGraph` block in Titan Tracker's `layout.js` `metadata` is what makes link previews work.
+    > **Q:** What are "shareable link previews"?
+    >
+    > **A:** When you paste a URL into iMessage, Twitter, Slack, or Discord, a preview card appears — title, description, and an image. This is driven by Open Graph `<meta>` tags in the page's HTML. For SSG/SSR pages, those tags are in the HTML when the platform fetches the URL. For a plain React SPA (empty HTML until JS runs), platforms can't read the tags and the preview fails or shows nothing. The `openGraph` block in Titan Tracker's `layout.js` `metadata` is what makes link previews work.
 
 ### NBA Moneyline — Strong migration candidate
 
@@ -523,17 +533,17 @@ Appears to be a static HTML/CSS/JS project. If it's just a simple word game with
 
 > **Q:** "`public/` — served at `/`" — but `app/page.js` is also served at `/`?
 >
-> **A:** These are different things served at different paths. The `public/` prefix is *stripped* from the URL: `public/css/base.css` is served at `/css/base.css`, and `public/img/avatar.jpg` is served at `/img/avatar.jpg`. No file in `public/` lives at the root URL `/`. Only `app/page.js` responds to the exact path `/`. They don't conflict.
+> **A:** These are different things served at different paths. The `public/` prefix is _stripped_ from the URL: `public/css/base.css` is served at `/css/base.css`, and `public/img/avatar.jpg` is served at `/img/avatar.jpg`. No file in `public/` lives at the root URL `/`. Only `app/page.js` responds to the exact path `/`. They don't conflict.
 
 ### What's project-specific (not Next.js convention):
 
-| Path                   | What it is                                                                                                                                                             |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data/`                | SQL seed scripts for the database                                                                                                                                      |
-| `app/queries/`         | Raw SQL files loaded at build time                                                                                                                                     |
-| `lib/queries.js`       | Loads SQL files and exports query strings                                                                                                                              |
-| `NEXTJS_NOTES.md`      | This file                                                                                                                                                              |
-| `INTERVIEW_STORIES.md` | Behavioral interview prep                                                                                                                                              |
+| Path                   | What it is                                |
+| ---------------------- | ----------------------------------------- |
+| `data/`                | SQL seed scripts for the database         |
+| `app/queries/`         | Raw SQL files loaded at build time        |
+| `lib/queries.js`       | Loads SQL files and exports query strings |
+| `NEXTJS_NOTES.md`      | This file                                 |
+| `INTERVIEW_STORIES.md` | Behavioral interview prep                 |
 
 > **Q:** What's the difference between `data/` and `app/queries/`? Do I need both?
 >
@@ -542,6 +552,9 @@ Appears to be a static HTML/CSS/JS project. If it's just a simple word game with
 > **Q:** Loading SQL from `.sql` files via `lib/queries.js` — is this unconventional? How do most Next.js developers manage SQL queries?
 >
 > **A:** Most Next.js developers use an ORM like Prisma or Drizzle, which lets you write queries in TypeScript instead of raw SQL files. Example with Prisma: `const titans = await prisma.titan.findMany({ include: { rounds: true } })`. Your raw SQL approach isn't wrong — it actually gives you more control for complex analytics queries (aggregations, window functions for rankings). For a typical CRUD app, Prisma would be simpler. For stats/analytics like Titan Tracker, raw SQL is a defensible and common choice.
+> **Q:** Given that SQL is a defensible choice for my use case, is the way I'm integrating SQL (i.e. `lib/queries.js`) idiomatic?
+>
+> **A:** Yes — it's idiomatic for a raw-SQL setup. `lib/queries.js` reads `.sql` files from disk at module load time using `fs.readFileSync`, exporting them as plain strings. `page.js` then passes those strings directly to `pool.query()`. The "manual/hacky" feeling is just unfamiliarity. Most developers doing raw SQL inline the SQL directly as JS template literals in the same file (one less indirection), but using separate `.sql` files is actually *better* practice because your editor gives you SQL syntax highlighting and formatting (via `prettier-plugin-sql`) that you'd lose with template literals. The only thing that would feel more conventional is using an ORM like Prisma or Drizzle — but for analytics queries with window functions and aggregations like yours, raw SQL gives you more control, and this pattern is standard.
 
 ### Express.js relics still present:
 
@@ -585,6 +598,7 @@ Neither file is imported or served by the Next.js app. They're dead code.
 > **Q:** Where does `export const dynamic = "force-static"` go in the file?
 >
 > **A:** Top of the file, before the component function, alongside other named exports. In `app/page.js` it sits right after the imports:
+>
 > ```js
 > export const dynamic = "force-static";
 >
@@ -611,9 +625,10 @@ Neither file is imported or served by the Next.js app. They're dead code.
 
 > The Pages Router is the original Next.js routing system. Pages are files in `pages/`, data fetching uses `getStaticProps`/`getServerSideProps`, and everything is a Client Component by default. The App Router (introduced in Next.js 13) is the modern system. It uses `app/`, supports React Server Components natively, collocates layouts and loading states, and is the recommended approach for new projects.
 
-> **Q:** What does "collocates layouts and loading states" mean? What does it look like *without* collocation?
+> **Q:** What does "collocates layouts and loading states" mean? What does it look like _without_ collocation?
 >
 > **A:** Collocation = keeping related files next to each other. In the App Router, all files for a route live together in one folder:
+>
 > ```
 > app/dashboard/
 >   page.js      ← the page
@@ -621,6 +636,7 @@ Neither file is imported or served by the Next.js app. They're dead code.
 >   loading.js   ← shown while it loads
 >   error.js     ← shown if it crashes
 > ```
+>
 > Without collocation (old Pages Router), layout was a separate component you manually imported, error pages lived in `pages/_error.js` globally, and there was no per-route loading state. The App Router makes the relationship explicit by folder structure.
 
 ### "Does Next.js require Vercel?"
@@ -639,15 +655,15 @@ Neither file is imported or served by the Next.js app. They're dead code.
 - **Vercel deployment** — `vercel.json` config, `main` branch triggers deploys
 - **App Router** — file-based routing with `app/page.js`
 
-  > **Q:** Am I using the App Router if Titan Tracker is just one page with no sub-URLs?
-  >
-  > **A:** Yes. Having one route doesn't mean you're not using the routing system — the `app/` directory, `app/layout.js`, and `app/page.js` are all App Router features. If you ever add `/about`, you just create `app/about/page.js` and Next.js handles it automatically.
+    > **Q:** Am I using the App Router if Titan Tracker is just one page with no sub-URLs?
+    >
+    > **A:** Yes. Having one route doesn't mean you're not using the routing system — the `app/` directory, `app/layout.js`, and `app/page.js` are all App Router features. If you ever add `/about`, you just create `app/about/page.js` and Next.js handles it automatically.
 
 - **Path aliases** — `@/` configured via `jsconfig.json`
 
-  > **Q:** What is the `@/` path alias? How am I using it? What would it look like without it?
-  >
-  > **A:** A path alias lets you import using a short prefix instead of relative paths. Without it: `import { pool } from "../../../lib/db"` (the `../` chain grows longer depending on how deep your file is). With `@/`: `import { pool } from "@/lib/db"` always means "from the project root." Configured in `jsconfig.json` as `{ "paths": { "@/*": ["./*"] } }`. Used throughout `app/page.js` and all components.
+    > **Q:** What is the `@/` path alias? How am I using it? What would it look like without it?
+    >
+    > **A:** A path alias lets you import using a short prefix instead of relative paths. Without it: `import { pool } from "../../../lib/db"` (the `../` chain grows longer depending on how deep your file is). With `@/`: `import { pool } from "@/lib/db"` always means "from the project root." Configured in `jsconfig.json` as `{ "paths": { "@/*": ["./*"] } }`. Used throughout `app/page.js` and all components.
 
 ---
 
@@ -657,15 +673,15 @@ Neither file is imported or served by the Next.js app. They're dead code.
 
 Firebase is **Backend as a Service (BaaS)** — a suite of hosted backend infrastructure from Google. You don't manage servers, databases, or auth systems yourself; you call Firebase SDKs from your app and the infrastructure runs on Google's cloud.
 
-| Service               | What it does                                                                                                                                       |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Firestore**         | NoSQL document database with real-time sync                                                                                                        |
-| **Realtime Database** | Simpler JSON tree database (older; prefer Firestore for new projects)                                                                              |
-| **Authentication**    | Sign-in with email, Google, GitHub, Apple, etc.                                                                                                    |
-| **Storage**           | File uploads (images, video, PDFs)                                                                                                                 |
-| **Hosting**           | Static web hosting with a CDN                                                                                                                      |
-| **Functions**         | Serverless functions triggered by events or HTTP                                                                                                   |
-| **Emulator Suite**    | Runs all services locally so you don't need a live project to develop                                                                              |
+| Service               | What it does                                                          |
+| --------------------- | --------------------------------------------------------------------- |
+| **Firestore**         | NoSQL document database with real-time sync                           |
+| **Realtime Database** | Simpler JSON tree database (older; prefer Firestore for new projects) |
+| **Authentication**    | Sign-in with email, Google, GitHub, Apple, etc.                       |
+| **Storage**           | File uploads (images, video, PDFs)                                    |
+| **Hosting**           | Static web hosting with a CDN                                         |
+| **Functions**         | Serverless functions triggered by events or HTTP                      |
+| **Emulator Suite**    | Runs all services locally so you don't need a live project to develop |
 
 > **Q:** Firebase Hosting — what is it? Is it different from Vercel? What's a CDN?
 >
@@ -674,6 +690,9 @@ Firebase is **Backend as a Service (BaaS)** — a suite of hosted backend infras
 > **Q:** Firebase Functions — what are they? Does Vercel have something equivalent? Does Slidemoji need both Vercel and Firebase?
 >
 > **A:** Firebase Functions are serverless Node.js functions deployed to Google Cloud, triggered by HTTP requests, Firestore events, or auth events. Vercel also has serverless functions (that's what Next.js API routes compile to). Slidemoji does **not** need both — it uses Firebase's full stack: Firebase Hosting for the frontend, Firebase Functions for server logic, Firestore for data. Vercel isn't involved.
+> **Q:** Slidemoji is hosted on Vercel (slidemoji.vercel.app → slidemoji.com). Should I move it to Firebase Hosting?
+>
+> **A:** No — stay on Vercel. The critical reason: Slidemoji's `api/` directory contains Vercel serverless functions for Stripe (`api/create-checkout-session.js`, `api/stripe-webhook.js`). These are Vercel-native. Moving to Firebase Hosting would require rewriting them as Firebase Functions — a significant migration with no practical benefit. Vercel handles the frontend bundle and the Stripe functions in one place, and the Firebase SDK (Auth, Firestore) works perfectly from Vercel-hosted frontends. There's nothing Firebase Hosting gives you that you're missing.
 
 ### Firebase vs Next.js — not competitors
 
@@ -690,22 +709,28 @@ Slidemoji is a Firebase-native app: the whole backend is Firebase services (Fire
 > **Q:** What does "Firebase-native" mean vs. non-native?
 >
 > **A:** "Firebase-native" means the app was designed around Firebase's specific features and architecture. The frontend calls the Firebase SDK directly, data is structured for Firestore's document model, auth uses Firebase tokens, and security rules run on Google's servers. A "non-native" use of Firebase would be: a Next.js app that uses Firebase only for Auth, but stores data in PostgreSQL and deploys to Vercel. Slidemoji is native because the entire backend is Firebase.
+> **Q:** Slidemoji uses Firebase for auth, Firestore for NoSQL storage, and deploys to Vercel. Does that make it not Firebase-native? Should it be Firebase-native instead?
+>
+> **A:** It makes it a hybrid — the backend services (Auth, Firestore) are Firebase; the hosting and serverless functions are Vercel. That's fine. The term "Firebase-native" is most useful when describing the *backend architecture* (are you using Firebase services for data and auth?), not the hosting layer. Using Firebase Auth + Firestore from a Vercel-hosted frontend is a very common, fully-supported, well-documented pattern. There's no reason to change it.
 
 ### Firebase Hosting vs Vercel
 
 These ARE competitors:
 
-|                 | Firebase Hosting                   | Vercel                                                                                                                |
-| --------------- | ---------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Best for        | Firebase-native apps, static sites | Next.js, React/Vue apps                                                                                               |
-| Next.js support | Basic (needs workarounds for SSR)  | First-class (made by same team)                                                                                       |
-| CDN             | Global                             | Global                                                                                                                |
-| Preview deploys | Yes                                | Yes                                                                                                                   |
-| CI/CD           | GitHub Actions or Firebase CLI     | Automatic on push                                                                                                     |
+|                 | Firebase Hosting                   | Vercel                          |
+| --------------- | ---------------------------------- | ------------------------------- |
+| Best for        | Firebase-native apps, static sites | Next.js, React/Vue apps         |
+| Next.js support | Basic (needs workarounds for SSR)  | First-class (made by same team) |
+| CDN             | Global                             | Global                          |
+| Preview deploys | Yes                                | Yes                             |
+| CI/CD           | GitHub Actions or Firebase CLI     | Automatic on push               |
 
 > **Q:** Which is better for Slidemoji — Firebase Hosting or Vercel, given it's a React frontend?
 >
 > **A:** Firebase Hosting. Even though Slidemoji is React, it's Firebase-native — Auth tokens, Functions, and Firestore security rules all integrate more tightly when the frontend is also on Firebase's infrastructure. Vercel would technically work, but you'd lose integration benefits.
+> **Q:** What are the "integration benefits" you're referring to? It doesn't feel like I'm missing out on anything.
+>
+> **A:** You're right — you're not missing anything. The integration benefits I described (shared Firebase dashboard, Firebase CLI deploying hosting + functions together, auth domain alignment) only apply if you're using Firebase Functions for server logic. But Slidemoji's server functions run on Vercel, not Firebase. The previous answer was overclaiming. Vercel + Firebase SDK is a perfectly normal combination — just treat them as separate services that happen to work well together.
 
 > **Q:** "CDN | Global" in the table — what does that mean?
 >
@@ -743,6 +768,9 @@ For a Next.js app → Vercel. For a Firebase-native app → Firebase Hosting.
 > **Q:** "Game sessions are short-lived...real-time sync between players" — but Slidemoji saves game data for stats, and it's a 1-player game with no "room" concept.
 >
 > **A:** Fair correction — the original description assumed multiplayer. For a 1-player game, Firestore is still a good fit for different reasons: the schemaless structure lets game session data evolve without schema migrations, and the built-in auth and mobile-friendly SDK add value. The "room sync" benefit doesn't apply, but Firestore's flexibility for user-generated data (different games may have different shapes) is still relevant for stats.
+> **Q:** What do you mean by "mobile-friendly" SDK? What makes it mobile-friendly?
+>
+> **A:** The Firebase SDK was designed from day one to run on mobile clients (iOS, Android, React Native) in addition to the web browser — the same SDK, same API. "Mobile-friendly" means: (1) **offline persistence** — Firestore caches data locally and syncs automatically when reconnected (Slidemoji enables this via `persistentLocalCache` in `firebaseConfig.js`); (2) **automatic reconnection** after network drops; (3) **compact bundle** optimized for mobile network conditions. A PostgreSQL client (`pg`) is the opposite: it requires a persistent TCP connection and can only run in a Node.js server — you can't use it in a browser or a mobile app at all. Firebase's SDK is explicitly designed for the edge case where your client might go offline.
 
 ### Authentication: Firebase Auth vs Auth.js vs Clerk
 
@@ -832,6 +860,7 @@ Technically yes — the site is mostly static HTML with only two interactive com
 > **Q:** Would Astro be good for my Personal Site? What framework is it currently (just vanilla)? Would React be worth it?
 >
 > **A:** It depends on what the site is:
+>
 > - If it's a simple portfolio/resume page: **vanilla is totally fine** and has zero overhead. Deploy to GitHub Pages for free.
 > - **Astro is worth it** if you have 5+ pages needing a shared nav/footer layout, want a build pipeline for components, or want to use React for interactive bits without committing to a full React app.
 > - **React alone** is overkill for a static portfolio — React's strength is managing complex state and interactivity, not rendering a bio page.
@@ -839,7 +868,18 @@ Technically yes — the site is mostly static HTML with only two interactive com
 >
 > My recommendation: vanilla if it's simple, Astro if you have multi-page structure or want to grow it. React/Next.js only if you have a specific dynamic feature in mind.
 
----
+## Q: My Personal-Site project folder is in this VS Code workspace — what do you recommend? Would React alone be worth it for componentization? Are there lighter-weight tools? Is the UI even repetitive enough to justify it?
+
+**A:** Looked at the actual code. Summary: `index.html` (7 project cards, 2 blog cards) + 2 separate blog pages (`blog/session-management.html`, `blog/sql-window-functions-refactor.html`). No build tool.
+
+The project cards are formulaic (same `<a class="card project ...">` + `<img>` structure), but there are only 7 — not bad enough to require a component system. **React alone is not worth it** — you'd add a JSX build pipeline (Node.js, npm, Vite/webpack) to replace 7 `<a>` tags. That's the wrong trade-off.
+
+The real pain point is the **shared header/footer across 3 HTML pages**. Right now those are copy-pasted. Every time you update the nav or footer, you have to update 3 files. That's the exact problem Astro was designed for.
+
+**Recommendation:**
+- **Now (2–3 pages):** Stay vanilla. The duplication is manageable.
+- **When you add a 4th+ blog post:** Switch to Astro. You get shared layout components (header, footer), a build pipeline, and zero client-side JS by default — deploy to GitHub Pages or Netlify for free.
+- **React:** Only worth it if you add interactive features (search, filters, animations). Not for static cards.
 
 ## Part 11: The Web Dev Landscape
 
@@ -963,7 +1003,18 @@ Runtime (user plays a game):
 >
 > **A:** When you run `npm run build` in Slidemoji, Vite processes all your React components, TypeScript, and CSS and outputs a folder of plain browser-compatible files: `index.html`, `assets/main.abc123.js`, `assets/style.abc123.css`. This is the "bundle" — your entire React app compiled into a few optimized files. Firebase Hosting serves these static files from its CDN. The browser downloads `main.js`, React boots up, and your app runs entirely in the browser.
 
----
+## Q: Is this what Slidemoji does now, in its current state hosted on Vercel?
+
+**A:** Partially. The bundle description is accurate — Vite builds `index.html` + `assets/*.js` + `assets/*.css` and that bundle is served from Vercel's CDN. But the architecture diagram above says "Firebase Hosting → serves the Vite + React bundle" which is wrong for Slidemoji: **Vercel** serves the bundle, not Firebase Hosting.
+
+Also, the diagram omits Slidemoji's `api/` directory — Vercel also runs two serverless functions for Stripe: `api/create-checkout-session.js` and `api/stripe-webhook.js`. These run server-side on Vercel's infrastructure. So the complete Slidemoji architecture is:
+
+```
+Vercel CDN → serves Vite + React bundle
+Vercel serverless → api/create-checkout-session (Stripe)
+                  → api/stripe-webhook (Stripe → Firestore)
+Firebase → Auth, Firestore (called directly from the React frontend via SDK)
+```
 
 ## Part 12: Next.js vs Other Backend Frameworks
 
@@ -972,6 +1023,9 @@ Most web frameworks follow the same basic pattern: receive HTTP request → run 
 > **Q:** Who/what sends the HTTP request? How does this happen in my projects?
 >
 > **A:** In web development, HTTP requests are sent by browsers. Every time a user navigates to a URL, submits a form, or JavaScript calls `fetch("https://...")`, the browser sends an HTTP request. In Titan Tracker (SSG), the browser sends a GET request to Vercel → Vercel returns pre-built HTML — no dynamic processing. In NBA Moneyline (Express), the browser GETs `/` to get HTML, then JS GETs `/api/stats` to get data, then builds the page.
+> **Q:** "the browser GETs `/`, then JS GETs `/api/stats`" — JS is part of "the browser" too, right?
+>
+> **A:** Yes. JavaScript running inside the browser IS inside the browser's execution environment. When your JS code calls `fetch("/api/stats")`, it's JavaScript code executing in the browser's JS engine, which triggers the browser's networking layer to send the GET request. The distinction in the original sentence was just emphasizing *what initiates the request*: the first GET is from user navigation (the browser's URL bar / link click), the second GET is from your code (`fetch()`). Both are the browser. The practical difference that matters: the browser enforces CORS on both; a Node.js `fetch()` (server-side) does not.
 
 | Framework             | Language                | Type                                      | Good for                                        |
 | --------------------- | ----------------------- | ----------------------------------------- | ----------------------------------------------- |
@@ -982,14 +1036,19 @@ Most web frameworks follow the same basic pattern: receive HTTP request → run 
 | **ASP.NET Core**      | C#                      | Full-stack framework                      | Enterprise apps, Microsoft/Azure ecosystem      |
 | **Rails**             | Ruby                    | Full-stack, convention-over-configuration | Rapid prototyping, CRUD apps                    |
 
-
 > **Q:** What does "backend-for-frontend" mean?
 >
 > **A:** A Backend-for-Frontend (BFF) is a backend API built specifically to serve one frontend client, rather than being a shared generic API. Instead of one API serving mobile, web, and desktop all at once, you have a separate lightweight API per client that returns exactly the data shape that frontend needs. Express is well-suited for this pattern.
+> **Q:** Is the BFF pattern antithetical to responsive UI?
+>
+> **A:** No — these are completely separate concerns. "Responsive UI" means your CSS adapts the layout to different screen sizes (media queries, flexbox, grid). BFF (Backend-for-Frontend) is a server architecture pattern for how APIs are structured. They operate at different layers of the stack and have no conflict whatsoever.
 
 > **Q:** What are microservices? Are any of my projects microservices?
 >
 > **A:** Microservices splits one application into many small, independently deployed services (auth service, payments service, notifications service, etc.). None of your projects use microservices — they're all monoliths, which is correct for side projects. Microservices add significant operational complexity and only make sense at large-team scale.
+> **Q:** Check the Slidemoji project — is the Stripe integration a microservice? Should it be?
+>
+> **A:** It's microservice-*like* in design, which is the right call. The two Vercel serverless functions (`api/create-checkout-session.js`, `api/stripe-webhook.js`) are isolated, single-purpose, stateless HTTP handlers — the microservice pattern. Payment logic is cleanly separated from the main frontend app, independently deployable (Vercel deploys functions individually), and uses the Firebase Admin SDK as a bridge to update Firestore from a trusted server context. Whether to call this a "microservice" is a naming question — formally, microservices imply separate repositories and deployment pipelines. But the architecture *principle* (isolated, focused service for payments) is correct and already implemented. No changes needed.
 
 > **Q:** Does Express not support TypeScript? You only listed JavaScript.
 >
@@ -1016,6 +1075,27 @@ HTTP request → file-based routing → Server Component → HTML response
 > **Q:** "UI is colocated" — what does this mean? How is Express not colocated?
 >
 > **A:** In Express, your UI (HTML in `public/`, JavaScript in `public/js/`) lives separately from your backend (routes in `routes/`, business logic in `utils/`). The connection between them is manual. In Next.js, a `page.js` file is simultaneously the route AND the UI AND the data-fetching logic — all in one file, in one place. The data fetching and the component that uses it are colocated by design.
+> **Q:** Can you illustrate the before/after of how collocation simplified the code? e.g. winLoss-related code was strewn across the codebase.
+>
+> **A:** Here's the win-loss data flow, before and after:
+>
+> **Before (Express + vanilla JS) — 4 files:**
+> ```
+> routes/stats.js          ← Express route: queries DB, returns JSON
+> public/js/services/
+>   fetchStats.js          ← browser fetch() to /api/stats
+> public/js/view/
+>   renderStats.js         ← builds DOM elements from JSON
+> public/index.html        ← static shell (empty divs JS fills in)
+> ```
+> To add a field to the win-loss display, you'd touch all four files: SQL query in the route, JSON shape in the route response, fetch handling in fetchStats.js, DOM manipulation in renderStats.js.
+>
+> **After (Next.js SSG) — 2 files:**
+> ```
+> app/page.js              ← queries DB directly: const result = await pool.query(winLossQuery)
+> components/WinLoss.jsx   ← receives data as props, returns JSX
+> ```
+> The data fetching and the UI that uses it live in the same component tree. No fetch layer, no DOM manipulation, no HTML shell to maintain. To add a field, you update the SQL query and the JSX — two places, same mental context.
 
 Express is the right tool when you need a pure JSON API (no UI), fine-grained HTTP control, or a backend that serves a separate frontend (mobile app, desktop client). Next.js is the right tool when the frontend and backend belong together.
 
@@ -1034,7 +1114,6 @@ Express is the right tool when you need a pure JSON API (no UI), fine-grained HT
 | Auth        | Built-in                      | Use Auth.js, Clerk, or Firebase Auth   |
 | Migrations  | Built-in                      | None — use your ORM's migration tool   |
 | Best for    | CRUD-heavy apps, Python teams | React-heavy UIs, JavaScript teams      |
-
 
 > **Q:** What is an ORM?
 >
@@ -1073,6 +1152,7 @@ ASP.NET is a language-ecosystem choice (you're in C#/.NET land with Visual Studi
 > **Q:** Is the analogy: C# ↔ JS, .NET ↔ Node.js, ASP.NET ↔ Next.js?
 >
 > **A:** Nearly. The closest mapping is:
+>
 > - C# ↔ JavaScript (the language)
 > - .NET runtime ↔ Node.js (the runtime that executes the language)
 > - ASP.NET Core ↔ Express or Next.js (the web framework)

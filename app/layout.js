@@ -1,6 +1,10 @@
 import Script from "next/script";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../public/css/variables.css";
 import "../public/css/base.css";
+
+config.autoAddCss = false;
 
 export const metadata = {
 	title: "Bobby's Triple Threat - Stats",
