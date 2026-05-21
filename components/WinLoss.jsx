@@ -1,4 +1,5 @@
 import Image from "next/image";
+import allTitansImg from "@/public/img/all-titans.jpg";
 import ShareButton from "./ShareButton";
 import styles from "./WinLoss.module.css";
 
@@ -14,10 +15,11 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 				<div className={styles.banner}>
 					<Image
 						className={styles.bannerImg}
-						src="/img/all-titans.jpg"
+						src={allTitansImg}
 						alt="The Titans"
 						fill
 						priority
+						placeholder="blur"
 						sizes="100vw"
 					/>
 				</div>
