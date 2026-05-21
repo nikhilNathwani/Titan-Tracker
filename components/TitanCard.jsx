@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ShareButton from "./ShareButton";
 import styles from "./TitanCard.module.css";
 
@@ -41,10 +42,12 @@ export default function TitanCard({
 				{/* Header: avatar + rank badge + name + win rate */}
 				<div className={styles.header}>
 					<div className={styles.avatarWrap}>
-						<img
+						<Image
 							className={`${styles.avatar} ${borderClass}`}
 							src={`/img/${imgFilename}`}
 							alt={titan.titan_name}
+							width={88}
+							height={88}
 						/>
 						<div className={rankClass}>{titan.rankString}</div>
 					</div>
@@ -61,9 +64,9 @@ export default function TitanCard({
 						<div className="widget-content">
 							<div className="widget-value">
 								{titan.num_win}
-									<span className={styles.recordSep}> - </span>
-									{titan.num_loss}
-									<span className={styles.recordSep}> - </span>
+								<span className={styles.recordSep}> - </span>
+								{titan.num_loss}
+								<span className={styles.recordSep}> - </span>
 								{titan.num_tie}
 							</div>
 						</div>
@@ -125,8 +128,12 @@ export default function TitanCard({
 							<span className={styles.perRoundColHeader}>
 								# Battles
 							</span>
-							<span className={styles.perRoundColHeader}>Score</span>
-							<span className={styles.perRoundColHeader}>Margin</span>
+							<span className={styles.perRoundColHeader}>
+								Score
+							</span>
+							<span className={styles.perRoundColHeader}>
+								Margin
+							</span>
 						</div>
 						{ROUNDS.map((roundNum) => {
 							const round = perRoundStats?.[roundNum] ?? {
@@ -158,9 +165,11 @@ export default function TitanCard({
 										Rd {roundNum}
 									</span>
 									<div className={styles.perRoundBarCell}>
-										<div className={styles.perRoundBarTrack}>
+										<div
+											className={styles.perRoundBarTrack}
+										>
 											<div
-													className={styles.perRoundBar}
+												className={styles.perRoundBar}
 												style={{ width: `${barPct}%` }}
 											/>
 										</div>
@@ -171,9 +180,7 @@ export default function TitanCard({
 									<span className={styles.perRoundAvg}>
 										{formatAvgScore(round.avg_score)}
 									</span>
-									<span
-										className={marginCls}
-									>
+									<span className={marginCls}>
 										{formatAvgMargin(round.avg_margin)}
 									</span>
 								</div>
