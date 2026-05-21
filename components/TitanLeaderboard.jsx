@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ShareButton from "./ShareButton";
 import styles from "./TitanLeaderboard.module.css";
 
@@ -33,10 +34,12 @@ export default function TitanLeaderboard({ titans }) {
 										{titan.rankString}
 									</div>
 								</div>
-								<img
+								<Image
 									src={`/img/${imgFilename}`}
 									alt={titan.titan_name}
 									className={`${styles.miniAvatar} ${borderClass}`}
+									width={40}
+									height={40}
 								/>
 								<div className={styles.name}>
 									<span className={styles.firstName}>
