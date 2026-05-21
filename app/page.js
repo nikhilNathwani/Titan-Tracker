@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { pool } from "@/lib/db";
 import {
 	winLossQuery,
@@ -118,11 +119,15 @@ export default async function Home() {
 				inactiveTitans={inactiveTitans}
 			/>
 			<div id="heroSection" className={pageStyles.heroSection}>
-				<img
+				<Image
 					src="/og-image.png"
 					alt="Bobby's Triple Threat — Fan-made Stat Tracker"
 					id="heroImage"
 					className={pageStyles.heroImage}
+					width={1200}
+					height={630}
+					priority
+					sizes="(max-width: 680px) 96vw, 680px"
 				/>
 			</div>
 			<WinLoss {...winLoss} />

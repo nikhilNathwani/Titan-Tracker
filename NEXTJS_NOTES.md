@@ -554,7 +554,7 @@ Appears to be a static HTML/CSS/JS project. If it's just a simple word game with
 > **A:** Most Next.js developers use an ORM like Prisma or Drizzle, which lets you write queries in TypeScript instead of raw SQL files. Example with Prisma: `const titans = await prisma.titan.findMany({ include: { rounds: true } })`. Your raw SQL approach isn't wrong — it actually gives you more control for complex analytics queries (aggregations, window functions for rankings). For a typical CRUD app, Prisma would be simpler. For stats/analytics like Titan Tracker, raw SQL is a defensible and common choice.
 > **Q:** Given that SQL is a defensible choice for my use case, is the way I'm integrating SQL (i.e. `lib/queries.js`) idiomatic?
 >
-> **A:** Yes — it's idiomatic for a raw-SQL setup. `lib/queries.js` reads `.sql` files from disk at module load time using `fs.readFileSync`, exporting them as plain strings. `page.js` then passes those strings directly to `pool.query()`. The "manual/hacky" feeling is just unfamiliarity. Most developers doing raw SQL inline the SQL directly as JS template literals in the same file (one less indirection), but using separate `.sql` files is actually *better* practice because your editor gives you SQL syntax highlighting and formatting (via `prettier-plugin-sql`) that you'd lose with template literals. The only thing that would feel more conventional is using an ORM like Prisma or Drizzle — but for analytics queries with window functions and aggregations like yours, raw SQL gives you more control, and this pattern is standard.
+> **A:** Yes — it's idiomatic for a raw-SQL setup. `lib/queries.js` reads `.sql` files from disk at module load time using `fs.readFileSync`, exporting them as plain strings. `page.js` then passes those strings directly to `pool.query()`. The "manual/hacky" feeling is just unfamiliarity. Most developers doing raw SQL inline the SQL directly as JS template literals in the same file (one less indirection), but using separate `.sql` files is actually _better_ practice because your editor gives you SQL syntax highlighting and formatting (via `prettier-plugin-sql`) that you'd lose with template literals. The only thing that would feel more conventional is using an ORM like Prisma or Drizzle — but for analytics queries with window functions and aggregations like yours, raw SQL gives you more control, and this pattern is standard.
 
 ### Express.js relics still present:
 
@@ -711,7 +711,7 @@ Slidemoji is a Firebase-native app: the whole backend is Firebase services (Fire
 > **A:** "Firebase-native" means the app was designed around Firebase's specific features and architecture. The frontend calls the Firebase SDK directly, data is structured for Firestore's document model, auth uses Firebase tokens, and security rules run on Google's servers. A "non-native" use of Firebase would be: a Next.js app that uses Firebase only for Auth, but stores data in PostgreSQL and deploys to Vercel. Slidemoji is native because the entire backend is Firebase.
 > **Q:** Slidemoji uses Firebase for auth, Firestore for NoSQL storage, and deploys to Vercel. Does that make it not Firebase-native? Should it be Firebase-native instead?
 >
-> **A:** It makes it a hybrid — the backend services (Auth, Firestore) are Firebase; the hosting and serverless functions are Vercel. That's fine. The term "Firebase-native" is most useful when describing the *backend architecture* (are you using Firebase services for data and auth?), not the hosting layer. Using Firebase Auth + Firestore from a Vercel-hosted frontend is a very common, fully-supported, well-documented pattern. There's no reason to change it.
+> **A:** It makes it a hybrid — the backend services (Auth, Firestore) are Firebase; the hosting and serverless functions are Vercel. That's fine. The term "Firebase-native" is most useful when describing the _backend architecture_ (are you using Firebase services for data and auth?), not the hosting layer. Using Firebase Auth + Firestore from a Vercel-hosted frontend is a very common, fully-supported, well-documented pattern. There's no reason to change it.
 
 ### Firebase Hosting vs Vercel
 
@@ -877,6 +877,7 @@ The project cards are formulaic (same `<a class="card project ...">` + `<img>` s
 The real pain point is the **shared header/footer across 3 HTML pages**. Right now those are copy-pasted. Every time you update the nav or footer, you have to update 3 files. That's the exact problem Astro was designed for.
 
 **Recommendation:**
+
 - **Now (2–3 pages):** Stay vanilla. The duplication is manageable.
 - **When you add a 4th+ blog post:** Switch to Astro. You get shared layout components (header, footer), a build pipeline, and zero client-side JS by default — deploy to GitHub Pages or Netlify for free.
 - **React:** Only worth it if you add interactive features (search, filters, animations). Not for static cards.
@@ -1025,7 +1026,7 @@ Most web frameworks follow the same basic pattern: receive HTTP request → run 
 > **A:** In web development, HTTP requests are sent by browsers. Every time a user navigates to a URL, submits a form, or JavaScript calls `fetch("https://...")`, the browser sends an HTTP request. In Titan Tracker (SSG), the browser sends a GET request to Vercel → Vercel returns pre-built HTML — no dynamic processing. In NBA Moneyline (Express), the browser GETs `/` to get HTML, then JS GETs `/api/stats` to get data, then builds the page.
 > **Q:** "the browser GETs `/`, then JS GETs `/api/stats`" — JS is part of "the browser" too, right?
 >
-> **A:** Yes. JavaScript running inside the browser IS inside the browser's execution environment. When your JS code calls `fetch("/api/stats")`, it's JavaScript code executing in the browser's JS engine, which triggers the browser's networking layer to send the GET request. The distinction in the original sentence was just emphasizing *what initiates the request*: the first GET is from user navigation (the browser's URL bar / link click), the second GET is from your code (`fetch()`). Both are the browser. The practical difference that matters: the browser enforces CORS on both; a Node.js `fetch()` (server-side) does not.
+> **A:** Yes. JavaScript running inside the browser IS inside the browser's execution environment. When your JS code calls `fetch("/api/stats")`, it's JavaScript code executing in the browser's JS engine, which triggers the browser's networking layer to send the GET request. The distinction in the original sentence was just emphasizing _what initiates the request_: the first GET is from user navigation (the browser's URL bar / link click), the second GET is from your code (`fetch()`). Both are the browser. The practical difference that matters: the browser enforces CORS on both; a Node.js `fetch()` (server-side) does not.
 
 | Framework             | Language                | Type                                      | Good for                                        |
 | --------------------- | ----------------------- | ----------------------------------------- | ----------------------------------------------- |
@@ -1048,7 +1049,7 @@ Most web frameworks follow the same basic pattern: receive HTTP request → run 
 > **A:** Microservices splits one application into many small, independently deployed services (auth service, payments service, notifications service, etc.). None of your projects use microservices — they're all monoliths, which is correct for side projects. Microservices add significant operational complexity and only make sense at large-team scale.
 > **Q:** Check the Slidemoji project — is the Stripe integration a microservice? Should it be?
 >
-> **A:** It's microservice-*like* in design, which is the right call. The two Vercel serverless functions (`api/create-checkout-session.js`, `api/stripe-webhook.js`) are isolated, single-purpose, stateless HTTP handlers — the microservice pattern. Payment logic is cleanly separated from the main frontend app, independently deployable (Vercel deploys functions individually), and uses the Firebase Admin SDK as a bridge to update Firestore from a trusted server context. Whether to call this a "microservice" is a naming question — formally, microservices imply separate repositories and deployment pipelines. But the architecture *principle* (isolated, focused service for payments) is correct and already implemented. No changes needed.
+> **A:** It's microservice-_like_ in design, which is the right call. The two Vercel serverless functions (`api/create-checkout-session.js`, `api/stripe-webhook.js`) are isolated, single-purpose, stateless HTTP handlers — the microservice pattern. Payment logic is cleanly separated from the main frontend app, independently deployable (Vercel deploys functions individually), and uses the Firebase Admin SDK as a bridge to update Firestore from a trusted server context. Whether to call this a "microservice" is a naming question — formally, microservices imply separate repositories and deployment pipelines. But the architecture _principle_ (isolated, focused service for payments) is correct and already implemented. No changes needed.
 
 > **Q:** Does Express not support TypeScript? You only listed JavaScript.
 >
@@ -1080,6 +1081,7 @@ HTTP request → file-based routing → Server Component → HTML response
 > **A:** Here's the win-loss data flow, before and after:
 >
 > **Before (Express + vanilla JS) — 4 files:**
+>
 > ```
 > routes/stats.js          ← Express route: queries DB, returns JSON
 > public/js/services/
@@ -1088,13 +1090,16 @@ HTTP request → file-based routing → Server Component → HTML response
 >   renderStats.js         ← builds DOM elements from JSON
 > public/index.html        ← static shell (empty divs JS fills in)
 > ```
+>
 > To add a field to the win-loss display, you'd touch all four files: SQL query in the route, JSON shape in the route response, fetch handling in fetchStats.js, DOM manipulation in renderStats.js.
 >
 > **After (Next.js SSG) — 2 files:**
+>
 > ```
 > app/page.js              ← queries DB directly: const result = await pool.query(winLossQuery)
 > components/WinLoss.jsx   ← receives data as props, returns JSX
 > ```
+>
 > The data fetching and the UI that uses it live in the same component tree. No fetch layer, no DOM manipulation, no HTML shell to maintain. To add a field, you update the SQL query and the JSX — two places, same mental context.
 
 Express is the right tool when you need a pure JSON API (no UI), fine-grained HTTP control, or a backend that serves a separate frontend (mobile app, desktop client). Next.js is the right tool when the frontend and backend belong together.
