@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ShareButton from "./ShareButton";
 import styles from "./TitanLeaderboard.module.css";
 
 export default function TitanLeaderboard({ titans }) {
@@ -7,11 +6,6 @@ export default function TitanLeaderboard({ titans }) {
 		<div className="section" id="titanLeaderboard">
 			<p className="section-label">Titan Leaderboard</p>
 			<div className={`section-content ${styles.content}`}>
-				<ShareButton
-					sectionId="titanLeaderboard"
-					sectionName="Titan Leaderboard"
-					shareText="Check out the Titan Leaderboard for Bobby's Triple Threat on Food Network"
-				/>
 				<div className={styles.leaderboard}>
 					{titans.map((titan) => {
 						const imgFilename =

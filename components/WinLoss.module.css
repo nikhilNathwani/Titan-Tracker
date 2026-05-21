@@ -4,14 +4,6 @@
 	overflow: hidden;
 }
 
-/* Share button sits over the banner image — needs a readable backdrop */
-.content :global(.section-share-btn) {
-	background-color: rgba(15, 9, 21, 0.65);
-	backdrop-filter: blur(4px);
-	border-color: rgba(var(--clr-accent-rgb), 0.3);
-	color: var(--clr-text-secondary);
-}
-
 .banner {
 	width: calc(100% + 2 * min(2.5rem, 6vw));
 	margin-inline: calc(-1 * min(2.5rem, 6vw));

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SiteHeader.module.css";
 
 export default function SiteHeader({ activeTitans, inactiveTitans }) {
@@ -21,9 +21,7 @@ export default function SiteHeader({ activeTitans, inactiveTitans }) {
 					aria-controls="siteNav"
 					onClick={() => setNavOpen((prev) => !prev)}
 				>
-					<span></span>
-					<span></span>
-					<span></span>
+					<FontAwesomeIcon icon={faBars} aria-hidden={true} />
 				</button>
 				<span id="siteHeaderTitle" className={styles.title}>
 					Titan Tracker
