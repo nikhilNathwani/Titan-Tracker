@@ -11,9 +11,8 @@ export default function ShareButton({ sectionId, sectionName, shareText }) {
 
 	async function handleShare() {
 		const url = `${window.location.origin}/#${sectionId}`;
-		const baseText =
-			shareText ?? `Check out ${sectionName} on Titan Tracker`;
-		const fullText = `${baseText} (${SHOW_CONTEXT})`;
+		const text =
+			shareText ?? `Check out ${sectionName} for ${SHOW_CONTEXT}`;
 
 		if (typeof gtag === "function") {
 			gtag("event", "share_card", {
@@ -22,11 +21,12 @@ export default function ShareButton({ sectionId, sectionName, shareText }) {
 			});
 		}
 
-		if (navigator.share) {
+		const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+		if (navigator.share && isTouchDevice) {
 			try {
 				await navigator.share({
 					title: "Titan Tracker",
-					text: fullText,
+					text,
 					url,
 				});
 			} catch (e) {
@@ -34,7 +34,7 @@ export default function ShareButton({ sectionId, sectionName, shareText }) {
 			}
 		} else {
 			try {
-				await navigator.clipboard.writeText(`${fullText}\n${url}`);
+				await navigator.clipboard.writeText(`${text}\n${url}`);
 				setCopied(true);
 				setTimeout(() => setCopied(false), 2000);
 			} catch (e) {

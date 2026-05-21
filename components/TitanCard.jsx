@@ -38,7 +38,7 @@ export default function TitanCard({
 				<ShareButton
 					sectionId={titanId}
 					sectionName={titan.titan_name}
-					shareText={`Check out ${titan.titan_name}'s stats on Titan Tracker`}
+					shareText={`Check out ${titan.titan_name}'s stats for Bobby's Triple Threat on Food Network`}
 				/>
 				{/* Header: avatar + rank badge + name + win rate */}
 				<div className={styles.header}>
