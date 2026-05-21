@@ -42,24 +42,39 @@ export default function ShareSection() {
 	return (
 		<div className="section" id="shareSection">
 			<p className="section-label">Share</p>
-			<div className={`section-content ${styles.content}`}>
-				<div className={styles.buttons}>
+			<div className={styles.buttons}>
+				<div className={styles.btnWrapper}>
 					<button
 						onClick={handleCopy}
 						className={`${styles.btn} ${copied ? styles.btnCopied : ""}`}
 						disabled={copied}
+						aria-label="Copy link"
 					>
 						<FontAwesomeIcon icon={copied ? faCheck : faCopy} />
-						{copied ? "Copied!" : "Copy link"}
 					</button>
-					<button onClick={handleEmail} className={styles.btn}>
+					<span className={styles.btnLabel}>
+						{copied ? "Copied!" : "Copy"}
+					</span>
+				</div>
+				<div className={styles.btnWrapper}>
+					<button
+						onClick={handleEmail}
+						className={styles.btn}
+						aria-label="Share via email"
+					>
 						<FontAwesomeIcon icon={faEnvelope} />
-						Email
 					</button>
-					<button onClick={handleText} className={styles.btn}>
+					<span className={styles.btnLabel}>Email</span>
+				</div>
+				<div className={styles.btnWrapper}>
+					<button
+						onClick={handleText}
+						className={styles.btn}
+						aria-label="Share via text message"
+					>
 						<FontAwesomeIcon icon={faComment} />
-						Text
 					</button>
+					<span className={styles.btnLabel}>Text</span>
 				</div>
 			</div>
 		</div>
