@@ -1,5 +1,4 @@
 import Image from "next/image";
-import ShareButton from "./ShareButton";
 import styles from "./TitanCard.module.css";
 
 const ROUNDS = [1, 2, 3];
@@ -35,11 +34,6 @@ export default function TitanCard({
 	return (
 		<div className="section titanCard" id={titanId}>
 			<div className={`section-content ${styles.content}`}>
-				<ShareButton
-					sectionId={titanId}
-					sectionName={titan.titan_name}
-					shareText={`Check out ${titan.titan_name}'s stats for Bobby's Triple Threat on Food Network`}
-				/>
 				{/* Header: avatar + rank badge + name + win rate */}
 				<div className={styles.header}>
 					<div className={styles.avatarWrap}>

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import allTitansImg from "@/public/img/all-titans.jpg";
-import ShareButton from "./ShareButton";
 import styles from "./WinLoss.module.css";
 
 export default function WinLoss({ num_win, num_tie, num_loss }) {
@@ -11,7 +10,6 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 		<div className="section" id="winLoss">
 			<p className="section-label">Team Record</p>
 			<div className={`section-content ${styles.content}`}>
-				<ShareButton sectionId="winLoss" sectionName="Team Record" />
 				<div className={styles.banner}>
 					<Image
 						className={styles.bannerImg}
