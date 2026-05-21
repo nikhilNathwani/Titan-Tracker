@@ -9,12 +9,12 @@
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 68px;
+	scroll-padding-top: 76px;
 	background-color: var(--clr-dark);
 }
 
 body {
-	padding-top: 72px;
+	padding-top: 80px;
 
 	display: flex;
 	flex-flow: column nowrap;

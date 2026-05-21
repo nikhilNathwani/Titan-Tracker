@@ -1,5 +1,6 @@
 .footer {
 	width: 100%;
+	align-self: stretch;
 	margin-top: 2rem;
 }
 
@@ -10,12 +11,16 @@
 }
 
 .content {
-	padding-block: 2.125rem;
+	width: 100%;
+	padding: 2.125rem min(2.5rem, 6vw);
+	margin: auto;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 	gap: 1.25rem;
-	box-shadow: none;
-	border: none;
+	background-color: var(--clr-dark);
+	text-align: center;
 	border-top: 1px solid var(--clr-border-mid);
-	border-radius: 0;
 	color: var(--clr-text-secondary);
 }
 
