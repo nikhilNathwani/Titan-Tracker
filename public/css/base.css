@@ -245,6 +245,10 @@ tr:not(:first-of-type) {
 	border-color: var(--clr-rank);
 }
 
+.rankNR.rank {
+	padding-block: 5px; /* compensate for all-caps visual weight */
+}
+
 /* --------------------------- */
 /*      SHARE BUTTON           */
 /* --------------------------- */

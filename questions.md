@@ -1,1 +1,3 @@
-## "The titans have won 20 out of 36 battles." <-- could/should we drop "have"? so just "The titans won 20 out of 36 battles."
+## the avatar borders no longer match the corresponding rank color
+
+## commit and push changes

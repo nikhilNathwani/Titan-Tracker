@@ -15,6 +15,7 @@ export default function Footer() {
 						nikhilnathwani.com
 					</a>
 				</div>
+				<p className={styles.copyright}>© {new Date().getFullYear()}</p>
 			</div>
 		</div>
 	);

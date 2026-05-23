@@ -23,14 +23,14 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 				</div>
 				<div className={styles.caption}>
 					<p className={styles.rate}>
+						<span className={styles.rateLabel}>Win Rate</span>
 						<span className={styles.rateStat}>
 							{percentSuccess}%
 						</span>
-						<span className={styles.rateLabel}>win rate</span>
 					</p>
 					<p className={styles.sentence}>
-						The titans won {num_win} out of{" "}
-						{num_win + num_loss} battles
+						The titans won {num_win} out of {num_win + num_loss}{" "}
+						battles
 						{num_tie > 0 && (
 							<>
 								, with {num_tie} tie{num_tie > 1 ? "s" : ""}
