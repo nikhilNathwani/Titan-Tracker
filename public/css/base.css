@@ -24,6 +24,18 @@ body {
 	color: var(--clr-light);
 }
 
+h1,
+h2,
+h3,
+h4 {
+	text-wrap: balance;
+}
+
+p,
+li {
+	text-wrap: pretty;
+}
+
 /* --------------------------- */
 /*                             */
 /*     COMMON COMPONENTS       */
@@ -63,16 +75,6 @@ a {
 	flex: 1;
 	height: 1px;
 	background: currentColor;
-}
-
-#titansSectionLabel {
-	width: min(400px, 92vw);
-	margin-bottom: -3.25rem;
-}
-
-#inactiveTitansSectionLabel {
-	width: min(400px, 92vw);
-	margin-bottom: -3.25rem;
 }
 
 .titan-cards-group {
@@ -172,7 +174,7 @@ a {
 
 	font-size: var(--fs-stat);
 	font-weight: bold;
-	color: var(--clr-accent);
+	color: var(--clr-light);
 }
 
 .widget-caption {
