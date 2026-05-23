@@ -17,7 +17,7 @@ import type {
 	PerRoundStatsRow,
 	TitanRecord,
 	TitanWithRank,
-	WinLoss,
+	WinLoss as WinLossData,
 	AvgScoresMap,
 	BestScoresMap,
 	PerRoundStatsMap,
@@ -51,7 +51,7 @@ export default async function Home() {
 	]);
 
 	// ── Win-Loss ──────────────────────────────────────────────
-	const winLoss: WinLoss = {
+	const winLoss: WinLossData = {
 		num_win: parseInt(winLossResult.rows[0].num_win, 10),
 		num_tie: parseInt(winLossResult.rows[0].num_tie, 10),
 		num_loss: parseInt(winLossResult.rows[0].num_loss, 10),
