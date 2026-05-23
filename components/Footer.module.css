@@ -38,3 +38,9 @@
 	line-height: 1.2;
 	color: var(--clr-text-secondary);
 }
+
+.copyright {
+	font-size: var(--fs-0);
+	color: var(--clr-text-secondary);
+	opacity: 0.6;
+}

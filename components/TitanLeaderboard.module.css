@@ -70,7 +70,7 @@
 	flex-shrink: 0;
 	object-fit: cover;
 	background-color: var(--clr-dark);
-	border: 2px solid var(--clr-border-card);
+	border: 2px solid var(--clr-rank, var(--clr-border-card));
 }
 
 .caption {
