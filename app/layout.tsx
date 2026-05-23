@@ -119,12 +119,6 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<head>
-				<meta
-					name="google-site-verification"
-					content="z7rSYAznpAdzXXxsZjWJLxmoNxAhZsogn8ZD82DhefA"
-				/>
-			</head>
 			<body>
 				<script
 					type="application/ld+json"

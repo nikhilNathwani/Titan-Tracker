@@ -26,7 +26,9 @@ export default function ShareSection() {
 		const text = `${SHARE_TEXT}\n${url}`;
 
 		if (navigator.clipboard?.writeText) {
-			navigator.clipboard.writeText(text).catch(() => copyViaExecCommand(text));
+			navigator.clipboard
+				.writeText(text)
+				.catch(() => copyViaExecCommand(text));
 		} else {
 			copyViaExecCommand(text);
 		}

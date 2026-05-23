@@ -24,13 +24,13 @@
 }
 
 .firstName {
-	font-size: var(--fs-name);
+	font-size: var(--fs-3);
 	font-weight: bold;
 	color: var(--clr-light);
 }
 
 .lastName {
-	font-size: var(--fs-name);
+	font-size: var(--fs-3);
 	font-weight: bold;
 	color: var(--clr-light);
 }
@@ -57,7 +57,7 @@
 	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
-	font-size: var(--fs-base);
+	font-size: var(--fs-2);
 	padding: 4px 13px;
 }
 
@@ -70,9 +70,9 @@
 }
 
 .recordSep {
-	font-size: var(--fs-stat);
+	font-size: var(--fs-4);
 	font-weight: normal;
-	color: var(--clr-text-dim);
+	color: var(--clr-text-secondary);
 }
 
 /* --------------------------- */
@@ -102,7 +102,7 @@
 }
 
 .perRoundColHeader {
-	font-size: var(--fs-sm);
+	font-size: var(--fs-1);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--clr-text-secondary);
@@ -110,8 +110,8 @@
 }
 
 .perRoundRoundLabel {
-	font-size: var(--fs-sm);
-	color: var(--clr-text-tertiary);
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 }
@@ -137,21 +137,21 @@
 }
 
 .perRoundCount {
-	font-size: var(--fs-sm);
-	color: var(--clr-text-tertiary);
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
 	min-width: 2ch;
 	text-align: right;
 }
 
 .perRoundAvg {
-	font-size: var(--fs-base);
+	font-size: var(--fs-2);
 	font-weight: 700;
 	color: var(--clr-light);
 	text-align: right;
 }
 
 .perRoundMargin {
-	font-size: var(--fs-base);
+	font-size: var(--fs-2);
 	text-align: right;
 	color: var(--clr-text-secondary);
 }
