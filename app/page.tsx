@@ -9,9 +9,24 @@ import {
 	perRoundStatsQuery,
 } from "@/lib/queries";
 import { generateRankStrings } from "@/lib/ranking";
+import type {
+	WinLossRow,
+	TitanRecordRow,
+	AvgScoreRow,
+	BestScoreRow,
+	PerRoundStatsRow,
+	TitanRecord,
+	TitanWithRank,
+	WinLossData,
+	AvgScoresMap,
+	BestScoresMap,
+	PerRoundStatsMap,
+} from "@/lib/types";
 import WinLoss from "@/components/WinLoss";
 import TitanLeaderboard from "@/components/TitanLeaderboard";
 import TitanCard from "@/components/TitanCard";
+import TitanGroup from "@/components/TitanGroup";
+import Notes from "@/components/Notes";
 import ShareSection from "@/components/ShareSection";
 import pageStyles from "./page.module.css";
 
@@ -28,22 +43,22 @@ export default async function Home() {
 		bestScoresResult,
 		perRoundStatsResult,
 	] = await Promise.all([
-		pool.query(winLossQuery),
-		pool.query(titanRecordsQuery),
-		pool.query(avgScoresQuery),
-		pool.query(bestScoresQuery),
-		pool.query(perRoundStatsQuery),
+		pool.query<WinLossRow>(winLossQuery),
+		pool.query<TitanRecordRow>(titanRecordsQuery),
+		pool.query<AvgScoreRow>(avgScoresQuery),
+		pool.query<BestScoreRow>(bestScoresQuery),
+		pool.query<PerRoundStatsRow>(perRoundStatsQuery),
 	]);
 
 	// ── Win-Loss ──────────────────────────────────────────────
-	const winLoss = {
+	const winLoss: WinLossData = {
 		num_win: parseInt(winLossResult.rows[0].num_win, 10),
 		num_tie: parseInt(winLossResult.rows[0].num_tie, 10),
 		num_loss: parseInt(winLossResult.rows[0].num_loss, 10),
 	};
 
 	// ── Titan Records ─────────────────────────────────────────
-	const titanRecords = titanRecordsResult.rows.map((t) => ({
+	const titanRecords: TitanRecord[] = titanRecordsResult.rows.map((t) => ({
 		titan_name: t.titan_name,
 		num_win: parseInt(t.num_win, 10),
 		num_tie: parseInt(t.num_tie, 10),
@@ -52,26 +67,30 @@ export default async function Home() {
 		is_active: t.is_active,
 	}));
 
-	const rankStrings = generateRankStrings(titanRecords.map((t) => t.rank));
-	const titansWithRanks = titanRecords.map((t, i) => ({
+	const rankStrings: string[] = generateRankStrings(
+		titanRecords.map((t) => t.rank),
+	);
+	const titansWithRanks: TitanWithRank[] = titanRecords.map((t, i) => ({
 		...t,
 		rankString: rankStrings[i],
 	}));
 
 	// Active titans sorted by rank ascending; inactive titans after
-	const activeTitans = titansWithRanks
+	const activeTitans: TitanWithRank[] = titansWithRanks
 		.filter((t) => t.rank !== null)
-		.sort((a, b) => a.rank - b.rank);
-	const inactiveTitans = titansWithRanks.filter((t) => t.rank === null);
+		.sort((a, b) => (a.rank as number) - (b.rank as number));
+	const inactiveTitans: TitanWithRank[] = titansWithRanks.filter(
+		(t) => t.rank === null,
+	);
 
 	// ── Avg Scores ────────────────────────────────────────────
-	const avgScoresMap = {};
+	const avgScoresMap: AvgScoresMap = {};
 	avgScoresResult.rows.forEach((row) => {
 		avgScoresMap[row.titan_name] = parseFloat(row.avg_score);
 	});
 
 	// ── Best Scores ───────────────────────────────────────────
-	const bestScoresMap = {};
+	const bestScoresMap: BestScoresMap = {};
 	bestScoresResult.rows.forEach((row) => {
 		bestScoresMap[row.titan_name] = {
 			titan_score: row.titan_score,
@@ -84,7 +103,7 @@ export default async function Home() {
 	// ── Per-Round Stats ───────────────────────────────────────
 	// Initialize all titans with empty rounds so components always get a
 	// complete object even if the DB has no rows yet for that titan/round.
-	const perRoundStatsMap = {};
+	const perRoundStatsMap: PerRoundStatsMap = {};
 	for (const t of titansWithRanks) {
 		perRoundStatsMap[t.titan_name] = {
 			1: { battle_count: 0, avg_score: null, avg_margin: null },
@@ -127,10 +146,7 @@ export default async function Home() {
 			</div>
 			<WinLoss {...winLoss} />
 			<TitanLeaderboard titans={titansWithRanks} />
-			<p className="section-label" id="titansSectionLabel">
-				Individual Titan Stats
-			</p>
-			<div className="titan-cards-group">
+			<TitanGroup label="Individual Titan Stats" id="titansSectionLabel">
 				{activeTitans.map((titan) => (
 					<TitanCard
 						key={titan.titan_name}
@@ -141,48 +157,25 @@ export default async function Home() {
 						maxBattleCount={maxBattleCount}
 					/>
 				))}
-			</div>
+			</TitanGroup>
 			{inactiveTitans.length > 0 && (
-				<>
-					<p
-						className="section-label"
-						id="inactiveTitansSectionLabel"
-					>
-						Inactive Titans
-					</p>
-					<div className="titan-cards-group">
-						{inactiveTitans.map((titan) => (
-							<TitanCard
-								key={titan.titan_name}
-								titan={titan}
-								avgScore={avgScoresMap[titan.titan_name]}
-								bestScore={bestScoresMap[titan.titan_name]}
-								perRoundStats={
-									perRoundStatsMap[titan.titan_name]
-								}
-								maxBattleCount={maxBattleCount}
-							/>
-						))}
-					</div>
-				</>
+				<TitanGroup
+					label="Inactive Titans"
+					id="inactiveTitansSectionLabel"
+				>
+					{inactiveTitans.map((titan) => (
+						<TitanCard
+							key={titan.titan_name}
+							titan={titan}
+							avgScore={avgScoresMap[titan.titan_name]}
+							bestScore={bestScoresMap[titan.titan_name]}
+							perRoundStats={perRoundStatsMap[titan.titan_name]}
+							maxBattleCount={maxBattleCount}
+						/>
+					))}
+				</TitanGroup>
 			)}
-			<div className="section" id="notesSection">
-				<p className="section-label">Notes</p>
-				<div className={`section-content ${pageStyles.notesContent}`}>
-					<p>
-						<span className="footnote">*</span> Win rate = wins
-						&divide; (wins + losses); ties are not counted.
-					</p>
-					<p>
-						<span className="footnote">
-							<sup>†</sup>
-						</span>{" "}
-						When averaging, I count Round 3&apos;s 20-pt scores as
-						two separate 10-pt scores. E.g. a 16/20 counts as two
-						8/10&apos;s.
-					</p>
-				</div>
-			</div>
+			<Notes />
 			<ShareSection />
 		</>
 	);
