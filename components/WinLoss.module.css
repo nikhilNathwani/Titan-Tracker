@@ -53,12 +53,12 @@
 }
 
 .rateLabel {
-	font-size: 1rem;
+	font-size: var(--fs-2);
 	color: var(--clr-text-secondary);
 }
 
 .sentence {
-	font-size: 1rem;
+	font-size: var(--fs-2);
 	line-height: 1.5;
 	color: var(--clr-text-secondary);
 }

@@ -29,7 +29,7 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 						<span className={styles.rateLabel}>win rate</span>
 					</p>
 					<p className={styles.sentence}>
-						The titans have won {num_win} out of{" "}
+						The titans won {num_win} out of{" "}
 						{num_win + num_loss} battles
 						{num_tie > 0 && (
 							<>
