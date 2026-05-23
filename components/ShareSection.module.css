@@ -44,7 +44,7 @@
 }
 
 .btnLabel {
-	font-size: var(--fs-sm);
+	font-size: var(--fs-1);
 	color: var(--clr-text-secondary);
 	text-align: center;
 }
