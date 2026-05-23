@@ -1,9 +1,9 @@
-## now the "rd 1/2/3" label spills onto a second line
+## for hte win-loss-tie widget label we should use hyphens again instead of backslashes, to match the value's format
 
-## "Wins - Losses - Ties" label still spills onto second line. should it just be "W-L-T" or is that not clear? or "Win - Loss - Tie" or does that read weird/incorrect? if you go with one of these shorter versions, then return its font size to the css var for widget labels
+## the "Avg score" "Avg margin" column labels look strange right-aligned, lets center them (and center the value too so that the column labels remain in alignment with the values, if necessary)
 
-## what is the font size of the notes card text? it still looks small to me, smaller than the share button label text for instance. can we at least match that size?
+## the "# Battles" label should be inline with the 2nd row of text in the "Avg score" label, right now it sits between the 1st and 2nd lines of that label
 
-## should we put a little more gap between the Share section title and the share buttons? and/or do you thnk we need some text before the share buttons, between the Share section title and the share buttons? like "Share these stats with..." something along those lines? or no, just the buttons?
+## i feel like fs-3 looks better at 1.5rem than 1.75 rem, especially the widget values currently look too big, and much bigger than their denominators.
 
 ## commit and push changes
