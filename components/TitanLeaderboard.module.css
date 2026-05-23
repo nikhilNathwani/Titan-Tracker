@@ -57,7 +57,7 @@
 }
 
 .recordLabel {
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	font-weight: normal;
 	color: var(--clr-text-secondary);
 }
@@ -75,6 +75,6 @@
 
 .caption {
 	font-style: italic;
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	color: var(--clr-text-secondary);
 }

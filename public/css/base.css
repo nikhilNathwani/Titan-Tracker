@@ -63,7 +63,7 @@ a {
 	align-items: center;
 	gap: 1.5ch;
 	color: var(--clr-accent);
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	font-weight: bold;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
@@ -129,7 +129,7 @@ a {
 }
 
 .widget-title {
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	color: var(--clr-text-secondary);
@@ -176,7 +176,7 @@ a {
 }
 
 .widget-caption {
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	color: var(--clr-text-secondary);
 }
 
@@ -205,48 +205,50 @@ tr:not(:first-of-type) {
 	font-size: var(--tableData-fs, 1rem);
 }
 
+/* Per-rank tokens */
+.rank1,
+.rank1-border {
+	--clr-rank: var(--clr-rank1);
+	--clr-rank-text: var(--clr-rank1-text);
+}
+.rank2,
+.rank2-border {
+	--clr-rank: var(--clr-rank2);
+	--clr-rank-text: var(--clr-rank2-text);
+}
+.rank3,
+.rank3-border {
+	--clr-rank: var(--clr-rank3);
+	--clr-rank-text: var(--clr-rank3-text);
+}
+.rankNR,
+.rankNR-border {
+	--clr-rank: var(--clr-mid);
+	--clr-rank-text: var(--clr-light);
+}
+
 .rank {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	padding: 3px 10px;
 	border-radius: 999px;
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	font-weight: 700;
 	letter-spacing: 0.02em;
 	white-space: nowrap;
-	background-color: var(--clr-border-mid);
-	color: var(--clr-light);
-}
-
-.rank1 {
-	background: var(--clr-rank1);
-	color: var(--clr-rank1-text);
-}
-.rank2 {
-	background: var(--clr-rank2);
-	color: var(--clr-rank2-text);
-}
-.rank3 {
-	background: var(--clr-rank3);
-	color: var(--clr-rank3-text);
-}
-.rankNR {
-	background-color: var(--clr-mid);
+	background-color: var(--clr-rank);
+	color: var(--clr-rank-text);
 }
 
 /* Rank-colored avatar borders (used in TitanCard + TitanLeaderboard) */
-.rank1-border {
-	border-color: var(--clr-rank1);
-}
-.rank2-border {
-	border-color: var(--clr-rank2);
-}
-.rank3-border {
-	border-color: var(--clr-rank3);
+.rank1-border,
+.rank2-border,
+.rank3-border,
+.rankNR-border {
+	border-color: var(--clr-rank);
 }
 .rankNR-border {
-	border-color: var(--clr-mid);
 	opacity: 0.7;
 }
 
@@ -263,7 +265,7 @@ tr:not(:first-of-type) {
 	color: var(--clr-text-secondary);
 	cursor: pointer;
 	padding: 3px 8px;
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	letter-spacing: 0.04em;
 	line-height: 1.4;
 	transition:
