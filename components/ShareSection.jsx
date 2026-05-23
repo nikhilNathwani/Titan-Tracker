@@ -17,27 +17,33 @@ const SHARE_TEXT =
 export default function ShareSection() {
 	const [copied, setCopied] = useState(false);
 
-	async function handleCopy() {
-		const url = window.location.origin;
-		const text = `${SHARE_TEXT}\n${url}`;
-		try {
-			await navigator.clipboard.writeText(text);
-		} catch {
-			// Fallback for environments where Clipboard API is unavailable
-			const ta = document.createElement("textarea");
-			ta.value = text;
-			ta.style.cssText =
-				"position:fixed;top:0;left:0;opacity:0;pointer-events:none";
-			document.body.appendChild(ta);
-			ta.focus();
-			ta.select();
-			try {
-				document.execCommand("copy");
-			} catch {}
-			document.body.removeChild(ta);
-		}
+	function handleCopy() {
+		// Update UI immediately — don't wait on clipboard permission
 		setCopied(true);
 		setTimeout(() => setCopied(false), 2000);
+
+		const url = window.location.origin;
+		const text = `${SHARE_TEXT}\n${url}`;
+
+		if (navigator.clipboard?.writeText) {
+			navigator.clipboard.writeText(text).catch(() => copyViaExecCommand(text));
+		} else {
+			copyViaExecCommand(text);
+		}
+	}
+
+	function copyViaExecCommand(text) {
+		const ta = document.createElement("textarea");
+		ta.value = text;
+		ta.style.cssText =
+			"position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+		document.body.appendChild(ta);
+		ta.focus();
+		ta.select();
+		try {
+			document.execCommand("copy");
+		} catch {}
+		document.body.removeChild(ta);
 	}
 
 	function handleEmail() {
