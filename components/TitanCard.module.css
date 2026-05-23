@@ -101,12 +101,16 @@
 	gap: 0.375rem;
 }
 
+.perRoundHeaderRow {
+	align-items: end;
+}
+
 .perRoundColHeader {
 	font-size: var(--fs-0);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--clr-text-secondary);
-	text-align: right;
+	text-align: center;
 }
 
 .perRoundRoundLabel {
@@ -147,12 +151,12 @@
 .perRoundAvg {
 	font-size: var(--fs-1);
 	color: var(--clr-light);
-	text-align: right;
+	text-align: center;
 }
 
 .perRoundMargin {
 	font-size: var(--fs-1);
-	text-align: right;
+	text-align: center;
 	color: var(--clr-light);
 }
 
