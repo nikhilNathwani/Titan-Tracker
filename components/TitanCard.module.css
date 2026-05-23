@@ -114,6 +114,7 @@
 	color: var(--clr-text-secondary);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
+	white-space: nowrap;
 }
 
 .perRoundBarCell {
