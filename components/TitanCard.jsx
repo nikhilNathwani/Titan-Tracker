@@ -25,7 +25,7 @@ export default function TitanCard({
 		titan.titan_name.toLowerCase().replace(/ /g, "-") + "-cropped.jpg";
 	const rankKey = titan.rank === null ? "NR" : titan.rank;
 	const rankClass = `rank rank${rankKey}`;
-	const borderClass = `rank${rankKey}-border`;
+	const borderClass = `rank${rankKey}`;
 	const [firstName, lastName] = titan.titan_name.split(" ");
 	const battles = titan.num_win + titan.num_loss;
 	const winPct =

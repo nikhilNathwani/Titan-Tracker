@@ -46,19 +46,19 @@
 }
 
 .rateStat {
-	font-size: var(--fs-5);
+	font-size: var(--fs-4);
 	font-weight: 700;
 	line-height: 1.1;
 	color: var(--clr-light);
 }
 
 .rateLabel {
-	font-size: var(--fs-2);
+	font-size: 1rem;
 	color: var(--clr-text-secondary);
 }
 
 .sentence {
-	font-size: var(--fs-2);
+	font-size: 1rem;
 	line-height: 1.5;
 	color: var(--clr-text-secondary);
 }
