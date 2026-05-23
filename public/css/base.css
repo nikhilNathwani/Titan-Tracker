@@ -88,7 +88,7 @@ a {
 	width: 100%;
 	padding: 3rem min(2.5rem, 6vw);
 	margin: auto;
-	border: 1px solid var(--clr-border-card);
+	border: 1px solid var(--clr-border-mid);
 	border-radius: 10px;
 	position: relative;
 

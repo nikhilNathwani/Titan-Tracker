@@ -60,8 +60,8 @@ export interface TitanWithRank extends TitanRecord {
 }
 
 export interface BestScore {
-	titan_score: string;
-	max_score: string;
+	titan_score: number;
+	max_score: number;
 	ingredient1: string;
 	ingredient2: string;
 }

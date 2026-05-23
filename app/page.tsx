@@ -93,8 +93,8 @@ export default async function Home() {
 	const bestScoresMap: BestScoresMap = {};
 	bestScoresResult.rows.forEach((row) => {
 		bestScoresMap[row.titan_name] = {
-			titan_score: row.titan_score,
-			max_score: row.max_score,
+			titan_score: parseFloat(row.titan_score),
+			max_score: parseFloat(row.max_score),
 			ingredient1: row.ingredient1,
 			ingredient2: row.ingredient2,
 		};
