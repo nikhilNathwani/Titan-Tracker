@@ -63,7 +63,7 @@ a {
 	align-items: center;
 	gap: 1.5ch;
 	color: var(--clr-accent);
-	font-size: var(--fs-2);
+	font-size: var(--fs-1);
 	font-weight: bold;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
@@ -129,7 +129,7 @@ a {
 }
 
 .widget-title {
-	font-size: var(--fs-2);
+	font-size: 0.8rem;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	color: var(--clr-text-secondary);
@@ -170,19 +170,19 @@ a {
 	justify-content: center;
 	gap: 0.2em;
 
-	font-size: var(--fs-4);
+	font-size: var(--fs-3);
 	font-weight: bold;
 	color: var(--clr-light);
 }
 
 .widget-caption {
-	font-size: var(--fs-2);
+	font-size: var(--fs-1);
 	color: var(--clr-text-secondary);
 }
 
 .widget-value-slash,
 .widget-value-denom {
-	font-size: var(--fs-2);
+	font-size: var(--fs-1);
 	font-weight: normal;
 	color: var(--clr-text-secondary);
 	padding-bottom: 0.3125rem;
@@ -206,26 +206,10 @@ tr:not(:first-of-type) {
 }
 
 /* Per-rank tokens */
-.rank1,
-.rank1-border {
-	--clr-rank: var(--clr-rank1);
-	--clr-rank-text: var(--clr-rank1-text);
-}
-.rank2,
-.rank2-border {
-	--clr-rank: var(--clr-rank2);
-	--clr-rank-text: var(--clr-rank2-text);
-}
-.rank3,
-.rank3-border {
-	--clr-rank: var(--clr-rank3);
-	--clr-rank-text: var(--clr-rank3-text);
-}
-.rankNR,
-.rankNR-border {
-	--clr-rank: var(--clr-mid);
-	--clr-rank-text: var(--clr-light);
-}
+.rank1 { --clr-rank: var(--clr-rank1); --clr-rank-text: var(--clr-rank1-text); }
+.rank2 { --clr-rank: var(--clr-rank2); --clr-rank-text: var(--clr-rank2-text); }
+.rank3 { --clr-rank: var(--clr-rank3); --clr-rank-text: var(--clr-rank3-text); }
+.rankNR { --clr-rank: var(--clr-mid); --clr-rank-text: var(--clr-light); }
 
 .rank {
 	display: inline-flex;
@@ -233,7 +217,7 @@ tr:not(:first-of-type) {
 	justify-content: center;
 	padding: 3px 10px;
 	border-radius: 999px;
-	font-size: var(--fs-2);
+	font-size: var(--fs-1);
 	font-weight: 700;
 	letter-spacing: 0.02em;
 	white-space: nowrap;
@@ -242,14 +226,8 @@ tr:not(:first-of-type) {
 }
 
 /* Rank-colored avatar borders (used in TitanCard + TitanLeaderboard) */
-.rank1-border,
-.rank2-border,
-.rank3-border,
-.rankNR-border {
+.rank1, .rank2, .rank3, .rankNR {
 	border-color: var(--clr-rank);
-}
-.rankNR-border {
-	opacity: 0.7;
 }
 
 /* --------------------------- */
@@ -265,7 +243,7 @@ tr:not(:first-of-type) {
 	color: var(--clr-text-secondary);
 	cursor: pointer;
 	padding: 3px 8px;
-	font-size: var(--fs-2);
+	font-size: var(--fs-1);
 	letter-spacing: 0.04em;
 	line-height: 1.4;
 	transition:

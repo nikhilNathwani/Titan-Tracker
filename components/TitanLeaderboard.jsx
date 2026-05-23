@@ -15,7 +15,7 @@ export default function TitanLeaderboard({ titans }) {
 							titan.titan_name.split(" ");
 						const rankKey = titan.rank === null ? "NR" : titan.rank;
 						const rankClass = `rank rank${rankKey}`;
-						const borderClass = `rank${rankKey}-border`;
+						const borderClass = `rank${rankKey}`;
 						const battles = titan.num_win + titan.num_loss;
 						const winPct =
 							battles > 0
