@@ -102,7 +102,7 @@
 }
 
 .perRoundColHeader {
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--clr-text-secondary);
@@ -110,7 +110,7 @@
 }
 
 .perRoundRoundLabel {
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	color: var(--clr-text-secondary);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
@@ -137,15 +137,14 @@
 }
 
 .perRoundCount {
-	font-size: var(--fs-1);
-	color: var(--clr-text-secondary);
+	font-size: var(--fs-2);
+	color: var(--clr-light);
 	min-width: 2ch;
 	text-align: right;
 }
 
 .perRoundAvg {
 	font-size: var(--fs-2);
-	font-weight: 700;
 	color: var(--clr-light);
 	text-align: right;
 }
@@ -153,10 +152,6 @@
 .perRoundMargin {
 	font-size: var(--fs-2);
 	text-align: right;
-	color: var(--clr-text-secondary);
-}
-
-.perRoundMarginPos {
 	color: var(--clr-light);
 }
 

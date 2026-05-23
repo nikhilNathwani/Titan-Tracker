@@ -146,10 +146,8 @@ export default function TitanCard({
 									? parseFloat(round.avg_margin)
 									: null;
 							const marginCls =
-								marginVal != null
-									? marginVal >= 0
-										? `${styles.perRoundMargin} ${styles.perRoundMarginPos}`
-										: `${styles.perRoundMargin} ${styles.perRoundMarginNeg}`
+								marginVal != null && marginVal < 0
+									? `${styles.perRoundMargin} ${styles.perRoundMarginNeg}`
 									: styles.perRoundMargin;
 							return (
 								<div

@@ -80,7 +80,7 @@
 .navGroupLabel {
 	display: block;
 	padding: 0.625rem min(2rem, 5vw) 0.25rem;
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	font-weight: 700;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
@@ -104,7 +104,7 @@
 	background-color: var(--clr-accent);
 	color: var(--clr-dark);
 	text-decoration: none;
-	font-size: var(--fs-1);
+	font-size: var(--fs-2);
 	font-weight: 700;
 	letter-spacing: 0.02em;
 	white-space: nowrap;
