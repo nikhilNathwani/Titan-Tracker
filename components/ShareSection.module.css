@@ -18,30 +18,33 @@
 	border-radius: 50%;
 	border: 1px solid var(--clr-border-mid);
 	background: none;
-	color: var(--clr-accent);
+	color: var(--clr-light);
 	font-size: 1.125rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	transition:
+		color 0.15s,
 		border-color 0.15s,
 		background-color 0.15s;
 }
 
 .btn:hover {
+	color: var(--clr-accent);
 	border-color: var(--clr-accent);
 	background-color: rgba(var(--clr-accent-rgb), 0.1);
 }
 
 .btnCopied {
+	color: var(--clr-accent);
 	border-color: var(--clr-accent);
 	background-color: rgba(var(--clr-accent-rgb), 0.1);
 	cursor: default;
 }
 
 .btnLabel {
-	font-size: var(--fs-xs);
+	font-size: var(--fs-sm);
 	color: var(--clr-text-secondary);
 	text-align: center;
 }

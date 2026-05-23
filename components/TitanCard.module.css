@@ -102,7 +102,7 @@
 }
 
 .perRoundColHeader {
-	font-size: var(--fs-xs);
+	font-size: var(--fs-sm);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--clr-text-secondary);

@@ -2,7 +2,7 @@
 	--hue: 255;
 
 	/* Surfaces */
-	--clr-dark: #0f0915;
+	--clr-dark: hsl(var(--hue), 20%, 5.88%);
 	--clr-mid: hsl(var(--hue), 20%, 17%);
 	--clr-surface-hover: hsl(var(--hue), 20%, 20%);
 
@@ -33,7 +33,6 @@
 	--clr-neg: hsl(0, 25%, 62%);
 
 	/* Font scale */
-	--fs-xs: 0.6875rem;
 	--fs-sm: 0.75rem;
 	--fs-base: 0.875rem;
 	--fs-md: 1rem;
