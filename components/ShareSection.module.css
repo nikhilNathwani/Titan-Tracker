@@ -3,6 +3,7 @@
 	flex-flow: row wrap;
 	justify-content: center;
 	gap: 1.5rem;
+	padding-top: 0.5rem;
 }
 
 .btnWrapper {

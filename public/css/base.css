@@ -129,7 +129,7 @@ a {
 }
 
 .widget-title {
-	font-size: 0.8rem;
+	font-size: var(--fs-1);
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
 	color: var(--clr-text-secondary);
