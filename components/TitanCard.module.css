@@ -61,10 +61,6 @@
 	padding: 4px 13px;
 }
 
-.avatarWrap :global(.rankNR.rank) {
-	padding-block: 5px;
-}
-
 .record {
 	flex: 2;
 }
