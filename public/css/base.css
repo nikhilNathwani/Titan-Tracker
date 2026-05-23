@@ -206,10 +206,22 @@ tr:not(:first-of-type) {
 }
 
 /* Per-rank tokens */
-.rank1 { --clr-rank: var(--clr-rank1); --clr-rank-text: var(--clr-rank1-text); }
-.rank2 { --clr-rank: var(--clr-rank2); --clr-rank-text: var(--clr-rank2-text); }
-.rank3 { --clr-rank: var(--clr-rank3); --clr-rank-text: var(--clr-rank3-text); }
-.rankNR { --clr-rank: var(--clr-mid); --clr-rank-text: var(--clr-light); }
+.rank1 {
+	--clr-rank: var(--clr-rank1);
+	--clr-rank-text: var(--clr-rank1-text);
+}
+.rank2 {
+	--clr-rank: var(--clr-rank2);
+	--clr-rank-text: var(--clr-rank2-text);
+}
+.rank3 {
+	--clr-rank: var(--clr-rank3);
+	--clr-rank-text: var(--clr-rank3-text);
+}
+.rankNR {
+	--clr-rank: var(--clr-mid);
+	--clr-rank-text: var(--clr-light);
+}
 
 .rank {
 	display: inline-flex;
@@ -226,7 +238,10 @@ tr:not(:first-of-type) {
 }
 
 /* Rank-colored avatar borders (used in TitanCard + TitanLeaderboard) */
-.rank1, .rank2, .rank3, .rankNR {
+.rank1,
+.rank2,
+.rank3,
+.rankNR {
 	border-color: var(--clr-rank);
 }
 
