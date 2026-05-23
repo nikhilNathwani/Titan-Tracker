@@ -55,7 +55,7 @@ export default function TitanCard({
 				{/* Record + Win Rate */}
 				<div className="section-row">
 					<div className={`widget ${styles.record}`}>
-						<div className="widget-title">Win-Loss-Tie</div>
+						<div className="widget-title">Win - Loss - Tie</div>
 						<div className="widget-content">
 							<div className="widget-value">
 								{titan.num_win}
