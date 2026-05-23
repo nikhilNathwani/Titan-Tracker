@@ -105,6 +105,10 @@
 	align-items: end;
 }
 
+.perRoundHeaderRow > :nth-child(2) {
+	text-align: right;
+}
+
 .perRoundColHeader {
 	font-size: var(--fs-0);
 	text-transform: uppercase;
