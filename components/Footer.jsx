@@ -4,7 +4,7 @@ export default function Footer() {
 	return (
 		<div className={styles.footer} id="footer">
 			<div className={styles.content}>
-				<p>Made by a fan of the show</p>
+				<p>Made by a fan of the show.</p>
 				<div className={styles.links}>
 					<a
 						href="https://nikhilnathwani.com"
@@ -14,8 +14,9 @@ export default function Footer() {
 					>
 						nikhilnathwani.com
 					</a>
+					<span className={styles.link} aria-hidden="true">|</span>
+					<span className={styles.link}>© {new Date().getFullYear()}</span>
 				</div>
-				<p className={styles.copyright}>© {new Date().getFullYear()}</p>
 			</div>
 		</div>
 	);
