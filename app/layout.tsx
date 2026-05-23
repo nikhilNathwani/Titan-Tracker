@@ -39,6 +39,9 @@ export const metadata = {
 		index: true,
 		follow: true,
 	},
+	verification: {
+		google: "z7rSYAznpAdzXXxsZjWJLxmoNxAhZsogn8ZD82DhefA",
+	},
 	openGraph: {
 		type: "website",
 		url: "https://triple-threat.vercel.app/",
@@ -67,9 +70,8 @@ export default async function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const titanRecordsResult = await pool.query<TitanRecordRow>(
-		titanRecordsQuery,
-	);
+	const titanRecordsResult =
+		await pool.query<TitanRecordRow>(titanRecordsQuery);
 	const titanRecords: TitanRecord[] = titanRecordsResult.rows.map((t) => ({
 		titan_name: t.titan_name,
 		num_win: parseInt(t.num_win, 10),
