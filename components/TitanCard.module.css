@@ -130,7 +130,7 @@
 
 .perRoundBar {
 	height: 100%;
-	background-color: var(--clr-accent);
+	background-color: var(--clr-light);
 	border-radius: 4px;
 }
 
@@ -144,7 +144,7 @@
 .perRoundAvg {
 	font-size: var(--fs-base);
 	font-weight: 700;
-	color: var(--clr-accent);
+	color: var(--clr-light);
 	text-align: right;
 }
 
@@ -155,7 +155,7 @@
 }
 
 .perRoundMarginPos {
-	color: var(--clr-accent);
+	color: var(--clr-light);
 }
 
 .perRoundMarginNeg {

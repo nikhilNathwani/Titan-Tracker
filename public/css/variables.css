@@ -19,7 +19,7 @@
 	/* Borders */
 	--clr-border-subtle: hsl(var(--hue), 12%, 22%);
 	--clr-border-mid: hsl(var(--hue), 15%, 28%);
-	--clr-border-card: hsl(43, 30%, 38%);
+	--clr-border-card: hsl(var(--hue), 9%, 48%);
 
 	/* Ranks */
 	--clr-rank1: hsl(43, 65%, 50%);

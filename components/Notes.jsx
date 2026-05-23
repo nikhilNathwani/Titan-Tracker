@@ -6,8 +6,8 @@ export default function Notes() {
 			<p className="section-label">Notes</p>
 			<div className={`section-content ${styles.notesContent}`}>
 				<p>
-					<span className="footnote">*</span> Win rate = wins
-					&divide; (wins + losses); ties are not counted.
+					<span className="footnote">*</span> Win rate = wins &divide;
+					(wins + losses); ties are not counted.
 				</p>
 				<p>
 					<span className="footnote">
