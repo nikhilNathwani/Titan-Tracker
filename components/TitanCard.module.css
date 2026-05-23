@@ -24,13 +24,13 @@
 }
 
 .firstName {
-	font-size: var(--fs-2);
+	font-size: var(--fs-3);
 	font-weight: bold;
 	color: var(--clr-light);
 }
 
 .lastName {
-	font-size: var(--fs-2);
+	font-size: var(--fs-3);
 	font-weight: bold;
 	color: var(--clr-light);
 }
