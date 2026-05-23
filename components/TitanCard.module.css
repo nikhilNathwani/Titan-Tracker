@@ -112,6 +112,8 @@
 .perRoundRoundLabel {
 	font-size: var(--fs-sm);
 	color: var(--clr-text-tertiary);
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
 }
 
 .perRoundBarCell {

@@ -19,11 +19,25 @@ export default function ShareSection() {
 
 	async function handleCopy() {
 		const url = window.location.origin;
+		const text = `${SHARE_TEXT}\n${url}`;
 		try {
-			await navigator.clipboard.writeText(`${SHARE_TEXT}\n${url}`);
-			setCopied(true);
-			setTimeout(() => setCopied(false), 2000);
-		} catch (_) {}
+			await navigator.clipboard.writeText(text);
+		} catch {
+			// Fallback for environments where Clipboard API is unavailable
+			const ta = document.createElement("textarea");
+			ta.value = text;
+			ta.style.cssText =
+				"position:fixed;top:0;left:0;opacity:0;pointer-events:none";
+			document.body.appendChild(ta);
+			ta.focus();
+			ta.select();
+			try {
+				document.execCommand("copy");
+			} catch {}
+			document.body.removeChild(ta);
+		}
+		setCopied(true);
+		setTimeout(() => setCopied(false), 2000);
 	}
 
 	function handleEmail() {
