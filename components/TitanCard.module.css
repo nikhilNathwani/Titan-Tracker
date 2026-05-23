@@ -102,7 +102,7 @@
 }
 
 .perRoundColHeader {
-	font-size: var(--fs-1);
+	font-size: 0.7rem;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--clr-text-secondary);
@@ -110,7 +110,7 @@
 }
 
 .perRoundRoundLabel {
-	font-size: var(--fs-1);
+	font-size: 0.7rem;
 	color: var(--clr-text-secondary);
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
