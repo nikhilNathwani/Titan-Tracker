@@ -63,7 +63,7 @@ a {
 	align-items: center;
 	gap: 1.5ch;
 	color: var(--clr-accent);
-	font-size: var(--fs-2);
+	font-size: 1rem; /* uppercase-compensated: visually equals ~1.1rem mixed-case */
 	font-weight: bold;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;

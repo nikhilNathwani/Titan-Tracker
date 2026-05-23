@@ -116,7 +116,6 @@ export default function TitanCard({
 
 				{/* Per-Round Stats */}
 				<div className={`widget widget-full ${styles.perRound}`}>
-					<div className="widget-title">Per-Round Averages</div>
 					<div className={styles.perRoundRows}>
 						<div className={styles.perRoundHeaderRow}>
 							<span />
@@ -124,10 +123,10 @@ export default function TitanCard({
 								# Battles
 							</span>
 							<span className={styles.perRoundColHeader}>
-								Score
+								Avg Score
 							</span>
 							<span className={styles.perRoundColHeader}>
-								Margin
+								Avg Margin
 							</span>
 						</div>
 						{ROUNDS.map((roundNum) => {
