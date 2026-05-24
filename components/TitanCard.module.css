@@ -45,6 +45,15 @@
 	background-color: var(--clr-dark);
 }
 
+.avatar:global(.rank1),
+.avatar:global(.rank2),
+.avatar:global(.rank3),
+.avatarPlaceholder:global(.rank1),
+.avatarPlaceholder:global(.rank2),
+.avatarPlaceholder:global(.rank3) {
+	box-shadow: 0 0 0 2.5px var(--clr-rank), 0 0 14px 5px var(--clr-rank-glow);
+}
+
 .avatarWrap :global(.rank) {
 	position: absolute;
 	bottom: 0;

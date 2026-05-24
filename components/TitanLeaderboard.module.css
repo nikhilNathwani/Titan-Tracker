@@ -71,6 +71,15 @@
 	background-color: var(--clr-dark);
 }
 
+.miniAvatar:global(.rank1),
+.miniAvatar:global(.rank2),
+.miniAvatar:global(.rank3),
+.miniAvatarPlaceholder:global(.rank1),
+.miniAvatarPlaceholder:global(.rank2),
+.miniAvatarPlaceholder:global(.rank3) {
+	box-shadow: 0 0 0 2px var(--clr-rank);
+}
+
 .caption {
 	font-style: italic;
 	font-size: var(--fs-1);
