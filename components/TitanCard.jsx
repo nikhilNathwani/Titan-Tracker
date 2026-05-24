@@ -68,10 +68,7 @@ export default function TitanCard({
 					</div>
 					<div className="widget">
 						<div className="widget-title">
-							Win Rate
-							<span className="footnote">
-								<sup>*</sup>
-							</span>
+							Win Rate<span className="footnote">*</span>
 						</div>
 						<div className="widget-content">
 							<div className="widget-value">{winPct}</div>
