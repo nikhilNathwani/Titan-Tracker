@@ -51,7 +51,7 @@
 .avatarPlaceholder:global(.rank1),
 .avatarPlaceholder:global(.rank2),
 .avatarPlaceholder:global(.rank3) {
-	box-shadow: 0 0 0 2.5px var(--clr-rank), 0 0 14px 5px var(--clr-rank-glow);
+	box-shadow: 0 0 0 2.5px var(--clr-rank);
 }
 
 .avatarWrap :global(.rank) {
