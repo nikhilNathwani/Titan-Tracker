@@ -13,6 +13,71 @@ function formatAvgMargin(val) {
 	return `${parseFloat(formatted) >= 0 ? "+" : ""}${formatted}`;
 }
 
+function TitanStatsWidgets({ titan, winPct, avgScore, bestScore }) {
+	return (
+		<div className={styles.statsWidgets}>
+			{/* Record + Win Rate */}
+			<div className="section-row">
+				<div className={`widget ${styles.record}`}>
+					<div className="widget-title">Win - Loss - Tie</div>
+					<div className="widget-content">
+						<div className="widget-value">
+							{titan.num_win}
+							<span className={styles.recordSep}> - </span>
+							{titan.num_loss}
+							<span className={styles.recordSep}> - </span>
+							{titan.num_tie}
+						</div>
+					</div>
+				</div>
+				<div className="widget">
+					<div className="widget-title">
+						Win Rate<span className="footnote">*</span>
+					</div>
+					<div className="widget-content">
+						<div className="widget-value">{winPct}</div>
+					</div>
+				</div>
+			</div>
+
+			{/* Avg Score + Best Score */}
+			<div className="section-row">
+				<div className="widget">
+					<div className="widget-title">
+						Avg Score
+						<span className="footnote">
+							<sup>†</sup>
+						</span>
+					</div>
+					<div className="widget-content">
+						<div className="widget-value">
+							{formatAvgScore(avgScore)}
+							<span className="widget-value-slash">/</span>
+							<span className="widget-value-denom">10</span>
+						</div>
+					</div>
+				</div>
+				{bestScore && (
+					<div className="widget">
+						<div className="widget-title">Best Score</div>
+						<div className="widget-content">
+							<div className="widget-value">
+								{bestScore.titan_score}
+								<span className="widget-value-slash">
+									/
+								</span>
+								<span className="widget-value-denom">
+									{bestScore.max_score}
+								</span>
+							</div>
+						</div>
+					</div>
+				)}
+			</div>
+		</div>
+	);
+}
+
 export default function TitanCard({
 	titan,
 	avgScore,
@@ -34,7 +99,7 @@ export default function TitanCard({
 	return (
 		<div className="section titanCard" id={titanId}>
 			<div className={`section-content ${styles.content}`}>
-				{/* Header: avatar + rank badge + name + win rate */}
+				{/* Header: avatar + rank badge + name */}
 				<div className={styles.header}>
 					<div className={styles.avatarWrap}>
 						<Image
@@ -52,64 +117,14 @@ export default function TitanCard({
 					</div>
 				</div>
 
-				{/* Record + Win Rate */}
-				<div className="section-row">
-					<div className={`widget ${styles.record}`}>
-						<div className="widget-title">Win - Loss - Tie</div>
-						<div className="widget-content">
-							<div className="widget-value">
-								{titan.num_win}
-								<span className={styles.recordSep}> - </span>
-								{titan.num_loss}
-								<span className={styles.recordSep}> - </span>
-								{titan.num_tie}
-							</div>
-						</div>
-					</div>
-					<div className="widget">
-						<div className="widget-title">
-							Win Rate<span className="footnote">*</span>
-						</div>
-						<div className="widget-content">
-							<div className="widget-value">{winPct}</div>
-						</div>
-					</div>
-				</div>
+				<hr className={styles.divider} />
 
-				{/* Avg Score + Best Score */}
-				<div className="section-row">
-					<div className="widget">
-						<div className="widget-title">
-							Avg Score
-							<span className="footnote">
-								<sup>†</sup>
-							</span>
-						</div>
-						<div className="widget-content">
-							<div className="widget-value">
-								{formatAvgScore(avgScore)}
-								<span className="widget-value-slash">/</span>
-								<span className="widget-value-denom">10</span>
-							</div>
-						</div>
-					</div>
-					{bestScore && (
-						<div className="widget">
-							<div className="widget-title">Best Score</div>
-							<div className="widget-content">
-								<div className="widget-value">
-									{bestScore.titan_score}
-									<span className="widget-value-slash">
-										/
-									</span>
-									<span className="widget-value-denom">
-										{bestScore.max_score}
-									</span>
-								</div>
-							</div>
-						</div>
-					)}
-				</div>
+				<TitanStatsWidgets
+					titan={titan}
+					winPct={winPct}
+					avgScore={avgScore}
+					bestScore={bestScore}
+				/>
 
 				{/* Per-Round Stats */}
 				<div className={`widget widget-full ${styles.perRound}`}>
