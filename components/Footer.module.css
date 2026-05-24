@@ -1,13 +1,6 @@
 .footer {
 	width: 100%;
 	align-self: stretch;
-	margin-top: 2rem;
-}
-
-@media (max-width: 600px) {
-	.footer {
-		margin-top: 0.5rem;
-	}
 }
 
 .content {
