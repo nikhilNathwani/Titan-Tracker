@@ -242,12 +242,14 @@ tr:not(:first-of-type) {
 	border: 1px solid var(--clr-text-secondary);
 }
 
-/* Rank-colored avatar borders (used in TitanCard + TitanLeaderboard) */
-.rank1,
-.rank2,
-.rank3,
-.rankNR {
-	border-color: var(--clr-rank);
+.rank1.rank {
+	background: linear-gradient(160deg, hsl(43, 80%, 63%) 0%, hsl(43, 65%, 50%) 55%, hsl(43, 60%, 42%) 100%);
+}
+.rank2.rank {
+	background: linear-gradient(160deg, hsl(215, 15%, 75%) 0%, hsl(215, 10%, 62%) 55%, hsl(215, 12%, 50%) 100%);
+}
+.rank3.rank {
+	background: linear-gradient(160deg, hsl(28, 75%, 65%) 0%, hsl(28, 60%, 52%) 55%, hsl(28, 58%, 42%) 100%);
 }
 
 /* --------------------------- */
