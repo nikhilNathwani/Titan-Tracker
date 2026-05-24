@@ -18,7 +18,7 @@ export default function WinLoss({ num_win, num_tie, num_loss }) {
 						fill
 						priority
 						placeholder="blur"
-						sizes="100vw"
+						sizes="(max-width: 480px) 100vw, 480px"
 					/>
 				</div>
 				<div className={styles.caption}>

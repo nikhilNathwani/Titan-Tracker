@@ -14,8 +14,6 @@ export default function Footer() {
 					>
 						nikhilnathwani.com
 					</a>
-					<span className={styles.link} aria-hidden="true">|</span>
-					<span className={styles.link}>© {new Date().getFullYear()}</span>
 				</div>
 			</div>
 		</div>

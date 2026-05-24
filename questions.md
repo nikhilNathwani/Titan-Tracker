@@ -1,5 +1,5 @@
-## undo whatever padding change you made to the NR pill, it made it worse.
+## "The titans won 20 out of 36 battles." <-- should "20 out of 36" be bolded (since its a stat) or would that make the card look worse/unbalanced?
 
-## now that we have "Win Rate" stacked on top of "55.6%", i think we need more gap between "55.6%" and "The titans won X out of Y battles", so that they look like 2 separate details.
+## remove the copyright, i dont like it
 
 ## commit and push changes
