@@ -63,9 +63,7 @@ function TitanStatsWidgets({ titan, winPct, avgScore, bestScore }) {
 						<div className="widget-content">
 							<div className="widget-value">
 								{bestScore.titan_score}
-								<span className="widget-value-slash">
-									/
-								</span>
+								<span className="widget-value-slash">/</span>
 								<span className="widget-value-denom">
 									{bestScore.max_score}
 								</span>

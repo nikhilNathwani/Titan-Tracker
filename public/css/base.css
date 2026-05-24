@@ -219,8 +219,8 @@ tr:not(:first-of-type) {
 	--clr-rank-text: var(--clr-rank3-text);
 }
 .rankNR {
-	--clr-rank: var(--clr-mid);
-	--clr-rank-text: var(--clr-light);
+	--clr-rank: var(--clr-light);
+	--clr-rank-text: var(--clr-dark);
 }
 
 .rank {
