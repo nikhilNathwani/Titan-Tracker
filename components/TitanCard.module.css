@@ -43,7 +43,6 @@
 	display: block;
 	object-fit: cover;
 	background-color: var(--clr-dark);
-	border: 2.5px solid var(--clr-rank, var(--clr-border-card));
 }
 
 .avatarWrap :global(.rank) {
