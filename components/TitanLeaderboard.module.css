@@ -81,7 +81,6 @@
 }
 
 .caption {
-	font-style: italic;
 	font-size: var(--fs-1);
 	color: var(--clr-text-secondary);
 }
