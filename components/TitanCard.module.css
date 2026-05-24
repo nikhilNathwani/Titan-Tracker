@@ -175,8 +175,3 @@
 .perRoundMarginNeg {
 	color: var(--clr-neg);
 }
-
-.avatar:global(.rankNR),
-.avatarPlaceholder:global(.rankNR) {
-	opacity: 0.7;
-}

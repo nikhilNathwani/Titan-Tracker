@@ -77,8 +77,3 @@
 	font-size: var(--fs-1);
 	color: var(--clr-text-secondary);
 }
-
-.miniAvatar:global(.rankNR),
-.miniAvatarPlaceholder:global(.rankNR) {
-	opacity: 0.7;
-}
