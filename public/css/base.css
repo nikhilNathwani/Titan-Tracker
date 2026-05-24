@@ -220,7 +220,7 @@ tr:not(:first-of-type) {
 }
 .rankNR {
 	--clr-rank: var(--clr-light);
-	--clr-rank-text: var(--clr-dark);
+	--clr-rank-text: var(--clr-light);
 }
 
 .rank {
@@ -235,6 +235,11 @@ tr:not(:first-of-type) {
 	white-space: nowrap;
 	background-color: var(--clr-rank);
 	color: var(--clr-rank-text);
+}
+
+.rankNR.rank {
+	background-color: var(--clr-mid);
+	border: 1px solid var(--clr-light);
 }
 
 /* Rank-colored avatar borders (used in TitanCard + TitanLeaderboard) */
