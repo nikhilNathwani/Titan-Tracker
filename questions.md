@@ -1,5 +1,1 @@
-## "The titans won 20 out of 36 battles." <-- should "20 out of 36" be bolded (since its a stat) or would that make the card look worse/unbalanced?
-
-## remove the copyright, i dont like it
-
-## commit and push changes
+## Where to refactor next — TitanCard.jsx is the most logical next target: it's one 187-line component that renders 4 distinct visual sections. Extracting internal sub-components (not separate files — just named functions in the same file) like TitanCardHeader, TitanCardWidgets, PerRoundStats would make the JSX readable without over-engineering. After that, the data-fetching duplication between layout.tsx and page.tsx (both run the same titan records query) could be resolved with React's cache().
