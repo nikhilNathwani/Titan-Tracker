@@ -27,15 +27,9 @@ export default function TitanPerRoundStats({
 			<div className={styles.perRoundRows}>
 				<div className={styles.perRoundHeaderRow}>
 					<span />
-					<span className={styles.perRoundColHeader}>
-						# Battles
-					</span>
-					<span className={styles.perRoundColHeader}>
-						Avg Score
-					</span>
-					<span className={styles.perRoundColHeader}>
-						Avg Margin
-					</span>
+					<span className={styles.perRoundColHeader}># Battles</span>
+					<span className={styles.perRoundColHeader}>Avg Score</span>
+					<span className={styles.perRoundColHeader}>Avg Margin</span>
 				</div>
 				{ROUNDS.map((roundNum) => {
 					const round = perRoundStats?.[roundNum] ?? {
@@ -54,10 +48,7 @@ export default function TitanPerRoundStats({
 							? `${styles.perRoundMargin} ${styles.perRoundMarginNeg}`
 							: styles.perRoundMargin;
 					return (
-						<div
-							key={roundNum}
-							className={styles.perRoundDataRow}
-						>
+						<div key={roundNum} className={styles.perRoundDataRow}>
 							<span className={styles.perRoundRoundLabel}>
 								Rd {roundNum}
 							</span>
