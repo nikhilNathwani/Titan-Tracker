@@ -1,7 +1,12 @@
 import Image from "next/image";
 import styles from "./TitanLeaderboard.module.css";
+import type { TitanWithRank } from "@/lib/types";
 
-export default function TitanLeaderboard({ titans }) {
+interface TitanLeaderboardProps {
+	titans: TitanWithRank[];
+}
+
+export default function TitanLeaderboard({ titans }: TitanLeaderboardProps) {
 	return (
 		<div className="section" id="titanLeaderboard">
 			<p className="section-label">Titan Leaderboard</p>

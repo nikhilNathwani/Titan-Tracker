@@ -4,8 +4,17 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SiteHeader.module.css";
+import type { TitanWithRank } from "@/lib/types";
 
-export default function SiteHeader({ activeTitans, inactiveTitans }) {
+interface SiteHeaderProps {
+	activeTitans: TitanWithRank[];
+	inactiveTitans: TitanWithRank[];
+}
+
+export default function SiteHeader({
+	activeTitans,
+	inactiveTitans,
+}: SiteHeaderProps) {
 	const [navOpen, setNavOpen] = useState(false);
 
 	const closeNav = () => setNavOpen(false);

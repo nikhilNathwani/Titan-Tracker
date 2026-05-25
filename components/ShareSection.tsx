@@ -34,7 +34,7 @@ export default function ShareSection() {
 		}
 	}
 
-	function copyViaExecCommand(text) {
+	function copyViaExecCommand(text: string) {
 		const ta = document.createElement("textarea");
 		ta.value = text;
 		ta.style.cssText =
