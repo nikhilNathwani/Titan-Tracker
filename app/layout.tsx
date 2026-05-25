@@ -7,8 +7,8 @@ import { pool } from "@/lib/db";
 import { titanRecordsQuery } from "@/lib/queries";
 import { generateRankStrings } from "@/lib/ranking";
 import type { TitanRecordRow, TitanRecord, TitanWithRank } from "@/lib/types";
-import SiteHeader from "@/components/layout/SiteHeader";
-import SiteFooter from "@/components/layout/SiteFooter";
+import SiteHeader from "@/components/Layout/SiteHeader";
+import SiteFooter from "@/components/Layout/SiteFooter";
 
 config.autoAddCss = false;
 
