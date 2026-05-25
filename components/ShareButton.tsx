@@ -6,7 +6,17 @@ import { faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 const SHOW_CONTEXT = "Bobby's Triple Threat on Food Network";
 
-export default function ShareButton({ sectionId, sectionName, shareText }) {
+interface ShareButtonProps {
+	sectionId: string;
+	sectionName: string;
+	shareText?: string;
+}
+
+export default function ShareButton({
+	sectionId,
+	sectionName,
+	shareText,
+}: ShareButtonProps) {
 	const [copied, setCopied] = useState(false);
 
 	async function handleShare() {

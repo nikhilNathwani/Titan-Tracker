@@ -2,7 +2,13 @@ import Image from "next/image";
 import allTitansImg from "@/public/img/all-titans.jpg";
 import styles from "./WinLoss.module.css";
 
-export default function WinLoss({ num_win, num_tie, num_loss }) {
+interface WinLossProps {
+	num_win: number;
+	num_tie: number;
+	num_loss: number;
+}
+
+export default function WinLoss({ num_win, num_tie, num_loss }: WinLossProps) {
 	const total = num_win + num_tie + num_loss;
 	const percentSuccess = ((100 * num_win) / total).toPrecision(3);
 
