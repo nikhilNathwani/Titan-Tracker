@@ -1,6 +1,6 @@
-import styles from "./Footer.module.css";
+import styles from "./SiteFooter.module.css";
 
-export default function Footer() {
+export default function SiteFooter() {
 	return (
 		<div className={styles.footer} id="footer">
 			<div className={styles.content}>
