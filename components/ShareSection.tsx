@@ -9,7 +9,6 @@ import {
 	faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ShareSection.module.css";
-import SectionLabel from "./SectionLabel";
 
 const SHARE_TITLE = "Titan Tracker";
 const SHARE_TEXT =
@@ -63,9 +62,7 @@ export default function ShareSection() {
 	}
 
 	return (
-		<div className="section" id="shareSection">
-			<SectionLabel>Share</SectionLabel>
-			<div className={styles.buttons}>
+		<div className={styles.buttons}>
 				<div className={styles.btnWrapper}>
 					<button
 						onClick={handleCopy}
@@ -99,7 +96,6 @@ export default function ShareSection() {
 					</button>
 					<span className={styles.btnLabel}>Text</span>
 				</div>
-			</div>
 		</div>
 	);
 }

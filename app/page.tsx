@@ -27,6 +27,7 @@ import TitanGroup from "@/components/TitanGroup";
 import Notes from "@/components/Notes";
 import ShareSection from "@/components/ShareSection";
 import HeroSection from "@/components/HeroSection";
+import Section from "@/components/Section";
 
 // Render this page as static HTML at build time (SSG).
 // Re-deploy to pick up new data.
@@ -132,26 +133,15 @@ export default async function Home() {
 	return (
 		<>
 			<HeroSection />
-			<WinLoss {...winLoss} />
-			<TitanLeaderboard titans={titansWithRanks} />
-			<TitanGroup label="Individual Titan Stats" id="titansSectionLabel">
-				{activeTitans.map((titan) => (
-					<TitanCard
-						key={titan.titan_name}
-						titan={titan}
-						avgScore={avgScoresMap[titan.titan_name]}
-						bestScore={bestScoresMap[titan.titan_name]}
-						perRoundStats={perRoundStatsMap[titan.titan_name]}
-						maxBattleCount={maxBattleCount}
-					/>
-				))}
-			</TitanGroup>
-			{inactiveTitans.length > 0 && (
-				<TitanGroup
-					label="Inactive Titans"
-					id="inactiveTitansSectionLabel"
-				>
-					{inactiveTitans.map((titan) => (
+			<Section title="Team Record" id="winLoss">
+				<WinLoss {...winLoss} />
+			</Section>
+			<Section title="Titan Leaderboard" id="titanLeaderboard">
+				<TitanLeaderboard titans={titansWithRanks} />
+			</Section>
+			<Section title="Individual Titan Stats" id="titansSectionLabel">
+				<TitanGroup>
+					{activeTitans.map((titan) => (
 						<TitanCard
 							key={titan.titan_name}
 							titan={titan}
@@ -162,9 +152,29 @@ export default async function Home() {
 						/>
 					))}
 				</TitanGroup>
+			</Section>
+			{inactiveTitans.length > 0 && (
+				<Section title="Inactive Titans" id="inactiveTitansSectionLabel">
+					<TitanGroup>
+						{inactiveTitans.map((titan) => (
+							<TitanCard
+								key={titan.titan_name}
+								titan={titan}
+								avgScore={avgScoresMap[titan.titan_name]}
+								bestScore={bestScoresMap[titan.titan_name]}
+								perRoundStats={perRoundStatsMap[titan.titan_name]}
+								maxBattleCount={maxBattleCount}
+							/>
+						))}
+					</TitanGroup>
+				</Section>
 			)}
-			<Notes />
-			<ShareSection />
+			<Section title="Notes" id="notesSection">
+				<Notes />
+			</Section>
+			<Section title="Share" id="shareSection">
+				<ShareSection />
+			</Section>
 		</>
 	);
 }
