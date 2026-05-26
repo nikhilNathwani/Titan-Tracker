@@ -63,39 +63,39 @@ export default function ShareSection() {
 
 	return (
 		<div className={styles.buttons}>
-				<div className={styles.btnWrapper}>
-					<button
-						onClick={handleCopy}
-						className={`${styles.btn} ${copied ? styles.btnCopied : ""}`}
-						disabled={copied}
-						aria-label="Copy link"
-					>
-						<FontAwesomeIcon icon={copied ? faCheck : faCopy} />
-					</button>
-					<span className={styles.btnLabel}>
-						{copied ? "Copied!" : "Copy"}
-					</span>
-				</div>
-				<div className={styles.btnWrapper}>
-					<button
-						onClick={handleEmail}
-						className={styles.btn}
-						aria-label="Share via email"
-					>
-						<FontAwesomeIcon icon={faEnvelope} />
-					</button>
-					<span className={styles.btnLabel}>Email</span>
-				</div>
-				<div className={styles.btnWrapper}>
-					<button
-						onClick={handleText}
-						className={styles.btn}
-						aria-label="Share via text message"
-					>
-						<FontAwesomeIcon icon={faComment} />
-					</button>
-					<span className={styles.btnLabel}>Text</span>
-				</div>
+			<div className={styles.btnWrapper}>
+				<button
+					onClick={handleCopy}
+					className={`${styles.btn} ${copied ? styles.btnCopied : ""}`}
+					disabled={copied}
+					aria-label="Copy link"
+				>
+					<FontAwesomeIcon icon={copied ? faCheck : faCopy} />
+				</button>
+				<span className={styles.btnLabel}>
+					{copied ? "Copied!" : "Copy"}
+				</span>
+			</div>
+			<div className={styles.btnWrapper}>
+				<button
+					onClick={handleEmail}
+					className={styles.btn}
+					aria-label="Share via email"
+				>
+					<FontAwesomeIcon icon={faEnvelope} />
+				</button>
+				<span className={styles.btnLabel}>Email</span>
+			</div>
+			<div className={styles.btnWrapper}>
+				<button
+					onClick={handleText}
+					className={styles.btn}
+					aria-label="Share via text message"
+				>
+					<FontAwesomeIcon icon={faComment} />
+				</button>
+				<span className={styles.btnLabel}>Text</span>
+			</div>
 		</div>
 	);
 }
