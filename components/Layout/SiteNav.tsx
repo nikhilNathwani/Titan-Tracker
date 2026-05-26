@@ -11,7 +11,7 @@ interface SiteHeaderNavProps {
 	inactiveTitans: TitanWithRank[];
 }
 
-export default function SiteHeaderNav({
+export default function SiteNav({
 	activeTitans,
 	inactiveTitans,
 }: SiteHeaderNavProps) {

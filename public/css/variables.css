@@ -22,10 +22,13 @@
 	/* Ranks */
 	--clr-rank1: hsl(43, 65%, 50%);
 	--clr-rank1-text: hsl(40, 30%, 10%);
+	--clr-rank1-glow: hsla(43, 65%, 50%, 0.35);
 	--clr-rank2: hsl(215, 10%, 62%);
 	--clr-rank2-text: hsl(220, 20%, 12%);
+	--clr-rank2-glow: hsla(215, 10%, 62%, 0.35);
 	--clr-rank3: hsl(28, 60%, 52%);
 	--clr-rank3-text: hsl(28, 30%, 10%);
+	--clr-rank3-glow: hsla(28, 60%, 52%, 0.35);
 
 	/* Special */
 	--clr-neg: hsl(0, 25%, 62%);

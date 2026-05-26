@@ -1,16 +1,20 @@
 import Image from "next/image";
 import styles from "./TitanLeaderboard.module.css";
 import type { TitanWithRank } from "@/lib/types";
+import SectionLabel from "./SectionLabel";
 
 interface TitanLeaderboardProps {
 	titans: TitanWithRank[];
 	label?: string;
 }
 
-export default function TitanLeaderboard({ titans, label = "Titan Leaderboard" }: TitanLeaderboardProps) {
+export default function TitanLeaderboard({
+	titans,
+	label = "Titan Leaderboard",
+}: TitanLeaderboardProps) {
 	return (
 		<div className="section" id="titanLeaderboard">
-			<p className="section-label">{label}</p>
+			<SectionLabel>{label}</SectionLabel>
 			<div className={`section-content ${styles.content}`}>
 				<div className={styles.leaderboard}>
 					{titans.map((titan) => {

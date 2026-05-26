@@ -23,7 +23,9 @@ export default function TitanPerRoundStats({
 	maxBattleCount,
 }: TitanPerRoundStatsProps) {
 	return (
-		<div className={`widget widget-full ${styles.perRound}`}>
+		<div
+			className={`${styles.widget} ${styles.widgetFull} ${styles.perRound}`}
+		>
 			<div className={styles.perRoundRows}>
 				<div className={styles.perRoundHeaderRow}>
 					<span />
