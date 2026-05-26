@@ -2,25 +2,13 @@ import Image from "next/image";
 import allTitansImg from "@/public/img/all-titans.jpg";
 import styles from "./WinLoss.module.css";
 import type { WinLossData } from "@/lib/types";
-import SectionLabel from "./SectionLabel";
 
-interface WinLossProps extends WinLossData {
-	label?: string;
-}
-
-export default function WinLoss({
-	num_win,
-	num_tie,
-	num_loss,
-	label = "Team Record",
-}: WinLossProps) {
+export default function WinLoss({ num_win, num_tie, num_loss }: WinLossData) {
 	const total = num_win + num_tie + num_loss;
 	const percentSuccess = ((100 * num_win) / total).toPrecision(3);
 
 	return (
-		<div className="section" id="winLoss">
-			<SectionLabel>{label}</SectionLabel>
-			<div className={`section-content ${styles.content}`}>
+		<div className={`section-content ${styles.content}`}>
 				<div className={styles.banner}>
 					<Image
 						className={styles.bannerImg}
@@ -50,7 +38,6 @@ export default function WinLoss({
 						.
 					</p>
 				</div>
-			</div>
 		</div>
 	);
 }

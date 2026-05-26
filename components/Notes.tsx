@@ -1,11 +1,8 @@
 import styles from "./Notes.module.css";
-import SectionLabel from "./SectionLabel";
 
 export default function Notes() {
 	return (
-		<div className="section" id="notesSection">
-			<SectionLabel>Notes</SectionLabel>
-			<div className={`section-content ${styles.notesContent}`}>
+		<div className={`section-content ${styles.notesContent}`}>
 				<p>
 					<span className="footnote">*</span> Win rate = wins &divide;
 					(wins + losses); ties are not counted.
@@ -19,6 +16,5 @@ export default function Notes() {
 					8/10&apos;s.
 				</p>
 			</div>
-		</div>
 	);
 }
