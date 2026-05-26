@@ -23,10 +23,9 @@ import type {
 import WinLoss from "@/components/WinLoss";
 import TitanLeaderboard from "@/components/TitanLeaderboard";
 import TitanCard from "@/components/TitanCard";
-import TitanGroup from "@/components/TitanGroup";
 import Notes from "@/components/Notes";
 import ShareSection from "@/components/ShareSection";
-import HeroSection from "@/components/HeroSection";
+import HeroBanner from "@/components/HeroBanner";
 import Section from "@/components/Section";
 
 // Render this page as static HTML at build time (SSG).
@@ -132,7 +131,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<HeroSection />
+			<HeroBanner />
 			<Section title="Team Record" id="winLoss">
 				<WinLoss {...winLoss} />
 			</Section>
@@ -140,8 +139,23 @@ export default async function Home() {
 				<TitanLeaderboard titans={titansWithRanks} />
 			</Section>
 			<Section title="Individual Titan Stats" id="titansSectionLabel">
-				<TitanGroup>
-					{activeTitans.map((titan) => (
+				{activeTitans.map((titan) => (
+					<TitanCard
+						key={titan.titan_name}
+						titan={titan}
+						avgScore={avgScoresMap[titan.titan_name]}
+						bestScore={bestScoresMap[titan.titan_name]}
+						perRoundStats={perRoundStatsMap[titan.titan_name]}
+						maxBattleCount={maxBattleCount}
+					/>
+				))}
+			</Section>
+			{inactiveTitans.length > 0 && (
+				<Section
+					title="Inactive Titans"
+					id="inactiveTitansSectionLabel"
+				>
+					{inactiveTitans.map((titan) => (
 						<TitanCard
 							key={titan.titan_name}
 							titan={titan}
@@ -151,22 +165,6 @@ export default async function Home() {
 							maxBattleCount={maxBattleCount}
 						/>
 					))}
-				</TitanGroup>
-			</Section>
-			{inactiveTitans.length > 0 && (
-				<Section title="Inactive Titans" id="inactiveTitansSectionLabel">
-					<TitanGroup>
-						{inactiveTitans.map((titan) => (
-							<TitanCard
-								key={titan.titan_name}
-								titan={titan}
-								avgScore={avgScoresMap[titan.titan_name]}
-								bestScore={bestScoresMap[titan.titan_name]}
-								perRoundStats={perRoundStatsMap[titan.titan_name]}
-								maxBattleCount={maxBattleCount}
-							/>
-						))}
-					</TitanGroup>
 				</Section>
 			)}
 			<Section title="Notes" id="notesSection">
