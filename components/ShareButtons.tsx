@@ -8,7 +8,7 @@ import {
 	faEnvelope,
 	faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import styles from "./ShareSection.module.css";
+import styles from "./ShareButtons.module.css";
 
 const SHARE_TITLE = "Titan Tracker";
 const SHARE_TEXT =
