@@ -17,7 +17,7 @@ import type {
 	PerRoundStatsRow,
 	TitanRecord,
 	TitanWithRank,
-	WinLoss as WinLossData,
+	WinLossData,
 	AvgScoresMap,
 	BestScoresMap,
 	PerRoundStatsMap,

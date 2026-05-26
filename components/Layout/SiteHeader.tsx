@@ -1,112 +1,44 @@
-"use client";
+import { pool } from "@/lib/db";
+import { titanRecordsQuery } from "@/lib/queries";
+import { generateRankStrings } from "@/lib/ranking";
+import type { TitanRecordRow, TitanRecord, TitanWithRank } from "@/lib/types";
+import SiteHeaderNav from "./SiteHeaderNav";
 
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
-import styles from "./SiteHeader.module.css";
-import type { TitanWithRank } from "@/lib/types";
-
-interface SiteHeaderProps {
-	activeTitans: TitanWithRank[];
-	inactiveTitans: TitanWithRank[];
-}
-
-export default function SiteHeader({
-	activeTitans,
-	inactiveTitans,
-}: SiteHeaderProps) {
-	const [navOpen, setNavOpen] = useState(false);
-
-	const closeNav = () => setNavOpen(false);
+export default async function SiteHeader() {
+	let activeTitans: TitanWithRank[] = [];
+	let inactiveTitans: TitanWithRank[] = [];
+	try {
+		const titanRecordsResult =
+			await pool.query<TitanRecordRow>(titanRecordsQuery);
+		const titanRecords: TitanRecord[] = titanRecordsResult.rows.map(
+			(t) => ({
+				titan_name: t.titan_name,
+				num_win: parseInt(t.num_win, 10),
+				num_tie: parseInt(t.num_tie, 10),
+				num_loss: parseInt(t.num_loss, 10),
+				rank: t.rank === null ? null : parseInt(t.rank, 10),
+				is_active: t.is_active,
+			}),
+		);
+		const rankStrings: string[] = generateRankStrings(
+			titanRecords.map((t) => t.rank),
+		);
+		const titansWithRanks: TitanWithRank[] = titanRecords.map((t, i) => ({
+			...t,
+			rankString: rankStrings[i],
+		}));
+		activeTitans = titansWithRanks
+			.filter((t) => t.rank !== null)
+			.sort((a, b) => (a.rank as number) - (b.rank as number));
+		inactiveTitans = titansWithRanks.filter((t) => t.rank === null);
+	} catch {
+		// DB unavailable (local dev without credentials)
+	}
 
 	return (
-		<>
-			<header id="siteHeader" className={styles.header}>
-				<button
-					id="hamburgerBtn"
-					className={styles.hamburgerBtn}
-					aria-label="Open navigation"
-					aria-expanded={navOpen}
-					aria-controls="siteNav"
-					onClick={() => setNavOpen((prev) => !prev)}
-				>
-					<FontAwesomeIcon icon={faBars} aria-hidden={true} />
-				</button>
-				<span id="siteHeaderTitle" className={styles.title}>
-					Titan Tracker
-				</span>
-				<a
-					href="https://buymeacoffee.com/nikhilnathwani"
-					target="_blank"
-					rel="noopener noreferrer"
-					id="bmcBtn"
-					className={styles.bmcBtn}
-				>
-					☕ Buy me a coffee?
-				</a>
-			</header>
-			<nav
-				id="siteNav"
-				aria-label="Page sections"
-				className={`${styles.nav}${navOpen ? ` ${styles.navOpen}` : ""}`}
-			>
-				<a href="#winLoss" onClick={closeNav}>
-					Team Record
-				</a>
-				<a href="#titanLeaderboard" onClick={closeNav}>
-					Titan Leaderboard
-				</a>
-				{activeTitans.length > 0 && (
-					<>
-						<span className={styles.navGroupLabel}>
-							Individual Titan Stats
-						</span>
-						{activeTitans.map((titan) => (
-							<a
-								key={titan.titan_name}
-								href={`#${titan.titan_name.replace(/ /g, "-")}`}
-								className={styles.navIndented}
-								onClick={closeNav}
-							>
-								{titan.titan_name}
-							</a>
-						))}
-					</>
-				)}
-				{inactiveTitans.length > 0 && (
-					<>
-						<span className={styles.navGroupLabel}>
-							Inactive Titans
-						</span>
-						{inactiveTitans.map((titan) => (
-							<a
-								key={titan.titan_name}
-								href={`#${titan.titan_name.replace(/ /g, "-")}`}
-								className={styles.navIndented}
-								onClick={closeNav}
-							>
-								{titan.titan_name}
-							</a>
-						))}
-					</>
-				)}
-				<a href="#notesSection" onClick={closeNav}>
-					Notes
-				</a>
-				<hr className={styles.navDivider} />
-				<a href="mailto:nnathwani36@gmail.com" onClick={closeNav}>
-					<FontAwesomeIcon icon={faEnvelope} aria-hidden={true} />{" "}
-					Contact me
-				</a>
-			</nav>
-			{navOpen && (
-				<div
-					id="navOverlay"
-					className={styles.overlay}
-					onClick={closeNav}
-					aria-hidden="true"
-				/>
-			)}
-		</>
+		<SiteHeaderNav
+			activeTitans={activeTitans}
+			inactiveTitans={inactiveTitans}
+		/>
 	);
 }

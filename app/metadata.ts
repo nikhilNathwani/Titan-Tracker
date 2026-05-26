@@ -1,5 +1,28 @@
 import type { Metadata } from "next";
 
+export const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "WebApplication",
+	name: "Titan Tracker",
+	url: "https://triple-threat.vercel.app",
+	description:
+		"Fan-made stats tracker for Bobby's Triple Threat on Food Network. Track win rates, rankings, and battle stats for the culinary Titans.",
+	applicationCategory: "Entertainment",
+	operatingSystem: "All",
+	author: {
+		"@type": "Person",
+		name: "Nikhil Nathwani",
+	},
+	about: {
+		"@type": "TVSeries",
+		name: "Bobby's Triple Threat",
+		network: {
+			"@type": "Organization",
+			name: "Food Network",
+		},
+	},
+};
+
 export const metadata: Metadata = {
 	metadataBase: new URL("https://triple-threat.vercel.app"),
 	title: "Titan Tracker | Bobby's Triple Threat Stats",
