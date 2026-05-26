@@ -26,7 +26,7 @@ export default function SiteHeader({
 					id="hamburgerBtn"
 					className={styles.hamburgerBtn}
 					aria-label="Open navigation"
-					aria-expanded={String(navOpen)}
+					aria-expanded={navOpen}
 					aria-controls="siteNav"
 					onClick={() => setNavOpen((prev) => !prev)}
 				>
