@@ -20,11 +20,11 @@ import type {
 	BestScoresMap,
 	PerRoundStatsMap,
 } from "@/lib/types";
-import WinLoss from "@/components/WinLoss";
-import TitanLeaderboard from "@/components/TitanLeaderboard";
-import TitanCard from "@/components/TitanCard";
-import Notes from "@/components/Notes";
-import ShareSection from "@/components/ShareSection";
+import WinLoss from "@/components/Cards/WinLoss";
+import TitanLeaderboard from "@/components/Cards/TitanLeaderboard";
+import TitanCard from "@/components/Cards/TitanCard";
+import Notes from "@/components/Cards/Notes";
+import ShareButtons from "@/components/ShareButtons";
 import HeroBanner from "@/components/HeroBanner";
 import Section from "@/components/Section";
 
@@ -171,7 +171,7 @@ export default async function Home() {
 				<Notes />
 			</Section>
 			<Section title="Share" id="shareSection">
-				<ShareSection />
+				<ShareButtons />
 			</Section>
 		</>
 	);
