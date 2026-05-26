@@ -1,0 +1,19 @@
+.label {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 1.5ch;
+	color: var(--clr-accent);
+	font-size: 0.875rem; /* uppercase-compensated: visually equals ~0.95rem mixed-case */
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.label::before,
+.label::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: currentColor;
+}

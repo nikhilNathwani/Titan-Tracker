@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import SectionLabel from "./SectionLabel";
+import styles from "./TitanGroup.module.css";
 
 interface TitanGroupProps {
 	id: string;
@@ -9,10 +11,8 @@ interface TitanGroupProps {
 export default function TitanGroup({ id, label, children }: TitanGroupProps) {
 	return (
 		<div className="section">
-			<p className="section-label" id={id}>
-				{label}
-			</p>
-			<div className="titan-cards-group">{children}</div>
+			<SectionLabel id={id}>{label}</SectionLabel>
+			<div className={styles.cardsGroup}>{children}</div>
 		</div>
 	);
 }

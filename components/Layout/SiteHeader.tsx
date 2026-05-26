@@ -2,7 +2,7 @@ import { pool } from "@/lib/db";
 import { titanRecordsQuery } from "@/lib/queries";
 import { generateRankStrings } from "@/lib/ranking";
 import type { TitanRecordRow, TitanRecord, TitanWithRank } from "@/lib/types";
-import SiteHeaderNav from "./SiteHeaderNav";
+import SiteNav from "./SiteNav";
 
 export default async function SiteHeader() {
 	let activeTitans: TitanWithRank[] = [];
@@ -36,9 +36,6 @@ export default async function SiteHeader() {
 	}
 
 	return (
-		<SiteHeaderNav
-			activeTitans={activeTitans}
-			inactiveTitans={inactiveTitans}
-		/>
+		<SiteNav activeTitans={activeTitans} inactiveTitans={inactiveTitans} />
 	);
 }

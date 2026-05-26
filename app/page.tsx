@@ -1,5 +1,3 @@
-import Image from "next/image";
-import heroImg from "@/public/og-image.png";
 import { pool } from "@/lib/db";
 import {
 	winLossQuery,
@@ -28,7 +26,7 @@ import TitanCard from "@/components/TitanCard";
 import TitanGroup from "@/components/TitanGroup";
 import Notes from "@/components/Notes";
 import ShareSection from "@/components/ShareSection";
-import pageStyles from "./page.module.css";
+import HeroSection from "@/components/HeroSection";
 
 // Render this page as static HTML at build time (SSG).
 // Re-deploy to pick up new data.
@@ -133,17 +131,7 @@ export default async function Home() {
 
 	return (
 		<>
-			<div id="heroSection" className={pageStyles.heroSection}>
-				<Image
-					src={heroImg}
-					alt="Bobby's Triple Threat — Fan-made Stat Tracker"
-					id="heroImage"
-					className={pageStyles.heroImage}
-					priority
-					placeholder="blur"
-					sizes="(max-width: 680px) 96vw, 680px"
-				/>
-			</div>
+			<HeroSection />
 			<WinLoss {...winLoss} />
 			<TitanLeaderboard titans={titansWithRanks} />
 			<TitanGroup label="Individual Titan Stats" id="titansSectionLabel">

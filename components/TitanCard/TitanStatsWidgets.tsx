@@ -27,11 +27,11 @@ export default function TitanStatsWidgets({
 	return (
 		<div className={styles.statsWidgets}>
 			{/* Record + Win Rate */}
-			<div className="section-row">
-				<div className={`widget ${styles.record}`}>
-					<div className="widget-title">Win - Loss - Tie</div>
-					<div className="widget-content">
-						<div className="widget-value">
+			<div className={styles.row}>
+				<div className={`${styles.widget} ${styles.record}`}>
+					<div className={styles.widgetTitle}>Win - Loss - Tie</div>
+					<div className={styles.widgetContent}>
+						<div className={styles.widgetValue}>
 							{titan.num_win}
 							<span className={styles.recordSep}> - </span>
 							{titan.num_loss}
@@ -40,41 +40,43 @@ export default function TitanStatsWidgets({
 						</div>
 					</div>
 				</div>
-				<div className="widget">
-					<div className="widget-title">
+				<div className={styles.widget}>
+					<div className={styles.widgetTitle}>
 						Win Rate<span className="footnote">*</span>
 					</div>
-					<div className="widget-content">
-						<div className="widget-value">{winPct}</div>
+					<div className={styles.widgetContent}>
+						<div className={styles.widgetValue}>{winPct}</div>
 					</div>
 				</div>
 			</div>
 
 			{/* Avg Score + Best Score */}
-			<div className="section-row">
-				<div className="widget">
-					<div className="widget-title">
+			<div className={styles.row}>
+				<div className={styles.widget}>
+					<div className={styles.widgetTitle}>
 						Avg Score
 						<span className="footnote">
 							<sup>†</sup>
 						</span>
 					</div>
-					<div className="widget-content">
-						<div className="widget-value">
+					<div className={styles.widgetContent}>
+						<div className={styles.widgetValue}>
 							{formatAvgScore(avgScore)}
-							<span className="widget-value-slash">/</span>
-							<span className="widget-value-denom">10</span>
+							<span className={styles.widgetValueSlash}>/</span>
+							<span className={styles.widgetValueDenom}>10</span>
 						</div>
 					</div>
 				</div>
 				{bestScore && (
-					<div className="widget">
-						<div className="widget-title">Best Score</div>
-						<div className="widget-content">
-							<div className="widget-value">
+					<div className={styles.widget}>
+						<div className={styles.widgetTitle}>Best Score</div>
+						<div className={styles.widgetContent}>
+							<div className={styles.widgetValue}>
 								{bestScore.titan_score}
-								<span className="widget-value-slash">/</span>
-								<span className="widget-value-denom">
+								<span className={styles.widgetValueSlash}>
+									/
+								</span>
+								<span className={styles.widgetValueDenom}>
 									{bestScore.max_score}
 								</span>
 							</div>
