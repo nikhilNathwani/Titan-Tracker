@@ -4,12 +4,13 @@ import type { TitanWithRank } from "@/lib/types";
 
 interface TitanLeaderboardProps {
 	titans: TitanWithRank[];
+	label?: string;
 }
 
-export default function TitanLeaderboard({ titans }: TitanLeaderboardProps) {
+export default function TitanLeaderboard({ titans, label = "Titan Leaderboard" }: TitanLeaderboardProps) {
 	return (
 		<div className="section" id="titanLeaderboard">
-			<p className="section-label">Titan Leaderboard</p>
+			<p className="section-label">{label}</p>
 			<div className={`section-content ${styles.content}`}>
 				<div className={styles.leaderboard}>
 					{titans.map((titan) => {

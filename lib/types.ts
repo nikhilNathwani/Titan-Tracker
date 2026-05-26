@@ -40,7 +40,7 @@ export interface PerRoundStatsRow {
 
 // ─── Processed / shaped data ─────────────────────────────────────────────────
 
-export interface WinLoss {
+export interface WinLossData {
 	num_win: number;
 	num_tie: number;
 	num_loss: number;
