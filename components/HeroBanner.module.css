@@ -1,7 +1,7 @@
 .heroSection {
 	width: min(680px, 96vw);
 	border: 1px solid var(--clr-border-mid);
-	border-radius: 10px;
+	border-radius: 12px;
 	box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 	background-color: var(--clr-dark);
 	overflow: hidden;
