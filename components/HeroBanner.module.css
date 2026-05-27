@@ -1,4 +1,4 @@
-.heroSection {
+.heroBanner {
 	width: min(680px, 96vw);
 	border: 1px solid var(--clr-border-mid);
 	border-radius: 12px;
