@@ -10,7 +10,7 @@ export default function Section({ id, title, children }: SectionProps) {
 	return (
 		<div className="section" id={id}>
 			<p className={styles.label}>{title}</p>
-			{children}
+			<div className={styles.cards}>{children}</div>
 		</div>
 	);
 }
