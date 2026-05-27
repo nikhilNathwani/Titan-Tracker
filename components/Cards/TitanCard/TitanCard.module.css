@@ -124,7 +124,7 @@
 }
 
 .widgetContent {
-	padding-block: 0.5rem;
+	padding-block: 0.75rem;
 	padding-inline: 0.5rem;
 	display: flex;
 	flex-flow: column nowrap;
