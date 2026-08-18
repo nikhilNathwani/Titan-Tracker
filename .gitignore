@@ -4,6 +4,7 @@
 .env.development.local
 /node_modules
 /.next
+*.tsbuildinfo
 /titan_data/titan_rounds.csv
 /titan_data/titan_episodes.csv
 /titan_data/wikiScrape.py
