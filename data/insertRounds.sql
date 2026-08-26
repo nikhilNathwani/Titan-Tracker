@@ -25,12 +25,12 @@ ORDER BY season_num ASC, episode_num ASC, round_num ASC;
 --     max_score, titan_score, challenger_score
 -- )
 -- VALUES 
---     (4, 10, 1, 'Michael Voltaggio', 
---     'Sea Scallop', 'Blood Orange', 10, 7, 9),
---     (4, 10, 2, 'Brooke Williamson', 
---     'Porterhouse Steak', 'Gochujang', 10, 9, 7),
---     (4, 10, 3, 'Ayesha Nurdjaja', 
---     'Monkfish', 'Prosciutto', 20, 15, 19);
+--     (5, 1, 1, 'Brooke Williamson', 
+--     'Sea Urchin', 'Cherry Tomato', 10, 8, 4),
+--     (5, 1, 2, 'Michael Voltaggio', 
+--     'Whole Chicken', 'Lemongrass', 10, 7, 6),
+--     (5, 1, 3, 'Ayesha Nurdjaja', 
+--     'Orange Blossom Water', 'Sicilian Pistachio', 20, 13, 19);
 
 
 -- Query 3: Delete results from titan_rounds (use with caution)

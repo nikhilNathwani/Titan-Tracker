@@ -16,7 +16,7 @@ ORDER BY season_num ASC, episode_num ASC;
 -- Query 2: Insert new episode into titan_episodes
 -- INSERT INTO titan_episodes (season_num, episode_num, challenger_name, judge_name)
 -- VALUES 
--- (4, 10, 'Karen Akunowicz', 'Scott Conant');
+-- (5, 1, 'Alex Stupak', 'Buddha Lo');
 
 
 -- Query 3: Delete episode from titan_episodes (use with caution)
