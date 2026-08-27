@@ -1,7 +1,9 @@
 *.DS_Store
 .vercel
 .vscode
-.env.development.local
+.env*.local
+.envrc
+.direnv/
 /node_modules
 /.next
 *.tsbuildinfo
