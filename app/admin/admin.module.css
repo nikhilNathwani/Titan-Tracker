@@ -1,0 +1,373 @@
+.wrap {
+	width: min(560px, 92vw);
+	margin: 0 auto;
+	padding: 1rem 0 4rem;
+}
+
+.card {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1.5rem;
+	padding: 2rem min(2rem, 6vw);
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 12px;
+	background-color: var(--clr-dark);
+	box-shadow:
+		0 4px 24px rgba(0, 0, 0, 0.6),
+		0 1px 8px rgba(0, 0, 0, 0.4);
+	text-align: left;
+}
+
+.cardHeader {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.heading {
+	font-size: var(--fs-3);
+	color: var(--clr-light);
+}
+
+.subtle {
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}
+
+.subtle code,
+.card code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.85em;
+	color: var(--clr-accent);
+}
+
+/* ── Fields ─────────────────────────────────────────────── */
+
+.episodeFieldset,
+.roundFieldset {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+	padding: 1.25rem;
+	border: 1px solid var(--clr-border-subtle);
+	border-radius: 10px;
+	background-color: var(--clr-mid);
+}
+
+.legend {
+	font-size: var(--fs-2);
+	font-weight: 700;
+	color: var(--clr-light);
+}
+
+.legendNote {
+	margin-left: 0.6rem;
+	font-size: var(--fs-0);
+	font-weight: 400;
+	color: var(--clr-text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.fieldRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.fieldRow .field {
+	flex: 1 1 10rem;
+}
+
+.field {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.35rem;
+}
+
+.label {
+	font-size: var(--fs-0);
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--clr-text-secondary);
+}
+
+.input {
+	width: 100%;
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+}
+
+.input:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+	border-color: var(--clr-accent);
+}
+
+/* ── Titan picker ───────────────────────────────────────── */
+
+.titanChoices {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.titanChoice {
+	flex: 1 1 auto;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+	cursor: pointer;
+}
+
+.titanChoice:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+}
+
+.titanChoice:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.titanChoiceSelected,
+.titanChoiceSelected:disabled {
+	border-color: var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+	font-weight: 700;
+	opacity: 1;
+	cursor: default;
+}
+
+.autoTag {
+	margin-left: 0.5rem;
+	padding: 1px 7px;
+	border-radius: 999px;
+	border: 1px solid var(--clr-border-card);
+	font-size: var(--fs-0);
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: none;
+	color: var(--clr-text-secondary);
+}
+
+/* ── Score picker ───────────────────────────────────────── */
+
+.scoreGrid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem;
+}
+
+.scoreCell {
+	min-width: 2.25rem;
+	padding: 0.4rem 0;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 6px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+	text-align: center;
+	cursor: pointer;
+}
+
+.scoreCell:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+}
+
+.scoreCell:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.scoreCellSelected {
+	border-color: var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+	font-weight: 700;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+
+.buttonRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.buttonRow > * {
+	flex: 1 1 10rem;
+}
+
+.primaryButton,
+.secondaryButton {
+	padding: 0.7rem 1.1rem;
+	border-radius: 8px;
+	font-size: var(--fs-1);
+	font-weight: 700;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+}
+
+.primaryButton {
+	border: 1px solid var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+}
+
+.primaryButton:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+.secondaryButton {
+	border: 1px solid var(--clr-border-card);
+	background-color: transparent;
+	color: var(--clr-light);
+}
+
+.linkButton {
+	border: none;
+	background: none;
+	padding: 0;
+	color: var(--clr-text-secondary);
+	font-size: var(--fs-1);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	cursor: pointer;
+}
+
+/* ── Messages ───────────────────────────────────────────── */
+
+.draftNote {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.6rem 0.9rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-mid);
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}
+
+.errorText {
+	font-size: var(--fs-1);
+	color: var(--clr-neg);
+}
+
+.hint {
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}
+
+.fieldWarning {
+	font-size: var(--fs-0);
+	line-height: 1.4;
+	color: var(--clr-rank3);
+}
+
+.inlineFix {
+	border: none;
+	background: none;
+	padding: 0;
+	font: inherit;
+	color: var(--clr-accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+	cursor: pointer;
+}
+
+.casingList {
+	margin: 0.4rem 0 0;
+	padding-left: 1.2rem;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.2rem;
+}
+
+.errorList {
+	margin: 0;
+	padding: 0.9rem 1rem 0.9rem 2.2rem;
+	border: 1px solid var(--clr-neg);
+	border-radius: 8px;
+	background-color: hsla(0, 45%, 40%, 0.12);
+	color: var(--clr-neg);
+	font-size: var(--fs-1);
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.35rem;
+}
+
+.warningText {
+	padding: 0.8rem 1rem;
+	border: 1px solid var(--clr-rank3);
+	border-radius: 8px;
+	background-color: hsla(28, 60%, 45%, 0.12);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+}
+
+.successHint {
+	font-size: var(--fs-1);
+	color: hsl(140, 40%, 65%);
+}
+
+/* ── Review ─────────────────────────────────────────────── */
+
+.summaryGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: 1rem;
+	margin: 0;
+}
+
+.summaryGrid dd {
+	margin: 0.2rem 0 0;
+	font-size: var(--fs-2);
+	color: var(--clr-light);
+}
+
+.tableScroll {
+	overflow-x: auto;
+}
+
+.reviewTable {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--fs-1);
+}
+
+.reviewTable th,
+.reviewTable td {
+	padding: 0.5rem 0.5rem;
+	text-align: left;
+	border-bottom: 1px solid var(--clr-border-subtle);
+	vertical-align: top;
+}
+
+/* Keep the numeric + result columns tight; let names/ingredients wrap. */
+.reviewTable th:not(:nth-child(2)):not(:nth-child(3)),
+.reviewTable td:not(:nth-child(2)):not(:nth-child(3)) {
+	white-space: nowrap;
+}
+
+.reviewTable th {
+	font-size: var(--fs-0);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--clr-text-secondary);
+}
