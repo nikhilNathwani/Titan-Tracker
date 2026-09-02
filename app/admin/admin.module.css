@@ -1,7 +1,13 @@
+/* Cancel the global <body> padding-top (80px, meant for the fixed site header,
+   which /admin does not render). See app/admin/layout.tsx. */
+.shell {
+	margin-top: -80px;
+}
+
 .wrap {
 	width: min(560px, 92vw);
 	margin: 0 auto;
-	padding: 1rem 0 4rem;
+	padding: 2.5rem 0 4rem;
 }
 
 .card {

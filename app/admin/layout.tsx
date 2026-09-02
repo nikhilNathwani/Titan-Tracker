@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import styles from "./admin.module.css";
 
 export const metadata: Metadata = {
 	title: "Admin · Titan Tracker",
@@ -11,5 +12,7 @@ export default function AdminLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	return children;
+	// base.css pads the <body> top by 80px to clear the fixed site header. The
+	// admin portal has no header (it doesn't render SiteHeader), so cancel it.
+	return <div className={styles.shell}>{children}</div>;
 }

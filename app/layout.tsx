@@ -4,8 +4,11 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../public/css/variables.css";
 import "../public/css/base.css";
 import { jsonLd } from "./metadata";
-import SiteHeader from "@/components/Layout/SiteHeader";
-import SiteFooter from "@/components/Layout/SiteFooter";
+
+// The site header/footer are NOT rendered here. They live in app/page.tsx (the
+// only public page) so that /admin — which also inherits this root layout — does
+// not pull SiteHeader's DB query (and its lib/queries .sql file reads) into its
+// serverless bundle. See app/page.tsx.
 
 config.autoAddCss = false;
 
@@ -37,9 +40,7 @@ export default function RootLayout({
 						gtag('config', 'G-M9MMZFVNHC');
 					`}
 				</Script>
-				<SiteHeader />
 				{children}
-				<SiteFooter />
 			</body>
 		</html>
 	);
