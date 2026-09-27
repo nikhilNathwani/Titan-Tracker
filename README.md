@@ -12,12 +12,13 @@ Titan Tracker is a data-driven Next.js app that presents performance analytics f
 - Ranking logic that handles ties and active/inactive titans cleanly
 - Strong typing from raw database rows to UI-ready view models
 - Reusable card-based layout for leaderboard and individual stats
+- Password-protected admin portal (`/admin`) for entering new episodes, with a dry-run preview before anything is written
 - SEO metadata + Open Graph configuration for social sharing
 
 ## Tech Stack
 
-- Next.js 14 (App Router)
-- React + TypeScript
+- Next.js 16 (App Router, Turbopack)
+- React 19 + TypeScript
 - PostgreSQL (`pg`)
 - CSS Modules
 - Vercel deployment
@@ -29,14 +30,18 @@ app/
   page.tsx            # Build-time data fetch + page composition
   layout.tsx          # Global layout
   metadata.ts         # SEO / OG metadata
+  robots.ts, sitemap.ts
+  admin/              # Password-gated episode entry (server actions, dry-run preview)
 
 components/
   HeroBanner.tsx
   Section.tsx
+  ShareButtons.tsx
+  Layout/             # Site header, nav, footer
   Cards/
     WinLoss.tsx
     TitanLeaderboard.tsx
-    TitanCard.tsx
+    TitanCard/        # Per-titan card (header, stat widgets, per-round stats)
     Notes.tsx
 
 lib/
@@ -62,9 +67,14 @@ Create `.env.local`:
 
 ```bash
 POSTGRES_URL=postgres://username:password@host/database
+ADMIN_PASSWORD=choose-a-password   # gates /admin; also set in Vercel project settings
 ```
 
+`next build` prerenders the homepage from the database, so `POSTGRES_URL` must be set for builds too (a missing value makes `pg` fall back to a local Postgres and fail with `relation "titan_rounds" does not exist`). If you keep these vars in `.env.development.local` instead (e.g. via `vercel env pull`), the repo's `.envrc` loads them for any command run from this folder once `direnv allow` has been run.
+
 ## Getting Started
+
+Requires Node 24 (pinned in `.nvmrc`; fnm switches to it automatically).
 
 ```bash
 npm install
@@ -84,7 +94,8 @@ npm start
 ## Notes on Rendering
 
 - `app/page.tsx` is configured with `dynamic = "force-static"`.
-- Fresh data appears on the next deployment/build.
+- Fresh data appears on the next deployment/build — or immediately after an episode is committed through `/admin`, which calls `revalidatePath("/", "layout")`.
+- `/admin` is always rendered on demand (`dynamic = "force-dynamic"`) so its session check runs on every request.
 
 ## Why This Project
 
