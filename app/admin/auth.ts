@@ -50,8 +50,8 @@ export function passwordIsCorrect(submitted: string): boolean {
 }
 
 /** True when the current request carries a valid, unexpired session cookie. */
-export function isAuthenticated(): boolean {
-	const raw = cookies().get(COOKIE_NAME)?.value;
+export async function isAuthenticated(): Promise<boolean> {
+	const raw = (await cookies()).get(COOKIE_NAME)?.value;
 	if (!raw) return false;
 
 	const [expiresAt, signature] = raw.split(".");
@@ -66,9 +66,9 @@ export function isAuthenticated(): boolean {
 }
 
 /** Issue a fresh session cookie. Only valid inside a Server Action / Route Handler. */
-export function startSession(): void {
+export async function startSession(): Promise<void> {
 	const expiresAt = String(Date.now() + SESSION_TTL_MS);
-	cookies().set(COOKIE_NAME, `${expiresAt}.${sign(expiresAt)}`, {
+	(await cookies()).set(COOKIE_NAME, `${expiresAt}.${sign(expiresAt)}`, {
 		httpOnly: true,
 		secure: process.env.NODE_ENV === "production",
 		sameSite: "strict",
@@ -78,6 +78,6 @@ export function startSession(): void {
 }
 
 /** Clear the session cookie. Only valid inside a Server Action / Route Handler. */
-export function endSession(): void {
-	cookies().delete({ name: COOKIE_NAME, path: "/admin" });
+export async function endSession(): Promise<void> {
+	(await cookies()).delete({ name: COOKIE_NAME, path: "/admin" });
 }

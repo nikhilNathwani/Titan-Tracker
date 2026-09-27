@@ -18,12 +18,12 @@ export async function login(
 		await new Promise((resolve) => setTimeout(resolve, 600));
 		return { ok: false, error: "Incorrect password." };
 	}
-	startSession();
+	await startSession();
 	return { ok: true };
 }
 
 export async function logout(): Promise<void> {
-	endSession();
+	await endSession();
 }
 
 function messageFor(err: unknown): string {
@@ -36,7 +36,7 @@ function messageFor(err: unknown): string {
 export async function previewEpisode(
 	input: EpisodeInput,
 ): Promise<SubmitResult> {
-	if (!isAuthenticated()) {
+	if (!(await isAuthenticated())) {
 		return { status: "error", message: "Session expired — reload the page and log in again." };
 	}
 
@@ -60,7 +60,7 @@ export async function previewEpisode(
 
 /** Validate + commit the insert for real, then refresh the public site. */
 export async function commitEpisode(input: EpisodeInput): Promise<SubmitResult> {
-	if (!isAuthenticated()) {
+	if (!(await isAuthenticated())) {
 		return { status: "error", message: "Session expired — reload the page and log in again." };
 	}
 

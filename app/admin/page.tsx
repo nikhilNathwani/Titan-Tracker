@@ -16,7 +16,7 @@ interface LastEpisodeRow {
 }
 
 export default async function AdminPage() {
-	if (!isAuthenticated()) {
+	if (!(await isAuthenticated())) {
 		return (
 			<main className={styles.wrap}>
 				<LoginForm />
