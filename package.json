@@ -22,11 +22,10 @@
 		"sharp": "^0.35.3"
 	},
 	"devDependencies": {
-		"@types/node": "^25.9.1",
+		"@types/node": "^24.19.0",
 		"@types/pg": "^8.20.0",
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
-		"dotenv": "^17.2.1",
 		"typescript": "^6.0.3"
 	},
 	"engines": {
