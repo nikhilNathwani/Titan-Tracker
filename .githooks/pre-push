@@ -1,0 +1,30 @@
+#!/bin/sh
+# Pre-push: type-check before pushing (Vercel deploys main on push). A full
+# `next build` also needs POSTGRES_URL to prerender, so tsc is the portable check.
+# Tracked in the repo (.githooks/); enabled by `npm install` via the
+# "prepare" script, which sets core.hooksPath to .githooks.
+set -e
+cd "$(git rev-parse --show-toplevel)"
+
+# GUI git clients (e.g. VS Code's Source Control) may not have fnm's Node on
+# PATH; load it from .nvmrc if npm is missing.
+case ":$PATH:" in *:/opt/homebrew/bin:*) ;; *) PATH="/opt/homebrew/bin:$PATH" ;; esac
+if ! command -v npm >/dev/null 2>&1 && command -v fnm >/dev/null 2>&1; then
+	eval "$(fnm env)"
+	fnm use --silent-if-unchanged >/dev/null
+fi
+if ! command -v npm >/dev/null 2>&1; then
+	echo "pre-push: npm not found. Run the push from a terminal (or restart VS Code) so Node is on PATH." >&2
+	exit 1
+fi
+if [ ! -d node_modules ]; then
+	echo "pre-push: node_modules missing. Run: npm ci" >&2
+	exit 1
+fi
+
+echo "pre-push: type-checking..."
+# Use the project's own TypeScript; plain `npx tsc` can fetch an unrelated "tsc" package.
+if ! ./node_modules/.bin/tsc --noEmit; then
+	echo "pre-push: type errors. Push aborted." >&2
+	exit 1
+fi

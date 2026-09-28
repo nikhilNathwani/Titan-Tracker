@@ -91,6 +91,8 @@ npm run build
 npm start
 ```
 
+A tracked pre-push hook (`.githooks/pre-push`) type-checks with `tsc` before every push. `npm install` enables it automatically (the `prepare` script sets `core.hooksPath`).
+
 ## Notes on Rendering
 
 - `app/page.tsx` is configured with `dynamic = "force-static"`.
