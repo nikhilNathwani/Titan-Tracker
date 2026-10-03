@@ -21,19 +21,3 @@ export function generateRankStrings(ranks: (number | null)[]): string[] {
 		return `${isTied ? "T-" : ""}${rank}${getRankSuffix(rank)}`;
 	});
 }
-
-/**
- * Formats a Win-Loss-Tie record string.
- * Uses compact format (no spaces) when two or more values are two digits.
- */
-export function formatRecord(
-	num_win: number,
-	num_loss: number,
-	num_tie: number,
-): string {
-	const isTwoDigit = (n: number) => Math.abs(n) >= 10;
-	const count = [num_win, num_loss, num_tie].filter(isTwoDigit).length;
-	return count >= 2
-		? `${num_win}-${num_loss}-${num_tie}`
-		: `${num_win} - ${num_loss} - ${num_tie}`;
-}
