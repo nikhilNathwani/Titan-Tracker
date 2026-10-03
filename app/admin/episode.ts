@@ -1,7 +1,13 @@
 // Episode data model — pure types and helpers, safe to import from client
 // components. Anything that touches the database lives in ./episodeDb.
 
-import { ROUND_NUMS, type RoundNum, type TitanName } from "@/lib/types";
+import {
+	ROUND_NUMS,
+	type RoundNum,
+	type TitanEpisode,
+	type TitanName,
+	type TitanRound,
+} from "@/lib/types";
 
 export function maxScoreForRound(round: RoundNum): number {
 	return round === 3 ? 20 : 10;
@@ -90,21 +96,11 @@ export function emptyEpisodeInput(seed: {
 
 // ─── Normalized / validated shape (what actually hits the database) ─────────
 
-export interface NormalizedRound {
-	round_num: RoundNum;
-	titan_name: TitanName;
-	ingredient1: string;
-	ingredient2: string;
-	max_score: number;
-	titan_score: number;
-	challenger_score: number;
-}
+/** A titan_rounds row; season/episode come from the episode it belongs to. */
+export type NormalizedRound = Omit<TitanRound, "season_num" | "episode_num">;
 
-export interface NormalizedEpisode {
-	season_num: number;
-	episode_num: number;
-	challenger_name: string;
-	judge_name: string;
+/** A titan_episodes row plus its rounds. */
+export interface NormalizedEpisode extends TitanEpisode {
 	rounds: NormalizedRound[];
 }
 

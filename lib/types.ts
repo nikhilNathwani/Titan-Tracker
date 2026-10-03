@@ -7,6 +7,31 @@ export type TitanName = string;
 export const ROUND_NUMS = [1, 2, 3] as const;
 export type RoundNum = (typeof ROUND_NUMS)[number];
 
+// ─── Database tables ─────────────────────────────────────────────────────────
+// One row of each table, as stored. Admin writes these; the public page reads
+// parts of them. Other types below pick from these so the shapes stay in sync.
+
+/** One row of titan_episodes. */
+export interface TitanEpisode {
+	season_num: number;
+	episode_num: number;
+	challenger_name: string;
+	judge_name: string;
+}
+
+/** One row of titan_rounds. */
+export interface TitanRound {
+	season_num: number;
+	episode_num: number;
+	round_num: RoundNum;
+	titan_name: TitanName;
+	ingredient1: string;
+	ingredient2: string;
+	max_score: number;
+	titan_score: number;
+	challenger_score: number;
+}
+
 // ─── Query results ───────────────────────────────────────────────────────────
 // lib/db.ts configures pg to return bigint (COUNT, RANK) and numeric (AVG)
 // values as JS numbers, so these types match the query rows as received.
@@ -26,12 +51,11 @@ export interface TitanRecord extends WinLossTie {
 	is_active: boolean;
 }
 
-export interface BestScore {
-	titan_score: number;
-	max_score: number;
-	ingredient1: string;
-	ingredient2: string;
-}
+/** A titan's best round (see bestScores.sql). */
+export type BestScore = Pick<
+	TitanRound,
+	"titan_score" | "max_score" | "ingredient1" | "ingredient2"
+>;
 
 export interface RoundStats {
 	battle_count: number;
