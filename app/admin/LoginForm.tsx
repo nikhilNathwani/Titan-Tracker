@@ -32,7 +32,9 @@ export default function LoginForm() {
 	return (
 		<form className={styles.card} onSubmit={handleSubmit}>
 			<h1 className={styles.heading}>Admin</h1>
-			<p className={styles.subtle}>Enter the password to add episode data.</p>
+			<p className={styles.subtle}>
+				Enter the password to add episode data.
+			</p>
 
 			<label className={styles.field}>
 				<span className={styles.label}>Password</span>

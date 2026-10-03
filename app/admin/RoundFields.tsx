@@ -43,13 +43,17 @@ export default function RoundFields({
 		>
 			<p className={styles.legend}>
 				Round {roundNum}
-				<span className={styles.legendNote}>scored out of {maxScore}</span>
+				<span className={styles.legendNote}>
+					scored out of {maxScore}
+				</span>
 			</p>
 
 			<div className={styles.field}>
 				<span className={styles.label}>
 					Titan
-					{isTitanAuto && <span className={styles.autoTag}>auto</span>}
+					{isTitanAuto && (
+						<span className={styles.autoTag}>auto</span>
+					)}
 				</span>
 				<div
 					className={styles.titanChoices}
@@ -63,13 +67,16 @@ export default function RoundFields({
 								type="button"
 								key={name}
 								className={`${styles.titanChoice}${
-									selected ? ` ${styles.titanChoiceSelected}` : ""
+									selected
+										? ` ${styles.titanChoiceSelected}`
+										: ""
 								}`}
 								aria-pressed={selected}
 								aria-label={name}
 								title={name}
 								disabled={
-									isTitanAuto || (!selected && disabledTitans.includes(name))
+									isTitanAuto ||
+									(!selected && disabledTitans.includes(name))
 								}
 								onClick={() => onSelectTitan(name)}
 							>

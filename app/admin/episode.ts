@@ -54,8 +54,12 @@ export function resolveTitanAssignments(
 		return { titans, autoIndex: null };
 	}
 
-	const filled = titans.map((name, i) => (name ? i : -1)).filter((i) => i >= 0);
-	const empty = titans.map((name, i) => (name ? -1 : i)).filter((i) => i >= 0);
+	const filled = titans
+		.map((name, i) => (name ? i : -1))
+		.filter((i) => i >= 0);
+	const empty = titans
+		.map((name, i) => (name ? -1 : i))
+		.filter((i) => i >= 0);
 
 	if (filled.length === 2 && empty.length === 1) {
 		const used = new Set(filled.map((i) => titans[i]));

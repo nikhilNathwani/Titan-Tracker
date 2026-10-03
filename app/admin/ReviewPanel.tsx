@@ -42,7 +42,10 @@ export default function ReviewPanel({
 	onConfirm,
 }: ReviewPanelProps) {
 	const casingIssues = capitalizationIssues(episode);
-	const titanTotal = episode.rounds.reduce((sum, r) => sum + r.titan_score, 0);
+	const titanTotal = episode.rounds.reduce(
+		(sum, r) => sum + r.titan_score,
+		0,
+	);
 	const challengerTotal = episode.rounds.reduce(
 		(sum, r) => sum + r.challenger_score,
 		0,
@@ -52,8 +55,9 @@ export default function ReviewPanel({
 		<div className={styles.card}>
 			<h1 className={styles.heading}>Review before inserting</h1>
 			<p className={styles.subtle}>
-				This exact data will be written: 1 row in <code>titan_episodes</code>{" "}
-				and 3 rows in <code>titan_rounds</code>. Nothing is saved yet.
+				This exact data will be written: 1 row in{" "}
+				<code>titan_episodes</code> and 3 rows in{" "}
+				<code>titan_rounds</code>. Nothing is saved yet.
 			</p>
 
 			{errors.length > 0 && (
@@ -108,7 +112,8 @@ export default function ReviewPanel({
 								<td>{round.round_num}</td>
 								<td>{round.titan_name}</td>
 								<td>
-									{round.ingredient1} &amp; {round.ingredient2}
+									{round.ingredient1} &amp;{" "}
+									{round.ingredient2}
 								</td>
 								<td>
 									{round.titan_score}/{round.max_score}
@@ -117,7 +122,10 @@ export default function ReviewPanel({
 									{round.challenger_score}/{round.max_score}
 								</td>
 								<td>
-									{roundResult(round.titan_score, round.challenger_score)}
+									{roundResult(
+										round.titan_score,
+										round.challenger_score,
+									)}
 								</td>
 							</tr>
 						))}
@@ -127,15 +135,19 @@ export default function ReviewPanel({
 
 			{newTitans.length > 0 && (
 				<p className={styles.warningText}>
-					New titan{newTitans.length > 1 ? "s" : ""} will be added to the{" "}
-					<code>titans</code> table: <strong>{newTitans.join(", ")}</strong>.
-					Double-check the spelling.
+					New titan{newTitans.length > 1 ? "s" : ""} will be added to
+					the <code>titans</code> table:{" "}
+					<strong>{newTitans.join(", ")}</strong>. Double-check the
+					spelling.
 				</p>
 			)}
 
 			{casingIssues.length > 0 && (
 				<div className={styles.warningText}>
-					<p>Capitalization looks off — you can go back and fix, or insert as-is:</p>
+					<p>
+						Capitalization looks off — you can go back and fix, or
+						insert as-is:
+					</p>
 					<ul className={styles.casingList}>
 						{casingIssues.map((issue) => (
 							<li key={issue}>{issue}</li>
@@ -145,8 +157,8 @@ export default function ReviewPanel({
 			)}
 
 			<p className={styles.successHint}>
-				Dry run succeeded — the database accepted this insert and rolled it
-				back.
+				Dry run succeeded — the database accepted this insert and rolled
+				it back.
 			</p>
 
 			<div className={styles.buttonRow}>

@@ -45,7 +45,9 @@ export default async function Home() {
 	] = await Promise.all([
 		pool.query<WinLossTie>(winLossQuery),
 		pool.query<TitanRecord>(titanRecordsQuery),
-		pool.query<{ titan_name: TitanName; avg_score: number }>(avgScoresQuery),
+		pool.query<{ titan_name: TitanName; avg_score: number }>(
+			avgScoresQuery,
+		),
 		pool.query<{ titan_name: TitanName } & BestScore>(bestScoresQuery),
 		pool.query<{ titan_name: TitanName; round_num: number } & RoundStats>(
 			perRoundStatsQuery,

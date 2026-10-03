@@ -47,7 +47,9 @@ export async function validateEpisode(
 	const challenger = cleanText(input.challenger_name);
 	if (!challenger) errors.push("Challenger name is required.");
 	else if (challenger.length > MAX_TEXT_LEN)
-		errors.push(`Challenger name must be ${MAX_TEXT_LEN} characters or fewer.`);
+		errors.push(
+			`Challenger name must be ${MAX_TEXT_LEN} characters or fewer.`,
+		);
 
 	const judge = cleanText(input.judge_name);
 	if (!judge) errors.push("Judge name is required.");
@@ -67,22 +69,37 @@ export async function validateEpisode(
 		const titanName = round.titan_name.trim();
 		if (!titanName) errors.push(`${label}: titan is required.`);
 		else if (titanName.length > MAX_TEXT_LEN)
-			errors.push(`${label}: titan name must be ${MAX_TEXT_LEN} characters or fewer.`);
+			errors.push(
+				`${label}: titan name must be ${MAX_TEXT_LEN} characters or fewer.`,
+			);
 
 		const ingredient1 = cleanText(round.ingredient1);
 		const ingredient2 = cleanText(round.ingredient2);
 		if (!ingredient1) errors.push(`${label}: ingredient 1 is required.`);
 		if (!ingredient2) errors.push(`${label}: ingredient 2 is required.`);
-		if (ingredient1.length > MAX_TEXT_LEN || ingredient2.length > MAX_TEXT_LEN)
-			errors.push(`${label}: ingredients must be ${MAX_TEXT_LEN} characters or fewer.`);
+		if (
+			ingredient1.length > MAX_TEXT_LEN ||
+			ingredient2.length > MAX_TEXT_LEN
+		)
+			errors.push(
+				`${label}: ingredients must be ${MAX_TEXT_LEN} characters or fewer.`,
+			);
 
 		const titanScore = parseIntStrict(round.titan_score);
 		if (titanScore === null || titanScore < 0 || titanScore > maxScore)
-			errors.push(`${label}: titan score must be a whole number from 0 to ${maxScore}.`);
+			errors.push(
+				`${label}: titan score must be a whole number from 0 to ${maxScore}.`,
+			);
 
 		const challengerScore = parseIntStrict(round.challenger_score);
-		if (challengerScore === null || challengerScore < 0 || challengerScore > maxScore)
-			errors.push(`${label}: challenger score must be a whole number from 0 to ${maxScore}.`);
+		if (
+			challengerScore === null ||
+			challengerScore < 0 ||
+			challengerScore > maxScore
+		)
+			errors.push(
+				`${label}: challenger score must be a whole number from 0 to ${maxScore}.`,
+			);
 
 		if (
 			titanName &&
@@ -175,7 +192,9 @@ export async function insertEpisode(
 			);
 		}
 
-		for (const titanName of new Set(episode.rounds.map((r) => r.titan_name))) {
+		for (const titanName of new Set(
+			episode.rounds.map((r) => r.titan_name),
+		)) {
 			await client.query(
 				`INSERT INTO titans (titan_name, is_active)
 				 SELECT $1, true

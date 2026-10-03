@@ -36,7 +36,9 @@ export default function ScorePicker({
 							}`}
 							aria-pressed={selected}
 							disabled={disabled}
-							onClick={() => onChange(selected ? "" : String(score))}
+							onClick={() =>
+								onChange(selected ? "" : String(score))
+							}
 						>
 							{score}
 						</button>

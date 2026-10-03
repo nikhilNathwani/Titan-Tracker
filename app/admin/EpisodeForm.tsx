@@ -116,7 +116,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	function titansLockedElsewhere(roundIndex: number): string[] {
 		return input.rounds
 			.map((round, i) =>
-				i !== roundIndex && i !== titanAutoIndex ? round.titan_name : "",
+				i !== roundIndex && i !== titanAutoIndex
+					? round.titan_name
+					: "",
 			)
 			.filter(Boolean);
 	}
@@ -140,7 +142,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 		try {
 			return await action();
 		} catch {
-			setErrors(["Something went wrong talking to the server. Try again."]);
+			setErrors([
+				"Something went wrong talking to the server. Try again.",
+			]);
 			return null;
 		} finally {
 			setPending(false);
@@ -217,9 +221,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 				<h1 className={styles.heading}>Episode added ✓</h1>
 				<p className={styles.subtle}>
 					Season {stage.episode.season_num}, Episode{" "}
-					{stage.episode.episode_num} was written to the database. The public
-					site was revalidated — the new numbers appear on the next page load
-					(give it a few seconds).
+					{stage.episode.episode_num} was written to the database. The
+					public site was revalidated — the new numbers appear on the
+					next page load (give it a few seconds).
 				</p>
 				<div className={styles.buttonRow}>
 					<button
@@ -301,7 +305,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 							min={1}
 							value={input.episode_num}
 							onChange={(event) =>
-								patchEpisode({ episode_num: event.target.value })
+								patchEpisode({
+									episode_num: event.target.value,
+								})
 							}
 							className={styles.input}
 						/>
@@ -312,7 +318,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 					<TitleCaseInput
 						label="Challenger"
 						value={input.challenger_name}
-						onChange={(next) => patchEpisode({ challenger_name: next })}
+						onChange={(next) =>
+							patchEpisode({ challenger_name: next })
+						}
 					/>
 					<TitleCaseInput
 						label="Judge"
@@ -337,7 +345,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 			))}
 
 			{!pending && !isComplete(input) && (
-				<p className={styles.hint}>Every field is required to continue.</p>
+				<p className={styles.hint}>
+					Every field is required to continue.
+				</p>
 			)}
 			<button
 				type="submit"

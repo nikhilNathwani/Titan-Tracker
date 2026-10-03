@@ -37,7 +37,10 @@ export async function previewEpisode(
 	input: EpisodeInput,
 ): Promise<SubmitResult> {
 	if (!(await isAuthenticated())) {
-		return { status: "error", message: "Session expired — reload the page and log in again." };
+		return {
+			status: "error",
+			message: "Session expired — reload the page and log in again.",
+		};
 	}
 
 	const validation = await validateEpisode(input);
@@ -59,9 +62,14 @@ export async function previewEpisode(
 }
 
 /** Validate + commit the insert for real, then refresh the public site. */
-export async function commitEpisode(input: EpisodeInput): Promise<SubmitResult> {
+export async function commitEpisode(
+	input: EpisodeInput,
+): Promise<SubmitResult> {
 	if (!(await isAuthenticated())) {
-		return { status: "error", message: "Session expired — reload the page and log in again." };
+		return {
+			status: "error",
+			message: "Session expired — reload the page and log in again.",
+		};
 	}
 
 	const validation = await validateEpisode(input);
