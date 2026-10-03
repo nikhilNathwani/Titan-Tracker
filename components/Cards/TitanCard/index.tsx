@@ -1,4 +1,9 @@
-import type { TitanWithRank, BestScore, RoundStats } from "@/lib/types";
+import type {
+	TitanWithRank,
+	BestScore,
+	RoundNum,
+	RoundStats,
+} from "@/lib/types";
 import { formatWinPct } from "@/lib/format";
 import TitanCardHeader from "./TitanCardHeader";
 import TitanStatsWidgets from "./TitanStatsWidgets";
@@ -9,7 +14,7 @@ interface TitanCardProps {
 	titan: TitanWithRank;
 	avgScore: number | undefined;
 	bestScore: BestScore | undefined;
-	perRoundStats: Record<number, RoundStats> | undefined;
+	perRoundStats: Record<RoundNum, RoundStats> | undefined;
 	maxBattleCount: number;
 }
 

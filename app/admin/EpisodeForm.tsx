@@ -9,9 +9,9 @@ import {
 	type EpisodeInput,
 	type NormalizedEpisode,
 	type RoundInput,
-	type RoundNum,
 	type SubmitResult,
 } from "./episode";
+import type { RoundNum } from "@/lib/types";
 import RoundFields from "./RoundFields";
 import ReviewPanel from "./ReviewPanel";
 import TitleCaseInput from "./TitleCaseInput";

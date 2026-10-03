@@ -1,8 +1,7 @@
 // Episode data model — pure types and helpers, safe to import from client
 // components. Anything that touches the database lives in ./episodeDb.
 
-export const ROUND_NUMS = [1, 2, 3] as const;
-export type RoundNum = (typeof ROUND_NUMS)[number];
+import type { RoundNum } from "@/lib/types";
 
 export function maxScoreForRound(round: RoundNum): number {
 	return round === 3 ? 20 : 10;

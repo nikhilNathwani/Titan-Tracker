@@ -1,11 +1,9 @@
-import type { RoundStats } from "@/lib/types";
+import { ROUND_NUMS, type RoundNum, type RoundStats } from "@/lib/types";
 import { formatAvgScore, formatAvgMargin } from "@/lib/format";
 import styles from "./TitanCard.module.css";
 
-const ROUNDS = [1, 2, 3];
-
 interface TitanPerRoundStatsProps {
-	perRoundStats: Record<number, RoundStats> | undefined;
+	perRoundStats: Record<RoundNum, RoundStats> | undefined;
 	maxBattleCount: number;
 }
 
@@ -24,7 +22,7 @@ export default function TitanPerRoundStats({
 					<span className={styles.perRoundColHeader}>Avg Score</span>
 					<span className={styles.perRoundColHeader}>Avg Margin</span>
 				</div>
-				{ROUNDS.map((roundNum) => {
+				{ROUND_NUMS.map((roundNum) => {
 					const round = perRoundStats?.[roundNum] ?? {
 						battle_count: 0,
 						avg_score: null,

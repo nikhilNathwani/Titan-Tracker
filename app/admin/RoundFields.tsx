@@ -1,6 +1,7 @@
 "use client";
 
-import { maxScoreForRound, type RoundInput, type RoundNum } from "./episode";
+import type { RoundNum } from "@/lib/types";
+import { maxScoreForRound, type RoundInput } from "./episode";
 import ScorePicker from "./ScorePicker";
 import TitleCaseInput from "./TitleCaseInput";
 import styles from "./admin.module.css";

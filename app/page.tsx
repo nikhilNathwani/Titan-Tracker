@@ -9,6 +9,7 @@ import {
 import { processTitanRecords } from "@/lib/ranking";
 import type {
 	TitanName,
+	RoundNum,
 	TitanRecord,
 	BestScore,
 	RoundStats,
@@ -49,7 +50,7 @@ export default async function Home() {
 			avgScoresQuery,
 		),
 		pool.query<{ titan_name: TitanName } & BestScore>(bestScoresQuery),
-		pool.query<{ titan_name: TitanName; round_num: number } & RoundStats>(
+		pool.query<{ titan_name: TitanName; round_num: RoundNum } & RoundStats>(
 			perRoundStatsQuery,
 		),
 	]);

@@ -11,9 +11,9 @@ import {
 	type EpisodeInput,
 	type NormalizedEpisode,
 	type NormalizedRound,
-	type RoundNum,
 	type ValidationResult,
 } from "./episode";
+import type { RoundNum } from "@/lib/types";
 
 /** User-facing error thrown from the insert path (safe to show verbatim). */
 export class EpisodeError extends Error {}

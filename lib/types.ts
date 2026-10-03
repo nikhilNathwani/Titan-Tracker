@@ -2,6 +2,11 @@
 // readability; titans are data (added via /admin), so this is not an enum.
 export type TitanName = string;
 
+// The show always has exactly three rounds. RoundNum is derived from the array
+// so the two can't drift apart; loop over ROUND_NUMS when you need each round.
+export const ROUND_NUMS = [1, 2, 3] as const;
+export type RoundNum = (typeof ROUND_NUMS)[number];
+
 // ─── Query results ───────────────────────────────────────────────────────────
 // lib/db.ts configures pg to return bigint (COUNT, RANK) and numeric (AVG)
 // values as JS numbers, so these types match the query rows as received.
@@ -42,4 +47,4 @@ export interface TitanWithRank extends TitanRecord {
 
 export type AvgScoresMap = Record<TitanName, number>;
 export type BestScoresMap = Record<TitanName, BestScore>;
-export type PerRoundStatsMap = Record<TitanName, Record<number, RoundStats>>;
+export type PerRoundStatsMap = Record<TitanName, Record<RoundNum, RoundStats>>;
