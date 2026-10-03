@@ -8,10 +8,10 @@ import {
 } from "@/lib/queries";
 import { processTitanRecords } from "@/lib/ranking";
 import type {
+	TitanName,
 	TitanRecord,
-	AvgScoreRow,
-	BestScoreRow,
-	PerRoundStatsRow,
+	BestScore,
+	RoundStats,
 	WinLossData,
 	AvgScoresMap,
 	BestScoresMap,
@@ -45,9 +45,11 @@ export default async function Home() {
 	] = await Promise.all([
 		pool.query<WinLossData>(winLossQuery),
 		pool.query<TitanRecord>(titanRecordsQuery),
-		pool.query<AvgScoreRow>(avgScoresQuery),
-		pool.query<BestScoreRow>(bestScoresQuery),
-		pool.query<PerRoundStatsRow>(perRoundStatsQuery),
+		pool.query<{ titan_name: TitanName; avg_score: number }>(avgScoresQuery),
+		pool.query<{ titan_name: TitanName } & BestScore>(bestScoresQuery),
+		pool.query<{ titan_name: TitanName; round_num: number } & RoundStats>(
+			perRoundStatsQuery,
+		),
 	]);
 
 	// ── Win-Loss ──────────────────────────────────────────────

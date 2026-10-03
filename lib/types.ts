@@ -4,7 +4,9 @@ export type TitanName = string;
 
 // ─── Query results ───────────────────────────────────────────────────────────
 // lib/db.ts configures pg to return bigint (COUNT, RANK) and numeric (AVG)
-// values as JS numbers, so these types describe the rows exactly as received.
+// values as JS numbers, so these types match the query rows as received.
+// For queries that feed the maps below, page.tsx adds the map keys inline,
+// e.g. pool.query<{ titan_name: TitanName } & BestScore>(...).
 
 export interface WinLossData {
 	num_win: number;
@@ -34,17 +36,6 @@ export interface RoundStats {
 	avg_score: number | null;
 	avg_margin: number | null;
 }
-
-// Rows that become map entries carry their map keys alongside the value.
-export interface AvgScoreRow {
-	titan_name: TitanName;
-	avg_score: number;
-}
-export type BestScoreRow = BestScore & { titan_name: TitanName };
-export type PerRoundStatsRow = RoundStats & {
-	titan_name: TitanName;
-	round_num: number;
-};
 
 // ─── Shaped for display ──────────────────────────────────────────────────────
 

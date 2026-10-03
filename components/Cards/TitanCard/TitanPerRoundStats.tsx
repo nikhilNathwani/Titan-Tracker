@@ -1,17 +1,8 @@
 import type { RoundStats } from "@/lib/types";
+import { formatAvgScore, formatAvgMargin } from "@/lib/format";
 import styles from "./TitanCard.module.css";
 
 const ROUNDS = [1, 2, 3];
-
-function formatAvgScore(val: number | null | undefined): string {
-	return val == null ? "n/a" : val.toPrecision(3);
-}
-
-function formatAvgMargin(val: number | null): string {
-	if (val == null) return "n/a";
-	const formatted = Number(val.toPrecision(3)).toFixed(2);
-	return `${parseFloat(formatted) >= 0 ? "+" : ""}${formatted}`;
-}
 
 interface TitanPerRoundStatsProps {
 	perRoundStats: Record<number, RoundStats> | undefined;
