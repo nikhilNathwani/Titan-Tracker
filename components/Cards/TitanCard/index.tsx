@@ -1,4 +1,5 @@
 import type { TitanWithRank, BestScore, RoundStats } from "@/lib/types";
+import { formatWinPct } from "@/lib/format";
 import TitanCardHeader from "./TitanCardHeader";
 import TitanStatsWidgets from "./TitanStatsWidgets";
 import TitanPerRoundStats from "./TitanPerRoundStats";
@@ -20,9 +21,7 @@ export default function TitanCard({
 	maxBattleCount,
 }: TitanCardProps) {
 	const titanId = titan.titan_name.replace(/ /g, "-");
-	const battles = titan.num_win + titan.num_loss;
-	const winPct =
-		battles > 0 ? ((titan.num_win / battles) * 100).toFixed(1) + "%" : "—";
+	const winPct = formatWinPct(titan);
 
 	return (
 		<div className="section titanCard" id={titanId}>

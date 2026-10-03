@@ -12,7 +12,7 @@ import type {
 	TitanRecord,
 	BestScore,
 	RoundStats,
-	WinLossData,
+	WinLossTie,
 	AvgScoresMap,
 	BestScoresMap,
 	PerRoundStatsMap,
@@ -43,7 +43,7 @@ export default async function Home() {
 		bestScoresResult,
 		perRoundStatsResult,
 	] = await Promise.all([
-		pool.query<WinLossData>(winLossQuery),
+		pool.query<WinLossTie>(winLossQuery),
 		pool.query<TitanRecord>(titanRecordsQuery),
 		pool.query<{ titan_name: TitanName; avg_score: number }>(avgScoresQuery),
 		pool.query<{ titan_name: TitanName } & BestScore>(bestScoresQuery),
@@ -53,7 +53,7 @@ export default async function Home() {
 	]);
 
 	// ── Win-Loss ──────────────────────────────────────────────
-	const winLoss: WinLossData = winLossResult.rows[0];
+	const winLoss: WinLossTie = winLossResult.rows[0];
 
 	// ── Titan Records ─────────────────────────────────────────
 	const { titansWithRanks, activeTitans, inactiveTitans } =

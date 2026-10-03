@@ -8,17 +8,14 @@ export type TitanName = string;
 // For queries that feed the maps below, page.tsx adds the map keys inline,
 // e.g. pool.query<{ titan_name: TitanName } & BestScore>(...).
 
-export interface WinLossData {
+export interface WinLossTie {
 	num_win: number;
 	num_tie: number;
 	num_loss: number;
 }
 
-export interface TitanRecord {
+export interface TitanRecord extends WinLossTie {
 	titan_name: TitanName;
-	num_win: number;
-	num_tie: number;
-	num_loss: number;
 	/** null for inactive titans */
 	rank: number | null;
 	is_active: boolean;
