@@ -17,11 +17,6 @@ SELECT
 	COUNT(*) AS battle_count,
 	AVG(titan_score) AS avg_score,
 	AVG(titan_score - challenger_score) AS avg_margin
-FROM
-	titan_rounds
-GROUP BY
-	titan_name,
-	round_num
-ORDER BY
-	titan_name ASC,
-	round_num ASC;
+FROM titan_rounds
+GROUP BY titan_name, round_num
+ORDER BY titan_name ASC, round_num ASC;

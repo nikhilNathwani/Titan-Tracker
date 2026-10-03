@@ -1,5 +1,5 @@
 -- Win Loss Query:
---      Returns number of wins, ties, losses for the Titan overall (all titans combined)
+--      Returns number of wins, ties, losses for the Titans overall (all titans combined)
 -- Returns:
 --      num_win, num_tie, num_loss
 --
