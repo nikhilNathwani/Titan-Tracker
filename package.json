@@ -6,7 +6,9 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"prepare": "git config core.hooksPath .githooks || true"
+		"prepare": "git config core.hooksPath .githooks || true",
+		"format": "prettier --write .",
+		"format:check": "prettier --check ."
 	},
 	"keywords": [],
 	"author": "",
@@ -26,9 +28,14 @@
 		"@types/pg": "^8.20.0",
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
+		"prettier": "^3.9.9",
 		"typescript": "^6.0.3"
 	},
 	"engines": {
 		"node": "24.x"
+	},
+	"prettier": {
+		"useTabs": true,
+		"tabWidth": 4
 	}
 }
