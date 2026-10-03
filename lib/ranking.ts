@@ -1,4 +1,4 @@
-import type { TitanRecordRow, TitanWithRank } from "./types";
+import type { TitanRecord, TitanWithRank } from "./types";
 
 /**
  * Converts an array of rank integers (or null) to display strings.
@@ -25,26 +25,17 @@ export function generateRankStrings(ranks: (number | null)[]): string[] {
 }
 
 /**
- * Converts raw titan_records rows into display-ready titans with rank strings,
- * and splits them into active (ranked) and inactive (unranked) lists.
+ * Adds display rank strings to titanRecords.sql rows, and splits them into active (ranked) and inactive (unranked) lists.
  * Relies on titanRecords.sql's ORDER BY for ordering (active first, by rank).
  */
-export function processTitanRecords(rows: TitanRecordRow[]): {
+export function processTitanRecords(rows: TitanRecord[]): {
 	titansWithRanks: TitanWithRank[];
 	activeTitans: TitanWithRank[];
 	inactiveTitans: TitanWithRank[];
 } {
-	const ranks = rows.map((t) =>
-		t.rank === null ? null : parseInt(t.rank, 10),
-	);
-	const rankStrings = generateRankStrings(ranks);
+	const rankStrings = generateRankStrings(rows.map((t) => t.rank));
 	const titansWithRanks: TitanWithRank[] = rows.map((t, i) => ({
-		titan_name: t.titan_name,
-		num_win: parseInt(t.num_win, 10),
-		num_tie: parseInt(t.num_tie, 10),
-		num_loss: parseInt(t.num_loss, 10),
-		rank: ranks[i],
-		is_active: t.is_active,
+		...t,
 		rankString: rankStrings[i],
 	}));
 	return {

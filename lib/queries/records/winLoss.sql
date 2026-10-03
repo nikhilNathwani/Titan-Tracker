@@ -16,7 +16,7 @@ WITH episode_sums AS (
 	GROUP BY season_num, episode_num
 )
 SELECT
-	COUNT(CASE WHEN total_titan_score > total_challenger_score THEN 1 END) AS num_win,
-	COUNT(CASE WHEN total_titan_score = total_challenger_score THEN 1 END) AS num_tie,
-	COUNT(CASE WHEN total_titan_score < total_challenger_score THEN 1 END) AS num_loss
+	COUNT(CASE WHEN total_titan_score > total_challenger_score THEN 1 END)::int AS num_win,
+	COUNT(CASE WHEN total_titan_score = total_challenger_score THEN 1 END)::int AS num_tie,
+	COUNT(CASE WHEN total_titan_score < total_challenger_score THEN 1 END)::int AS num_loss
 FROM episode_sums;

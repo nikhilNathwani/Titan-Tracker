@@ -8,8 +8,7 @@ import {
 } from "@/lib/queries";
 import { processTitanRecords } from "@/lib/ranking";
 import type {
-	WinLossRow,
-	TitanRecordRow,
+	TitanRecord,
 	AvgScoreRow,
 	BestScoreRow,
 	PerRoundStatsRow,
@@ -44,19 +43,15 @@ export default async function Home() {
 		bestScoresResult,
 		perRoundStatsResult,
 	] = await Promise.all([
-		pool.query<WinLossRow>(winLossQuery),
-		pool.query<TitanRecordRow>(titanRecordsQuery),
+		pool.query<WinLossData>(winLossQuery),
+		pool.query<TitanRecord>(titanRecordsQuery),
 		pool.query<AvgScoreRow>(avgScoresQuery),
 		pool.query<BestScoreRow>(bestScoresQuery),
 		pool.query<PerRoundStatsRow>(perRoundStatsQuery),
 	]);
 
 	// ── Win-Loss ──────────────────────────────────────────────
-	const winLoss: WinLossData = {
-		num_win: parseInt(winLossResult.rows[0].num_win, 10),
-		num_tie: parseInt(winLossResult.rows[0].num_tie, 10),
-		num_loss: parseInt(winLossResult.rows[0].num_loss, 10),
-	};
+	const winLoss: WinLossData = winLossResult.rows[0];
 
 	// ── Titan Records ─────────────────────────────────────────
 	const { titansWithRanks, activeTitans, inactiveTitans } =
@@ -65,18 +60,13 @@ export default async function Home() {
 	// ── Avg Scores ────────────────────────────────────────────
 	const avgScoresMap: AvgScoresMap = {};
 	avgScoresResult.rows.forEach((row) => {
-		avgScoresMap[row.titan_name] = parseFloat(row.avg_score);
+		avgScoresMap[row.titan_name] = row.avg_score;
 	});
 
 	// ── Best Scores ───────────────────────────────────────────
 	const bestScoresMap: BestScoresMap = {};
-	bestScoresResult.rows.forEach((row) => {
-		bestScoresMap[row.titan_name] = {
-			titan_score: parseFloat(row.titan_score),
-			max_score: parseFloat(row.max_score),
-			ingredient1: row.ingredient1,
-			ingredient2: row.ingredient2,
-		};
+	bestScoresResult.rows.forEach(({ titan_name, ...bestScore }) => {
+		bestScoresMap[titan_name] = bestScore;
 	});
 
 	// ── Per-Round Stats ───────────────────────────────────────
@@ -90,13 +80,9 @@ export default async function Home() {
 			3: { battle_count: 0, avg_score: null, avg_margin: null },
 		};
 	}
-	perRoundStatsResult.rows.forEach((row) => {
-		if (perRoundStatsMap[row.titan_name]) {
-			perRoundStatsMap[row.titan_name][row.round_num] = {
-				battle_count: parseInt(row.battle_count, 10),
-				avg_score: row.avg_score ? parseFloat(row.avg_score) : null,
-				avg_margin: row.avg_margin ? parseFloat(row.avg_margin) : null,
-			};
+	perRoundStatsResult.rows.forEach(({ titan_name, round_num, ...stats }) => {
+		if (perRoundStatsMap[titan_name]) {
+			perRoundStatsMap[titan_name][round_num] = stats;
 		}
 	});
 

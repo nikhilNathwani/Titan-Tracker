@@ -1,44 +1,12 @@
-// ─── Raw DB row shapes ───────────────────────────────────────────────────────
-// pg returns all numeric columns as strings by default.
+// A titan's name, as stored in the titans table. Plain string alias for
+// readability; titans are data (added via /admin), so this is not an enum.
+export type TitanName = string;
 
-export interface WinLossRow {
-	num_win: string;
-	num_tie: string;
-	num_loss: string;
-}
-
-export interface TitanRecordRow {
-	titan_name: string;
-	num_win: string;
-	num_tie: string;
-	num_loss: string;
-	/** pg returns numeric rank or null */
-	rank: string | null;
-	is_active: boolean;
-}
-
-export interface AvgScoreRow {
-	titan_name: string;
-	avg_score: string;
-}
-
-export interface BestScoreRow {
-	titan_name: string;
-	titan_score: string;
-	max_score: string;
-	ingredient1: string;
-	ingredient2: string;
-}
-
-export interface PerRoundStatsRow {
-	titan_name: string;
-	round_num: number;
-	battle_count: string;
-	avg_score: string | null;
-	avg_margin: string | null;
-}
-
-// ─── Processed / shaped data ─────────────────────────────────────────────────
+// ─── Query results ───────────────────────────────────────────────────────────
+// pg returns bigint (e.g. COUNT, RANK) and numeric (e.g. AVG) columns as
+// strings, so the .sql files cast those to ::int / ::float. That makes pg
+// return real numbers, so these types describe the rows exactly as received.
+// If you add a numeric column to a query, cast it the same way.
 
 export interface WinLossData {
 	num_win: number;
@@ -47,16 +15,13 @@ export interface WinLossData {
 }
 
 export interface TitanRecord {
-	titan_name: string;
+	titan_name: TitanName;
 	num_win: number;
 	num_tie: number;
 	num_loss: number;
+	/** null for inactive titans */
 	rank: number | null;
 	is_active: boolean;
-}
-
-export interface TitanWithRank extends TitanRecord {
-	rankString: string;
 }
 
 export interface BestScore {
@@ -72,6 +37,23 @@ export interface RoundStats {
 	avg_margin: number | null;
 }
 
-export type AvgScoresMap = Record<string, number>;
-export type BestScoresMap = Record<string, BestScore>;
-export type PerRoundStatsMap = Record<string, Record<number, RoundStats>>;
+// Rows that become map entries carry their map keys alongside the value.
+export interface AvgScoreRow {
+	titan_name: TitanName;
+	avg_score: number;
+}
+export type BestScoreRow = BestScore & { titan_name: TitanName };
+export type PerRoundStatsRow = RoundStats & {
+	titan_name: TitanName;
+	round_num: number;
+};
+
+// ─── Shaped for display ──────────────────────────────────────────────────────
+
+export interface TitanWithRank extends TitanRecord {
+	rankString: string;
+}
+
+export type AvgScoresMap = Record<TitanName, number>;
+export type BestScoresMap = Record<TitanName, BestScore>;
+export type PerRoundStatsMap = Record<TitanName, Record<number, RoundStats>>;
