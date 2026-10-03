@@ -5,6 +5,7 @@
 // episode is committed. Pristine forms (nothing but the defaulted season/episode)
 // are never saved, and drafts older than a week are ignored.
 
+import { ROUND_NUMS } from "@/lib/types";
 import { type EpisodeInput } from "./episode";
 
 const KEY = "titan-admin:episode-draft";
@@ -38,7 +39,7 @@ export function loadDraft(): Draft | null {
 		if (!raw) return null;
 		const stored = JSON.parse(raw) as StoredDraft;
 		const fresh = Date.now() - (stored?.savedAt ?? 0) <= MAX_AGE_MS;
-		if (stored?.input?.rounds?.length === 3 && fresh) {
+		if (stored?.input?.rounds?.length === ROUND_NUMS.length && fresh) {
 			return {
 				input: stored.input,
 				titanAutoIndex: stored.titanAutoIndex ?? null,

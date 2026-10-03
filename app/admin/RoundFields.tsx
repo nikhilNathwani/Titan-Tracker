@@ -1,6 +1,6 @@
 "use client";
 
-import type { RoundNum } from "@/lib/types";
+import type { RoundNum, TitanName } from "@/lib/types";
 import { maxScoreForRound, type RoundInput } from "./episode";
 import ScorePicker from "./ScorePicker";
 import TitleCaseInput from "./TitleCaseInput";
@@ -9,12 +9,12 @@ import styles from "./admin.module.css";
 interface RoundFieldsProps {
 	roundNum: RoundNum;
 	value: RoundInput;
-	roster: string[];
+	roster: TitanName[];
 	/** Titans locked to another round — not selectable here. */
-	disabledTitans: string[];
+	disabledTitans: TitanName[];
 	/** This round's titan was auto-filled (the other two rounds are set). */
 	isTitanAuto: boolean;
-	onSelectTitan: (titanName: string) => void;
+	onSelectTitan: (titanName: TitanName) => void;
 	onChange: (patch: Partial<RoundInput>) => void;
 	disabled: boolean;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import type { TitanName } from "@/lib/types";
 import type { NormalizedEpisode } from "./episode";
 import { needsTitleCase, toTitleCase } from "./format";
 import styles from "./admin.module.css";
@@ -20,7 +21,7 @@ function capitalizationIssues(episode: NormalizedEpisode): string[] {
 
 interface ReviewPanelProps {
 	episode: NormalizedEpisode;
-	newTitans: string[];
+	newTitans: TitanName[];
 	pending: boolean;
 	errors: string[];
 	onBack: () => void;

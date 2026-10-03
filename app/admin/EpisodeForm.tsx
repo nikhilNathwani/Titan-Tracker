@@ -11,7 +11,7 @@ import {
 	type RoundInput,
 	type SubmitResult,
 } from "./episode";
-import type { RoundNum } from "@/lib/types";
+import { ROUND_NUMS, type TitanName } from "@/lib/types";
 import RoundFields from "./RoundFields";
 import ReviewPanel from "./ReviewPanel";
 import TitleCaseInput from "./TitleCaseInput";
@@ -31,14 +31,14 @@ function isComplete(value: EpisodeInput): boolean {
 }
 
 interface EpisodeFormProps {
-	titans: string[];
+	titans: TitanName[];
 	suggestion: { season_num: number; episode_num: number };
 }
 
 type Stage =
 	| { name: "edit" }
-	| { name: "review"; episode: NormalizedEpisode; newTitans: string[] }
-	| { name: "done"; episode: NormalizedEpisode; newTitans: string[] };
+	| { name: "review"; episode: NormalizedEpisode; newTitans: TitanName[] }
+	| { name: "done"; episode: NormalizedEpisode; newTitans: TitanName[] };
 
 export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	const [input, setInput] = useState<EpisodeInput>(() =>
@@ -91,7 +91,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 		}));
 	}
 
-	function selectTitan(roundIndex: number, titanName: string) {
+	function selectTitan(roundIndex: number, titanName: TitanName) {
 		const picks = input.rounds.map((round) => round.titan_name);
 		// Drop the previous auto pick so it can be recomputed from scratch.
 		if (titanAutoIndex !== null) picks[titanAutoIndex] = "";
@@ -113,7 +113,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	}
 
 	// Titans manually locked to a different round (the auto round doesn't lock).
-	function titansLockedElsewhere(roundIndex: number): string[] {
+	function titansLockedElsewhere(roundIndex: number): TitanName[] {
 		return input.rounds
 			.map((round, i) =>
 				i !== roundIndex && i !== titanAutoIndex
@@ -330,11 +330,11 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 				</div>
 			</fieldset>
 
-			{input.rounds.map((round, index) => (
+			{ROUND_NUMS.map((roundNum, index) => (
 				<RoundFields
-					key={index}
-					roundNum={(index + 1) as RoundNum}
-					value={round}
+					key={roundNum}
+					roundNum={roundNum}
+					value={input.rounds[index]}
 					roster={titans}
 					disabledTitans={titansLockedElsewhere(index)}
 					isTitanAuto={titanAutoIndex === index}

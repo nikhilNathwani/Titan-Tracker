@@ -1,4 +1,5 @@
 import { pool } from "@/lib/db";
+import type { TitanName } from "@/lib/types";
 import { isAuthenticated } from "./auth";
 import LoginForm from "./LoginForm";
 import EpisodeForm from "./EpisodeForm";
@@ -8,7 +9,7 @@ import styles from "./admin.module.css";
 export const dynamic = "force-dynamic";
 
 interface TitanRow {
-	titan_name: string;
+	titan_name: TitanName;
 }
 interface LastEpisodeRow {
 	season_num: number;

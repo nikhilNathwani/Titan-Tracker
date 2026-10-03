@@ -13,7 +13,7 @@ import {
 	type NormalizedRound,
 	type ValidationResult,
 } from "./episode";
-import type { RoundNum } from "@/lib/types";
+import { ROUND_NUMS, type TitanName } from "@/lib/types";
 
 /** User-facing error thrown from the insert path (safe to show verbatim). */
 export class EpisodeError extends Error {}
@@ -56,13 +56,14 @@ export async function validateEpisode(
 	else if (judge.length > MAX_TEXT_LEN)
 		errors.push(`Judge name must be ${MAX_TEXT_LEN} characters or fewer.`);
 
-	if (input.rounds.length !== 3) {
-		errors.push("Exactly 3 rounds are required.");
+	if (input.rounds.length !== ROUND_NUMS.length) {
+		errors.push(`Exactly ${ROUND_NUMS.length} rounds are required.`);
 	}
 
 	const normalizedRounds: NormalizedRound[] = [];
-	input.rounds.slice(0, 3).forEach((round, index) => {
-		const roundNum = (index + 1) as RoundNum;
+	ROUND_NUMS.forEach((roundNum, index) => {
+		const round = input.rounds[index];
+		if (!round) return; // missing round: already reported above
 		const label = `Round ${roundNum}`;
 		const maxScore = maxScoreForRound(roundNum);
 
@@ -121,7 +122,10 @@ export async function validateEpisode(
 	});
 
 	const distinctTitans = new Set(normalizedRounds.map((r) => r.titan_name));
-	if (normalizedRounds.length === 3 && distinctTitans.size !== 3) {
+	if (
+		normalizedRounds.length === ROUND_NUMS.length &&
+		distinctTitans.size !== ROUND_NUMS.length
+	) {
 		errors.push("Each titan can only cook one round per episode.");
 	}
 
@@ -134,7 +138,7 @@ export async function validateEpisode(
 			"SELECT 1 FROM titan_episodes WHERE season_num = $1 AND episode_num = $2",
 			[season, episode],
 		),
-		pool.query<{ titan_name: string }>("SELECT titan_name FROM titans"),
+		pool.query<{ titan_name: TitanName }>("SELECT titan_name FROM titans"),
 	]);
 
 	if ((dup.rowCount ?? 0) > 0) {
