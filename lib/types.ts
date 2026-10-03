@@ -3,10 +3,8 @@
 export type TitanName = string;
 
 // ─── Query results ───────────────────────────────────────────────────────────
-// pg returns bigint (e.g. COUNT, RANK) and numeric (e.g. AVG) columns as
-// strings, so the .sql files cast those to ::int / ::float. That makes pg
-// return real numbers, so these types describe the rows exactly as received.
-// If you add a numeric column to a query, cast it the same way.
+// lib/db.ts configures pg to return bigint (COUNT, RANK) and numeric (AVG)
+// values as JS numbers, so these types describe the rows exactly as received.
 
 export interface WinLossData {
 	num_win: number;

@@ -2,7 +2,7 @@ import type { TitanWithRank, BestScore } from "@/lib/types";
 import styles from "./TitanCard.module.css";
 
 function formatAvgScore(val: number | null | undefined): string {
-	return val == null ? "n/a" : parseFloat(String(val)).toPrecision(3);
+	return val == null ? "n/a" : val.toPrecision(3);
 }
 
 function formatAvgMargin(val: number | null): string {

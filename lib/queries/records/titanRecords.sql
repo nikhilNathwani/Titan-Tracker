@@ -14,9 +14,9 @@
 WITH titan_stats AS (
 	SELECT
 		titan_name,
-		COUNT(CASE WHEN titan_score > challenger_score THEN 1 END)::int AS num_win,
-		COUNT(CASE WHEN titan_score = challenger_score THEN 1 END)::int AS num_tie,
-		COUNT(CASE WHEN titan_score < challenger_score THEN 1 END)::int AS num_loss
+		COUNT(CASE WHEN titan_score > challenger_score THEN 1 END) AS num_win,
+		COUNT(CASE WHEN titan_score = challenger_score THEN 1 END) AS num_tie,
+		COUNT(CASE WHEN titan_score < challenger_score THEN 1 END) AS num_loss
 	FROM titan_rounds
 	GROUP BY titan_name
 ),
@@ -40,7 +40,7 @@ SELECT
 		ELSE RANK() OVER (
 			PARTITION BY t.is_active
 			ORDER BY ts.score DESC, t.titan_name ASC
-		)::int
+		)
 	END AS rank,
 	ts.num_win,
 	ts.num_tie,
