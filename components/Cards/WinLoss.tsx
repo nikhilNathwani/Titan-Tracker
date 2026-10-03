@@ -2,10 +2,10 @@ import Image from "next/image";
 import allTitansImg from "@/public/img/all-titans.jpg";
 import styles from "./WinLoss.module.css";
 import type { WinLossTie } from "@/lib/types";
+import { formatWinPct } from "@/lib/format";
 
 export default function WinLoss({ num_win, num_tie, num_loss }: WinLossTie) {
-	const total = num_win + num_tie + num_loss;
-	const percentSuccess = ((100 * num_win) / total).toPrecision(3);
+	const winPct = formatWinPct({ num_win, num_tie, num_loss });
 
 	return (
 		<div className={`section-content ${styles.content}`}>
@@ -23,7 +23,7 @@ export default function WinLoss({ num_win, num_tie, num_loss }: WinLossTie) {
 			<div className={styles.caption}>
 				<p className={styles.rate}>
 					<span className={styles.rateLabel}>Win Rate</span>
-					<span className={styles.rateStat}>{percentSuccess}%</span>
+					<span className={styles.rateStat}>{winPct}</span>
 				</p>
 				<p className={styles.sentence}>
 					The titans won {num_win} out of {num_win + num_loss} battles
