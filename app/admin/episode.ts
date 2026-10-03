@@ -4,9 +4,9 @@
 import {
 	ROUND_NUMS,
 	type RoundNum,
-	type TitanEpisode,
+	type Episode,
 	type TitanName,
-	type TitanRound,
+	type Round,
 } from "@/lib/types";
 
 export function maxScoreForRound(round: RoundNum): number {
@@ -97,10 +97,10 @@ export function emptyEpisodeInput(seed: {
 // ─── Normalized / validated shape (what actually hits the database) ─────────
 
 /** A titan_rounds row; season/episode come from the episode it belongs to. */
-export type NormalizedRound = Omit<TitanRound, "season_num" | "episode_num">;
+export type NormalizedRound = Omit<Round, "season_num" | "episode_num">;
 
 /** A titan_episodes row plus its rounds. */
-export interface NormalizedEpisode extends TitanEpisode {
+export interface NormalizedEpisode extends Episode {
 	rounds: NormalizedRound[];
 }
 

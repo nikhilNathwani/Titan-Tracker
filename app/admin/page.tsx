@@ -1,5 +1,5 @@
 import { pool } from "@/lib/db";
-import type { TitanName } from "@/lib/types";
+import type { Episode, Titan } from "@/lib/types";
 import { isAuthenticated } from "./auth";
 import LoginForm from "./LoginForm";
 import EpisodeForm from "./EpisodeForm";
@@ -8,13 +8,8 @@ import styles from "./admin.module.css";
 // Never cache the admin page — the session check must run on every request.
 export const dynamic = "force-dynamic";
 
-interface TitanRow {
-	titan_name: TitanName;
-}
-interface LastEpisodeRow {
-	season_num: number;
-	episode_num: number;
-}
+type TitanRow = Pick<Titan, "titan_name">;
+type LastEpisodeRow = Pick<Episode, "season_num" | "episode_num">;
 
 export default async function AdminPage() {
 	if (!(await isAuthenticated())) {

@@ -11,8 +11,14 @@ export type RoundNum = (typeof ROUND_NUMS)[number];
 // One row of each table, as stored. Admin writes these; the public page reads
 // parts of them. Other types below pick from these so the shapes stay in sync.
 
+/** One row of titans. */
+export interface Titan {
+	titan_name: TitanName;
+	is_active: boolean;
+}
+
 /** One row of titan_episodes. */
-export interface TitanEpisode {
+export interface Episode {
 	season_num: number;
 	episode_num: number;
 	challenger_name: string;
@@ -20,7 +26,7 @@ export interface TitanEpisode {
 }
 
 /** One row of titan_rounds. */
-export interface TitanRound {
+export interface Round {
 	season_num: number;
 	episode_num: number;
 	round_num: RoundNum;
@@ -44,16 +50,15 @@ export interface WinLossTie {
 	num_loss: number;
 }
 
-export interface TitanRecord extends WinLossTie {
-	titan_name: TitanName;
+/** A titan with its record and rank (see titanRecords.sql). */
+export interface TitanRecord extends Titan, WinLossTie {
 	/** null for inactive titans */
 	rank: number | null;
-	is_active: boolean;
 }
 
 /** A titan's best round (see bestScores.sql). */
 export type BestScore = Pick<
-	TitanRound,
+	Round,
 	"titan_score" | "max_score" | "ingredient1" | "ingredient2"
 >;
 
