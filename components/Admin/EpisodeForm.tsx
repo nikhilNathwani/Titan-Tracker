@@ -1,35 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { commitEpisode, logout, previewEpisode } from "@/lib/admin/actions";
-import { clearDraft, loadDraft, saveDraft } from "@/lib/admin/draft";
+import { useEpisodeDraft } from "@/lib/admin/useEpisodeDraft";
 import {
 	emptyEpisodeInput,
+	isComplete,
 	resolveTitanAssignments,
+	titansLockedElsewhere,
 	type EpisodeInput,
 	type NormalizedEpisode,
 	type RoundInput,
 	type SubmitResult,
 } from "@/lib/admin/episode";
 import { ROUND_NUMS, type TitanName } from "@/lib/types";
+import EpisodeAdded from "./EpisodeAdded";
+import EpisodeDetailsFields from "./EpisodeDetailsFields";
 import RoundFields from "./RoundFields";
 import ReviewPanel from "./ReviewPanel";
-import TitleCaseInput from "./TitleCaseInput";
 import shared from "./shared.module.css";
 import styles from "./EpisodeForm.module.css";
-
-function isComplete(value: EpisodeInput): boolean {
-	if (!value.season_num.trim() || !value.episode_num.trim()) return false;
-	if (!value.challenger_name.trim() || !value.judge_name.trim()) return false;
-	return value.rounds.every(
-		(round) =>
-			round.titan_name &&
-			round.ingredient1.trim() &&
-			round.ingredient2.trim() &&
-			round.titan_score !== "" &&
-			round.challenger_score !== "",
-	);
-}
 
 interface EpisodeFormProps {
 	titans: TitanName[];
@@ -50,32 +40,19 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	const [pending, setPending] = useState(false);
 	// Which round's titan is currently auto-filled (null = none yet).
 	const [titanAutoIndex, setTitanAutoIndex] = useState<number | null>(null);
-	const [draftRestored, setDraftRestored] = useState(false);
-	// Blocks the autosave effect from firing before the restore attempt.
-	const readyToPersist = useRef(false);
-
-	// Restore an autosaved draft once, on mount.
-	useEffect(() => {
-		const draft = loadDraft();
-		if (draft) {
+	const { draftRestored, discardDraft } = useEpisodeDraft({
+		draft: { input, titanAutoIndex },
+		enabled: stage.name === "edit",
+		onRestore: (draft) => {
 			setInput(draft.input);
 			setTitanAutoIndex(draft.titanAutoIndex);
-			setDraftRestored(true);
-		}
-		readyToPersist.current = true;
-	}, []);
-
-	// Autosave while editing.
-	useEffect(() => {
-		if (!readyToPersist.current || stage.name !== "edit") return;
-		saveDraft({ input, titanAutoIndex });
-	}, [input, titanAutoIndex, stage]);
+		},
+	});
 
 	function startOver() {
-		clearDraft();
+		discardDraft();
 		setInput(emptyEpisodeInput(suggestion));
 		setTitanAutoIndex(null);
-		setDraftRestored(false);
 		setErrors([]);
 	}
 
@@ -111,17 +88,6 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 				titan_name: resolved[i],
 			})),
 		}));
-	}
-
-	// Titans manually locked to a different round (the auto round doesn't lock).
-	function titansLockedElsewhere(roundIndex: number): TitanName[] {
-		return input.rounds
-			.map((round, i) =>
-				i !== roundIndex && i !== titanAutoIndex
-					? round.titan_name
-					: "",
-			)
-			.filter(Boolean);
 	}
 
 	function handleResultErrors(result: SubmitResult): boolean {
@@ -170,8 +136,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 		const result = await runAction(() => commitEpisode(input));
 		if (!result || handleResultErrors(result)) return;
 		if (result.status === "committed") {
-			clearDraft();
-			setDraftRestored(false);
+			discardDraft();
 			setStage({
 				name: "done",
 				episode: result.episode,
@@ -218,29 +183,14 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 
 	if (stage.name === "done") {
 		return (
-			<div className={shared.card}>
-				<h1 className={shared.heading}>Episode added ✓</h1>
-				<p className={shared.subtle}>
-					Season {stage.episode.season_num}, Episode{" "}
-					{stage.episode.episode_num} was written to the database. The
-					public site was revalidated — the new numbers appear on the
-					next page load (give it a few seconds).
-				</p>
-				<div className={shared.buttonRow}>
-					<button
-						type="button"
-						className={shared.primaryButton}
-						onClick={handleAddAnother}
-					>
-						Add another episode
-					</button>
-					<a href="/" className={shared.secondaryButton}>
-						View the site
-					</a>
-				</div>
-			</div>
+			<EpisodeAdded
+				episode={stage.episode}
+				onAddAnother={handleAddAnother}
+			/>
 		);
 	}
+
+	const complete = isComplete(input);
 
 	return (
 		<form className={shared.card} onSubmit={handleReview} noValidate>
@@ -272,64 +222,17 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 
 			{errors.length > 0 && (
 				<ul className={shared.errorList}>
-					{errors.map((message) => (
-						<li key={message}>{message}</li>
+					{errors.map((message, i) => (
+						<li key={i}>{message}</li>
 					))}
 				</ul>
 			)}
 
-			<fieldset
-				className={shared.fieldset}
+			<EpisodeDetailsFields
+				value={input}
+				onChange={patchEpisode}
 				disabled={pending}
-				aria-label="Episode details"
-			>
-				<p className={shared.legend}>Episode details</p>
-				<div className={shared.fieldRow}>
-					<label className={shared.field}>
-						<span className={shared.label}>Season</span>
-						<input
-							type="number"
-							inputMode="numeric"
-							min={1}
-							value={input.season_num}
-							onChange={(event) =>
-								patchEpisode({ season_num: event.target.value })
-							}
-							className={shared.input}
-						/>
-					</label>
-					<label className={shared.field}>
-						<span className={shared.label}>Episode</span>
-						<input
-							type="number"
-							inputMode="numeric"
-							min={1}
-							value={input.episode_num}
-							onChange={(event) =>
-								patchEpisode({
-									episode_num: event.target.value,
-								})
-							}
-							className={shared.input}
-						/>
-					</label>
-				</div>
-
-				<div className={shared.fieldRow}>
-					<TitleCaseInput
-						label="Challenger"
-						value={input.challenger_name}
-						onChange={(next) =>
-							patchEpisode({ challenger_name: next })
-						}
-					/>
-					<TitleCaseInput
-						label="Judge"
-						value={input.judge_name}
-						onChange={(next) => patchEpisode({ judge_name: next })}
-					/>
-				</div>
-			</fieldset>
+			/>
 
 			{ROUND_NUMS.map((roundNum, index) => (
 				<RoundFields
@@ -337,7 +240,11 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 					roundNum={roundNum}
 					value={input.rounds[index]}
 					roster={titans}
-					disabledTitans={titansLockedElsewhere(index)}
+					disabledTitans={titansLockedElsewhere(
+						input.rounds,
+						index,
+						titanAutoIndex,
+					)}
 					isTitanAuto={titanAutoIndex === index}
 					onSelectTitan={(name) => selectTitan(index, name)}
 					onChange={(patch) => patchRound(index, patch)}
@@ -345,7 +252,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 				/>
 			))}
 
-			{!pending && !isComplete(input) && (
+			{!pending && !complete && (
 				<p className={styles.hint}>
 					Every field is required to continue.
 				</p>
@@ -353,7 +260,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 			<button
 				type="submit"
 				className={shared.primaryButton}
-				disabled={pending || !isComplete(input)}
+				disabled={pending || !complete}
 			>
 				{pending ? "Checking…" : "Review"}
 			</button>

@@ -94,6 +94,36 @@ export function emptyEpisodeInput(seed: {
 	};
 }
 
+/** True when every field of the form has a value (the Review button's gate). */
+export function isComplete(value: EpisodeInput): boolean {
+	if (!value.season_num.trim() || !value.episode_num.trim()) return false;
+	if (!value.challenger_name.trim() || !value.judge_name.trim()) return false;
+	return value.rounds.every(
+		(round) =>
+			round.titan_name &&
+			round.ingredient1.trim() &&
+			round.ingredient2.trim() &&
+			round.titan_score !== "" &&
+			round.challenger_score !== "",
+	);
+}
+
+/**
+ * Titans manually picked for rounds other than `roundIndex`, which that round
+ * can't also pick. The auto-filled round (`autoIndex`) doesn't lock its titan.
+ */
+export function titansLockedElsewhere(
+	rounds: RoundInput[],
+	roundIndex: number,
+	autoIndex: number | null,
+): TitanName[] {
+	return rounds
+		.map((round, i) =>
+			i !== roundIndex && i !== autoIndex ? round.titan_name : "",
+		)
+		.filter(Boolean);
+}
+
 // ─── Normalized / validated shape (what actually hits the database) ─────────
 
 /** A titan_rounds row; season/episode come from the episode it belongs to. */
