@@ -13,9 +13,10 @@ next-env.d.ts
 INTERVIEW_STORIES.md
 REACT_MIGRATION_GUIDE.md
 questions.md
-# Personal notes stay local; DATABASE.md (schema docs) is tracked
+# Personal notes stay local; project docs (DATABASE.md, ADMIN.md) are tracked
 docs/*
 !docs/DATABASE.md
+!docs/ADMIN.md
 
 # Environment files hold secrets; only the example template is committed
 .env
