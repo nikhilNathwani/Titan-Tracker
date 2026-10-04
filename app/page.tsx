@@ -86,20 +86,14 @@ export default async function Home() {
 			3: { battle_count: 0, avg_score: null, avg_margin: null },
 		};
 	}
+	// Max battle count across all titans, for scaling the histogram bars.
+	// Starts at 1 to avoid dividing by zero.
+	let maxBattleCount = 1;
 	perRoundStatsResult.rows.forEach(({ titan_name, round_num, ...stats }) => {
 		if (perRoundStatsMap[titan_name]) {
 			perRoundStatsMap[titan_name][round_num] = stats;
+			maxBattleCount = Math.max(maxBattleCount, stats.battle_count);
 		}
-	});
-
-	// Max battle count across all titans (for histogram bar scaling)
-	let maxBattleCount = 1; // minimum 1 to avoid divide-by-zero
-	Object.values(perRoundStatsMap).forEach((rounds) => {
-		Object.values(rounds).forEach((round) => {
-			if (round.battle_count > maxBattleCount) {
-				maxBattleCount = round.battle_count;
-			}
-		});
 	});
 
 	return (
