@@ -21,15 +21,23 @@ export function useEpisodeDraft({
 	// Blocks the autosave effect from firing before the restore attempt.
 	const readyToPersist = useRef(false);
 
-	// Restore an autosaved draft once, on mount.
+	// Restore an autosaved draft once, on mount. This has to be an effect:
+	// localStorage only exists in the browser, so reading it during render would
+	// make the server HTML and the first client render disagree (hydration
+	// mismatch). Setting state here, after hydration, is the intended exception
+	// to the "no setState in effects" rule.
 	useEffect(() => {
 		const saved = loadDraft();
 		if (saved) {
 			onRestore(saved);
+			// eslint-disable-next-line react-hooks/set-state-in-effect -- see above
 			setDraftRestored(true);
 		}
 		readyToPersist.current = true;
-	}, []); // mount only: onRestore isn't a dependency on purpose
+		// Mount only: re-running when onRestore changes would re-restore the
+		// draft over the user's edits.
+		// eslint-disable-next-line react-hooks/exhaustive-deps -- see above
+	}, []);
 
 	// Autosave while editing.
 	const { input, titanAutoIndex } = draft;

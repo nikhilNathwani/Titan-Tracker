@@ -12,6 +12,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"lint": "eslint .",
 		"prepare": "git config core.hooksPath .githooks || true",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
@@ -26,7 +27,7 @@
 		"sports-stats"
 	],
 	"author": "Nikhil Nathwani (https://nikhilnathwani.com)",
-	"license": "ISC",
+	"license": "UNLICENSED",
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^7.2.0",
 		"@fortawesome/free-solid-svg-icons": "^7.2.0",
@@ -42,6 +43,9 @@
 		"@types/pg": "^8.20.0",
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
+		"eslint": "^9.39.5",
+		"eslint-config-next": "^16.3.6",
+		"eslint-config-prettier": "^10.1.8",
 		"prettier": "^3.9.9",
 		"typescript": "^6.0.3",
 		"vitest": "^5.0.3"
@@ -52,5 +56,9 @@
 	"prettier": {
 		"useTabs": true,
 		"tabWidth": 4
+	},
+	"allowScripts": {
+		"fsevents": false,
+		"unrs-resolver": false
 	}
 }

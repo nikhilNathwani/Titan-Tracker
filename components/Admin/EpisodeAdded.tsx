@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { NormalizedEpisode } from "@/lib/admin/episode";
 import shared from "./shared.module.css";
 
@@ -28,9 +29,9 @@ export default function EpisodeAdded({
 				>
 					Add another episode
 				</button>
-				<a href="/" className={shared.secondaryButton}>
+				<Link href="/" className={shared.secondaryButton}>
 					View the site
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

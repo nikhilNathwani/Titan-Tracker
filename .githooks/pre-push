@@ -1,6 +1,6 @@
 #!/bin/sh
-# Pre-push: type-check, format-check (Prettier) and unit tests (Vitest)
-# before pushing (Vercel deploys main on push). A full `next build` also needs POSTGRES_URL to
+# Pre-push: type-check, lint (ESLint), format-check (Prettier) and unit tests
+# (Vitest) before pushing (Vercel deploys main on push). A full `next build` also needs POSTGRES_URL to
 # prerender, so tsc is the portable check.
 # Tracked in the repo (.githooks/); enabled by `npm install` via the
 # "prepare" script, which sets core.hooksPath to .githooks.
@@ -30,6 +30,12 @@ echo "pre-push: type-checking..."
 # Use the project's own TypeScript; plain `npx tsc` can fetch an unrelated "tsc" package.
 if ! ./node_modules/.bin/tsc --noEmit; then
 	echo "pre-push: type errors. Push aborted." >&2
+	exit 1
+fi
+
+echo "pre-push: linting..."
+if ! ./node_modules/.bin/eslint .; then
+	echo "pre-push: lint errors. Push aborted." >&2
 	exit 1
 fi
 

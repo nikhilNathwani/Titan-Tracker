@@ -13,7 +13,7 @@ Titan Tracker is a data-driven Next.js app that presents performance analytics f
 - A typed data-access layer: SQL in `.sql` files, one TypeScript type per table, components that only render
 - Database-enforced integrity (primary/foreign keys, value checks) backing up the app's own validation
 - Admin portal (`/admin`) for entering episodes, with a dry-run preview (a real transaction, rolled back) before anything is written
-- Unit tests, a pre-push hook and GitHub Actions CI (type-check, Prettier, tests)
+- Unit tests, a pre-push hook and GitHub Actions CI (type-check, ESLint, Prettier, tests)
 - SEO metadata + Open Graph configuration for social sharing
 
 ## Tech Stack
@@ -22,7 +22,7 @@ Titan Tracker is a data-driven Next.js app that presents performance analytics f
 - React 19 + TypeScript
 - PostgreSQL (`pg`) on Neon
 - CSS Modules
-- Vitest, Prettier, GitHub Actions
+- Vitest, ESLint, Prettier, GitHub Actions
 - Vercel deployment
 
 ## Project Structure
@@ -58,7 +58,7 @@ docs/
   DATABASE.md         # Schema, keys, rules, handy queries, schema history
   ADMIN.md            # How the admin portal works
 
-.githooks/pre-push    # tsc + Prettier + tests before every push
+.githooks/pre-push    # tsc + ESLint + Prettier + tests before every push
 .github/workflows/    # The same checks in CI
 ```
 
@@ -113,13 +113,14 @@ The app runs at http://localhost:3000.
 npm run dev            # dev server
 npm run build          # production build
 npm start              # serve the production build
+npm run lint           # ESLint (Next.js + TypeScript rules)
 npm test               # unit tests (Vitest)
 npm run test:watch     # tests in watch mode
 npm run format         # format with Prettier
 npm run format:check   # check formatting
 ```
 
-A tracked pre-push hook (`.githooks/pre-push`) type-checks with `tsc`, checks formatting and runs the tests before every push; `npm install` enables it (the `prepare` script sets `core.hooksPath`). GitHub Actions runs the same checks on every push and pull request.
+A tracked pre-push hook (`.githooks/pre-push`) type-checks with `tsc`, lints with ESLint, checks formatting and runs the tests before every push; `npm install` enables it (the `prepare` script sets `core.hooksPath`). GitHub Actions runs the same checks on every push and pull request.
 
 ## Why This Project
 
