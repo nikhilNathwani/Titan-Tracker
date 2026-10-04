@@ -12,7 +12,7 @@ export default function AdminLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	// base.css pads the <body> top by 80px to clear the fixed site header. The
+	// app/styles/base.css pads the <body> top by 80px to clear the fixed site header. The
 	// admin portal has no header (it doesn't render SiteHeader), so cancel it.
 	return <div className={styles.shell}>{children}</div>;
 }

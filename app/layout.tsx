@@ -1,7 +1,7 @@
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../public/css/variables.css";
-import "../public/css/base.css";
+import "./styles/variables.css";
+import "./styles/base.css";
 
 // Root layout, shared by every route: the public site (app/(public)/) and the
 // admin portal (app/admin/). Keep it to what both need; public-only things
