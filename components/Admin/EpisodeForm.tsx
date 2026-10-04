@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { commitEpisode, logout, previewEpisode } from "./actions";
-import { clearDraft, loadDraft, saveDraft } from "./draft";
+import { commitEpisode, logout, previewEpisode } from "@/lib/admin/actions";
+import { clearDraft, loadDraft, saveDraft } from "@/lib/admin/draft";
 import {
 	emptyEpisodeInput,
 	resolveTitanAssignments,
@@ -10,12 +10,13 @@ import {
 	type NormalizedEpisode,
 	type RoundInput,
 	type SubmitResult,
-} from "./episode";
+} from "@/lib/admin/episode";
 import { ROUND_NUMS, type TitanName } from "@/lib/types";
 import RoundFields from "./RoundFields";
 import ReviewPanel from "./ReviewPanel";
 import TitleCaseInput from "./TitleCaseInput";
-import styles from "./admin.module.css";
+import shared from "./shared.module.css";
+import styles from "./EpisodeForm.module.css";
 
 function isComplete(value: EpisodeInput): boolean {
 	if (!value.season_num.trim() || !value.episode_num.trim()) return false;
@@ -217,23 +218,23 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 
 	if (stage.name === "done") {
 		return (
-			<div className={styles.card}>
-				<h1 className={styles.heading}>Episode added ✓</h1>
-				<p className={styles.subtle}>
+			<div className={shared.card}>
+				<h1 className={shared.heading}>Episode added ✓</h1>
+				<p className={shared.subtle}>
 					Season {stage.episode.season_num}, Episode{" "}
 					{stage.episode.episode_num} was written to the database. The
 					public site was revalidated — the new numbers appear on the
 					next page load (give it a few seconds).
 				</p>
-				<div className={styles.buttonRow}>
+				<div className={shared.buttonRow}>
 					<button
 						type="button"
-						className={styles.primaryButton}
+						className={shared.primaryButton}
 						onClick={handleAddAnother}
 					>
 						Add another episode
 					</button>
-					<a href="/" className={styles.secondaryButton}>
+					<a href="/" className={shared.secondaryButton}>
 						View the site
 					</a>
 				</div>
@@ -242,9 +243,9 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	}
 
 	return (
-		<form className={styles.card} onSubmit={handleReview} noValidate>
+		<form className={shared.card} onSubmit={handleReview} noValidate>
 			<div className={styles.cardHeader}>
-				<h1 className={styles.heading}>Add an episode</h1>
+				<h1 className={shared.heading}>Add an episode</h1>
 				<button
 					type="button"
 					className={styles.linkButton}
@@ -270,7 +271,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 			)}
 
 			{errors.length > 0 && (
-				<ul className={styles.errorList}>
+				<ul className={shared.errorList}>
 					{errors.map((message) => (
 						<li key={message}>{message}</li>
 					))}
@@ -278,14 +279,14 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 			)}
 
 			<fieldset
-				className={styles.episodeFieldset}
+				className={shared.fieldset}
 				disabled={pending}
 				aria-label="Episode details"
 			>
-				<p className={styles.legend}>Episode details</p>
-				<div className={styles.fieldRow}>
-					<label className={styles.field}>
-						<span className={styles.label}>Season</span>
+				<p className={shared.legend}>Episode details</p>
+				<div className={shared.fieldRow}>
+					<label className={shared.field}>
+						<span className={shared.label}>Season</span>
 						<input
 							type="number"
 							inputMode="numeric"
@@ -294,11 +295,11 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 							onChange={(event) =>
 								patchEpisode({ season_num: event.target.value })
 							}
-							className={styles.input}
+							className={shared.input}
 						/>
 					</label>
-					<label className={styles.field}>
-						<span className={styles.label}>Episode</span>
+					<label className={shared.field}>
+						<span className={shared.label}>Episode</span>
 						<input
 							type="number"
 							inputMode="numeric"
@@ -309,12 +310,12 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 									episode_num: event.target.value,
 								})
 							}
-							className={styles.input}
+							className={shared.input}
 						/>
 					</label>
 				</div>
 
-				<div className={styles.fieldRow}>
+				<div className={shared.fieldRow}>
 					<TitleCaseInput
 						label="Challenger"
 						value={input.challenger_name}
@@ -351,7 +352,7 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 			)}
 			<button
 				type="submit"
-				className={styles.primaryButton}
+				className={shared.primaryButton}
 				disabled={pending || !isComplete(input)}
 			>
 				{pending ? "Checking…" : "Review"}

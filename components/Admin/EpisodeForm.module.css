@@ -1,0 +1,35 @@
+.cardHeader {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.linkButton {
+	border: none;
+	background: none;
+	padding: 0;
+	color: var(--clr-text-secondary);
+	font-size: var(--fs-1);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	cursor: pointer;
+}
+
+.draftNote {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.6rem 0.9rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-mid);
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}
+
+.hint {
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}

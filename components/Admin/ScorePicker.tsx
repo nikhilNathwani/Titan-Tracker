@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./admin.module.css";
+import shared from "./shared.module.css";
+import styles from "./ScorePicker.module.css";
 
 interface ScorePickerProps {
 	label: string;
@@ -22,8 +23,8 @@ export default function ScorePicker({
 	const scores = Array.from({ length: max + 1 }, (_, i) => max - i);
 
 	return (
-		<div className={styles.field}>
-			<span className={styles.label}>{label}</span>
+		<div className={shared.field}>
+			<span className={shared.label}>{label}</span>
 			<div className={styles.scoreGrid} role="group" aria-label={label}>
 				{scores.map((score) => {
 					const selected = value === String(score);

@@ -1,0 +1,148 @@
+/* Building blocks shared by the admin portal's components: cards, fields,
+   buttons and messages. Styles used by only one component live in that
+   component's own .module.css. */
+
+.card {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1.5rem;
+	padding: 2rem min(2rem, 6vw);
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 12px;
+	background-color: var(--clr-dark);
+	box-shadow:
+		0 4px 24px rgba(0, 0, 0, 0.6),
+		0 1px 8px rgba(0, 0, 0, 0.4);
+	text-align: left;
+}
+
+.heading {
+	font-size: var(--fs-3);
+	color: var(--clr-light);
+}
+
+.subtle {
+	font-size: var(--fs-1);
+	color: var(--clr-text-secondary);
+}
+
+.subtle code,
+.card code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.85em;
+	color: var(--clr-accent);
+}
+
+/* ── Fields ─────────────────────────────────────────────── */
+
+/* The bordered panel around each group of fields (episode details, each round). */
+.fieldset {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+	padding: 1.25rem;
+	border: 1px solid var(--clr-border-subtle);
+	border-radius: 10px;
+	background-color: var(--clr-mid);
+}
+
+.legend {
+	font-size: var(--fs-2);
+	font-weight: 700;
+	color: var(--clr-light);
+}
+
+.fieldRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.fieldRow .field {
+	flex: 1 1 10rem;
+}
+
+.field {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.35rem;
+}
+
+.label {
+	font-size: var(--fs-0);
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--clr-text-secondary);
+}
+
+.input {
+	width: 100%;
+	padding: 0.55rem 0.7rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+}
+
+.input:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+	border-color: var(--clr-accent);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+
+.buttonRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.buttonRow > * {
+	flex: 1 1 10rem;
+}
+
+.primaryButton,
+.secondaryButton {
+	padding: 0.7rem 1.1rem;
+	border-radius: 8px;
+	font-size: var(--fs-1);
+	font-weight: 700;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+}
+
+.primaryButton {
+	border: 1px solid var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+}
+
+.primaryButton:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+.secondaryButton {
+	border: 1px solid var(--clr-border-card);
+	background-color: transparent;
+	color: var(--clr-light);
+}
+
+/* ── Messages ───────────────────────────────────────────── */
+
+.errorList {
+	margin: 0;
+	padding: 0.9rem 1rem 0.9rem 2.2rem;
+	border: 1px solid var(--clr-neg);
+	border-radius: 8px;
+	background-color: hsla(0, 45%, 40%, 0.12);
+	color: var(--clr-neg);
+	font-size: var(--fs-1);
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.35rem;
+}

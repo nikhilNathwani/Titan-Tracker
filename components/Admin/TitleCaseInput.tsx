@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { needsTitleCase, toTitleCase } from "./format";
-import styles from "./admin.module.css";
+import { needsTitleCase, toTitleCase } from "@/lib/admin/titleCase";
+import shared from "./shared.module.css";
+import styles from "./TitleCaseInput.module.css";
 
 interface TitleCaseInputProps {
 	label: string;
@@ -24,15 +25,15 @@ export default function TitleCaseInput({
 	const suggestion = needsTitleCase(value) ? toTitleCase(value) : null;
 
 	return (
-		<label className={styles.field}>
-			<span className={styles.label}>{label}</span>
+		<label className={shared.field}>
+			<span className={shared.label}>{label}</span>
 			<input
 				type="text"
 				value={value}
 				onChange={(event) => onChange(event.target.value)}
 				onFocus={() => setFocused(true)}
 				onBlur={() => setFocused(false)}
-				className={styles.input}
+				className={shared.input}
 				autoComplete="off"
 			/>
 			{!focused && suggestion && (

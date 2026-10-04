@@ -1,5 +1,5 @@
 // Episode data model — pure types and helpers, safe to import from client
-// components. Anything that touches the database lives in ./episodeDb.
+// components. Anything that touches the database lives in ./episodes.
 
 import {
 	ROUND_NUMS,

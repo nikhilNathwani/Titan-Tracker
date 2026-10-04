@@ -1,8 +1,9 @@
-// Server-only: validation that needs the database, plus the transactional insert.
+// Server-only data access for the admin portal: the form's data (roster, next
+// episode), validation that needs the database, and the transactional insert.
 //
 // Adding one episode = 1 row in `titan_episodes` + 3 rows in `titan_rounds`.
-// The database has no PK / FK / NOT NULL constraints, so every rule is enforced
-// here.
+// The database also enforces keys and value rules (docs/DATABASE.md); checking
+// them here too means the form can show friendly, specific messages.
 
 import { pool } from "@/lib/db";
 import {
@@ -13,7 +14,31 @@ import {
 	type NormalizedRound,
 	type ValidationResult,
 } from "./episode";
-import { ROUND_NUMS, type TitanName } from "@/lib/types";
+import { ROUND_NUMS, type Episode, type TitanName } from "@/lib/types";
+
+/** Active titans' names, alphabetically: the form's titan roster. */
+export async function getActiveTitanNames(): Promise<TitanName[]> {
+	const { rows } = await pool.query<{ titan_name: TitanName }>(
+		"SELECT titan_name FROM titans WHERE is_active ORDER BY titan_name",
+	);
+	return rows.map((row) => row.titan_name);
+}
+
+/** The episode after the latest one in the database: the form's default. */
+export async function getNextEpisodeSuggestion(): Promise<
+	Pick<Episode, "season_num" | "episode_num">
+> {
+	const { rows } = await pool.query<
+		Pick<Episode, "season_num" | "episode_num">
+	>(
+		`SELECT season_num, episode_num FROM titan_episodes
+		 ORDER BY season_num DESC, episode_num DESC LIMIT 1`,
+	);
+	const last = rows[0];
+	return last
+		? { season_num: last.season_num, episode_num: last.episode_num + 1 }
+		: { season_num: 1, episode_num: 1 };
+}
 
 /** User-facing error thrown from the insert path (safe to show verbatim). */
 export class EpisodeError extends Error {}

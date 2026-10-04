@@ -1,9 +1,10 @@
 "use client";
 
 import type { TitanName } from "@/lib/types";
-import type { NormalizedEpisode } from "./episode";
-import { needsTitleCase, toTitleCase } from "./format";
-import styles from "./admin.module.css";
+import type { NormalizedEpisode } from "@/lib/admin/episode";
+import { needsTitleCase, toTitleCase } from "@/lib/admin/titleCase";
+import shared from "./shared.module.css";
+import styles from "./ReviewPanel.module.css";
 
 function capitalizationIssues(episode: NormalizedEpisode): string[] {
 	const fields: [string, string][] = [
@@ -53,16 +54,16 @@ export default function ReviewPanel({
 	);
 
 	return (
-		<div className={styles.card}>
-			<h1 className={styles.heading}>Review before inserting</h1>
-			<p className={styles.subtle}>
+		<div className={shared.card}>
+			<h1 className={shared.heading}>Review before inserting</h1>
+			<p className={shared.subtle}>
 				This exact data will be written: 1 row in{" "}
 				<code>titan_episodes</code> and 3 rows in{" "}
 				<code>titan_rounds</code>. Nothing is saved yet.
 			</p>
 
 			{errors.length > 0 && (
-				<ul className={styles.errorList}>
+				<ul className={shared.errorList}>
 					{errors.map((message) => (
 						<li key={message}>{message}</li>
 					))}
@@ -71,24 +72,24 @@ export default function ReviewPanel({
 
 			<dl className={styles.summaryGrid}>
 				<div>
-					<dt className={styles.label}>Season / Episode</dt>
+					<dt className={shared.label}>Season / Episode</dt>
 					<dd>
 						S{episode.season_num} · E{episode.episode_num}
 					</dd>
 				</div>
 				<div>
-					<dt className={styles.label}>Challenger</dt>
+					<dt className={shared.label}>Challenger</dt>
 					<dd>{episode.challenger_name}</dd>
 				</div>
 				<div>
-					<dt className={styles.label}>Judge</dt>
+					<dt className={shared.label}>Judge</dt>
 					<dd>{episode.judge_name}</dd>
 				</div>
 				<div>
-					<dt className={styles.label}>Episode score</dt>
+					<dt className={shared.label}>Episode score</dt>
 					<dd>
 						{titanTotal}&ndash;{challengerTotal}{" "}
-						<span className={styles.subtle}>
+						<span className={shared.subtle}>
 							({roundResult(titanTotal, challengerTotal)})
 						</span>
 					</dd>
@@ -162,10 +163,10 @@ export default function ReviewPanel({
 				it back.
 			</p>
 
-			<div className={styles.buttonRow}>
+			<div className={shared.buttonRow}>
 				<button
 					type="button"
-					className={styles.secondaryButton}
+					className={shared.secondaryButton}
 					onClick={onBack}
 					disabled={pending}
 				>
@@ -173,7 +174,7 @@ export default function ReviewPanel({
 				</button>
 				<button
 					type="button"
-					className={styles.primaryButton}
+					className={shared.primaryButton}
 					onClick={onConfirm}
 					disabled={pending}
 				>

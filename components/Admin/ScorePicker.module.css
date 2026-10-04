@@ -1,0 +1,34 @@
+.scoreGrid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem;
+}
+
+.scoreCell {
+	min-width: 2.25rem;
+	padding: 0.4rem 0;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 6px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+	text-align: center;
+	cursor: pointer;
+}
+
+.scoreCell:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+}
+
+.scoreCell:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.scoreCellSelected {
+	border-color: var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+	font-weight: 700;
+}

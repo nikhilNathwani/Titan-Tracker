@@ -1,0 +1,57 @@
+.legendNote {
+	margin-left: 0.6rem;
+	font-size: var(--fs-0);
+	font-weight: 400;
+	color: var(--clr-text-secondary);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+}
+
+.titanChoices {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.titanChoice {
+	flex: 1 1 auto;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--clr-border-mid);
+	border-radius: 8px;
+	background-color: var(--clr-dark);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+	cursor: pointer;
+}
+
+.titanChoice:focus-visible {
+	outline: 2px solid var(--clr-accent);
+	outline-offset: 1px;
+}
+
+.titanChoice:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.titanChoiceSelected,
+.titanChoiceSelected:disabled {
+	border-color: var(--clr-accent);
+	background-color: var(--clr-accent);
+	color: hsl(var(--hue), 20%, 10%);
+	font-weight: 700;
+	opacity: 1;
+	cursor: default;
+}
+
+.autoTag {
+	margin-left: 0.5rem;
+	padding: 1px 7px;
+	border-radius: 999px;
+	border: 1px solid var(--clr-border-card);
+	font-size: var(--fs-0);
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: none;
+	color: var(--clr-text-secondary);
+}

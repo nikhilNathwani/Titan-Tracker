@@ -33,13 +33,14 @@ app/
     page.tsx          # The homepage ("/"): fetches data and composes sections
   metadata.ts         # SEO / OG metadata
   robots.ts, sitemap.ts
-  admin/              # Password-gated episode entry (server actions, dry-run preview)
+  admin/              # /admin route: layout + page (password-gated episode entry)
 
 components/
   HeroBanner.tsx
   Section.tsx
   ShareButtons.tsx
   Layout/             # Site header, nav, footer
+  Admin/              # Admin portal UI: login, episode form, review panel (+ shared.module.css)
   Cards/
     WinLoss.tsx
     TitanLeaderboard.tsx
@@ -48,12 +49,14 @@ components/
 
 lib/
   db.ts               # PostgreSQL pool
-  queries.ts          # SQL file loaders
+  queries.ts          # Public-site data access: runs lib/queries/*.sql, shapes results
   queries/
     records/
     stats/
-  ranking.ts          # Rank label generation
-  types.ts            # Row types + shaped view types
+  ranking.ts          # Rank labels and the active/inactive split
+  format.ts           # Display formatting (averages, win %, name slugs)
+  types.ts            # Table row types + shaped view types
+  admin/              # Admin logic: auth, server actions, validation + inserts, draft autosave
 ```
 
 ## Data Flow

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { login } from "./actions";
-import styles from "./admin.module.css";
+import { login } from "@/lib/admin/actions";
+import shared from "./shared.module.css";
+import styles from "./LoginForm.module.css";
 
 export default function LoginForm() {
 	const [password, setPassword] = useState("");
@@ -30,14 +31,14 @@ export default function LoginForm() {
 	}
 
 	return (
-		<form className={styles.card} onSubmit={handleSubmit}>
-			<h1 className={styles.heading}>Admin</h1>
-			<p className={styles.subtle}>
+		<form className={shared.card} onSubmit={handleSubmit}>
+			<h1 className={shared.heading}>Admin</h1>
+			<p className={shared.subtle}>
 				Enter the password to add episode data.
 			</p>
 
-			<label className={styles.field}>
-				<span className={styles.label}>Password</span>
+			<label className={shared.field}>
+				<span className={shared.label}>Password</span>
 				<input
 					type="password"
 					name="password"
@@ -45,7 +46,7 @@ export default function LoginForm() {
 					autoFocus
 					value={password}
 					onChange={(event) => setPassword(event.target.value)}
-					className={styles.input}
+					className={shared.input}
 					required
 				/>
 			</label>
@@ -54,7 +55,7 @@ export default function LoginForm() {
 
 			<button
 				type="submit"
-				className={styles.primaryButton}
+				className={shared.primaryButton}
 				disabled={pending || password.length === 0}
 			>
 				{pending ? "Checking…" : "Unlock"}

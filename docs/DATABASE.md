@@ -58,7 +58,7 @@ Each episode has three rounds, and each round belongs to one episode and one tit
 
 ### Rules the database does _not_ enforce
 
-Everything in the tables above is enforced by the database itself (named constraints, listed under History). Two rules are only checked by the admin portal (`app/admin/episodeDb.ts`, `validateEpisode`), so follow them by hand in manual SQL:
+Everything in the tables above is enforced by the database itself (named constraints, listed under History). Two rules are only checked by the admin portal (`lib/admin/episodes.ts`, `validateEpisode`), so follow them by hand in manual SQL:
 
 - **exactly 3 rounds per episode.** A `CHECK` can only look at one row at a time, so it can't count an episode's rounds. (The primary key and `round_num` check do stop a 4th round or a repeated round number.)
 - **names and ingredients at most 100 characters.** That's a form/display limit, not a data-integrity rule; the columns allow 255.
@@ -66,8 +66,8 @@ Everything in the tables above is enforced by the database itself (named constra
 ## Where this lives in the code
 
 - **Types:** `lib/types.ts` has one type per table: `Titan`, `Episode`, `Round`. Other types pick fields from them.
-- **Reads:** the public page's SQL is in `lib/queries/**/*.sql`. `lib/queries.ts` loads it, runs it, and shapes the results; pages and components call its `get*` functions (`getTitans`, `getWinLoss`, …) rather than querying directly. They run at build time (the page is static). Committing an episode through `/admin` regenerates the page right away (`revalidatePath` in `app/admin/actions.ts`); otherwise new data appears on the next deploy.
-- **Writes:** the admin portal at `/admin` (`app/admin/`).
+- **Reads:** the public page's SQL is in `lib/queries/**/*.sql`. `lib/queries.ts` loads it, runs it, and shapes the results; pages and components call its `get*` functions (`getTitans`, `getWinLoss`, …) rather than querying directly. They run at build time (the page is static). Committing an episode through `/admin` regenerates the page right away (`revalidatePath` in `lib/admin/actions.ts`); otherwise new data appears on the next deploy.
+- **Writes:** the admin portal at `/admin`: route in `app/admin/`, components in `components/Admin/`, logic (validation, inserts, auth) in `lib/admin/`.
 - **Number parsing:** `lib/db.ts` makes `pg` return `COUNT`/`RANK` (bigint) and `AVG` (numeric) results as JS numbers instead of strings.
 - **Roles:** the app connects as `default`, which owns the tables. SQLTools in VS Code connects as `titan_editor` (select/insert/update/delete only).
 

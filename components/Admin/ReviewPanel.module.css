@@ -1,0 +1,65 @@
+.casingList {
+	margin: 0.4rem 0 0;
+	padding-left: 1.2rem;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 0.2rem;
+}
+
+.warningText {
+	padding: 0.8rem 1rem;
+	border: 1px solid var(--clr-rank3);
+	border-radius: 8px;
+	background-color: hsla(28, 60%, 45%, 0.12);
+	color: var(--clr-light);
+	font-size: var(--fs-1);
+}
+
+.successHint {
+	font-size: var(--fs-1);
+	color: hsl(140, 40%, 65%);
+}
+
+.summaryGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: 1rem;
+	margin: 0;
+}
+
+.summaryGrid dd {
+	margin: 0.2rem 0 0;
+	font-size: var(--fs-2);
+	color: var(--clr-light);
+}
+
+.tableScroll {
+	overflow-x: auto;
+}
+
+.reviewTable {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: var(--fs-1);
+}
+
+.reviewTable th,
+.reviewTable td {
+	padding: 0.5rem 0.5rem;
+	text-align: left;
+	border-bottom: 1px solid var(--clr-border-subtle);
+	vertical-align: top;
+}
+
+/* Keep the numeric + result columns tight; let names/ingredients wrap. */
+.reviewTable th:not(:nth-child(2)):not(:nth-child(3)),
+.reviewTable td:not(:nth-child(2)):not(:nth-child(3)) {
+	white-space: nowrap;
+}
+
+.reviewTable th {
+	font-size: var(--fs-0);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--clr-text-secondary);
+}

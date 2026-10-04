@@ -1,10 +1,11 @@
 "use client";
 
 import type { RoundNum, TitanName } from "@/lib/types";
-import { maxScoreForRound, type RoundInput } from "./episode";
+import { maxScoreForRound, type RoundInput } from "@/lib/admin/episode";
 import ScorePicker from "./ScorePicker";
 import TitleCaseInput from "./TitleCaseInput";
-import styles from "./admin.module.css";
+import shared from "./shared.module.css";
+import styles from "./RoundFields.module.css";
 
 interface RoundFieldsProps {
 	roundNum: RoundNum;
@@ -38,19 +39,19 @@ export default function RoundFields({
 
 	return (
 		<fieldset
-			className={styles.roundFieldset}
+			className={shared.fieldset}
 			disabled={disabled}
 			aria-label={`Round ${roundNum}`}
 		>
-			<p className={styles.legend}>
+			<p className={shared.legend}>
 				Round {roundNum}
 				<span className={styles.legendNote}>
 					scored out of {maxScore}
 				</span>
 			</p>
 
-			<div className={styles.field}>
-				<span className={styles.label}>
+			<div className={shared.field}>
+				<span className={shared.label}>
 					Titan
 					{isTitanAuto && (
 						<span className={styles.autoTag}>auto</span>
@@ -88,7 +89,7 @@ export default function RoundFields({
 				</div>
 			</div>
 
-			<div className={styles.fieldRow}>
+			<div className={shared.fieldRow}>
 				<TitleCaseInput
 					label="Ingredient 1"
 					value={value.ingredient1}
