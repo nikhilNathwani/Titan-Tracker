@@ -1,12 +1,12 @@
 import { pool } from "@/lib/db";
 import { titanRecordsQuery } from "@/lib/queries";
 import { processTitanRecords } from "@/lib/ranking";
-import type { TitanRecord, TitanWithRank } from "@/lib/types";
+import type { TitanRecord, TitanWithRankLabel } from "@/lib/types";
 import SiteNav from "./SiteNav";
 
 export default async function SiteHeader() {
-	let activeTitans: TitanWithRank[] = [];
-	let inactiveTitans: TitanWithRank[] = [];
+	let activeTitans: TitanWithRankLabel[] = [];
+	let inactiveTitans: TitanWithRankLabel[] = [];
 	try {
 		const titanRecordsResult =
 			await pool.query<TitanRecord>(titanRecordsQuery);

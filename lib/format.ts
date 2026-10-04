@@ -1,4 +1,4 @@
-import type { WinLossTie } from "./types";
+import type { TitanName, WinLossTie } from "./types";
 
 /** Formats an average score to 3 significant digits, e.g. 7.854 → "7.85". */
 export function formatAvgScore(val: number | null | undefined): string {
@@ -18,4 +18,14 @@ export function formatAvgMargin(val: number | null): string {
 export function formatWinPct({ num_win, num_loss }: WinLossTie): string {
 	const battles = num_win + num_loss;
 	return battles > 0 ? `${((num_win / battles) * 100).toFixed(1)}%` : "—";
+}
+
+/** "Tiffani Faison" → "Tiffani-Faison": the id of the titan's card (#Tiffani-Faison). */
+export function titanSlug(name: TitanName): string {
+	return name.replace(/ /g, "-");
+}
+
+/** "Tiffani Faison" → "/img/tiffani-faison-cropped.jpg" */
+export function titanImageSrc(name: TitanName): string {
+	return `/img/${titanSlug(name).toLowerCase()}-cropped.jpg`;
 }

@@ -59,8 +59,9 @@ export default async function Home() {
 	const winLoss: WinLossTie = winLossResult.rows[0];
 
 	// ── Titan Records ─────────────────────────────────────────
-	const { titansWithRanks, activeTitans, inactiveTitans } =
-		processTitanRecords(titanRecordsResult.rows);
+	const { allTitans, activeTitans, inactiveTitans } = processTitanRecords(
+		titanRecordsResult.rows,
+	);
 
 	// ── Avg Scores ────────────────────────────────────────────
 	const avgScoresMap: AvgScoresMap = {};
@@ -78,7 +79,7 @@ export default async function Home() {
 	// Initialize all titans with empty rounds so components always get a
 	// complete object even if the DB has no rows yet for that titan/round.
 	const perRoundStatsMap: PerRoundStatsMap = {};
-	for (const t of titansWithRanks) {
+	for (const t of allTitans) {
 		perRoundStatsMap[t.titan_name] = {
 			1: { battle_count: 0, avg_score: null, avg_margin: null },
 			2: { battle_count: 0, avg_score: null, avg_margin: null },
@@ -109,7 +110,7 @@ export default async function Home() {
 				<WinLoss {...winLoss} />
 			</Section>
 			<Section title="Titan Leaderboard" id="titanLeaderboard">
-				<TitanLeaderboard titans={titansWithRanks} />
+				<TitanLeaderboard titans={allTitans} />
 			</Section>
 			<Section title="Individual Titan Stats" id="titansSectionLabel">
 				{activeTitans.map((titan) => (

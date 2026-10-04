@@ -1,37 +1,31 @@
 import Image from "next/image";
 import styles from "./TitanLeaderboard.module.css";
-import type { TitanWithRank } from "@/lib/types";
-import { formatWinPct } from "@/lib/format";
+import type { TitanWithRankLabel } from "@/lib/types";
+import { formatWinPct, titanImageSrc } from "@/lib/format";
+import { rankClasses } from "@/lib/ranking";
 
 export default function TitanLeaderboard({
 	titans,
 }: {
-	titans: TitanWithRank[];
+	titans: TitanWithRankLabel[];
 }) {
 	return (
 		<div className={`section-content ${styles.content}`}>
 			<div className={styles.leaderboard}>
 				{titans.map((titan) => {
-					const imgFilename =
-						titan.titan_name.toLowerCase().replace(/ /g, "-") +
-						"-cropped.jpg";
 					const [firstName, lastName] = titan.titan_name.split(" ");
-					const rankKey = titan.rank === null ? "NR" : titan.rank;
-					const rankClass = `rank rank${rankKey}`;
-					const borderClass = `rank${rankKey}`;
+					const { badge, border } = rankClasses(titan.rank);
 					const winPct = formatWinPct(titan);
 
 					return (
 						<div key={titan.titan_name} className={styles.row}>
 							<div className={styles.rankCol}>
-								<div className={rankClass}>
-									{titan.rankString}
-								</div>
+								<div className={badge}>{titan.rankLabel}</div>
 							</div>
 							<Image
-								src={`/img/${imgFilename}`}
+								src={titanImageSrc(titan.titan_name)}
 								alt={titan.titan_name}
-								className={`${styles.miniAvatar} ${borderClass}`}
+								className={`${styles.miniAvatar} ${border}`}
 								width={40}
 								height={40}
 							/>

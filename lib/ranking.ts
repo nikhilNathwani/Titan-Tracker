@@ -1,10 +1,10 @@
-import type { TitanRecord, TitanWithRank } from "./types";
+import type { TitanRecord, TitanWithRankLabel } from "./types";
 
 /**
  * Converts an array of rank integers (or null) to display strings.
  * e.g. [1, 1, 3, null] → ["T-1st", "T-1st", "3rd", "NR"]
  */
-export function generateRankStrings(ranks: (number | null)[]): string[] {
+export function generateRankLabels(ranks: (number | null)[]): string[] {
 	function getRankSuffix(rank: number): string {
 		if (rank === 1) return "st";
 		if (rank === 2) return "nd";
@@ -25,22 +25,31 @@ export function generateRankStrings(ranks: (number | null)[]): string[] {
 }
 
 /**
- * Adds display rank strings to titanRecords.sql rows, and splits them into active (ranked) and inactive (unranked) lists.
+ * Adds display rank labels to titanRecords.sql rows, and splits them into active (ranked) and inactive (unranked) lists.
  * Relies on titanRecords.sql's ORDER BY for ordering (active first, by rank).
  */
 export function processTitanRecords(rows: TitanRecord[]): {
-	titansWithRanks: TitanWithRank[];
-	activeTitans: TitanWithRank[];
-	inactiveTitans: TitanWithRank[];
+	allTitans: TitanWithRankLabel[];
+	activeTitans: TitanWithRankLabel[];
+	inactiveTitans: TitanWithRankLabel[];
 } {
-	const rankStrings = generateRankStrings(rows.map((t) => t.rank));
-	const titansWithRanks: TitanWithRank[] = rows.map((t, i) => ({
+	const rankLabels = generateRankLabels(rows.map((t) => t.rank));
+	const allTitans: TitanWithRankLabel[] = rows.map((t, i) => ({
 		...t,
-		rankString: rankStrings[i],
+		rankLabel: rankLabels[i],
 	}));
 	return {
-		titansWithRanks,
-		activeTitans: titansWithRanks.filter((t) => t.rank !== null),
-		inactiveTitans: titansWithRanks.filter((t) => t.rank === null),
+		allTitans,
+		activeTitans: allTitans.filter((t) => t.rank !== null),
+		inactiveTitans: allTitans.filter((t) => t.rank === null),
 	};
+}
+
+/** CSS classes that color a rank: badge "rank rank1", border "rank1"; "NR" if unranked. */
+export function rankClasses(rank: number | null): {
+	badge: string;
+	border: string;
+} {
+	const key = rank === null ? "NR" : rank;
+	return { badge: `rank rank${key}`, border: `rank${key}` };
 }

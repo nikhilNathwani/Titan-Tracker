@@ -50,10 +50,15 @@ export interface WinLossTie {
 	num_loss: number;
 }
 
-/** A titan with its record and rank (see titanRecords.sql). */
-export interface TitanRecord extends Titan, WinLossTie {
+/** One titan's row from titanRecords.sql. */
+export interface TitanRecord {
+	titan_name: TitanName;
+	is_active: boolean;
 	/** null for inactive titans */
 	rank: number | null;
+	num_win: number;
+	num_tie: number;
+	num_loss: number;
 }
 
 /** A titan's best round (see bestScores.sql). */
@@ -70,8 +75,9 @@ export interface RoundStats {
 
 // ─── Shaped for display ──────────────────────────────────────────────────────
 
-export interface TitanWithRank extends TitanRecord {
-	rankString: string;
+/** TitanRecord plus its display label, e.g. "T-2nd" or "NR". */
+export interface TitanWithRankLabel extends TitanRecord {
+	rankLabel: string;
 }
 
 export type AvgScoresMap = Record<TitanName, number>;

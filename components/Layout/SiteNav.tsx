@@ -4,11 +4,12 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SiteHeader.module.css";
-import type { TitanWithRank } from "@/lib/types";
+import type { TitanWithRankLabel } from "@/lib/types";
+import { titanSlug } from "@/lib/format";
 
 interface SiteHeaderNavProps {
-	activeTitans: TitanWithRank[];
-	inactiveTitans: TitanWithRank[];
+	activeTitans: TitanWithRankLabel[];
+	inactiveTitans: TitanWithRankLabel[];
 }
 
 export default function SiteNav({
@@ -64,7 +65,7 @@ export default function SiteNav({
 						{activeTitans.map((titan) => (
 							<a
 								key={titan.titan_name}
-								href={`#${titan.titan_name.replace(/ /g, "-")}`}
+								href={`#${titanSlug(titan.titan_name)}`}
 								className={styles.navIndented}
 								onClick={closeNav}
 							>
@@ -81,7 +82,7 @@ export default function SiteNav({
 						{inactiveTitans.map((titan) => (
 							<a
 								key={titan.titan_name}
-								href={`#${titan.titan_name.replace(/ /g, "-")}`}
+								href={`#${titanSlug(titan.titan_name)}`}
 								className={styles.navIndented}
 								onClick={closeNav}
 							>

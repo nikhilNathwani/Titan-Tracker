@@ -1,9 +1,9 @@
-import type { TitanWithRank, BestScore } from "@/lib/types";
+import type { TitanWithRankLabel, BestScore } from "@/lib/types";
 import { formatAvgScore } from "@/lib/format";
 import styles from "./TitanCard.module.css";
 
 interface TitanStatsWidgetsProps {
-	titan: TitanWithRank;
+	titan: TitanWithRankLabel;
 	winPct: string;
 	avgScore: number | undefined;
 	bestScore: BestScore | undefined;

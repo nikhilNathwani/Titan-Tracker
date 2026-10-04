@@ -1,30 +1,28 @@
 import Image from "next/image";
-import type { TitanWithRank } from "@/lib/types";
+import type { TitanWithRankLabel } from "@/lib/types";
+import { rankClasses } from "@/lib/ranking";
+import { titanImageSrc } from "@/lib/format";
 import styles from "./TitanCard.module.css";
 
 interface TitanCardHeaderProps {
-	titan: TitanWithRank;
+	titan: TitanWithRankLabel;
 }
 
 export default function TitanCardHeader({ titan }: TitanCardHeaderProps) {
-	const imgFilename =
-		titan.titan_name.toLowerCase().replace(/ /g, "-") + "-cropped.jpg";
-	const rankKey = titan.rank === null ? "NR" : titan.rank;
-	const rankClass = `rank rank${rankKey}`;
-	const borderClass = `rank${rankKey}`;
+	const { badge, border } = rankClasses(titan.rank);
 	const [firstName, lastName] = titan.titan_name.split(" ");
 
 	return (
 		<div className={styles.header}>
 			<div className={styles.avatarWrap}>
 				<Image
-					className={`${styles.avatar} ${borderClass}`}
-					src={`/img/${imgFilename}`}
+					className={`${styles.avatar} ${border}`}
+					src={titanImageSrc(titan.titan_name)}
 					alt={titan.titan_name}
 					width={88}
 					height={88}
 				/>
-				<div className={rankClass}>{titan.rankString}</div>
+				<div className={badge}>{titan.rankLabel}</div>
 			</div>
 			<div className={styles.name}>
 				<span className={styles.firstName}>{firstName}</span>
