@@ -40,8 +40,8 @@ export function processTitanRecords(rows: TitanRecord[]): {
 	}));
 	return {
 		allTitans,
-		activeTitans: allTitans.filter((t) => t.rank !== null),
-		inactiveTitans: allTitans.filter((t) => t.rank === null),
+		activeTitans: allTitans.filter((t) => t.is_active),
+		inactiveTitans: allTitans.filter((t) => !t.is_active),
 	};
 }
 
