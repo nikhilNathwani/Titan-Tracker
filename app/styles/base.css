@@ -1,161 +1,166 @@
-*,
-*::after,
-*::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: Arial, Helvetica, sans-serif;
-}
+/* Global base styles, in a cascade layer so that any component's CSS module
+   overrides them regardless of the order stylesheets load in (components
+   add their own class next to .section-content, .rank1, etc. to adjust them). */
+@layer base {
+	*,
+	*::after,
+	*::before {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: Arial, Helvetica, sans-serif;
+	}
 
-html {
-	scroll-behavior: smooth;
-	scroll-padding-top: 76px;
-	background-color: var(--clr-dark);
-}
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 76px;
+		background-color: var(--clr-dark);
+	}
 
-body {
-	padding-top: 80px;
+	body {
+		padding-top: 80px;
 
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	gap: 4rem;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		gap: 4rem;
 
-	color: var(--clr-light);
-}
+		color: var(--clr-light);
+	}
 
-h1,
-h2,
-h3,
-h4 {
-	text-wrap: balance;
-}
+	h1,
+	h2,
+	h3,
+	h4 {
+		text-wrap: balance;
+	}
 
-p,
-li {
-	text-wrap: pretty;
-}
+	p,
+	li {
+		text-wrap: pretty;
+	}
 
-/* --------------------------- */
-/*                             */
-/*     COMMON COMPONENTS       */
-/*                             */
-/* --------------------------- */
-a {
-	text-underline-offset: 3px;
-	color: var(--clr-light);
-}
+	/* --------------------------- */
+	/*                             */
+	/*     COMMON COMPONENTS       */
+	/*                             */
+	/* --------------------------- */
+	a {
+		text-underline-offset: 3px;
+		color: var(--clr-light);
+	}
 
-.footnote {
-	font-style: normal;
-}
+	.footnote {
+		font-style: normal;
+	}
 
-.section {
-	width: min(400px, 92vw);
-	display: flex;
-	flex-flow: column nowrap;
-	gap: 0.75rem;
-}
+	.section {
+		width: min(400px, 92vw);
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 0.75rem;
+	}
 
-.section-content {
-	width: 100%;
-	padding: 3rem min(2.5rem, 6vw);
-	margin: auto;
-	border: 1px solid var(--clr-border-mid);
-	border-radius: 12px;
-	position: relative;
+	.section-content {
+		width: 100%;
+		padding: 3rem min(2.5rem, 6vw);
+		margin: auto;
+		border: 1px solid var(--clr-border-mid);
+		border-radius: 12px;
+		position: relative;
 
-	display: flex;
-	flex-flow: column nowrap;
-	align-items: center;
-	gap: 2.25rem;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+		gap: 2.25rem;
 
-	background-color: var(--clr-dark);
-	box-shadow:
-		0 4px 24px rgba(0, 0, 0, 0.6),
-		0 1px 8px rgba(0, 0, 0, 0.4);
+		background-color: var(--clr-dark);
+		box-shadow:
+			0 4px 24px rgba(0, 0, 0, 0.6),
+			0 1px 8px rgba(0, 0, 0, 0.4);
 
-	text-align: center;
-}
+		text-align: center;
+	}
 
-table {
-	width: 100%;
-	border-collapse: collapse;
-}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
 
-th {
-	padding-bottom: 0.25rem;
-	border-bottom: 1px solid var(--clr-border-card);
-	font-size: var(--tableHeader-fs, 1rem);
-}
+	th {
+		padding-bottom: 0.25rem;
+		border-bottom: 1px solid var(--clr-border-card);
+		font-size: var(--tableHeader-fs, 1rem);
+	}
 
-/* Table row height */
-tr:not(:first-of-type) {
-	height: var(--tableRow-height);
-	font-size: var(--tableData-fs, 1rem);
-}
+	/* Table row height */
+	tr:not(:first-of-type) {
+		height: var(--tableRow-height);
+		font-size: var(--tableData-fs, 1rem);
+	}
 
-/* Per-rank tokens */
-.rank1 {
-	--clr-rank: var(--clr-rank1);
-	--clr-rank-text: var(--clr-rank1-text);
-	--clr-rank-glow: var(--clr-rank1-glow);
-}
-.rank2 {
-	--clr-rank: var(--clr-rank2);
-	--clr-rank-text: var(--clr-rank2-text);
-	--clr-rank-glow: var(--clr-rank2-glow);
-}
-.rank3 {
-	--clr-rank: var(--clr-rank3);
-	--clr-rank-text: var(--clr-rank3-text);
-	--clr-rank-glow: var(--clr-rank3-glow);
-}
-.rankNR {
-	--clr-rank: var(--clr-text-secondary);
-	--clr-rank-text: var(--clr-text-secondary);
-}
+	/* Per-rank tokens */
+	.rank1 {
+		--clr-rank: var(--clr-rank1);
+		--clr-rank-text: var(--clr-rank1-text);
+		--clr-rank-glow: var(--clr-rank1-glow);
+	}
+	.rank2 {
+		--clr-rank: var(--clr-rank2);
+		--clr-rank-text: var(--clr-rank2-text);
+		--clr-rank-glow: var(--clr-rank2-glow);
+	}
+	.rank3 {
+		--clr-rank: var(--clr-rank3);
+		--clr-rank-text: var(--clr-rank3-text);
+		--clr-rank-glow: var(--clr-rank3-glow);
+	}
+	.rankNR {
+		--clr-rank: var(--clr-text-secondary);
+		--clr-rank-text: var(--clr-text-secondary);
+	}
 
-.rank {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 4px 12px;
-	border-radius: 999px;
-	font-size: var(--fs-1);
-	font-weight: 700;
-	letter-spacing: 0.02em;
-	white-space: nowrap;
-	background-color: var(--clr-rank);
-	color: var(--clr-rank-text);
-}
+	.rank {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 4px 12px;
+		border-radius: 999px;
+		font-size: var(--fs-1);
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		white-space: nowrap;
+		background-color: var(--clr-rank);
+		color: var(--clr-rank-text);
+	}
 
-.rankNR.rank {
-	background-color: var(--clr-dark);
-	border: 1px solid var(--clr-text-secondary);
-}
+	.rankNR.rank {
+		background-color: var(--clr-dark);
+		border: 1px solid var(--clr-text-secondary);
+	}
 
-.rank1.rank {
-	background: linear-gradient(
-		160deg,
-		hsl(43, 80%, 63%) 0%,
-		hsl(43, 65%, 50%) 55%,
-		hsl(43, 60%, 42%) 100%
-	);
-}
-.rank2.rank {
-	background: linear-gradient(
-		160deg,
-		hsl(215, 15%, 75%) 0%,
-		hsl(215, 10%, 62%) 55%,
-		hsl(215, 12%, 50%) 100%
-	);
-}
-.rank3.rank {
-	background: linear-gradient(
-		160deg,
-		hsl(28, 75%, 65%) 0%,
-		hsl(28, 60%, 52%) 55%,
-		hsl(28, 58%, 42%) 100%
-	);
+	.rank1.rank {
+		background: linear-gradient(
+			160deg,
+			hsl(43, 80%, 63%) 0%,
+			hsl(43, 65%, 50%) 55%,
+			hsl(43, 60%, 42%) 100%
+		);
+	}
+	.rank2.rank {
+		background: linear-gradient(
+			160deg,
+			hsl(215, 15%, 75%) 0%,
+			hsl(215, 10%, 62%) 55%,
+			hsl(215, 12%, 50%) 100%
+		);
+	}
+	.rank3.rank {
+		background: linear-gradient(
+			160deg,
+			hsl(28, 75%, 65%) 0%,
+			hsl(28, 60%, 52%) 55%,
+			hsl(28, 58%, 42%) 100%
+		);
+	}
 }
