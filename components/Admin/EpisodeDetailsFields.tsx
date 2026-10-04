@@ -1,5 +1,5 @@
 import type { EpisodeInput } from "@/lib/admin/episode";
-import TitleCaseInput from "./TitleCaseInput";
+import NameInput from "./NameInput";
 import shared from "./shared.module.css";
 
 type EpisodeDetails = Pick<
@@ -58,12 +58,12 @@ export default function EpisodeDetailsFields({
 			</div>
 
 			<div className={shared.fieldRow}>
-				<TitleCaseInput
+				<NameInput
 					label="Challenger"
 					value={value.challenger_name}
 					onChange={(next) => onChange({ challenger_name: next })}
 				/>
-				<TitleCaseInput
+				<NameInput
 					label="Judge"
 					value={value.judge_name}
 					onChange={(next) => onChange({ judge_name: next })}

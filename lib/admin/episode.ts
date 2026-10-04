@@ -94,6 +94,17 @@ export function emptyEpisodeInput(seed: {
 	};
 }
 
+/**
+ * True for text that's entirely lowercase or entirely uppercase ("sea urchin",
+ * "SEA URCHIN"): the usual typing slips in names and ingredients. Anything with
+ * deliberate mixed case ("NY Strip Steak", "Estratto di Pomodoro") is trusted.
+ */
+export function looksMiscapitalized(value: string): boolean {
+	const text = value.trim();
+	if (!/[a-z]/i.test(text)) return false;
+	return text === text.toLowerCase() || text === text.toUpperCase();
+}
+
 /** True when every field of the form has a value (the Review button's gate). */
 export function isComplete(value: EpisodeInput): boolean {
 	if (!value.season_num.trim() || !value.episode_num.trim()) return false;

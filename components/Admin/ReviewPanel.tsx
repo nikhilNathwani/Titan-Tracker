@@ -1,8 +1,10 @@
 "use client";
 
 import type { TitanName } from "@/lib/types";
-import type { NormalizedEpisode } from "@/lib/admin/episode";
-import { needsTitleCase, toTitleCase } from "@/lib/admin/titleCase";
+import {
+	looksMiscapitalized,
+	type NormalizedEpisode,
+} from "@/lib/admin/episode";
 import shared from "./shared.module.css";
 import styles from "./ReviewPanel.module.css";
 
@@ -16,8 +18,8 @@ function capitalizationIssues(episode: NormalizedEpisode): string[] {
 		]),
 	];
 	return fields
-		.filter(([, val]) => needsTitleCase(val))
-		.map(([label, val]) => `${label}: “${val}” → “${toTitleCase(val)}”`);
+		.filter(([, val]) => looksMiscapitalized(val))
+		.map(([label, val]) => `${label}: “${val}”`);
 }
 
 interface ReviewPanelProps {
@@ -147,12 +149,12 @@ export default function ReviewPanel({
 			{casingIssues.length > 0 && (
 				<div className={styles.warningText}>
 					<p>
-						Capitalization looks off — you can go back and fix, or
-						insert as-is:
+						These are all lowercase or ALL CAPS. You can go back and
+						fix them, or insert as-is:
 					</p>
 					<ul className={styles.casingList}>
-						{casingIssues.map((issue) => (
-							<li key={issue}>{issue}</li>
+						{casingIssues.map((issue, i) => (
+							<li key={i}>{issue}</li>
 						))}
 					</ul>
 				</div>

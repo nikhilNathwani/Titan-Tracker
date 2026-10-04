@@ -3,7 +3,7 @@
 import type { RoundNum, TitanName } from "@/lib/types";
 import { maxScoreForRound, type RoundInput } from "@/lib/admin/episode";
 import ScorePicker from "./ScorePicker";
-import TitleCaseInput from "./TitleCaseInput";
+import NameInput from "./NameInput";
 import shared from "./shared.module.css";
 import styles from "./RoundFields.module.css";
 
@@ -90,12 +90,12 @@ export default function RoundFields({
 			</div>
 
 			<div className={shared.fieldRow}>
-				<TitleCaseInput
+				<NameInput
 					label="Ingredient 1"
 					value={value.ingredient1}
 					onChange={(next) => onChange({ ingredient1: next })}
 				/>
-				<TitleCaseInput
+				<NameInput
 					label="Ingredient 2"
 					value={value.ingredient2}
 					onChange={(next) => onChange({ ingredient2: next })}
