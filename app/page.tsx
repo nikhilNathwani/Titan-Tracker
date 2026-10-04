@@ -1,23 +1,10 @@
-import { pool } from "@/lib/db";
 import {
-	winLossQuery,
-	titanRecordsQuery,
-	avgScoresQuery,
-	bestScoresQuery,
-	perRoundStatsQuery,
+	getWinLoss,
+	getTitans,
+	getAvgScores,
+	getBestScores,
+	getPerRoundStats,
 } from "@/lib/queries";
-import { processTitanRecords } from "@/lib/ranking";
-import type {
-	TitanName,
-	RoundNum,
-	TitanRecord,
-	BestScore,
-	RoundStats,
-	WinLossTie,
-	AvgScoresMap,
-	BestScoresMap,
-	PerRoundStatsMap,
-} from "@/lib/types";
 import WinLoss from "@/components/Cards/WinLoss";
 import TitanLeaderboard from "@/components/Cards/TitanLeaderboard";
 import TitanCard from "@/components/Cards/TitanCard";
@@ -38,63 +25,18 @@ export const dynamic = "force-static";
 export default async function Home() {
 	// Fetch all data in parallel at build time
 	const [
-		winLossResult,
-		titanRecordsResult,
-		avgScoresResult,
-		bestScoresResult,
-		perRoundStatsResult,
+		winLoss,
+		{ allTitans, activeTitans, inactiveTitans },
+		avgScoresMap,
+		bestScoresMap,
+		{ perRoundStatsMap, maxBattleCount },
 	] = await Promise.all([
-		pool.query<WinLossTie>(winLossQuery),
-		pool.query<TitanRecord>(titanRecordsQuery),
-		pool.query<{ titan_name: TitanName; avg_score: number }>(
-			avgScoresQuery,
-		),
-		pool.query<{ titan_name: TitanName } & BestScore>(bestScoresQuery),
-		pool.query<{ titan_name: TitanName; round_num: RoundNum } & RoundStats>(
-			perRoundStatsQuery,
-		),
+		getWinLoss(),
+		getTitans(),
+		getAvgScores(),
+		getBestScores(),
+		getPerRoundStats(),
 	]);
-
-	// ── Win-Loss ──────────────────────────────────────────────
-	const winLoss: WinLossTie = winLossResult.rows[0];
-
-	// ── Titan Records ─────────────────────────────────────────
-	const { allTitans, activeTitans, inactiveTitans } = processTitanRecords(
-		titanRecordsResult.rows,
-	);
-
-	// ── Avg Scores ────────────────────────────────────────────
-	const avgScoresMap: AvgScoresMap = {};
-	avgScoresResult.rows.forEach((row) => {
-		avgScoresMap[row.titan_name] = row.avg_score;
-	});
-
-	// ── Best Scores ───────────────────────────────────────────
-	const bestScoresMap: BestScoresMap = {};
-	bestScoresResult.rows.forEach(({ titan_name, ...bestScore }) => {
-		bestScoresMap[titan_name] = bestScore;
-	});
-
-	// ── Per-Round Stats ───────────────────────────────────────
-	// Initialize all titans with empty rounds so components always get a
-	// complete object even if the DB has no rows yet for that titan/round.
-	const perRoundStatsMap: PerRoundStatsMap = {};
-	for (const t of allTitans) {
-		perRoundStatsMap[t.titan_name] = {
-			1: { battle_count: 0, avg_score: null, avg_margin: null },
-			2: { battle_count: 0, avg_score: null, avg_margin: null },
-			3: { battle_count: 0, avg_score: null, avg_margin: null },
-		};
-	}
-	// Max battle count across all titans, for scaling the histogram bars.
-	// Starts at 1 to avoid dividing by zero.
-	let maxBattleCount = 1;
-	perRoundStatsResult.rows.forEach(({ titan_name, round_num, ...stats }) => {
-		if (perRoundStatsMap[titan_name]) {
-			perRoundStatsMap[titan_name][round_num] = stats;
-			maxBattleCount = Math.max(maxBattleCount, stats.battle_count);
-		}
-	});
 
 	return (
 		<>
