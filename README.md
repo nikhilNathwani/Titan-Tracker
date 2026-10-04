@@ -27,8 +27,10 @@ Titan Tracker is a data-driven Next.js app that presents performance analytics f
 
 ```text
 app/
-  page.tsx            # Build-time data fetch + page composition
-  layout.tsx          # Global layout
+  layout.tsx          # Root layout shared by every route: <html>, <body>, global CSS
+  (public)/           # Route group (not part of the URL) for the public site
+    layout.tsx        # Header, footer, site metadata, analytics
+    page.tsx          # The homepage ("/"): fetches data and composes sections
   metadata.ts         # SEO / OG metadata
   robots.ts, sitemap.ts
   admin/              # Password-gated episode entry (server actions, dry-run preview)
@@ -56,9 +58,9 @@ lib/
 
 ## Data Flow
 
-1. SQL files are loaded from `lib/queries/**`.
-2. `app/page.tsx` runs all core queries in parallel at build time.
-3. Rows are parsed into typed objects and grouped maps.
+1. Queries live in `lib/queries/**/*.sql` and are built into the bundle as strings (a small Turbopack loader, `lib/queries/sql-loader.cjs`, wired up in `next.config.mjs`).
+2. `lib/queries.ts` runs them and shapes the rows into typed objects and lookup maps (`getTitans`, `getWinLoss`, `getAvgScores`, …).
+3. `app/(public)/page.tsx` calls those in parallel at build time; `app/(public)/layout.tsx` adds the header, footer, site metadata and analytics.
 4. Components render leaderboard and per-titan sections.
 
 ## Environment Variables
@@ -95,7 +97,7 @@ A tracked pre-push hook (`.githooks/pre-push`) type-checks with `tsc` before eve
 
 ## Notes on Rendering
 
-- `app/page.tsx` is configured with `dynamic = "force-static"`.
+- `app/(public)/page.tsx` is configured with `dynamic = "force-static"`.
 - Fresh data appears on the next deployment/build — or immediately after an episode is committed through `/admin`, which calls `revalidatePath("/", "layout")`.
 - `/admin` is always rendered on demand (`dynamic = "force-dynamic"`) so its session check runs on every request.
 

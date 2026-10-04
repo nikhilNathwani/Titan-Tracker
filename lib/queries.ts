@@ -1,19 +1,16 @@
-// The public site's data access: loads the .sql files in lib/queries/, runs
-// them, and shapes the results into what components render. Pages and
-// components call the get* functions below instead of querying the database
-// themselves; the SQL text is private to this file. Server-only.
+// The public site's data access: runs the SQL in lib/queries/ and shapes the
+// results into what components render. Pages and components call the get*
+// functions below instead of querying the database themselves; the SQL text is
+// private to this file. Server-only.
 //
-// NOTE: these queries are read from disk with fs.readFileSync at module load.
-// That is only safe because every route that imports this module is statically
-// prerendered (app/page.tsx is `force-static`), so the reads happen at build
-// time where the .sql files exist — not in a Vercel serverless function, whose
-// bundle would not reliably include them (Next's file tracer can't follow a
-// process.cwd()-based path). If you ever make the homepage (or anything else in
-// its tree) dynamic, switch this file to importing the .sql files instead:
-//   next.config.mjs:  webpack: (c) => { c.module.rules.push({ test: /\.sql$/, type: "asset/source" }); return c; }
-//   here:             import winLossQuery from "./queries/records/winLoss.sql";
-import fs from "fs";
-import path from "path";
+// The .sql files are imported as strings (a Turbopack rule in next.config.mjs),
+// so the queries are built into the bundle: no disk reads at runtime, and it
+// works the same for static pages and serverless functions.
+import winLossQuery from "./queries/records/winLoss.sql";
+import titanRecordsQuery from "./queries/records/titanRecords.sql";
+import avgScoresQuery from "./queries/stats/avgScores.sql";
+import bestScoresQuery from "./queries/stats/bestScores.sql";
+import perRoundStatsQuery from "./queries/stats/perRoundStats.sql";
 import { cache } from "react";
 import { pool } from "./db";
 import { processTitanRecords } from "./ranking";
@@ -28,31 +25,6 @@ import type {
 	BestScoresMap,
 	PerRoundStatsMap,
 } from "./types";
-
-const winLossQuery: string = fs.readFileSync(
-	path.join(process.cwd(), "lib/queries/records", "winLoss.sql"),
-	"utf8",
-);
-
-const titanRecordsQuery: string = fs.readFileSync(
-	path.join(process.cwd(), "lib/queries/records", "titanRecords.sql"),
-	"utf8",
-);
-
-const avgScoresQuery: string = fs.readFileSync(
-	path.join(process.cwd(), "lib/queries/stats", "avgScores.sql"),
-	"utf8",
-);
-
-const bestScoresQuery: string = fs.readFileSync(
-	path.join(process.cwd(), "lib/queries/stats", "bestScores.sql"),
-	"utf8",
-);
-
-const perRoundStatsQuery: string = fs.readFileSync(
-	path.join(process.cwd(), "lib/queries/stats", "perRoundStats.sql"),
-	"utf8",
-);
 
 // ─── Data access ─────────────────────────────────────────────────────────────
 

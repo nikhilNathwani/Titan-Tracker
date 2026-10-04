@@ -66,7 +66,7 @@ Everything in the tables above is enforced by the database itself (named constra
 ## Where this lives in the code
 
 - **Types:** `lib/types.ts` has one type per table: `Titan`, `Episode`, `Round`. Other types pick fields from them.
-- **Reads:** the public page's SQL is in `lib/queries/**/*.sql`. `lib/queries.ts` loads it, runs it, and shapes the results; pages and components call its `get*` functions (`getTitans`, `getWinLoss`, …) rather than querying directly. They run at build time (the page is static), so the site only shows new data after a redeploy.
+- **Reads:** the public page's SQL is in `lib/queries/**/*.sql`. `lib/queries.ts` loads it, runs it, and shapes the results; pages and components call its `get*` functions (`getTitans`, `getWinLoss`, …) rather than querying directly. They run at build time (the page is static). Committing an episode through `/admin` regenerates the page right away (`revalidatePath` in `app/admin/actions.ts`); otherwise new data appears on the next deploy.
 - **Writes:** the admin portal at `/admin` (`app/admin/`).
 - **Number parsing:** `lib/db.ts` makes `pg` return `COUNT`/`RANK` (bigint) and `AVG` (numeric) results as JS numbers instead of strings.
 - **Roles:** the app connects as `default`, which owns the tables. SQLTools in VS Code connects as `titan_editor` (select/insert/update/delete only).

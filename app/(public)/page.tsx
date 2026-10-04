@@ -12,11 +12,6 @@ import Notes from "@/components/Cards/Notes";
 import ShareButtons from "@/components/ShareButtons";
 import HeroBanner from "@/components/HeroBanner";
 import Section from "@/components/Section";
-// SiteHeader/SiteFooter are rendered here rather than in the root layout: this is
-// the only public page, and keeping them out of the root layout means /admin does
-// not inherit SiteHeader's DB query / lib/queries .sql reads into its bundle.
-import SiteHeader from "@/components/Layout/SiteHeader";
-import SiteFooter from "@/components/Layout/SiteFooter";
 
 // Render this page as static HTML at build time (SSG).
 // Re-deploy to pick up new data.
@@ -40,7 +35,6 @@ export default async function Home() {
 
 	return (
 		<>
-			<SiteHeader />
 			<HeroBanner />
 			<Section title="Team Record" id="winLoss">
 				<WinLoss {...winLoss} />
@@ -83,7 +77,6 @@ export default async function Home() {
 			<Section title="Share" id="shareSection">
 				<ShareButtons />
 			</Section>
-			<SiteFooter />
 		</>
 	);
 }
