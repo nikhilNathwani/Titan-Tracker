@@ -4,6 +4,7 @@ import {
 	isComplete,
 	looksMiscapitalized,
 	maxScoreForRound,
+	pickTitan,
 	resolveTitanAssignments,
 	titansLockedElsewhere,
 	type EpisodeInput,
@@ -99,6 +100,45 @@ describe("resolveTitanAssignments", () => {
 	it("does nothing when the roster isn't one titan per round", () => {
 		expect(resolveTitanAssignments(["A", "B", ""], ["A", "B"])).toEqual({
 			titans: ["A", "B", ""],
+			autoIndex: null,
+		});
+	});
+});
+
+describe("pickTitan", () => {
+	const roster = ["A", "B", "C"];
+
+	it("picks a titan for a round", () => {
+		expect(pickTitan(["", "", ""], null, 0, "A", roster)).toEqual({
+			titans: ["A", "", ""],
+			autoIndex: null,
+		});
+	});
+
+	it("auto-fills the last round when the second titan is picked", () => {
+		expect(pickTitan(["A", "", ""], null, 1, "B", roster)).toEqual({
+			titans: ["A", "B", "C"],
+			autoIndex: 2,
+		});
+	});
+
+	it("clears a round when its selected titan is clicked again", () => {
+		expect(pickTitan(["A", "", ""], null, 0, "A", roster)).toEqual({
+			titans: ["", "", ""],
+			autoIndex: null,
+		});
+	});
+
+	it("re-swaps the auto-filled round when an earlier pick changes", () => {
+		expect(pickTitan(["A", "B", "C"], 2, 0, "C", roster)).toEqual({
+			titans: ["C", "B", "A"],
+			autoIndex: 2,
+		});
+	});
+
+	it("drops the auto-fill when a manual pick is cleared", () => {
+		expect(pickTitan(["A", "B", "C"], 2, 1, "B", roster)).toEqual({
+			titans: ["A", "", ""],
 			autoIndex: null,
 		});
 	});

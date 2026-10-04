@@ -81,6 +81,24 @@ export function resolveTitanAssignments(
 	return { titans, autoIndex: null };
 }
 
+/**
+ * The rounds' titans after clicking `titanName` for round `roundIndex`.
+ * Clicking the selected titan clears it; the previous auto-fill is dropped and
+ * recomputed, so changing an earlier round re-swaps the auto-filled one.
+ */
+export function pickTitan(
+	current: TitanName[],
+	autoIndex: number | null,
+	roundIndex: number,
+	titanName: TitanName,
+	roster: TitanName[],
+): { titans: TitanName[]; autoIndex: number | null } {
+	const picks = [...current];
+	if (autoIndex !== null) picks[autoIndex] = "";
+	picks[roundIndex] = picks[roundIndex] === titanName ? "" : titanName;
+	return resolveTitanAssignments(picks, roster);
+}
+
 export function emptyEpisodeInput(seed: {
 	season_num: number;
 	episode_num: number;

@@ -6,7 +6,7 @@ import { useEpisodeDraft } from "@/lib/admin/useEpisodeDraft";
 import {
 	emptyEpisodeInput,
 	isComplete,
-	resolveTitanAssignments,
+	pickTitan,
 	titansLockedElsewhere,
 	type EpisodeInput,
 	type NormalizedEpisode,
@@ -70,14 +70,11 @@ export default function EpisodeForm({ titans, suggestion }: EpisodeFormProps) {
 	}
 
 	function selectTitan(roundIndex: number, titanName: TitanName) {
-		const picks = input.rounds.map((round) => round.titan_name);
-		// Drop the previous auto pick so it can be recomputed from scratch.
-		if (titanAutoIndex !== null) picks[titanAutoIndex] = "";
-		// Clicking the already-selected titan clears it.
-		picks[roundIndex] = picks[roundIndex] === titanName ? "" : titanName;
-
-		const { titans: resolved, autoIndex } = resolveTitanAssignments(
-			picks,
+		const { titans: resolved, autoIndex } = pickTitan(
+			input.rounds.map((round) => round.titan_name),
+			titanAutoIndex,
+			roundIndex,
+			titanName,
 			titans,
 		);
 		setTitanAutoIndex(autoIndex);
