@@ -8,7 +8,9 @@
 		"start": "next start",
 		"prepare": "git config core.hooksPath .githooks || true",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"keywords": [],
 	"author": "",
@@ -29,7 +31,8 @@
 		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
 		"prettier": "^3.9.9",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"vitest": "^5.0.3"
 	},
 	"engines": {
 		"node": "24.x"

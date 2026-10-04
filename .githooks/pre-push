@@ -1,6 +1,6 @@
 #!/bin/sh
-# Pre-push: type-check and format-check (Prettier) before pushing (Vercel
-# deploys main on push). A full `next build` also needs POSTGRES_URL to
+# Pre-push: type-check, format-check (Prettier) and unit tests (Vitest)
+# before pushing (Vercel deploys main on push). A full `next build` also needs POSTGRES_URL to
 # prerender, so tsc is the portable check.
 # Tracked in the repo (.githooks/); enabled by `npm install` via the
 # "prepare" script, which sets core.hooksPath to .githooks.
@@ -36,5 +36,11 @@ fi
 echo "pre-push: checking formatting..."
 if ! ./node_modules/.bin/prettier --check . >/dev/null; then
 	echo "pre-push: formatting issues (fix with: npm run format). Push aborted." >&2
+	exit 1
+fi
+
+echo "pre-push: running tests..."
+if ! ./node_modules/.bin/vitest run --reporter=dot; then
+	echo "pre-push: tests failed. Push aborted." >&2
 	exit 1
 fi
