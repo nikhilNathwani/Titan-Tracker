@@ -7,7 +7,7 @@ import {
 	passwordIsCorrect,
 	startSession,
 } from "./auth";
-import { EpisodeError, insertEpisode, validateEpisode } from "./episodes";
+import { EpisodeError, insertEpisode, validateEpisode } from "./queries";
 import type { EpisodeInput, SubmitResult } from "./episode";
 
 export async function login(

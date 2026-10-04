@@ -1,5 +1,6 @@
-// Server-only data access for the admin portal: the form's data (roster, next
-// episode), validation that needs the database, and the transactional insert.
+// Server-only data access for the admin portal, the admin counterpart of
+// lib/queries.ts: the form's data (roster, next episode), validation that
+// needs the database, and the transactional insert.
 //
 // Adding one episode = 1 row in `titan_episodes` + 3 rows in `titan_rounds`.
 // The database also enforces keys and value rules (docs/DATABASE.md); checking

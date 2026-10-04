@@ -2,7 +2,7 @@ import { isAuthenticated } from "@/lib/admin/auth";
 import {
 	getActiveTitanNames,
 	getNextEpisodeSuggestion,
-} from "@/lib/admin/episodes";
+} from "@/lib/admin/queries";
 import LoginForm from "@/components/Admin/LoginForm";
 import EpisodeForm from "@/components/Admin/EpisodeForm";
 import styles from "./admin.module.css";

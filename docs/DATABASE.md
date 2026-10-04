@@ -58,7 +58,7 @@ Each episode has three rounds, and each round belongs to one episode and one tit
 
 ### Rules the database does _not_ enforce
 
-Everything in the tables above is enforced by the database itself (named constraints, listed under History). Two rules are only checked by the admin portal (`lib/admin/episodes.ts`, `validateEpisode`), so follow them by hand in manual SQL:
+Everything in the tables above is enforced by the database itself (named constraints, listed under History). Two rules are only checked by the admin portal (`lib/admin/queries.ts`, `validateEpisode`), so follow them by hand in manual SQL:
 
 - **exactly 3 rounds per episode.** A `CHECK` can only look at one row at a time, so it can't count an episode's rounds. (The primary key and `round_num` check do stop a 4th round or a repeated round number.)
 - **names and ingredients at most 100 characters.** That's a form/display limit, not a data-integrity rule; the columns allow 255.
