@@ -8,11 +8,18 @@ import {
 	faEnvelope,
 	faComment,
 } from "@fortawesome/free-solid-svg-icons";
+import { SITE_URL } from "@/lib/site";
 import styles from "./ShareButtons.module.css";
 
 const SHARE_TITLE = "Titan Tracker";
 const SHARE_TEXT =
 	"Check out Titan Tracker — stats for Bobby's Triple Threat on Food Network";
+const SHARE_MESSAGE = `${SHARE_TEXT}\n${SITE_URL}`;
+
+// Email and text are plain links (they work before the page's JavaScript
+// loads); only Copy needs JavaScript, for the clipboard.
+const EMAIL_HREF = `mailto:?subject=${encodeURIComponent(SHARE_TITLE)}&body=${encodeURIComponent(SHARE_MESSAGE)}`;
+const TEXT_HREF = `sms:?&body=${encodeURIComponent(SHARE_MESSAGE)}`;
 
 export default function ShareSection() {
 	const [copied, setCopied] = useState(false);
@@ -22,15 +29,12 @@ export default function ShareSection() {
 		setCopied(true);
 		setTimeout(() => setCopied(false), 2000);
 
-		const url = window.location.origin;
-		const text = `${SHARE_TEXT}\n${url}`;
-
 		if (navigator.clipboard?.writeText) {
 			navigator.clipboard
-				.writeText(text)
-				.catch(() => copyViaExecCommand(text));
+				.writeText(SHARE_MESSAGE)
+				.catch(() => copyViaExecCommand(SHARE_MESSAGE));
 		} else {
-			copyViaExecCommand(text);
+			copyViaExecCommand(SHARE_MESSAGE);
 		}
 	}
 
@@ -46,19 +50,6 @@ export default function ShareSection() {
 			document.execCommand("copy");
 		} catch {}
 		document.body.removeChild(ta);
-	}
-
-	function handleEmail() {
-		const url = window.location.origin;
-		const subject = encodeURIComponent(SHARE_TITLE);
-		const body = encodeURIComponent(`${SHARE_TEXT}\n${url}`);
-		window.location.href = `mailto:?subject=${subject}&body=${body}`;
-	}
-
-	function handleText() {
-		const url = window.location.origin;
-		const body = encodeURIComponent(`${SHARE_TEXT}\n${url}`);
-		window.location.href = `sms:?&body=${body}`;
 	}
 
 	return (
@@ -77,23 +68,23 @@ export default function ShareSection() {
 				</span>
 			</div>
 			<div className={styles.btnWrapper}>
-				<button
-					onClick={handleEmail}
+				<a
+					href={EMAIL_HREF}
 					className={styles.btn}
 					aria-label="Share via email"
 				>
 					<FontAwesomeIcon icon={faEnvelope} />
-				</button>
+				</a>
 				<span className={styles.btnLabel}>Email</span>
 			</div>
 			<div className={styles.btnWrapper}>
-				<button
-					onClick={handleText}
+				<a
+					href={TEXT_HREF}
 					className={styles.btn}
 					aria-label="Share via text message"
 				>
 					<FontAwesomeIcon icon={faComment} />
-				</button>
+				</a>
 				<span className={styles.btnLabel}>Text</span>
 			</div>
 		</div>

@@ -25,6 +25,7 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	text-decoration: none; /* Email/Text are links */
 	transition:
 		color 0.15s,
 		border-color 0.15s,

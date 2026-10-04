@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "WebApplication",
 	name: "Titan Tracker",
-	url: "https://triple-threat.vercel.app",
+	url: SITE_URL,
 	description:
 		"Fan-made stats tracker for Bobby's Triple Threat on Food Network. Track win rates, rankings, and battle stats for the culinary Titans.",
 	applicationCategory: "Entertainment",
@@ -24,7 +25,7 @@ export const jsonLd = {
 };
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://triple-threat.vercel.app"),
+	metadataBase: new URL(SITE_URL),
 	title: "Titan Tracker | Bobby's Triple Threat Stats",
 	description:
 		"Tracking live stats for Bobby's Triple Threat on Food Network. Compare the performances of celebrity chefs Brooke Williamson, Michael Voltaggio, and Tiffany Derry, who were hand-picked by Bobby Flay to serve as the three culinary titans on this cooking competition show.",
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
 	],
 	authors: [{ name: "Nikhil Nathwani" }],
 	alternates: {
-		canonical: "https://triple-threat.vercel.app/",
+		canonical: `${SITE_URL}/`,
 	},
 	robots: {
 		index: true,
@@ -55,13 +56,13 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		type: "website",
-		url: "https://triple-threat.vercel.app/",
+		url: `${SITE_URL}/`,
 		title: "Titan Tracker | Bobby's Triple Threat Stats",
 		description:
 			"Fan-made stat tracker for Bobby's Triple Threat on Food Network. Compare performances of the three culinary titans.",
 		images: [
 			{
-				url: "https://triple-threat.vercel.app/og-image.png",
+				url: `${SITE_URL}/og-image.png`,
 				width: 1200,
 				height: 630,
 			},
@@ -72,6 +73,6 @@ export const metadata: Metadata = {
 		title: "Titan Tracker | Bobby's Triple Threat Stats",
 		description:
 			"Fan-made stat tracker for Bobby's Triple Threat on Food Network. Compare performances of the three culinary titans.",
-		images: ["https://triple-threat.vercel.app/og-image.png"],
+		images: [`${SITE_URL}/og-image.png`],
 	},
 };
