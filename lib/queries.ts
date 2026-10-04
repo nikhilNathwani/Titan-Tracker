@@ -78,11 +78,11 @@ export async function getAvgScores(): Promise<AvgScoresMap> {
 		titan_name: TitanName;
 		avg_score: number;
 	}>(avgScoresQuery);
-	const avgScoresMap: AvgScoresMap = {};
+	const avgScores: AvgScoresMap = {};
 	rows.forEach((row) => {
-		avgScoresMap[row.titan_name] = row.avg_score;
+		avgScores[row.titan_name] = row.avg_score;
 	});
-	return avgScoresMap;
+	return avgScores;
 }
 
 /** Each titan's best round. */
@@ -90,11 +90,11 @@ export async function getBestScores(): Promise<BestScoresMap> {
 	const { rows } = await pool.query<{ titan_name: TitanName } & BestScore>(
 		bestScoresQuery,
 	);
-	const bestScoresMap: BestScoresMap = {};
+	const bestScores: BestScoresMap = {};
 	rows.forEach(({ titan_name, ...bestScore }) => {
-		bestScoresMap[titan_name] = bestScore;
+		bestScores[titan_name] = bestScore;
 	});
-	return bestScoresMap;
+	return bestScores;
 }
 
 /**
@@ -102,7 +102,7 @@ export async function getBestScores(): Promise<BestScoresMap> {
  * titans (for scaling the histogram bars).
  */
 export async function getPerRoundStats(): Promise<{
-	perRoundStatsMap: PerRoundStatsMap;
+	perRoundStats: PerRoundStatsMap;
 	maxBattleCount: number;
 }> {
 	const [{ allTitans }, { rows }] = await Promise.all([
@@ -114,9 +114,9 @@ export async function getPerRoundStats(): Promise<{
 
 	// Initialize all titans with empty rounds so components always get a
 	// complete object even if the DB has no rows yet for that titan/round.
-	const perRoundStatsMap: PerRoundStatsMap = {};
+	const perRoundStats: PerRoundStatsMap = {};
 	for (const t of allTitans) {
-		perRoundStatsMap[t.titan_name] = {
+		perRoundStats[t.titan_name] = {
 			1: { battle_count: 0, avg_score: null, avg_margin: null },
 			2: { battle_count: 0, avg_score: null, avg_margin: null },
 			3: { battle_count: 0, avg_score: null, avg_margin: null },
@@ -125,11 +125,11 @@ export async function getPerRoundStats(): Promise<{
 	// Starts at 1 to avoid dividing by zero.
 	let maxBattleCount = 1;
 	rows.forEach(({ titan_name, round_num, ...stats }) => {
-		if (perRoundStatsMap[titan_name]) {
-			perRoundStatsMap[titan_name][round_num] = stats;
+		if (perRoundStats[titan_name]) {
+			perRoundStats[titan_name][round_num] = stats;
 			maxBattleCount = Math.max(maxBattleCount, stats.battle_count);
 		}
 	});
 
-	return { perRoundStatsMap, maxBattleCount };
+	return { perRoundStats, maxBattleCount };
 }

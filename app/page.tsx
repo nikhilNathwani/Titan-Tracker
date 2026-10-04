@@ -27,9 +27,9 @@ export default async function Home() {
 	const [
 		winLoss,
 		{ allTitans, activeTitans, inactiveTitans },
-		avgScoresMap,
-		bestScoresMap,
-		{ perRoundStatsMap, maxBattleCount },
+		avgScores,
+		bestScores,
+		{ perRoundStats, maxBattleCount },
 	] = await Promise.all([
 		getWinLoss(),
 		getTitans(),
@@ -53,9 +53,9 @@ export default async function Home() {
 					<TitanCard
 						key={titan.titan_name}
 						titan={titan}
-						avgScore={avgScoresMap[titan.titan_name]}
-						bestScore={bestScoresMap[titan.titan_name]}
-						perRoundStats={perRoundStatsMap[titan.titan_name]}
+						avgScore={avgScores[titan.titan_name]}
+						bestScore={bestScores[titan.titan_name]}
+						perRoundStats={perRoundStats[titan.titan_name]}
 						maxBattleCount={maxBattleCount}
 					/>
 				))}
@@ -69,9 +69,9 @@ export default async function Home() {
 						<TitanCard
 							key={titan.titan_name}
 							titan={titan}
-							avgScore={avgScoresMap[titan.titan_name]}
-							bestScore={bestScoresMap[titan.titan_name]}
-							perRoundStats={perRoundStatsMap[titan.titan_name]}
+							avgScore={avgScores[titan.titan_name]}
+							bestScore={bestScores[titan.titan_name]}
+							perRoundStats={perRoundStats[titan.titan_name]}
 							maxBattleCount={maxBattleCount}
 						/>
 					))}
