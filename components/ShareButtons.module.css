@@ -25,7 +25,9 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	text-decoration: none; /* Email/Text are links */
+	/* Email/Text are links: match the Copy button's link-free defaults */
+	text-decoration: none;
+	outline-offset: 0;
 	transition:
 		color 0.15s,
 		border-color 0.15s,

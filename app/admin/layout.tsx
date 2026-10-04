@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { SITE_NAME } from "@/lib/site";
 import styles from "./admin.module.css";
 
 export const metadata: Metadata = {
-	title: "Admin · Titan Tracker",
+	title: `Admin · ${SITE_NAME}`,
 	// Keep the portal out of search results and crawlers.
 	robots: { index: false, follow: false },
 };

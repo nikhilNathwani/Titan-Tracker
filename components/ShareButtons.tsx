@@ -8,17 +8,16 @@ import {
 	faEnvelope,
 	faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import styles from "./ShareButtons.module.css";
 
-const SHARE_TITLE = "Titan Tracker";
 const SHARE_TEXT =
 	"Check out Titan Tracker — stats for Bobby's Triple Threat on Food Network";
 const SHARE_MESSAGE = `${SHARE_TEXT}\n${SITE_URL}`;
 
 // Email and text are plain links (they work before the page's JavaScript
 // loads); only Copy needs JavaScript, for the clipboard.
-const EMAIL_HREF = `mailto:?subject=${encodeURIComponent(SHARE_TITLE)}&body=${encodeURIComponent(SHARE_MESSAGE)}`;
+const EMAIL_HREF = `mailto:?subject=${encodeURIComponent(SITE_NAME)}&body=${encodeURIComponent(SHARE_MESSAGE)}`;
 const TEXT_HREF = `sms:?&body=${encodeURIComponent(SHARE_MESSAGE)}`;
 
 export default function ShareSection() {

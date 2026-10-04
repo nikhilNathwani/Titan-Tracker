@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
+
+const TITLE = `${SITE_NAME} | Bobby's Triple Threat Stats`;
 
 export const jsonLd = {
 	"@context": "https://schema.org",
 	"@type": "WebApplication",
-	name: "Titan Tracker",
+	name: SITE_NAME,
 	url: SITE_URL,
 	description:
 		"Fan-made stats tracker for Bobby's Triple Threat on Food Network. Track win rates, rankings, and battle stats for the culinary Titans.",
@@ -26,7 +28,7 @@ export const jsonLd = {
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
-	title: "Titan Tracker | Bobby's Triple Threat Stats",
+	title: TITLE,
 	description:
 		"Tracking live stats for Bobby's Triple Threat on Food Network. Compare the performances of celebrity chefs Brooke Williamson, Michael Voltaggio, and Tiffany Derry, who were hand-picked by Bobby Flay to serve as the three culinary titans on this cooking competition show.",
 	keywords: [
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
 		"Bobby Flay",
 		"culinary competition",
 		"cooking competition show",
-		"Titan Tracker",
+		SITE_NAME,
 		"Brooke Williamson",
 		"Michael Voltaggio",
 		"Tiffany Derry",
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: "website",
 		url: `${SITE_URL}/`,
-		title: "Titan Tracker | Bobby's Triple Threat Stats",
+		title: TITLE,
 		description:
 			"Fan-made stat tracker for Bobby's Triple Threat on Food Network. Compare performances of the three culinary titans.",
 		images: [
@@ -70,7 +72,7 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Titan Tracker | Bobby's Triple Threat Stats",
+		title: TITLE,
 		description:
 			"Fan-made stat tracker for Bobby's Triple Threat on Food Network. Compare performances of the three culinary titans.",
 		images: [`${SITE_URL}/og-image.png`],
