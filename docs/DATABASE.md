@@ -69,7 +69,7 @@ Everything in the tables above is enforced by the database itself (named constra
 - **Reads:** the public page's SQL is in `lib/queries/**/*.sql`. `lib/queries.ts` loads it, runs it, and shapes the results; pages and components call its `get*` functions (`getTitans`, `getWinLoss`, …) rather than querying directly. They run at build time (the page is static). Committing an episode through `/admin` regenerates the page right away (`revalidatePath` in `lib/admin/actions.ts`); otherwise new data appears on the next deploy.
 - **Writes:** the admin portal at `/admin`: route in `app/admin/`, components in `components/Admin/`, logic (validation, inserts, auth) in `lib/admin/`.
 - **Number parsing:** `lib/db.ts` makes `pg` return `COUNT`/`RANK` (bigint) and `AVG` (numeric) results as JS numbers instead of strings.
-- **Roles:** the app connects as `default`, which owns the tables. SQLTools in VS Code connects as `titan_editor` (select/insert/update/delete only).
+- **Roles:** the app connects as `default`, which owns the tables. SQLTools in VS Code connects as `titan_editor` (select/insert/update/delete only). The same database also holds NBA Moneyline's tables (`teams`, `games`, `team_games`); `titan_editor` has no access to those (revoked 2026-10-04). `default` grants `titan_editor` read/write on every table it creates from now on (a default privilege), so after NBA Moneyline adds a table, revoke it there.
 
 ## Handy queries
 
