@@ -37,9 +37,12 @@ SELECT
 	t.is_active,
 	CASE 
 		WHEN NOT t.is_active THEN NULL
+		-- Rank by score only: RANK() ties rows that are equal on every ORDER BY
+		-- column, so adding titan_name here would break every tie ("T-2nd").
+		-- Alphabetical order among tied titans comes from the final ORDER BY.
 		ELSE RANK() OVER (
 			PARTITION BY t.is_active
-			ORDER BY ts.score DESC, t.titan_name ASC
+			ORDER BY ts.score DESC
 		)
 	END AS rank,
 	ts.num_win,
