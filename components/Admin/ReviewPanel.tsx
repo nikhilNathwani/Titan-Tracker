@@ -14,7 +14,14 @@ function capitalizationIssues(episode: NormalizedEpisode): string[] {
 		["Judge", episode.judge_name],
 		...episode.rounds.flatMap((r): [string, string][] => [
 			[`Round ${r.round_num} ingredient 1`, r.ingredient1],
-			[`Round ${r.round_num} ingredient 2`, r.ingredient2],
+			...(r.ingredient2 !== null
+				? [
+						[
+							`Round ${r.round_num} ingredient 2`,
+							r.ingredient2,
+						] as [string, string],
+					]
+				: []),
 		]),
 	];
 	return fields
@@ -116,8 +123,9 @@ export default function ReviewPanel({
 								<td>{round.round_num}</td>
 								<td>{round.titan_name}</td>
 								<td>
-									{round.ingredient1} &amp;{" "}
-									{round.ingredient2}
+									{round.ingredient2 === null
+										? round.ingredient1
+										: `${round.ingredient1} & ${round.ingredient2}`}
 								</td>
 								<td>
 									{round.titan_score}/{round.max_score}

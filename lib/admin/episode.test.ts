@@ -73,6 +73,15 @@ describe("isComplete", () => {
 		expect(isComplete(blankScore)).toBe(false);
 	});
 
+	it("allows a blank ingredient 2 but not a blank ingredient 1", () => {
+		const oneIngredient = filledEpisode();
+		oneIngredient.rounds[0].ingredient2 = " ";
+		expect(isComplete(oneIngredient)).toBe(true);
+
+		oneIngredient.rounds[0].ingredient1 = "";
+		expect(isComplete(oneIngredient)).toBe(false);
+	});
+
 	it('treats a score of "0" as filled', () => {
 		const zero = filledEpisode();
 		zero.rounds[0].titan_score = "0";

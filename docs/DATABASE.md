@@ -46,7 +46,8 @@ Each episode has three rounds, and each round belongs to one episode and one tit
 | `episode_num`                     | `integer`      | as above                                                                                                   |
 | `round_num`                       | `integer`      | **Primary key** (with season/episode). Must be 1, 2 or 3.                                                  |
 | `titan_name`                      | `varchar(255)` | Not null; **foreign key** → `titans.titan_name`. **Unique** per episode: a titan cooks at most one round.  |
-| `ingredient1`, `ingredient2`      | `varchar(255)` | Not null                                                                                                   |
+| `ingredient1`                     | `varchar(255)` | Not null                                                                                                   |
+| `ingredient2`                     | `varchar(255)` | `NULL` when the round had only one key ingredient (never a placeholder like `'None'`). Can't be blank.     |
 | `max_score`                       | `integer`      | Not null. Must be 10 for rounds 1–2, 20 for round 3.                                                       |
 | `titan_score`, `challenger_score` | `integer`      | Not null. Must be 0 to `max_score`.                                                                        |
 
@@ -206,4 +207,14 @@ ALTER TABLE titan_rounds
 		       AND challenger_score BETWEEN 0 AND max_score),
 	ADD CONSTRAINT titan_rounds_one_round_per_titan
 		UNIQUE (season_num, episode_num, titan_name);
+```
+
+- **2026-11-04:** made `ingredient2` optional. S5E11 round 1 had only one key ingredient (Wagyu Beef); it had been entered with `'None'` as ingredient 2, which is now `NULL`. The admin form saves a blank Ingredient 2 as `NULL`.
+
+```sql
+ALTER TABLE titan_rounds ALTER COLUMN ingredient2 DROP NOT NULL;
+ALTER TABLE titan_rounds ADD CONSTRAINT titan_rounds_ingredient2_not_blank
+	CHECK (ingredient2 IS NULL OR btrim(ingredient2) <> '');
+UPDATE titan_rounds SET ingredient2 = NULL
+WHERE season_num = 5 AND episode_num = 11 AND round_num = 1;
 ```

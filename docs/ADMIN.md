@@ -20,6 +20,8 @@ A password-gated form for adding one episode (1 `titan_episodes` row + 3
       [DATABASE.md](DATABASE.md#mark-a-titan-inactive-or-active-again)).
     - **Scores** are picked from a number grid (10→0, or 20→0 for round 3,
       highest first). No typing, no out-of-range values.
+    - **Ingredient 2 is optional.** Leave it blank when Bobby gives only one
+      key ingredient; it's saved as `NULL`. Don't type a placeholder like "None".
     - Name and ingredient fields show a non-blocking **capitalization warning**
       on blur when the text is all lowercase or ALL CAPS ("sea urchin",
       "SEA URCHIN"). Anything with deliberate mixed case ("NY Strip Steak",

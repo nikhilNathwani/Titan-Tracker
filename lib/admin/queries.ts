@@ -101,12 +101,13 @@ export async function validateEpisode(
 			);
 
 		const ingredient1 = cleanText(round.ingredient1);
-		const ingredient2 = cleanText(round.ingredient2);
+		// Ingredient 2 is optional: a few rounds have one key ingredient, and
+		// those are stored as NULL rather than a placeholder like "None".
+		const ingredient2 = cleanText(round.ingredient2) || null;
 		if (!ingredient1) errors.push(`${label}: ingredient 1 is required.`);
-		if (!ingredient2) errors.push(`${label}: ingredient 2 is required.`);
 		if (
 			ingredient1.length > MAX_TEXT_LEN ||
-			ingredient2.length > MAX_TEXT_LEN
+			(ingredient2?.length ?? 0) > MAX_TEXT_LEN
 		)
 			errors.push(
 				`${label}: ingredients must be ${MAX_TEXT_LEN} characters or fewer.`,
@@ -131,7 +132,6 @@ export async function validateEpisode(
 		if (
 			titanName &&
 			ingredient1 &&
-			ingredient2 &&
 			titanScore !== null &&
 			challengerScore !== null
 		) {

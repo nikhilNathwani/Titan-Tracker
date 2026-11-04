@@ -96,7 +96,7 @@ export default function RoundFields({
 					onChange={(next) => onChange({ ingredient1: next })}
 				/>
 				<NameInput
-					label="Ingredient 2"
+					label="Ingredient 2 (optional)"
 					value={value.ingredient2}
 					onChange={(next) => onChange({ ingredient2: next })}
 				/>

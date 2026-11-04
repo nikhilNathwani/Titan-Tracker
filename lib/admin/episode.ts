@@ -20,7 +20,7 @@ export const MAX_TEXT_LEN = 100;
 export interface RoundInput {
 	titan_name: TitanName;
 	ingredient1: string;
-	ingredient2: string;
+	ingredient2: string; // blank = the round had one ingredient
 	titan_score: string;
 	challenger_score: string;
 }
@@ -123,7 +123,10 @@ export function looksMiscapitalized(value: string): boolean {
 	return text === text.toLowerCase() || text === text.toUpperCase();
 }
 
-/** True when every field of the form has a value (the Review button's gate). */
+/**
+ * True when every required field of the form has a value (the Review button's
+ * gate). Ingredient 2 is optional.
+ */
 export function isComplete(value: EpisodeInput): boolean {
 	if (!value.season_num.trim() || !value.episode_num.trim()) return false;
 	if (!value.challenger_name.trim() || !value.judge_name.trim()) return false;
@@ -131,7 +134,6 @@ export function isComplete(value: EpisodeInput): boolean {
 		(round) =>
 			round.titan_name &&
 			round.ingredient1.trim() &&
-			round.ingredient2.trim() &&
 			round.titan_score !== "" &&
 			round.challenger_score !== "",
 	);

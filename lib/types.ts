@@ -32,7 +32,8 @@ export interface Round {
 	round_num: RoundNum;
 	titan_name: TitanName;
 	ingredient1: string;
-	ingredient2: string;
+	/** null when the round had only one key ingredient */
+	ingredient2: string | null;
 	max_score: number;
 	titan_score: number;
 	challenger_score: number;
