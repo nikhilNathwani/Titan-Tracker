@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
 	title: TITLE,
 	description:
-		"Tracking live stats for Bobby's Triple Threat on Food Network. Compare the performances of celebrity chefs Brooke Williamson, Michael Voltaggio, and Tiffany Derry, who were hand-picked by Bobby Flay to serve as the three culinary titans on this cooking competition show.",
+		"Tracking stats for Bobby's Triple Threat on Food Network. Compare the performances of celebrity chefs Brooke Williamson, Michael Voltaggio, and Tiffany Derry, who were hand-picked by Bobby Flay to serve as the three culinary titans on this cooking competition show.",
 	keywords: [
 		"Bobby's Triple Threat",
 		"Food Network",
